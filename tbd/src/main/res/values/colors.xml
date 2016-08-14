@@ -7,6 +7,10 @@
     <color name="dark_gray">#333333</color>
     <color name="operated_by">#100BDF</color>
 
+    <color name="title">#434343</color>
+    <color name="button_pay">#EB332E</color>
+    <color name="field">#D9D9D9</color>
+
     <color name="theme1_header_transparent">#CCff6a4d</color>
 
 

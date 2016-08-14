@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" >
+    <TableLayout
+        android:id="@+id/discountTableLayout"
+        android:stretchColumns="1,2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Secure Payment"
+                android:textColor="@color/white"
+                android:background="@color/title"
+                android:id="@+id/textView421"
+                android:padding="10dp"
+                android:layout_span="4"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tableRow0"
+            android:padding="20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MSOS Code"
+                android:id="@+id/textView"
+                android:layout_column="0"
+                android:textSize="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/grey"
+                android:textStyle="bold"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm >"
+                android:textColor="@color/white"
+                android:background="@color/button_pay"
+                android:id="@+id/textView4s41"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_span="4"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"/>
+        </TableRow>
+    </TableLayout>
+</ScrollView>
