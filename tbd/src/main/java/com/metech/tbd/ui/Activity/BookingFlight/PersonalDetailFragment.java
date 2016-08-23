@@ -25,13 +25,13 @@ import com.metech.tbd.MainController;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.metech.tbd.ui.Model.Receive.LoginReceive;
 import com.metech.tbd.ui.Model.Receive.PassengerInfoReveice;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.BookingFlight.ManageFamilyAndFriend.ManageFriendAndFamilyActivity;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
 import com.metech.tbd.ui.Module.PersonalDetailModule;
 import com.metech.tbd.ui.Model.Request.CachedResult;
 import com.metech.tbd.ui.Model.Request.DefaultPassengerObj;
@@ -951,7 +951,7 @@ public class PersonalDetailFragment extends BaseFragment implements Validator.Va
             try {
 
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                SelectFlightFragment countryListDialogFragment = com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.newInstance(constParam);
                 countryListDialogFragment.setTargetFragment(PersonalDetailFragment.this, 0);
                 countryListDialogFragment.show(fm, "countryListDialogFragment");
 
@@ -967,7 +967,7 @@ public class PersonalDetailFragment extends BaseFragment implements Validator.Va
             return;
         } else {
             if (requestCode == 1) {
-                DropDownItem selectedCountry = data.getParcelableExtra(CountryListDialogFragment.EXTRA_COUNTRY);
+                DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.DEPARTURE_FLIGHT);
 
                 TextView issuingCountry = (TextView) view.findViewWithTag("passenger" + Integer.toString(clickedPassenger) + "_issuing_country");
                 issuingCountry.setText(selectedCountry.getText());

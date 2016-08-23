@@ -25,8 +25,7 @@ public class MF_EditPassengerActivity extends MainFragmentActivity implements Fr
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, MF_EditPassengerFragment.newInstance(bundle)).commit();
 
-        hideTitle();
-        setMenuButton();
+        //hideTitle();
 
     }
 

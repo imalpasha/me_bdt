@@ -30,8 +30,7 @@ public class ItinenaryActivity extends MainFragmentActivity implements FragmentC
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, ItinenaryFragment.newInstance(bundle)).commit();
 
-        setMenuButton();
-        hideTitle();
+        //hideTitle();
     }
 
     @Override

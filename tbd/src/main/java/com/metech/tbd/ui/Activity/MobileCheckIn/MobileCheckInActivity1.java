@@ -23,8 +23,7 @@ public class MobileCheckInActivity1 extends MainFragmentActivity implements Frag
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, MobileCheckInFragment1.newInstance()).commit();
 
-        hideTitle();
-        setMenuButton();
+        //hideTitle();
 
 
     }

@@ -30,13 +30,12 @@ import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.*;
 import com.metech.tbd.ui.Model.Receive.ContactInfoReceive;
 import com.metech.tbd.ui.Model.Receive.LoginReceive;
 import com.metech.tbd.ui.Model.Receive.PassengerInfoReveice;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
-import com.metech.tbd.ui.Activity.Picker.StateListDialogFragment;
 import com.metech.tbd.ui.Module.ContactInfoModule;
 import com.metech.tbd.ui.Model.Request.CachedResult;
 import com.metech.tbd.ui.Model.Request.ContactInfo;
@@ -835,7 +834,7 @@ public class ContactInfoFragment extends BaseFragment implements Validator.Valid
                     countryListDialogFragment.setTargetFragment(ContactInfoFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
                 }else{
-                    CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                    SelectFlightFragment countryListDialogFragment = com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.newInstance(constParam);
                     countryListDialogFragment.setTargetFragment(ContactInfoFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
                 }
@@ -852,7 +851,7 @@ public class ContactInfoFragment extends BaseFragment implements Validator.Valid
             return;
         } else {
             if (requestCode == 1) {
-                DropDownItem selectedCountry = data.getParcelableExtra(CountryListDialogFragment.EXTRA_COUNTRY);
+                DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.DEPARTURE_FLIGHT);
 
                 if (selectedCountry.getTag() == "Country") {
                     txtCountry.setText(selectedCountry.getText());

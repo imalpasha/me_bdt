@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,7 +12,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <com.metech.tbd.utils.PlayTextView
             android:id="@+id/textView416"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,16 +32,17 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0.35"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView32"
+                android:id="@+id/imgUser"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:padding="15dp"
+                android:padding="18dp"
+                android:background="@drawable/tbd_image_border"
                 android:scaleType="centerInside"
                 android:src="@drawable/tbd_dp2" />
         </LinearLayout>
@@ -53,28 +55,30 @@
             android:paddingBottom="15dp"
             android:paddingTop="15dp">
 
-            <TextView
+            <com.metech.tbd.utils.PlayTextView
                 android:id="@+id/txtGuest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_lvl2"
                 android:text="Guest 1" />
 
-            <TextView
+            <com.metech.tbd.utils.PlayTextView
                 android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"
                 android:text="Mr." />
 
-            <TextView
+            <com.metech.tbd.utils.PlayTextView
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:text="Imal Pasha" />
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="Danny Wong" />
 
-            <TextView
+            <com.metech.tbd.utils.PlayTextView
                 android:id="@+id/txtNationality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,10 +94,90 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/edit_ff"
+                android:id="@+id/btnAddUser1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/drawable_login_bottom_border"
+        android:weightSum="1" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView42"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:padding="15dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/profile_tbd" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp" >
+
+            <com.metech.tbd.utils.PlayTextView
+                android:id="@+id/textView436"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/dark_lvl2"
+                android:text="Guest 2" />
+
+            <com.metech.tbd.utils.PlayTextView
+                android:id="@+id/textView437"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:text="Title"
+                android:textColor="@color/dark_lvl2"/>
+
+            <com.metech.tbd.utils.PlayTextView
+                android:id="@+id/textView438"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/dark_lvl2"
+                android:text="Guest Name" />
+
+            <com.metech.tbd.utils.PlayTextView
+                android:id="@+id/textView439"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nationality"
+                android:textColor="@color/dark_lvl2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="0.15"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/edit_ff"
-                android:id="@+id/imageView33" />
+                android:id="@+id/btnAddUser2" />
         </LinearLayout>
     </LinearLayout>
 
@@ -106,6 +190,14 @@
         android:textStyle="bold"
         android:background="@color/red"
         android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:background="@drawable/drawable_login_bottom_border"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
 
 
 </LinearLayout>

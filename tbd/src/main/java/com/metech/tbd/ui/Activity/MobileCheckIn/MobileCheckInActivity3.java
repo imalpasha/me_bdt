@@ -20,7 +20,6 @@ public class MobileCheckInActivity3 extends MainFragmentActivity implements Frag
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, MobileCheckInFragment3.newInstance(bundle)).commit();
 
-        setMenuButton();
 
     }
 

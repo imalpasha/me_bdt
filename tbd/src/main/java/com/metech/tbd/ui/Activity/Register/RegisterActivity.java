@@ -28,7 +28,6 @@ public class RegisterActivity extends MainFragmentActivity implements FragmentCo
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, RegisterFragment.newInstance(),"xx").commit();
 
-        setMenuButton();
 
        /* Fragment fragmentA = new FragmentA();
         getFragmentManager().beginTransaction()

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import com.metech.tbd.R;
 import com.metech.tbd.base.BaseFragment;
@@ -14,12 +17,15 @@ import com.metech.tbd.ui.Realm.RealmObjectController;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class FlightListFragment extends BaseFragment {
 
-    @Inject BookingPresenter presenter;
+    @Inject
+    BookingPresenter presenter;
 
-    //@InjectView(R.id.fareRuleLayout)LinearLayout fareRuleLayout;
+    @InjectView(R.id.flightLayout)
+    LinearLayout flightLayout;
 
     private int fragmentContainerId;
 
@@ -40,11 +46,13 @@ public class FlightListFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.flight_detail, container, false);
         ButterKnife.inject(this, view);
 
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.bottom_up);
+        flightLayout.setAnimation(animation);
 
         return view;
     }

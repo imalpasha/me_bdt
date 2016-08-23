@@ -1,4 +1,4 @@
-package com.metech.tbd.ui.Activity.BookingFlight.SSR;
+package com.metech.tbd.ui.Activity.BookingFlight.TravellerInfo;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 
 //import android.view.WindowManager;
 
-public class MealActivity extends MainFragmentActivity implements FragmentContainerActivity {
+public class TravellerInfoAddActivity extends MainFragmentActivity implements FragmentContainerActivity {
 
     //@InjectView(R.id.btnLogin) Button btnLogin;
     private Tracker mTracker;
@@ -24,11 +24,13 @@ public class MealActivity extends MainFragmentActivity implements FragmentContai
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, MealFragment.newInstance()).commit();
+        Bundle bundle = getIntent().getExtras();
 
-        setTitle("Member Login");
-        setMenuButton();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_content, TravellerInfoAddFragment.newInstance(bundle)).commit();
+
+        setTitle("TRAVELLERS INFO");
+        setBackButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.

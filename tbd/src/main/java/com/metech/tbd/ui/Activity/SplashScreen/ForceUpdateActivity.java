@@ -22,9 +22,7 @@ public class ForceUpdateActivity extends MainFragmentActivity implements Fragmen
 
         ButterKnife.inject(this);
 
-        hideMenuButton();
-        hideTitle();
-        lockDrawer();
+        //hideTitle();
         BaseFragment.removeLogoHeader(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();

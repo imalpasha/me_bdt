@@ -138,7 +138,7 @@ public class CheckInPassengerListAdapter extends BaseAdapter implements DatePick
         if(act != null) {
             try {
 
-                CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                SelectFlightFrament countryListDialogFragment = SelectFlightFrament.newInstance(constParam);
                 countryListDialogFragment.setTargetFragment(fragment, 0);
                 countryListDialogFragment.show(fm, "countryListDialogFragment");
 

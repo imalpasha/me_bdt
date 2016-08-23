@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="primary_green">#80B540</color>
     <color name="dark_green">#6BA039</color>
     <color name="bright_green">#57F900</color>
 
     <color name="dark_gray">#333333</color>
     <color name="operated_by">#100BDF</color>
+
+    <color name="title">#434343</color>
+    <color name="button_pay">#EB332E</color>
+    <color name="field">#D9D9D9</color>
 
     <color name="theme1_header_transparent">#CCff6a4d</color>
 
@@ -50,6 +55,7 @@
 
     <color name="dark_lvl1">#E6E6E6</color>
     <color name="dark_lvl2">#999999</color>
+    <color name="dark_lvl3">#808080</color>
 
     <color name="dark_lvl1_transparent">#00ffffff</color>
     <color name="grey_lvl5">#DCD9D4</color>
@@ -74,7 +80,6 @@
     <color name="loginFontTxt">#A8A8A8</color>
     <color name="loginNoAccountYet">#F79B74</color>
     <color name="main_border">#808080</color>
-
 
 
     <!-- Register -->
@@ -102,9 +107,12 @@
     <!-- Header -->
     <color name="default_theme_colour">#E43117</color>
     <color name="background">#D4D4D4</color>
+    <color name="default_background">#FFFFFF</color>
     <color name="ssr_background_1">#E6E6E6</color>
 
     <!-- Tab Colour -->
+
+    <color name="tab_colour">#e6e6e6</color>
     <color name="theme1_tab_bg_1">#ff4d4d</color>
     <color name="theme1_tab_bg_1_click">#774964</color>
 
@@ -121,6 +129,8 @@
     <color name="theme1_tab_bg_5_click">#FF955D</color>
 
     <color name="name_transparent_background">#40000000</color>
+    <color name="name_fb_transparent_background">#BFFFFFFF</color>
+
     <color name="onclick_my_profile">#f2f2f2</color>
     <color name="search_flight_background">#434343</color>
 
@@ -128,5 +138,8 @@
     <!-- Search Flight -->
     <color name="zeroClick_departFlight">#E43117</color>
     <color name="onClick_departFlight">#ED5C45</color>
+    <!--Date Picker -->
+    <color name="mdtp_accent_color">#E43117</color>
+    <color name="mdtp_accent_color_dark">#ED5C45</color>
 
 </resources>

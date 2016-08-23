@@ -38,7 +38,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 
         //back to splash screen
         //BaseFragment.splashScreen(context,registrationId);
-        SplashScreenFragment.splash(context,registrationId);
+        //SplashScreenFragment.splash(context,registrationId);
 
     }
 

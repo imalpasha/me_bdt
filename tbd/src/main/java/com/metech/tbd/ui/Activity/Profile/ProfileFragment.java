@@ -60,7 +60,7 @@ public class ProfileFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.profile, container, false);
         ButterKnife.inject(this, view);
 
-        maskUserDP();
+        //maskUserDP();
 
         return view;
     }

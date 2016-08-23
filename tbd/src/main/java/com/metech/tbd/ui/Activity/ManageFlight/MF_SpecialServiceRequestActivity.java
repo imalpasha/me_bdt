@@ -25,8 +25,7 @@ public class MF_SpecialServiceRequestActivity extends MainFragmentActivity imple
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, MF_SpecialServiceRequestFragment.newInstance(bundle)).commit();
 
-        hideTitle();
-        setMenuButton();
+        //hideTitle();
 
     }
 

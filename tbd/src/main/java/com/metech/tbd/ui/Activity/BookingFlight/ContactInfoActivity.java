@@ -30,8 +30,7 @@ public class ContactInfoActivity extends MainFragmentActivity implements Fragmen
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, ContactInfoFragment.newInstance(bundle)).commit();
 
-        hideTitle();
-        setMenuButton();
+        //hideTitle();
 
     }
 

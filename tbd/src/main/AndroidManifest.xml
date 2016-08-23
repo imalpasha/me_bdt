@@ -109,19 +109,14 @@
             android:name="com.metech.tbd.ui.Activity.HolidayShaker.HolidayShakerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
             android:name="com.metech.tbd.ui.Activity.BookingFlight.SSR.BaggageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
 
-        <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.SSR.MealActivity"
-            android:screenOrientation="portrait" />
+        </activity>
 
         <activity
             android:name="com.metech.tbd.ui.Activity.BookingFlight.TravellerInfo.TravellerInfoActivity"
@@ -133,7 +128,9 @@
 
         <activity
             android:name="com.metech.tbd.ui.Activity.BookingFlight.SearchFlightActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
 
         <activity
             android:name=".ui.Activity.BookingFlight.FlightListActivity"
@@ -279,18 +276,46 @@
             android:name="com.metech.tbd.ui.Activity.SplashScreen.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.metech.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/landingTheme">
 
         </activity>
 
 
-        <!-- SPLASH SCREEN -->
         <activity
             android:name="com.metech.tbd.ui.Activity.Profile.ProfileActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.metech.tbd.ui.Activity.BookingFlight.Checkout.PaymentMSOSActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.metech.tbd.ui.Activity.BookingFlight.Checkout.PaymentActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.metech.tbd.ui.Activity.BookingFlight.Checkout.CheckoutActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.metech.tbd.ui.Activity.BookingFlight.TravellerInfo.TravellerInfoAddActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <!-- SPLASH SCREEN -->
         <activity
             android:name="com.metech.tbd.ui.Activity.DragDrop.DragDropActivity"
             android:screenOrientation="portrait">

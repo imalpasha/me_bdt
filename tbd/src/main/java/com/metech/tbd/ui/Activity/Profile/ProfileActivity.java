@@ -28,7 +28,6 @@ public class ProfileActivity extends MainFragmentActivity implements FragmentCon
         fragmentManager.beginTransaction().replace(R.id.main_content, ProfileFragment.newInstance()).commit();
 
         setTitle("My Profile");
-        setMenuButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.

@@ -1,14 +1,23 @@
-package com.metech.tbd.ui.Activity.BookingFlight.SSR;
+package com.metech.tbd.ui.Activity.BookingFlight.Checkout;
 
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.metech.tbd.R;
-import com.metech.tbd.ui.Activity.Profile.ProfileActivity;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
 import com.metech.tbd.ui.Presenter.LoginPresenter;
@@ -21,7 +30,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class MealFragment extends BaseFragment{
+public class PaymentMSOSFragment extends BaseFragment {
 
     // Validator Attributes
     private Validator mValidator;
@@ -30,13 +39,14 @@ public class MealFragment extends BaseFragment{
     @Inject
     LoginPresenter presenter;
 
-    @InjectView(R.id.txtLoginBtn) TextView txtLoginBtn;
-
+    //@InjectView(R.id.btnSSRNext)
+    //ImageView btnSSRNext;
     private int fragmentContainerId;
 
-    public static MealFragment newInstance() {
 
-        MealFragment fragment = new MealFragment();
+    public static PaymentMSOSFragment newInstance() {
+
+        PaymentMSOSFragment fragment = new PaymentMSOSFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -51,30 +61,12 @@ public class MealFragment extends BaseFragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.ssr_info_meal, container, false);
+        View view = inflater.inflate(R.layout.payment2, container, false);
         ButterKnife.inject(this, view);
 
-
-        txtLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                profile();
-            }
-        });
-
-
         return view;
-    }
-
-
-    /*Public-Inner Func*/
-    public void profile()
-    {
-        Intent profilePage = new Intent(getActivity(), ProfileActivity.class);
-        getActivity().startActivity(profilePage);
-
     }
 
 

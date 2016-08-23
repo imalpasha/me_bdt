@@ -1,4 +1,4 @@
-package com.metech.tbd.drawer;
+/*package com.metech.tbd.drawer;
 
 import android.app.Activity;
 import android.view.View;
@@ -170,3 +170,4 @@ public class NavigationDrawerAdapter extends BaseBaseAdapter<DrawerItem>
 		return convertView;
 	}
 }
+*/

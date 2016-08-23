@@ -4,13 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <SearchView
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <EditText
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtSearchCustom"
+            android:hint="Search"
+            android:padding="10dp"
+            android:background="@drawable/drawable_login_bottom_border"/>
+
+
+
+    </LinearLayout>
+
+    <!--<SearchView
         android:id="@+id/etSearchCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
         android:padding="2dp"
-        android:queryHint="@string/searchCountryHint" />
+        android:background="@drawable/drawable_login_bottom_border"
+        android:queryHint="@string/searchCountryHint" />-->
 
     <ListView
         android:id="@+id/lvCountries"

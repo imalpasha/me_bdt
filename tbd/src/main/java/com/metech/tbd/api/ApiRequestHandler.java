@@ -695,7 +695,7 @@ public class ApiRequestHandler {
                         }else if(event.getModule().equals("check_in")){
                             //save mobile-checkin list to realm.
                             RealmObjectController.saveMobileCheckInList(MainFragmentActivity.getContext(),retroResponse);
-                        }else if(event.getModule().equals("boarding_pass")){
+                        }else if(event.getModule().equals("on_boarding_image")){
                             //save mobile-checkin list to realm.
                             RealmObjectController.saveBoardingPassPNRList(MainFragmentActivity.getContext(),retroResponse);
                         }

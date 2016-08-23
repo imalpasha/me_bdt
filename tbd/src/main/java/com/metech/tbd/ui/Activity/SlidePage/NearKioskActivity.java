@@ -18,7 +18,7 @@ public class NearKioskActivity extends MainFragmentActivity implements FragmentC
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, NearKioskFragment.newInstance()).commit();
-        hideTitle();
+        //hideTitle();
 
 
     }

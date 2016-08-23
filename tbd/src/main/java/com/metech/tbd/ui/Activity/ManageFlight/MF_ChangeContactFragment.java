@@ -19,11 +19,11 @@ import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.metech.tbd.ui.Model.Receive.ManageChangeContactReceive;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
 import com.metech.tbd.ui.Module.ManageChangeContactModule;
 import com.metech.tbd.ui.Model.Request.CachedResult;
 import com.metech.tbd.ui.Model.Request.ContactInfo;
@@ -570,7 +570,7 @@ public class MF_ChangeContactFragment extends BaseFragment implements Validator.
             try {
 
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                SelectFlightFragment countryListDialogFragment = com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.newInstance(constParam);
                 countryListDialogFragment.setTargetFragment(MF_ChangeContactFragment.this, 0);
                 countryListDialogFragment.show(fm, "countryListDialogFragment");
 
@@ -586,7 +586,7 @@ public class MF_ChangeContactFragment extends BaseFragment implements Validator.
             return;
         } else {
             if (requestCode == 1) {
-                DropDownItem selectedCountry = data.getParcelableExtra(CountryListDialogFragment.EXTRA_COUNTRY);
+                DropDownItem selectedCountry = data.getParcelableExtra(SelectFlightFragment.DEPARTURE_FLIGHT);
 
                 if (selectedCountry.getTag() == "Country") {
                     txtCountry.setText(selectedCountry.getText());

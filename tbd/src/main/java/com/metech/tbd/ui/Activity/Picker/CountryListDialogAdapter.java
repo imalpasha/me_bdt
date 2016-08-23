@@ -1,12 +1,11 @@
 package com.metech.tbd.ui.Activity.Picker;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.metech.tbd.R;
@@ -14,18 +13,26 @@ import com.metech.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
 
-public class CountryListDialogAdapter extends BaseAdapter implements Filterable {
+public class CountryListDialogAdapter extends BaseAdapter {
     Context context;
     ArrayList<DropDownItem> countries;
-    ArrayList<DropDownItem> stringCountryFilter;
+    ArrayList<DropDownItem> originalCountries;
     TextView tvCountry;
     DropDownItem currentItem;
-    ValueFilter valueFilter;
 
-    public CountryListDialogAdapter(Context context, ArrayList<DropDownItem> countries) {
+    ArrayList<DropDownItem> arraylist;
+    String[] filteredChar;
+    SelectFlightFragment frag;
+
+    public CountryListDialogAdapter(Context context, SelectFlightFragment frag, ArrayList<DropDownItem> countries, ArrayList<DropDownItem> oriCountries) {
         this.context = context;
         this.countries = countries;
-        stringCountryFilter = countries;
+        this.frag = frag;
+        this.arraylist = new ArrayList<DropDownItem>();
+        this.arraylist.addAll(countries);
+
+        this.originalCountries = oriCountries;
+
     }
 
     @Override
@@ -55,16 +62,16 @@ public class CountryListDialogAdapter extends BaseAdapter implements Filterable 
         return view;
     }
 
-    @Override
+    /*@Override
     public Filter getFilter() {
         if (valueFilter == null) {
             valueFilter = new ValueFilter();
         }
 
         return valueFilter;
-    }
+    }*/
 
-    private class ValueFilter extends Filter {
+    /*private class ValueFilter extends Filter {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -72,7 +79,7 @@ public class CountryListDialogAdapter extends BaseAdapter implements Filterable 
 
             if (constraint != null && constraint.length() > 0) {
                 ArrayList<DropDownItem> filterList = new ArrayList<DropDownItem>();
-                for (int i = 0 ; i < stringCountryFilter.size() ; i++) {
+                for (int i = 0; i < stringCountryFilter.size(); i++) {
                     if (stringCountryFilter.get(i).getText().toUpperCase().contains(constraint.toString().toUpperCase())) {
                         DropDownItem dropDownItem = stringCountryFilter.get(i);
 
@@ -94,5 +101,28 @@ public class CountryListDialogAdapter extends BaseAdapter implements Filterable 
             countries = (ArrayList<DropDownItem>) results.values;
             notifyDataSetChanged();
         }
+    }*/
+
+    public void filter(String charText) {
+        charText = charText.toLowerCase();
+        countries.clear();
+
+        if (charText.length() == 0) {
+            countries.addAll(originalCountries);
+           // frag.recreateAdapter(countries);
+        } else {
+
+            for (DropDownItem pic : originalCountries) {
+                if (pic.getText().toLowerCase().contains(charText)) {
+                    countries.add(pic);
+                    Log.e(charText,pic.toString());
+                }
+            }
+
+        }
+        //frag.notifyAnotherAdapter();
+        frag.recreateAdapter(countries);
+
+        // notifyDataSetChanged();
     }
 }

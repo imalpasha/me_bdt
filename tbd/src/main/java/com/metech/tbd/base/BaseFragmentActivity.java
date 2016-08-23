@@ -14,6 +14,8 @@ import android.view.View.OnClickListener;
 
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.BookingFlight.Checkout.CheckoutActivity;
+import com.metech.tbd.ui.Activity.Profile.ProfileActivity;
 import com.metech.tbd.ui.Model.Request.NotificationMessage;
 import com.metech.tbd.utils.App;
 import com.metech.tbd.ui.Realm.RealmObjectController;
@@ -38,9 +40,8 @@ public class BaseFragmentActivity extends FragmentActivity {
 
    /* public void tabSearch(View v)
     {
-        Intent intent = new Intent(BaseFragmentActivity.this, GlobalSearchView.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        BaseFragmentActivity.this.startActivity(intent);
+
+
     }
 
     public void tabWish(View v)
@@ -147,7 +148,22 @@ public class BaseFragmentActivity extends FragmentActivity {
         aq.id(R.id.backbutton).clicked(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                BaseFragmentActivity.this.finish();
+            }
+        });
+    }
+
+    public void setCheckOutButton()
+    {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.checkOut).visible();
+        aq.id(R.id.checkOut).clicked(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(BaseFragmentActivity.this, CheckoutActivity.class);
+                BaseFragmentActivity.this.startActivity(intent);
             }
         });
     }
@@ -156,7 +172,6 @@ public class BaseFragmentActivity extends FragmentActivity {
     {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
-        aq.id(R.id.globalSearchBoxTablet).visible();
         aq.id(R.id.tabMySearch1).gone();
         aq.id(R.id.centerPart).gone();
 
@@ -222,6 +237,8 @@ public class BaseFragmentActivity extends FragmentActivity {
     {
         super.finish();
         RealmObjectController.clearCachedResult(this);
+        System.gc();
+
         //overridePendingTransition(R.anim.fadeout,R.anim.fadein);
 
     }

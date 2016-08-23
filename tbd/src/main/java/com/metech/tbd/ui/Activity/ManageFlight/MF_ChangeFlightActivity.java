@@ -25,8 +25,7 @@ public class MF_ChangeFlightActivity extends MainFragmentActivity implements Fra
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, MF_ChangeFlightFragment.newInstance(bundle)).commit();
 
-        hideTitle();
-        setMenuButton();
+        //hideTitle();
 
     }
 

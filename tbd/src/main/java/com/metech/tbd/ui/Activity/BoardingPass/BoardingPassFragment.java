@@ -204,11 +204,11 @@ public class BoardingPassFragment extends BaseFragment implements Validator.Vali
                     cachedDisplay = true;
                     horizontalProgressBar.setVisibility(View.VISIBLE);
                     //update the list on background
-                    presenter.retriveListOfBoardingPass(storeUsername, storePassword, "boarding_pass",customerNumber);
+                    presenter.retriveListOfBoardingPass(storeUsername, storePassword, "on_boarding_image",customerNumber);
 
                 }else{
                     initiateLoading(getActivity());
-                    presenter.retriveListOfBoardingPass(storeUsername, storePassword, "boarding_pass",customerNumber);
+                    presenter.retriveListOfBoardingPass(storeUsername, storePassword, "on_boarding_image",customerNumber);
                     boardingPassBtn.setVisibility(View.GONE);
                 }
             }

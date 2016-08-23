@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,9 @@ import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.BookingFlight.SearchFlightActivity;
+import com.metech.tbd.ui.Activity.HolidayShaker.HolidayShakerActivity;
+import com.metech.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
 import com.metech.tbd.ui.Model.Receive.DeviceInfoSuccess;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
@@ -33,10 +37,12 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class SplashScreenFragment extends BaseFragment implements HomePresenter.SplashScreen {
+public class SplashScreenFragment extends BaseFragment implements HomePresenter.SplashScreen{
+    //implements} HomePresenter.SplashScreen {
 
     @Inject
     HomePresenter presenter;
+
     private int fragmentContainerId;
     private SharedPrefManager pref;
     private DeviceInformation info;
@@ -65,13 +71,25 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        MainController.setHomeStatus();
+       // MainController.setHomeStatus();
 
         View view = inflater.inflate(R.layout.splash_screen, container, false);
         ButterKnife.inject(this, view);
         pref = new SharedPrefManager(getActivity());
-        pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
-        activity = getActivity();
+
+        /*Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent home = new Intent(getActivity(), HolidayShakerActivity.class);
+                getActivity().startActivity(home);
+                getActivity().finish();
+
+            }
+        },2000); //adding one sec delay
+*/
+       // pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
+       // activity = getActivity();
 
         //2JUN - COMMENT
         //String gcmKey = bundle.getString("GCM_KEY");
@@ -127,7 +145,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
                 sendDeviceInformationToServer(info);
                 // pref.setAppVersion("0.10");
             } else if (localDataVersion == null && !MainController.connectionAvailable(getActivity())) {
-                connectionRetry("No Internet Connection");
+                //connectionRetry("No Internet Connection");
             } else if (localDataVersion != null && MainController.connectionAvailable(getActivity())) {
                 sendDeviceInformationToServer(info);
             } else if (localDataVersion != null && !MainController.connectionAvailable(getActivity())) {
@@ -135,7 +153,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
                 HashMap<String, String> initApp = pref.getAppVersion();
                 String localAppVersion = initApp.get(SharedPrefManager.APP_VERSION);
                 if(localAppVersion == null){
-                    connectionRetry("No Internet Connection");
+                    //connectionRetry("No Internet Connection");
                 }else{
                     goHomepage();
                 }
@@ -157,18 +175,18 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
     }
 
     public void sendDeviceInformationToServer(DeviceInformation info) {
-        if (pDialog.isShowing()) {
-            pDialog.dismiss();
-        }
+        //if (pDialog.isShowing()) {
+        //    pDialog.dismiss();
+       // }
         if (MainController.connectionAvailable(getActivity())) {
             presenter.deviceInformation(info);
 
         } else {
-            connectionRetry("No Internet Connection");
+            //connectionRetry("No Internet Connection");
         }
     }
 
-    public void connectionRetry(String msg) {
+    /*public void connectionRetry(String msg) {
 
         pDialog.setTitleText("Connection Error");
         pDialog.setCancelable(false);
@@ -182,7 +200,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
         })
                 .show();
 
-    }
+    }*/
 
     @Override
     public void loadingSuccess(DeviceInfoSuccess obj) {
@@ -212,10 +230,6 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
             String dataVersion = obj.getObj().getData_version();
             String appVersion = obj.getObj().getData_version_mobile().getVersion();
             String updateStatus = obj.getObj().getData_version_mobile().getForce_update();
-
-            // forceUpdate() update app if needed
-            // update() - update data in app if needed
-            //forceUpdate();
 
             //Check App Version. Update if needed
             if (!App.APP_VERSION.equals(appVersion) && updateStatus.equals("Y")) {
@@ -247,7 +261,6 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
 
         DeviceInfoSuccess.SocialMedia socialMediaObj = obj.getObj().getSocial_media();
 
-        /*Save All to pref for reference*/
         Gson gson = new Gson();
         String title = gson.toJson(obj.getObj().getData_title());
         pref.setUserTitle(title);
@@ -263,9 +276,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
 
         String socialMedia = gson.toJson(socialMediaObj);
         pref.setSocialMedia(socialMedia);
-        /*End*/
 
-        /*Save Signature to local storage*/
         pref.setSignatureToLocalStorage(signature);
         pref.setBannerUrl(bannerUrl);
         pref.setPromoBannerUrl(promoBannerUrl);
@@ -274,18 +285,16 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
         pref.setDataVersion(dataVersion);
         pref.setAppVersion(appVersion);
 
-        //Check If app need update
-        HashMap<String, String> initApp = pref.getAppVersion();
-        String localAppVersion = initApp.get(SharedPrefManager.APP_VERSION);
-
         //thru homepage
         goHomepage();
 
     }
 
     public void goHomepage() {
+        //go to on boarding first
+
         MainController.setHomeStatus();
-        Intent home = new Intent(getActivity(), HomeActivity.class);
+        Intent home = new Intent(getActivity(), OnBoardingActivity.class);
         getActivity().startActivity(home);
         getActivity().finish();
     }
@@ -298,8 +307,9 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
 
     @Override
     public void onConnectionFailed() {
-        connectionRetry("Unable to connect to server");
+       // connectionRetry("Unable to connect to server");
     }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -317,7 +327,6 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
     public void onPause() {
         super.onPause();
         presenter.onPause();
-        running = false;
     }
 
 }

@@ -20,7 +20,7 @@ import com.metech.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
 
-public class StateListDialogFragment extends DialogFragment implements SearchView.OnQueryTextListener{
+public class StateListDialogFragment extends DialogFragment{
     public static final String KEY_COUNTRY_LIST = "countryList";
     public static final String EXTRA_COUNTRY = "country";
     public static final String EXTRA_PARAM = "param";
@@ -47,10 +47,10 @@ public class StateListDialogFragment extends DialogFragment implements SearchVie
 
         View view = inflater.inflate(R.layout.fragment_country_list_dialog, container, false);
         lvCountries = (ListView) view.findViewById(R.id.lvCountries);
-        etSearchCountry = (SearchView) view.findViewById(R.id.etSearchCountry);
-        etSearchCountry.setOnQueryTextListener(this);
+        //etSearchCountry = (SearchView) view.findViewById(R.id.etSearchCountry);
+        //etSearchCountry.setOnQueryTextListener(this);
 
-        adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), countries);
+        //adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), countries);
         lvCountries.setAdapter(adapter);
         lvCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class StateListDialogFragment extends DialogFragment implements SearchVie
         dismiss();
     }
 
-    @Override
+    /*@Override
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
@@ -97,6 +97,6 @@ public class StateListDialogFragment extends DialogFragment implements SearchVie
     public boolean onQueryTextChange(String newText) {
         adapter.getFilter().filter(newText);
         return false;
-    }
+    }*/
 
 }

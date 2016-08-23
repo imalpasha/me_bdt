@@ -1,36 +1,46 @@
 package com.metech.tbd.ui.Activity.BookingFlight;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.metech.tbd.application.AnalyticsApplication;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.SearchFlightReceive;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
 import com.metech.tbd.ui.Module.SearchFlightModule;
-import com.metech.tbd.ui.Model.Request.SearchFlightObj;
 import com.metech.tbd.ui.Presenter.BookingPresenter;
 import com.metech.tbd.ui.Realm.RealmObjectController;
+import com.metech.tbd.utils.DropDownItem;
 import com.metech.tbd.utils.SharedPrefManager;
-import com.mobsandgeeks.saripaar.Validator;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class SearchFlightFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener,BookingPresenter.SearchFlightView {
+public class SearchFlightFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener, BookingPresenter.SearchFlightView {
 
     @Inject
     BookingPresenter presenter;
@@ -44,6 +54,23 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @InjectView(R.id.btnSearchFlight)
     Button btnSearchFlight;
 
+    @InjectView(R.id.btnDepartureFlight)
+    LinearLayout btnDepartureFlight;
+
+    @InjectView(R.id.btnArrivalFlight)
+    LinearLayout btnArrivalFlight;
+
+    @InjectView(R.id.bookFlightDepartureDate)
+    TextView bookFlightDepartureDate;
+
+    @InjectView(R.id.bookFlightReturnDate)
+    TextView bookFlightReturnDate;
+
+    @InjectView(R.id.txtDepartureFlight)
+    TextView txtDepartureFlight;
+
+    @InjectView(R.id.txtArrivalFlight)
+    TextView txtArrivalFlight;
 
 
 
@@ -62,19 +89,12 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     private String RETURN_DATE_PICKER = "RETURN_DATE_PICKER";
     private String PICKER;
     public static final String DATEPICKER_TAG = "DATEPICKER_TAG";
-    private AlertDialog dialog;
-    private Validator mValidator;
-    private DatePickerDialog datePickerDialog2;
-    private int departureDay,departureMonth,departureYear = 0;
-    private SearchFlightObj flightObj;
-
+    private String CURRENT_PICKER;
     /*DatePicker Setup - Failed to make it global*/
     final Calendar calendar = Calendar.getInstance();
-    final int year = calendar.get(Calendar.YEAR);
 
     //NEED TO CREATE DIFFERENT INSTANCE FOR EACH CALENDAR TO AVOID DISPLAYING PREVIOUS SELECTED.
-    final DatePickerDialog searchFlight_DatePicker = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-
+    DatePickerDialog searchFlight_DatePicker;
 
     public static SearchFlightFragment newInstance() {
 
@@ -94,11 +114,35 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.search_flight, container, false);
         ButterKnife.inject(this, view);
-        searchFlight_DatePicker.setYearRange(year, year + 1);
+
+        searchFlight_DatePicker = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        Log.e("Year", Integer.toString(calendar.get(Calendar.YEAR)));
+        Log.e("Month", Integer.toString(calendar.get(Calendar.MONTH)));
+        Log.e("Day", Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)));
+
+        datePickerSetting();
+        //initiatePageData();
+
+        btnDepartureFlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountrySelector(getActivity(), initiatePageData(getActivity()));
+                CURRENT_PICKER = "DEPARTURE";
+            }
+        });
+
+        btnArrivalFlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountrySelector(getActivity(), initiatePageData(getActivity()));
+                CURRENT_PICKER = "ARRIVAL";
+            }
+        });
+
 
         btnSearchFlight.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +156,7 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
             @Override
             public void onClick(View v) {
                 AnalyticsApplication.sendEvent("Click", "departureBlock");
-
-                if(checkFragmentAdded()){
+                if (checkFragmentAdded()) {
                     searchFlight_DatePicker.show(getActivity().getFragmentManager(), DATEPICKER_TAG);
                 }
                 PICKER = DEPARTURE_DATE_PICKER;
@@ -124,7 +167,7 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         returnDateBlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkFragmentAdded()){
+                if (checkFragmentAdded()) {
                     searchFlight_DatePicker.show(getActivity().getFragmentManager(), DATEPICKER_TAG);
                 }
                 PICKER = RETURN_DATE_PICKER;
@@ -132,8 +175,89 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         });
 
 
-
         return view;
+    }
+
+    /*Country selector - > need to move to main activity*/
+    public void showCountrySelector(Activity act, ArrayList constParam) {
+        if (act != null) {
+            try {
+
+                Log.e("at search flight", Integer.toString(constParam.size()));
+
+                android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
+                SelectFlightFragment countryListDialogFragment = com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.newInstance(constParam);
+                countryListDialogFragment.setTargetFragment(SearchFlightFragment.this, 0);
+                countryListDialogFragment.show(fm, "countryListDialogFragment");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static ArrayList<DropDownItem> initiatePageData(Activity act) {
+
+        ArrayList<DropDownItem> flightMarket = new ArrayList<DropDownItem>();
+        JSONArray jsonFlight = getFlight(act);
+
+        /*Get All Airport - remove redundant*/
+        List<String> al = new ArrayList<>();
+        Set<String> hs = new LinkedHashSet<>();
+        for (int i = 0; i < jsonFlight.length(); i++) {
+            JSONObject row = (JSONObject) jsonFlight.opt(i);
+            if (!row.optString("status").equals("N")) {
+                al.add(row.optString("location") + "/-" + row.optString("location_code"));
+            }
+        }
+        hs.addAll(al);
+        al.clear();
+        al.addAll(hs);
+
+        /*Display Airport*/
+        for (int i = 0; i < al.size(); i++) {
+            String flightSplit = al.get(i).toString();
+            String[] str1 = flightSplit.split("/-");
+            String p1 = str1[0];
+            String p2 = str1[1];
+
+            DropDownItem itemFlight = new DropDownItem();
+            itemFlight.setText(p1 + " (" + p2 + ")");
+            itemFlight.setCode(p2);
+            itemFlight.setTag("FLIGHT");
+            flightMarket.add(itemFlight);
+
+        }
+
+        return flightMarket;
+    }
+
+    public void datePickerSetting() {
+        //datePicker setting
+        searchFlight_DatePicker.setYearRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);
+        searchFlight_DatePicker.setAccentColor(ContextCompat.getColor(getActivity(), R.color.default_theme_colour));
+        Calendar output = Calendar.getInstance();
+        output.set(Calendar.YEAR, output.get(Calendar.YEAR));
+        output.set(Calendar.DAY_OF_MONTH, output.get(Calendar.DAY_OF_MONTH) + 1);
+        output.set(Calendar.MONTH, output.get(Calendar.MONTH));
+        searchFlight_DatePicker.setMinDate(output);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        } else {
+            if (requestCode == 1) {
+                DropDownItem selectedFlight = data.getParcelableExtra(SelectFlightFragment.FLIGHT_SELECTION);
+
+                if (CURRENT_PICKER.equals("DEPARTURE")) {
+                    txtDepartureFlight.setText(selectedFlight.getText());
+                } else {
+                    txtArrivalFlight.setText(selectedFlight.getText());
+                }
+
+            }
+        }
     }
 
     @Override
@@ -172,6 +296,30 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
 
+        //Reconstruct DOB
+        String varMonth = "";
+        String varDay = "";
+
+        if(month < 9) {
+            varMonth = "0";
+        }
+        if(day < 10){
+            varDay = "0";
+        }
+        if(PICKER.equals(DEPARTURE_DATE_PICKER)) {
+
+           // departureDay = day;
+           // departureMonth = month;
+            //departureYear = year;
+
+            bookFlightDepartureDate.setText(day + "/"+varMonth + "" + (month+1)+ "/" + year);
+            bookFlightDepartureDate.setTag(year + "-" + varMonth + "" + (month+1) + "-" + varDay + "" + day);
+        }else if(PICKER.equals(RETURN_DATE_PICKER)){
+            bookFlightReturnDate.setText(day + "/"+varMonth + "" + (month+1)+ "/" + year);
+            bookFlightReturnDate.setTag(year + "-" + varMonth + "" + (month+1) + "-" + varDay + "" + day);
+        }else{
+            //DeadBlock
+        }
 
     }
 }

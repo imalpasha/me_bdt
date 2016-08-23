@@ -23,9 +23,9 @@ import android.widget.BaseExpandableListAdapter;
 
 import com.androidquery.AQuery;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.MobileCheckinReceive;
 import com.metech.tbd.base.BaseFragment;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
 import com.metech.tbd.ui.Activity.MobileCheckIn.MobileCheckInFragment2;
 import com.metech.tbd.utils.SharedPrefManager;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -327,7 +327,7 @@ public class CheckInAdapter extends BaseExpandableListAdapter implements DatePic
         if(act != null) {
             try {
 
-                CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                SelectFlightFragment countryListDialogFragment = SelectFlightFragment.newInstance(constParam);
                 countryListDialogFragment.setTargetFragment(fragment, 0);
                 countryListDialogFragment.show(fm, "countryListDialogFragment");
 

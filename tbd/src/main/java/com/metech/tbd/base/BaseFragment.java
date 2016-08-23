@@ -30,7 +30,6 @@ import android.widget.TextView;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.R;
-import com.metech.tbd.ui.Activity.BookingFlight.SearchFlightFragment;
 import com.metech.tbd.ui.Activity.SplashScreen.SplashScreenActivity;
 //import com.fly.firefly.ui.adapter.CheckInPassengerListAdapter;
 import com.metech.tbd.ui.Activity.SplashScreen.TokenActivity;
@@ -50,9 +49,13 @@ import org.json.JSONObject;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -206,7 +209,7 @@ public class BaseFragment extends Fragment {
             arrival = parseFormat.parse(arrivalTime);
             departureReturn = parseFormat.parse(returnDepartureTime);
 
-            Log.e(arrival.toString(),departureReturn.toString());
+            Log.e(arrival.toString(), departureReturn.toString());
 
         } catch (Exception e) {
             Log.e("Exception", e.getMessage());
@@ -336,17 +339,64 @@ public class BaseFragment extends Fragment {
     public static ArrayList<DropDownItem> getStaticCountry(Activity act) {
 
         ArrayList<DropDownItem> countrys = new ArrayList<DropDownItem>();
+
         JSONArray json = null;
 
         prefManager = new SharedPrefManager(act);
         HashMap<String, String> init = prefManager.getCountry();
         String dataCountry = init.get(SharedPrefManager.COUNTRY);
 
+        //original
         try {
             json = new JSONArray(dataCountry);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        //get alphabet
+
+
+        /*JSONArray sortedJsonArray = new JSONArray();
+
+        List<JSONObject> jsonValues = new ArrayList<JSONObject>();
+        for (int i = 0; i < json.length(); i++) {
+            try {
+                jsonValues.add(json.getJSONObject(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Collections.sort( jsonValues, new Comparator<JSONObject>() {
+            //You can change "Name" with "ID" if you want to sort by ID
+            private static final String KEY_NAME = "country_name";
+
+            @Override
+            public int compare(JSONObject a, JSONObject b) {
+                String valA = new String();
+                String valB = new String();
+
+                try {
+                    valA = (String) a.get(KEY_NAME);
+                    valB = (String) b.get(KEY_NAME);
+                }
+                catch (JSONException e) {
+                    //do something
+                }
+                Character cA = valA.charAt(0);
+                Character cB = valB.charAt(0);
+
+                return cA.compareTo(cB);
+                //if you want to change the sort order, simply use the following:
+                //return -valA.compareTo(valB);
+            }
+        });
+
+        for (int i = 0; i < json.length(); i++) {
+            sortedJsonArray.put(jsonValues.get(i));
+        }*/
+
+
 
         for (int i = 0; i < json.length(); i++) {
             JSONObject row = (JSONObject) json.opt(i);
@@ -361,6 +411,52 @@ public class BaseFragment extends Fragment {
         return countrys;
     }
 
+    public static String[] getCharAt(List<String> countryChar){
+
+        String[] charToBeFilter = new String[countryChar.size()];
+        for (int i = 0; i < countryChar.size(); i++) {
+            charToBeFilter[i] = countryChar.get(i);
+        }
+
+        String[] newFilter = removeDuplicates(charToBeFilter);
+
+        return newFilter;
+    }
+
+    public static Integer[] headerPosition(List<String> countryChar) {
+
+        String[] charToBeFilter = new String[countryChar.size()];
+        for (int i = 0; i < countryChar.size(); i++) {
+            charToBeFilter[i] = countryChar.get(i);
+        }
+
+        Set<String> alreadyPresent = new HashSet<>();
+        Integer[] whitelist = new Integer[charToBeFilter.length];
+        int b = 0;
+        int loop = 0;
+        for (String element : charToBeFilter) {
+            if (alreadyPresent.add(element)) {
+                whitelist[b++] = loop;
+            }
+            loop++;
+        }
+
+        return Arrays.copyOf(whitelist, b);
+    }
+
+    public static String[] removeDuplicates(String[] arr) {
+        Set<String> alreadyPresent = new HashSet<>();
+        String[] whitelist = new String[arr.length];
+        int i = 0;
+
+        for (String element : arr) {
+            if (alreadyPresent.add(element)) {
+                whitelist[i++] = element;
+            }
+        }
+
+        return Arrays.copyOf(whitelist, i);
+    }
 
     /* -------------------------------------------------------- */
 
@@ -575,7 +671,7 @@ public class BaseFragment extends Fragment {
                         .setTitleText(title)
                         .setContentText(msg)
                         .show();
-            }else{
+            } else {
 
             }
         }
@@ -791,7 +887,7 @@ public class BaseFragment extends Fragment {
                 }
 
                 if (a.get(which).getTag() == "FLIGHT") {
-                    //SearchFlightFragment.filterArrivalAirport(selectedCode);
+                    //SelectFlightFrament.filterArrivalAirport(selectedCode);
                     MobileCheckInFragment1.filterArrivalAirport(selectedCode);
                     BoardingPassFragment.filterArrivalAirport(selectedCode);
                 }
@@ -1013,6 +1109,7 @@ public class BaseFragment extends Fragment {
 
         try {
             json = new JSONArray(dataFlight);
+            Log.e("How many??",Integer.toString(json.length()));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1103,7 +1200,7 @@ public class BaseFragment extends Fragment {
             String[] parts = string.split("-");
 
             String year = parts[2];
-            Log.e(dob,year);
+            Log.e(dob, year);
 
             String month = parts[1];
             String day = parts[0];
@@ -1133,7 +1230,7 @@ public class BaseFragment extends Fragment {
         String day = parts[0];
         String month = parts[1];
         String year = parts[2];
-        date =  day + "-" + month + "-" + year;
+        date = day + "-" + month + "-" + year;
 
         return date;
     }
@@ -1205,7 +1302,7 @@ public class BaseFragment extends Fragment {
 
         return json;
     }
-	/*public static void showConnectionError(String test, Activity activity)
+    /*public static void showConnectionError(String test, Activity activity)
 	{
         if(activity != null) {
             try {
@@ -1254,7 +1351,8 @@ public class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e("create basefragment","true");
+
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -1263,6 +1361,8 @@ public class BaseFragment extends Fragment {
         super.onCreate(icicle);
         aq = new com.metech.tbd.base.AQuery(getActivity());
         pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+
     }
 
 	/*public void showUTCError(String msg)
@@ -1338,7 +1438,7 @@ public class BaseFragment extends Fragment {
     }
 
     public static void removeLogoHeader(Activity activity) {
-      
+
     }
 
     public static void splashScreen(Context act, String regId) {

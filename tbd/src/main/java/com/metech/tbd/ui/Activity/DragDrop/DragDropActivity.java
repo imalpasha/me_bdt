@@ -24,7 +24,6 @@ public class DragDropActivity extends MainFragmentActivity implements FragmentCo
 
         //setMenuButton();
         setTitle(R.string.TBD_app_name);
-        unlockDrawer();
     }
 
 

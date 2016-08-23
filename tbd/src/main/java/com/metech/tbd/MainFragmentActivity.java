@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,11 +17,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.metech.tbd.base.AQuery;
 import com.metech.tbd.base.BaseFragmentActivity;
-import com.metech.tbd.drawer.DrawerItem;
-import com.metech.tbd.drawer.NavigationDrawerFragment;
 import com.metech.tbd.ui.Activity.Aboutus.AboutUsActivity;
 import com.metech.tbd.ui.Activity.Homepage.HomeActivity;
 import com.metech.tbd.ui.Activity.Login.LoginActivity;
@@ -36,14 +36,13 @@ import butterknife.ButterKnife;
 //import com.actionbarsherlock.view.MenuItem;
 
 
-public class MainFragmentActivity extends BaseFragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainFragmentActivity extends BaseFragmentActivity {
 
     private static Activity instance;
     /**
      * Fragment managing the behaviors, interactions and presentation of the
      * navigation drawer.
      */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
     private SharedPrefManager pref;
 
     public static Activity setContext(Activity act) {
@@ -68,15 +67,29 @@ public class MainFragmentActivity extends BaseFragmentActivity implements Naviga
         instance = this;
 
         /*Testing*/
-        moveDrawerToTop();
+        //moveDrawerToTop();
         pref = new SharedPrefManager(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+       // mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
+       // mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.tab_container, TabButtomFragment.newInstance()).commit();
+
+    }
+
+    private void setFontToAllChilds(ViewGroup myMostParentLayout, Typeface tf) {
+        int childCount = myMostParentLayout.getChildCount();
+        for (int i = 0; i < childCount; ++i) {
+            View child = myMostParentLayout.getChildAt(i);
+
+            if (child instanceof ViewGroup) {
+                setFontToAllChilds((ViewGroup) child, tf);
+            }else if (child instanceof TextView){}
+                ((TextView) child).setTypeface(tf);
+            Log.e("Here","OK");
+        }
 
     }
 
@@ -126,96 +139,6 @@ public class MainFragmentActivity extends BaseFragmentActivity implements Naviga
         aq.id(R.id.tab_container).gone();
     }
 
-    public void setMenuButton() {
-        View actionBarView = getActionBar().getCustomView();
-        aq.recycle(actionBarView);
-        aq.id(R.id.menubutton).visible();
-        aq.id(R.id.menubutton).clicked(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNavigationDrawerFragment.openDrawer();
-            }
-        });
-    }
-
-    public void lockDrawer() {
-        mNavigationDrawerFragment.lockDrawer();
-
-    }
-
-    public void unlockDrawer() {
-        mNavigationDrawerFragment.unlockDrawer();
-    }
-
-
-    public void hideMenuButton() {
-        View actionBarView = getActionBar().getCustomView();
-        aq.recycle(actionBarView);
-        aq.id(R.id.menubutton).gone();
-        aq.id(R.id.menubutton).clicked(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNavigationDrawerFragment.openDrawer();
-            }
-        });
-    }
-
-    @Override
-    public void onNavigationDrawerItemSelected(int position, DrawerItem item) {
-        // update the main content by replacing fragments
-        try {
-            if (item.getTag().equals("Home")) {
-                item.setBackgroundColor(getResources().getColor(R.color.white));
-                Intent homepage = new Intent(this, HomeActivity.class);
-                homepage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(homepage);
-
-            } else if (item.getTag().equals("Login")) {
-
-                Intent login = new Intent(this, LoginActivity.class);
-                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(login);
-
-            } else if (item.getTag().equals("Logout")) {
-                pref.setLoginStatus("N");
-                MainController.clearAll(this);
-                RealmObjectController.deleteRealmFile(MainFragmentActivity.getContext());
-
-                Intent login = new Intent(this, HomeActivity.class);
-                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(login);
-
-            } else if (item.getTag().equals("Register")) {
-                item.setBackgroundColor(getResources().getColor(R.color.white));
-                Intent register = new Intent(this, RegisterActivity.class);
-                register.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(register);
-
-            } else if (item.getTag().equals("Information_Update")) {
-                Intent register = new Intent(this, UpdateProfileActivity.class);
-                register.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(register);
-
-            } else if (item.getTag().equals("About")) {
-                Intent about = new Intent(this, AboutUsActivity.class);
-                about.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(about);
-                Log.e("xx", item.getTag().toString());
-
-            } else if (item.getTag().equals("FAQ")) {
-                Intent terms = new Intent(this, Terms.class);
-                terms.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(terms);
-
-            } else if (item.getTag().equals("HEADER")) {
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();

@@ -25,8 +25,7 @@ public class MF_ChangeContactActivity extends MainFragmentActivity implements Fr
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, MF_ChangeContactFragment.newInstance(bundle)).commit();
 
-        hideTitle();
-        setMenuButton();
+        //hideTitle();
 
     }
 

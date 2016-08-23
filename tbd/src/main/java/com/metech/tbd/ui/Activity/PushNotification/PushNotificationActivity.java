@@ -23,7 +23,7 @@ public class PushNotificationActivity extends MainFragmentActivity implements Fr
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, PushNotificationFragment.newInstance(),"Home").commit();
 
-        hideTitle();
+        //hideTitle();
 
     }
 

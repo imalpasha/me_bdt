@@ -20,10 +20,10 @@ import com.metech.tbd.application.AnalyticsApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.SelectFlightReceive;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
 import com.metech.tbd.ui.Module.EditFamilyFriendModule;
 import com.metech.tbd.ui.Model.Request.DefaultPassengerObj;
 import com.metech.tbd.ui.Model.Request.FamilyFriendObj;
@@ -312,7 +312,7 @@ public class EditFamilyFriendsFragment extends BaseFragment implements Validator
         if(act != null) {
             try {
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                SelectFlightFragment countryListDialogFragment = SelectFlightFragment.newInstance(constParam);
                 countryListDialogFragment.setTargetFragment(EditFamilyFriendsFragment.this, 0);
                 countryListDialogFragment.show(fm, "countryListDialogFragment");
 
@@ -328,7 +328,7 @@ public class EditFamilyFriendsFragment extends BaseFragment implements Validator
             return;
         } else {
             if (requestCode == 1) {
-                DropDownItem selectedCountry = data.getParcelableExtra(CountryListDialogFragment.EXTRA_COUNTRY);
+                DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.DEPARTURE_FLIGHT);
 
                 if (selectedCountry.getTag() == "Country") {
                     txtFFNationality.setText(selectedCountry.getText());

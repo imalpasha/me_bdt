@@ -909,12 +909,15 @@ select another date or station and try again.</string>
     <!-- TBD Profile -->
     <string name="tbd_my_profile">My Profile</string>
     <string name="tbd_my_booking">My Booking</string>
-    <string name="tbd_my_big_point">My Big Point</string>
+    <string name="tbd_my_big_point">My BIG Point</string>
     <string name="tbd_my_credit_card">My Credit Card</string>
     <string name="facebook">Facebook</string>
     <string name="instagram">Instagram</string>
 
     <!-- TBD Search Flight -->
+
+    <string name="search_flight_title">Select your origin</string>
+
     <string name="search_flight_page">Routes &amp; Fares</string>
 
     <string name="book_flight_departure_airport">ORIGIN</string>

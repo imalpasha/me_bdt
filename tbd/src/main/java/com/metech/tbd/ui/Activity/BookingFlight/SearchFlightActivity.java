@@ -27,7 +27,6 @@ public class SearchFlightActivity extends MainFragmentActivity implements Fragme
 
         fragmentManager.beginTransaction().replace(R.id.main_content, SearchFlightFragment.newInstance()).commit();
 
-        setMenuButton();
         setTitle(R.string.search_flight_page);
     }
 

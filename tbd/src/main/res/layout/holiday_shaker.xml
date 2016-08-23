@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:background="@color/default_theme_colour"
-            android:orientation="vertical"
+        <RelativeLayout
+            android:id="@+id/afterLoginFB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/afterLoginFB"
-            android:gravity="center"
             android:visibility="visible">
 
-            <ImageView
-                android:scaleType="centerCrop"
-                android:src="@drawable/shake_phone_tbd"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center"
-                android:id="@+id/shakePhone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/default_theme_colour"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
+                <ImageView
+                    android:id="@+id/shakePhone"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/shake_phone_tbd" />
+
+                <com.metech.tbd.utils.PlayTextView
+                    android:id="@+id/shakeDevice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:text="Shake For Random Holiday"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shake For Random Holiday"
-                android:padding="8dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:id="@+id/shakeDevice" />
-        </LinearLayout>
+                android:id="@+id/imgBtn"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/tbd_setting"/>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -46,10 +60,10 @@
 
             <LinearLayout
                 android:id="@+id/dummy_shaker_1"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -59,149 +73,150 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/shake_dp1"/>
+                        android:src="@drawable/lombok_background" />
 
                     <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/name_transparent_background"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:weightSum="1">
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView353"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="LOMBOK"
-                            android:textSize="28dp"
-                            android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:id="@+id/textView353" />
+                            android:textSize="28dp"
+                            android:textStyle="bold" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:padding="5dp"
                             android:text="2 Person / return"
                             android:textColor="@color/white"
-                            android:textSize="17dp"
-                            android:padding="5dp"
-                            android:id="@+id/textView3" />
+                            android:textSize="17dp" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/txtPoint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="9,000 pts"
-                            android:textStyle="bold"
                             android:padding="5dp"
-                            android:textSize="17dp"
+                            android:text="9,000 pts"
                             android:textColor="@color/white"
-                            android:id="@+id/txtPoint" />
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/txtTopup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:padding="5dp"
                                 android:text="+RM150"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
-                                android:textStyle="bold"
-                                android:padding="5dp"
-                                android:id="@+id/txtTopup" />
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/txtTopuptxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="top up"
-                                android:textColor="@color/white"
-                                android:id="@+id/txtTopuptxt" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/txtAirport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="+RM90"
                                 android:padding="5dp"
-                                android:textStyle="bold"
+                                android:text="+RM90"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
-                                android:id="@+id/txtAirport" />
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView366"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="airport tax"
-                                android:textColor="@color/white"
-                                android:id="@+id/textView366" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/txtArrival"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="DEPART"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:id="@+id/txtArrival" />
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/txtDepart"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text=": 13/03/2016"
-                                    android:textColor="@color/white"
-                                    android:id="@+id/txtDepart" />
+                                    android:text=": 29/10/2016"
+                                    android:textColor="@color/white" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/txtReturn"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="RETURN"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:id="@+id/txtReturn" />
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/txtReturnDate"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text=": 13/03/2016"
-                                    android:textColor="@color/white"
-                                    android:id="@+id/txtReturnDate" />
+                                    android:text=": 01/11/2016"
+                                    android:textColor="@color/white" />
                             </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="25dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
                             android:orientation="horizontal"
                             android:weightSum="1">
 
@@ -212,6 +227,7 @@
                                 android:orientation="vertical">
 
                             </LinearLayout>
+
                             <Button
                                 android:id="@+id/btnReedem1"
                                 android:layout_width="0dp"
@@ -219,9 +235,9 @@
                                 android:layout_weight="0.6"
                                 android:background="@drawable/login_register_button_clicked"
                                 android:text="@string/holiday_shaker_reedem"
+                                android:textColor="@color/red"
                                 android:textSize="16dp"
-                                android:textStyle="bold"
-                                android:textColor="@color/red"/>
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -238,167 +254,470 @@
 
 
                 </RelativeLayout>
+
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/dummy_shaker_2"
-                android:orientation="vertical"
+                android:id="@+id/dummy_shaker_fb"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scrollView5"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="300dp"
+                                    android:scaleType="centerCrop"
+                                    android:id="@+id/imageView33"
+                                    android:src="@drawable/fb_background"/>
+
+                                <LinearLayout
+                                    android:weightSum="1"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="0.7"></LinearLayout>
+
+                                    <LinearLayout
+
+                                        android:orientation="horizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:background="@color/name_fb_transparent_background"
+                                        android:layout_weight="0.3">
+
+                                        <com.mikhaellopez.circularimageview.CircularImageView
+                                            android:id="@+id/fbTaggingUserImage"
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            app:civ_border_color="#EEEEEE"
+                                            app:civ_border_width="1dp"
+                                            app:civ_shadow="true"
+                                            android:layout_marginLeft="10dp"
+                                            android:src="@drawable/tbd_icon"
+                                            android:layout_gravity="center"
+                                            app:civ_shadow_radius="1"
+                                            app:civ_shadow_color="#8BC34A"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_centerVertical="true"/>
+
+                                        <LinearLayout
+                                            android:padding="10dp"
+                                            android:gravity="center|left"
+                                            android:orientation="vertical"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <com.metech.tbd.utils.PlayTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Mayho_89"
+                                                android:textStyle="bold"
+                                                android:textSize="16dp"
+                                                android:textColor="@color/black"
+                                                android:id="@+id/textView417" />
+
+                                            <com.metech.tbd.utils.PlayTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Tokyo , Japan"
+                                                android:textColor="@color/black"
+                                                android:id="@+id/textView427" />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:padding="20dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:gravity="center"
+                            android:layout_weight="0.6">
+
+                            <LinearLayout
+                                android:padding="15dp"
+                                android:orientation="vertical"
+                                android:background="@drawable/drawable_login_bottom_border"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Miyuki Dory , Tokyo"
+                                    android:textSize="18dp"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:id="@+id/textView429" />
+
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/black"
+                                    android:text="Awesome fresh sushi from Tokyo!"
+                                    android:id="@+id/textView431" />
+                            </LinearLayout>
+
+                            <com.metech.tbd.utils.PlayTextView
+                                android:layout_marginTop="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TOKYO"
+                                android:textColor="@color/dark_lvl5"
+                                android:textSize="28dp"
+                                android:textStyle="bold" />
+
+                            <com.metech.tbd.utils.PlayTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="2 Person / return"
+                                android:textColor="@color/dark_lvl5"
+                                android:textSize="17dp" />
+
+                            <com.metech.tbd.utils.PlayTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="9,000 pts"
+                                android:textColor="@color/dark_lvl5"
+                                android:textSize="17dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:text="+RM150"
+                                    android:textColor="@color/dark_lvl5"
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
+
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="top up"
+                                    android:textColor="@color/dark_lvl5" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:text="+RM90"
+                                    android:textColor="@color/dark_lvl5"
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
+
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="airport tax"
+                                    android:textColor="@color/dark_lvl5" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <com.metech.tbd.utils.PlayTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="DEPART"
+                                        android:textColor="@color/dark_lvl5"
+                                        android:textSize="17dp"
+                                        android:textStyle="bold" />
+
+                                    <com.metech.tbd.utils.PlayTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=": 29/10/2016"
+                                        android:textColor="@color/dark_lvl5" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <com.metech.tbd.utils.PlayTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="RETURN"
+                                        android:textColor="@color/dark_lvl5"
+                                        android:textSize="17dp"
+                                        android:textStyle="bold" />
+
+                                    <com.metech.tbd.utils.PlayTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=": 01/11/2016"
+                                        android:textColor="@color/dark_lvl5" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="25dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:orientation="vertical">
+
+                                </LinearLayout>
+
+                                <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.6"
+                                    android:background="@drawable/login_register_button_clicked"
+                                    android:text="@string/holiday_shaker_reedem"
+                                    android:textColor="@color/red"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:orientation="vertical">
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/dummy_shaker_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/shake_dp1" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/perth_background" />
 
                     <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="1" >
+                        android:background="@color/name_transparent_background"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="1">
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView354"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Perth"
-                            android:textSize="28dp"
-                            android:textStyle="bold"
+                            android:text="PERTH"
                             android:textColor="@color/white"
-                            android:id="@+id/textView354" />
+                            android:textSize="28dp"
+                            android:textStyle="bold" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView367"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:padding="5dp"
                             android:text="2 Person / return"
                             android:textColor="@color/white"
-                            android:textSize="17dp"
-                            android:padding="5dp"
-                            android:id="@+id/textView367" />
+                            android:textSize="17dp" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView368"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="9,000 pts"
-                            android:textStyle="bold"
                             android:padding="5dp"
-                            android:textSize="17dp"
+                            android:text="9,000 pts"
                             android:textColor="@color/white"
-                            android:id="@+id/textView368" />
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView369"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:padding="5dp"
                                 android:text="+RM150"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
-                                android:textStyle="bold"
-                                android:padding="5dp"
-                                android:id="@+id/textView369" />
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView370"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="top up"
-                                android:textColor="@color/white"
-                                android:id="@+id/textView370" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView371"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="+RM90"
                                 android:padding="5dp"
-                                android:textStyle="bold"
+                                android:text="+RM90"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
-                                android:id="@+id/textView371" />
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView372"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="airport tax"
-                                android:textColor="@color/white"
-                                android:id="@+id/textView372" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center" >
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView373"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="DEPART"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:id="@+id/textView373" />
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView374"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text=": 13/03/2016"
-                                    android:textColor="@color/white"
-                                    android:id="@+id/textView374" />
+                                    android:text=": 15/10/2016"
+                                    android:textColor="@color/white" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center" >
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView375"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="RETURN"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:id="@+id/textView375" />
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView376"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text=": 13/03/2016"
-                                    android:textColor="@color/white"
-                                    android:id="@+id/textView376" />
+                                    android:text=": 17/10/2016"
+                                    android:textColor="@color/white" />
                             </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="25dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
                             android:orientation="horizontal"
-                            android:weightSum="1" >
+                            android:weightSum="1">
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -413,9 +732,9 @@
                                 android:layout_weight="0.6"
                                 android:background="@drawable/login_register_button_clicked"
                                 android:text="@string/holiday_shaker_reedem"
+                                android:textColor="@color/red"
                                 android:textSize="16dp"
-                                android:textStyle="bold"
-                                android:textColor="@color/red" />
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -429,163 +748,164 @@
 
             <LinearLayout
                 android:id="@+id/dummy_shaker_3"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/shake_dp1" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bali_background" />
 
                     <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="1" >
+                        android:background="@color/name_transparent_background"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="1">
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView413"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bali"
-                            android:textSize="28dp"
-                            android:textStyle="bold"
+                            android:text="BALI"
                             android:textColor="@color/white"
-                            android:id="@+id/textView413" />
+                            android:textSize="28dp"
+                            android:textStyle="bold" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView414"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:padding="5dp"
                             android:text="2 Person / return"
                             android:textColor="@color/white"
-                            android:textSize="17dp"
-                            android:padding="5dp"
-                            android:id="@+id/textView414" />
+                            android:textSize="17dp" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
+                            android:id="@+id/textView415"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="9,000 pts"
-                            android:textStyle="bold"
                             android:padding="5dp"
-                            android:textSize="17dp"
+                            android:text="9,000 pts"
                             android:textColor="@color/white"
-                            android:id="@+id/textView415" />
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView377"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:padding="5dp"
                                 android:text="+RM150"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
-                                android:textStyle="bold"
-                                android:padding="5dp"
-                                android:id="@+id/textView377" />
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView378"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="top up"
-                                android:textColor="@color/white"
-                                android:id="@+id/textView378" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView407"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="+RM90"
                                 android:padding="5dp"
-                                android:textStyle="bold"
+                                android:text="+RM90"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
-                                android:id="@+id/textView407" />
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
+                                android:id="@+id/textView408"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="airport tax"
-                                android:textColor="@color/white"
-                                android:id="@+id/textView408" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center" >
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView409"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="DEPART"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:id="@+id/textView409" />
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView410"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=": 13/03/2016"
-                                    android:textColor="@color/white"
-                                    android:id="@+id/textView410" />
+                                    android:textColor="@color/white" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center" >
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView411"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="RETURN"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:id="@+id/textView411" />
+                                    android:textSize="17dp"
+                                    android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
+                                    android:id="@+id/textView412"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=": 13/03/2016"
-                                    android:textColor="@color/white"
-                                    android:id="@+id/textView412" />
+                                    android:textColor="@color/white" />
                             </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="25dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
                             android:orientation="horizontal"
-                            android:weightSum="1" >
+                            android:weightSum="1">
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -594,15 +914,15 @@
                                 android:orientation="vertical" />
 
                             <Button
-                                android:id="@+id/button4"
+                                android:id="@+id/btnReedem3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.6"
                                 android:background="@drawable/login_register_button_clicked"
                                 android:text="@string/holiday_shaker_reedem"
+                                android:textColor="@color/red"
                                 android:textSize="16dp"
-                                android:textStyle="bold"
-                                android:textColor="@color/red" />
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -616,69 +936,70 @@
 
             <LinearLayout
                 android:id="@+id/dummy_shaker_4"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/shake_dp1" />
+                        android:src="@drawable/phuket_background" />
 
                     <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="1" >
+                        android:background="@color/name_transparent_background"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="1">
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Phuket"
+                            android:text="PHUKET"
+                            android:textColor="@color/white"
                             android:textSize="28dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white" />
+                            android:textStyle="bold" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:padding="5dp"
                             android:text="2 Person / return"
                             android:textColor="@color/white"
-                            android:textSize="17dp"
-                            android:padding="5dp" />
+                            android:textSize="17dp" />
 
-                        <TextView
+                        <com.metech.tbd.utils.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="9,000 pts"
-                            android:textStyle="bold"
                             android:padding="5dp"
+                            android:text="9,000 pts"
+                            android:textColor="@color/white"
                             android:textSize="17dp"
-                            android:textColor="@color/white" />
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:padding="5dp"
                                 android:text="+RM150"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
-                                android:textStyle="bold"
-                                android:padding="5dp" />
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="top up"
@@ -686,21 +1007,21 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="+RM90"
                                 android:padding="5dp"
-                                android:textStyle="bold"
+                                android:text="+RM90"
                                 android:textColor="@color/white"
-                                android:textSize="17dp"/>
+                                android:textSize="17dp"
+                                android:textStyle="bold" />
 
-                            <TextView
+                            <com.metech.tbd.utils.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="airport tax"
@@ -708,26 +1029,26 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center" >
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="DEPART"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
+                                    android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=": 13/03/2016"
@@ -735,33 +1056,33 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center" >
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="RETURN"
-                                    android:textSize="18dp"
                                     android:textColor="@color/white"
+                                    android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <com.metech.tbd.utils.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=": 13/03/2016"
-                                    android:textColor="@color/white"/>
+                                    android:textColor="@color/white" />
                             </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="25dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
                             android:orientation="horizontal"
-                            android:weightSum="1" >
+                            android:weightSum="1">
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -770,14 +1091,15 @@
                                 android:orientation="vertical" />
 
                             <Button
+                                android:id="@+id/btnReedem4"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.6"
                                 android:background="@drawable/login_register_button_clicked"
                                 android:text="@string/holiday_shaker_reedem"
+                                android:textColor="@color/red"
                                 android:textSize="16dp"
-                                android:textStyle="bold"
-                                android:textColor="@color/red" />
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -789,19 +1111,10 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <com.github.ybq.android.spinkit.SpinKitView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/spin_kit"
-                style="@style/SpinKitView.Large.Pulse"
-                android:layout_width="match_parent"
-                android:alpha="5"
-                android:layout_centerVertical="true"
-                android:layout_height="match_parent"
-                android:visibility="gone" />
         </RelativeLayout>
 
 
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>
 

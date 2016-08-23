@@ -28,7 +28,6 @@ public class LoginActivity extends MainFragmentActivity implements FragmentConta
         fragmentManager.beginTransaction().replace(R.id.main_content, LoginFragment.newInstance()).commit();
 
         setTitle("Member Login");
-        setMenuButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.

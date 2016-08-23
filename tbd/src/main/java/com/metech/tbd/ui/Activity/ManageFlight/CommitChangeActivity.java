@@ -25,7 +25,7 @@ public class CommitChangeActivity extends MainFragmentActivity implements Fragme
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, CommitChangeFragment.newInstance(bundle)).commit();
 
-        hideTitle();
+        //hideTitle();
 
     }
 

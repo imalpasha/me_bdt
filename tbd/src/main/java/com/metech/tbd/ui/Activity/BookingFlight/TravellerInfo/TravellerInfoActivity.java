@@ -24,11 +24,12 @@ public class TravellerInfoActivity extends MainFragmentActivity implements Fragm
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, TravellerInfoFragment.newInstance()).commit();
 
-        setTitle("Member Login");
-        setMenuButton();
+        setTitle("TRAVELLERS INFO");
+        setBackButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.

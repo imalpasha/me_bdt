@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 //import com.google.android.gms.analytics.Tracker;
@@ -42,18 +45,32 @@ public class HolidayShakerFragment extends BaseFragment {
     LinearLayout dummy_shaker_3;
     @InjectView(R.id.dummy_shaker_4)
     LinearLayout dummy_shaker_4;
+    @InjectView(R.id.dummy_shaker_fb)
+    LinearLayout dummy_shaker_fb;
 
     @InjectView(R.id.btnReedem1)
     Button btnReedem1;
-    @InjectView(R.id.spin_kit)
-    SpinKitView spin_kit;
+
+    @InjectView(R.id.btnReedem2)
+    Button btnReedem2;
+
+    @InjectView(R.id.btnReedem3)
+    Button btnReedem3;
+
+    @InjectView(R.id.btnReedem4)
+    Button btnReedem4;
+
+    //@InjectView(R.id.fbTaggingUserImage)
+    //CircularImageView fbTaggingUserImage;
+
 
 
     ImageView shakePhone, imgTaggedPlace;
-    LinearLayout afterLoginFB, taggedPlaceLinearLayout, taggedInfoLinearLayout;
+    RelativeLayout afterLoginFB, taggedPlaceLinearLayout, taggedInfoLinearLayout;
     TextView txtTaggedPlaceName, txtTaggedPlace, txtTaggedPlaceByWho, shakeDevice, txtPts, txtFlightNumber;
     // SpinKitView spinKitView;
-    Button testButton;
+
+
     CircularImageView shakedUserImage;
 
     // The following are used for the shake detection
@@ -61,8 +78,8 @@ public class HolidayShakerFragment extends BaseFragment {
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
     private int fragmentContainerId;
-
-    private int totalFriend = 4;
+    private boolean startShake = true;
+    private int totalFriend = 5;
     private int shaked = 0;
     private String activeToken, activeFriendShaked, activeFriendShakedId;
 
@@ -81,107 +98,120 @@ public class HolidayShakerFragment extends BaseFragment {
 
         //BigPrepaidApplication.get(getActivity()).createScopedGraph(new HomeModule(this)).inject(this);
         //RealmObjectController.deleteRealmFile(getActivity());
+        final MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.gets_in_the_way);
+        final MediaPlayer mp2 = MediaPlayer.create(getActivity(), R.raw.result);
 
-        // ShakeDetector initialization
-        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        mAccelerometer = mSensorManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mShakeDetector = new ShakeDetector();
-        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+        if (startShake) {
+            // ShakeDetector initialization
+            mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+            mAccelerometer = mSensorManager
+                    .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            mShakeDetector = new ShakeDetector();
+            mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
 
-            @Override
-            public void onShake(int count) {
+                @Override
+                public void onShake(int count) {
                 /*
                  * The following method, "handleShakeEvent(count):" is a stub //
 				 * method you would use to setup whatever you want done once the
 				 * device has been shook.
 				 */
-                //handleShakeEvent(count);
+                    //handleShakeEvent(count);
 
-                if (totalFriend > 0 && shaked < totalFriend) {
+                    mp.start();
 
-                    //  spinKitView.setVisibility(View.VISIBLE);
-                    shakePhone.setVisibility(View.GONE);
+                    if (totalFriend > 0 && shaked < totalFriend) {
 
-                    //taggedInfoLinearLayout.setVisibility(View.VISIBLE);
-                    //taggedPlaceLinearLayout.setVisibility(View.VISIBLE);
-                    //taggedPlaceLinearLayout.setAlpha(0.5f);
-                    afterLoginFB.setVisibility(View.GONE);
-                    spin_kit.setVisibility(View.VISIBLE);
+                        //  spinKitView.setVisibility(View.VISIBLE);
+                        //shakePhone.setVisibility(View.GONE);
 
+                        //taggedInfoLinearLayout.setVisibility(View.VISIBLE);
+                        //taggedPlaceLinearLayout.setVisibility(View.VISIBLE);
+                        //taggedPlaceLinearLayout.setAlpha(0.5f);
+                        afterLoginFB.setVisibility(View.VISIBLE);
 
-                    if (shaked == 0) {
-                        dummy_shaker_1.setVisibility(View.VISIBLE);
-                        dummy_shaker_2.setVisibility(View.GONE);
-                        dummy_shaker_3.setVisibility(View.GONE);
-                        dummy_shaker_4.setVisibility(View.GONE);
-                    } else if (shaked == 1) {
-                        dummy_shaker_1.setVisibility(View.GONE);
-                        dummy_shaker_2.setVisibility(View.VISIBLE);
-                        dummy_shaker_3.setVisibility(View.GONE);
-                        dummy_shaker_4.setVisibility(View.GONE);
-                    } else if (shaked == 2) {
-                        dummy_shaker_1.setVisibility(View.GONE);
-                        dummy_shaker_2.setVisibility(View.GONE);
-                        dummy_shaker_3.setVisibility(View.VISIBLE);
-                        dummy_shaker_4.setVisibility(View.GONE);
-                    } else if (shaked == 3) {
-                        dummy_shaker_1.setVisibility(View.GONE);
-                        dummy_shaker_2.setVisibility(View.GONE);
-                        dummy_shaker_3.setVisibility(View.GONE);
-                        dummy_shaker_4.setVisibility(View.VISIBLE);
-                    }
+                        new Handler().postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+
+                                startShake = false;
+                                if (shaked == 0) {
+                                    afterLoginFB.setVisibility(View.GONE);
+                                    dummy_shaker_1.setVisibility(View.VISIBLE);
+                                    dummy_shaker_2.setVisibility(View.GONE);
+                                    dummy_shaker_3.setVisibility(View.GONE);
+                                    dummy_shaker_4.setVisibility(View.GONE);
+                                    dummy_shaker_fb.setVisibility(View.GONE);
+                                    mp2.start();
+                                    shaked++;
 
 
-                    spin_kit.setVisibility(View.GONE);
+                                }else if (shaked == 1) {
+                                    afterLoginFB.setVisibility(View.GONE);
+                                    dummy_shaker_1.setVisibility(View.GONE);
+                                    dummy_shaker_2.setVisibility(View.VISIBLE);
+                                    dummy_shaker_fb.setVisibility(View.GONE);
+                                    dummy_shaker_3.setVisibility(View.GONE);
+                                    dummy_shaker_4.setVisibility(View.GONE);
+                                    mp2.start();
+                                    shaked++;
+
+                                }
+
+                                else if (shaked == 2) {
+                                    afterLoginFB.setVisibility(View.GONE);
+                                    dummy_shaker_1.setVisibility(View.GONE);
+                                    dummy_shaker_2.setVisibility(View.GONE);
+                                    dummy_shaker_fb.setVisibility(View.VISIBLE);
+                                    dummy_shaker_3.setVisibility(View.GONE);
+                                    dummy_shaker_4.setVisibility(View.GONE);
+                                    mp2.start();
+                                    shaked++;
+
+                                } else if (shaked == 3) {
+                                    afterLoginFB.setVisibility(View.GONE);
+                                    dummy_shaker_1.setVisibility(View.GONE);
+                                    dummy_shaker_2.setVisibility(View.GONE);
+                                    dummy_shaker_3.setVisibility(View.VISIBLE);
+                                    dummy_shaker_fb.setVisibility(View.GONE);
+                                    dummy_shaker_4.setVisibility(View.GONE);
+                                    mp2.start();
+                                    shaked++;
+
+
+                                } else if (shaked == 43) {
+                                    afterLoginFB.setVisibility(View.GONE);
+                                    dummy_shaker_1.setVisibility(View.GONE);
+                                    dummy_shaker_2.setVisibility(View.GONE);
+                                    dummy_shaker_3.setVisibility(View.GONE);
+                                    dummy_shaker_4.setVisibility(View.VISIBLE);
+                                    dummy_shaker_fb.setVisibility(View.GONE);
+                                    mp2.start();
+                                    shaked = 0;
+                                }
+
+
+                                startShake = true;
+                            }
+                        }, 3000);
+
+                        //spin_kit.setVisibility(View.GONE);
 
                     /*GlobalRequest taggedPlacesObj = new GlobalRequest();
                     taggedPlacesObj.setId(inReceiveFriendList.getData().get(shaked).getId());
                     taggedPlacesObj.setToken(activeToken);
                     presenter.retrieveTaggedPlaces(taggedPlacesObj);*/
 
-                    //activeFriendShaked = inReceiveFriendList.getData().get(shaked).getName();
-                    //activeFriendShakedId = inReceiveFriendList.getData().get(shaked).getId();
-
-                    shaked++;
-
-                } else {
-
-                    shaked = 0;
-                    spin_kit.setVisibility(View.VISIBLE);
+                        //activeFriendShaked = inReceiveFriendList.getData().get(shaked).getName();
+                        //activeFriendShakedId = inReceiveFriendList.getData().get(shaked).getId();
 
 
-                    dummy_shaker_1.setVisibility(View.VISIBLE);
-                    dummy_shaker_2.setVisibility(View.GONE);
-                    dummy_shaker_3.setVisibility(View.GONE);
-                    dummy_shaker_4.setVisibility(View.GONE);
-
-
-                    spin_kit.setVisibility(View.GONE);
-
-
-                    //  spinKitView.setVisibility(View.VISIBLE);
-                    // shakePhone.setVisibility(View.GONE);
-                    //taggedInfoLinearLayout.setVisibility(View.VISIBLE);
-                    //taggedPlaceLinearLayout.setVisibility(View.VISIBLE);
-                    //taggedPlaceLinearLayout.setAlpha(0.5f);
-                    // afterLoginFB.setVisibility(View.GONE);
-
-                    /*GlobalRequest taggedPlacesObj = new GlobalRequest();
-                    taggedPlacesObj.setId(inReceiveFriendList.getData().get(shaked).getId());
-                    taggedPlacesObj.setToken(activeToken);
-                    presenter.retrieveTaggedPlaces(taggedPlacesObj);
-                    activeFriendShaked = inReceiveFriendList.getData().get(shaked).getName();
-                    activeFriendShakedId = inReceiveFriendList.getData().get(shaked).getId();*/
-
-                    shaked++;
-
+                    }
                 }
-            }
-        });
-
+            });
+        }
         //RealmObjectController.clearCachedResult(getActivity());
-
     }
 
     @Override
@@ -190,9 +220,12 @@ public class HolidayShakerFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.holiday_shaker, container, false);
         ButterKnife.inject(this, view);
         aq.recycle(view);
+        final MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.gets_in_the_way);
 
         shakePhone = (ImageView) view.findViewById(R.id.shakePhone);
-        afterLoginFB = (LinearLayout) view.findViewById(R.id.afterLoginFB);
+        afterLoginFB = (RelativeLayout) view.findViewById(R.id.afterLoginFB);
+
+        // dummy_shaker_1.setVisibility(View.VISIBLE);
 
         btnReedem1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,59 +235,38 @@ public class HolidayShakerFragment extends BaseFragment {
             }
         });
 
-       /* testButton.setOnClickListener(new View.OnClickListener() {
+        btnReedem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.e(Integer.toString(totalFriend),Integer.toString(shaked));
-
-                if (totalFriend > 0 && shaked < totalFriend) {
-
-                   // spinKitView.setVisibility(View.VISIBLE);
-                    shakePhone.setVisibility(View.GONE);
-                    taggedInfoLinearLayout.setVisibility(View.VISIBLE);
-                    //taggedPlaceLinearLayout.setVisibility(View.VISIBLE);
-                    taggedPlaceLinearLayout.setAlpha(0.5f);
-                    afterLoginFB.setVisibility(View.GONE);
-
-                    /*GlobalRequest taggedPlacesObj = new GlobalRequest();
-                    taggedPlacesObj.setId(inReceiveFriendList.getData().get(shaked).getId());
-                    taggedPlacesObj.setToken(activeToken);
-                    presenter.retrieveTaggedPlaces(taggedPlacesObj);
-                    activeFriendShaked = inReceiveFriendList.getData().get(shaked).getName();
-                    activeFriendShakedId = inReceiveFriendList.getData().get(shaked).getId();
-
-                    shaked++;
-
-                } else {
-
-                    shaked = 0;
-
-                   // spinKitView.setVisibility(View.VISIBLE);
-                    shakePhone.setVisibility(View.GONE);
-                    taggedInfoLinearLayout.setVisibility(View.VISIBLE);
-                    //taggedPlaceLinearLayout.setVisibility(View.VISIBLE);
-                    taggedPlaceLinearLayout.setAlpha(0.5f);
-                    afterLoginFB.setVisibility(View.GONE);
-
-                    /*GlobalRequest taggedPlacesObj = new GlobalRequest();
-                    taggedPlacesObj.setId(inReceiveFriendList.getData().get(shaked).getId());
-                    taggedPlacesObj.setToken(activeToken);
-                    presenter.retrieveTaggedPlaces(taggedPlacesObj);
-                    activeFriendShaked = inReceiveFriendList.getData().get(shaked).getName();
-                    activeFriendShakedId = inReceiveFriendList.getData().get(shaked).getId();
-
-                    shaked++;
-
-                }
+                Intent profilePage = new Intent(getActivity(), TravellerInfoActivity.class);
+                getActivity().startActivity(profilePage);
             }
-        });*/
+        });
 
-        //  spinKitView = (SpinKitView) view.findViewById(R.id.spin_kit);
+        btnReedem3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilePage = new Intent(getActivity(), TravellerInfoActivity.class);
+                getActivity().startActivity(profilePage);
+            }
+        });
 
-        afterLoginFB.setVisibility(View.GONE);
+        btnReedem4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilePage = new Intent(getActivity(), TravellerInfoActivity.class);
+                getActivity().startActivity(profilePage);
+            }
+        });
+
+        //afterLoginFB.setVisibility(View.GONE);
 
         return view;
+    }
+
+    public void travellerInfo() {
+        Intent profilePage = new Intent(getActivity(), TravellerInfoActivity.class);
+        getActivity().startActivity(profilePage);
     }
 
     @Override

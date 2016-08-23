@@ -27,9 +27,9 @@ public class BaggageActivity extends MainFragmentActivity implements FragmentCon
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, BaggageFragment.newInstance()).commit();
 
-        setTitle("Member Login");
-        setMenuButton();
-
+        setTitle("ADD ONS");
+        setBackButton();
+        setCheckOutButton();
         // [START shared_tracker]
         // Obtain the shared Tracker instance.
         AnalyticsApplication application = (AnalyticsApplication) getApplication();

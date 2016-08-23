@@ -4,6 +4,7 @@
     <!-- Latest Theme -->
     <style name="MyCustomTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/MyActionBarTheme</item>
+        <item name="android:windowBackground">@color/default_background</item>
         <!--<item name="colorAccent">@color/bright_green</item>-->
     </style>
 

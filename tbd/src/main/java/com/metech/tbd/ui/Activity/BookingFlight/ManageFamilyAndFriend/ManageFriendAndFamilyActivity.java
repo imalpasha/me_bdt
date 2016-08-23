@@ -30,8 +30,7 @@ public class ManageFriendAndFamilyActivity extends MainFragmentActivity implemen
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, ManageFriendAndFamilyFragment.newInstance(bundle)).commit();
 
-        setMenuButton();
-        hideTitle();
+        //hideTitle();
     }
 
     @Override

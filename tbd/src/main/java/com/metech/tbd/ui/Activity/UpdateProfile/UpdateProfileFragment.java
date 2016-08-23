@@ -19,12 +19,12 @@ import com.metech.tbd.application.AnalyticsApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.LoginReceive;
 import com.metech.tbd.ui.Model.Receive.UpdateProfileReceive;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
 import com.metech.tbd.ui.Activity.Homepage.HomeActivity;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
 import com.metech.tbd.ui.Activity.Picker.DatePickerFragment;
 import com.metech.tbd.ui.Module.UpdateProfileModule;
 import com.metech.tbd.ui.Model.Request.DatePickerObj;
@@ -351,7 +351,7 @@ public class UpdateProfileFragment extends BaseFragment implements
             try {
 
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                SelectFlightFragment countryListDialogFragment = com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.newInstance(constParam);
                 countryListDialogFragment.setTargetFragment(UpdateProfileFragment.this, 0);
                 countryListDialogFragment.show(fm, "countryListDialogFragment");
 
@@ -369,7 +369,7 @@ public class UpdateProfileFragment extends BaseFragment implements
             return;
         } else {
             if (requestCode == 1) {
-                selectedCountry = data.getParcelableExtra(CountryListDialogFragment.EXTRA_COUNTRY);
+                selectedCountry = data.getParcelableExtra(SelectFlightFragment.DEPARTURE_FLIGHT);
 
                 if (selectedCountry.getTag() == "Country") {
                     txtCountry.setText(selectedCountry.getText());

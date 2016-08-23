@@ -20,11 +20,11 @@ import com.metech.tbd.MainController;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.RegisterReceive;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
 import com.metech.tbd.ui.Activity.Login.LoginActivity;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
 import com.metech.tbd.ui.Activity.Picker.DatePickerFragment;
 import com.metech.tbd.ui.Activity.Picker.StateListDialogFragment;
 import com.metech.tbd.ui.Module.RegisterModule;
@@ -364,7 +364,7 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
                     countryListDialogFragment.setTargetFragment(RegisterFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
                 }else{
-                    CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                    SelectFlightFragment countryListDialogFragment = SelectFlightFragment.newInstance(constParam);
                     countryListDialogFragment.setTargetFragment(RegisterFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
                 }
@@ -380,7 +380,7 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
            return;
         } else {
            if (requestCode == 1) {
-               DropDownItem selectedCountry = data.getParcelableExtra(CountryListDialogFragment.EXTRA_COUNTRY);
+               DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.DEPARTURE_FLIGHT);
 
                if (selectedCountry.getTag() == "Country") {
                    editTextCountry.setText(selectedCountry.getText());

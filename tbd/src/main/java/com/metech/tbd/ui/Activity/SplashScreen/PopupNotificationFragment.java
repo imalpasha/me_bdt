@@ -35,7 +35,7 @@ public class PopupNotificationFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.splash_screen, container, false);
         ButterKnife.inject(this, view);
 
-        MainFragmentActivity.setAppStatus("ready_for_notification");
+        //MainFragmentActivity.setAppStatus("ready_for_notification");
 
         if(MainController.getHomeStatus()) {
             getActivity().finish();

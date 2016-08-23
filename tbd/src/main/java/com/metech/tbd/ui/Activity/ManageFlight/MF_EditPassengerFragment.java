@@ -19,11 +19,11 @@ import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.metech.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.metech.tbd.ui.Model.Receive.ManageChangeContactReceive;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
-import com.metech.tbd.ui.Activity.Picker.CountryListDialogFragment;
 import com.metech.tbd.ui.Module.ChangeSeatModule;
 import com.metech.tbd.ui.Model.Request.CachedResult;
 import com.metech.tbd.ui.Model.Request.InfantInfo;
@@ -824,7 +824,7 @@ public class MF_EditPassengerFragment extends BaseFragment implements DatePicker
             try {
 
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                CountryListDialogFragment countryListDialogFragment = CountryListDialogFragment.newInstance(constParam);
+                SelectFlightFragment countryListDialogFragment = SelectFlightFragment.newInstance(constParam);
                 countryListDialogFragment.setTargetFragment(MF_EditPassengerFragment.this, 0);
                 countryListDialogFragment.show(fm, "countryListDialogFragment");
 
@@ -840,7 +840,7 @@ public class MF_EditPassengerFragment extends BaseFragment implements DatePicker
             return;
         } else {
             if (requestCode == 1) {
-                DropDownItem selectedCountry = data.getParcelableExtra(CountryListDialogFragment.EXTRA_COUNTRY);
+                DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.DEPARTURE_FLIGHT);
 
                 TextView issuingCountry = (TextView) view.findViewWithTag("passenger" + Integer.toString(clickedPassenger) + "_issuing_country");
                 issuingCountry.setText(selectedCountry.getText());
