@@ -1,51 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <ProgressBar
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:background="@color/test1"
+            android:id="@+id/horizontalProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:id="@+id/horizontalProgressBar"
-            android:visibility="gone"
+            android:background="@color/test1"
             android:indeterminate="true"
-            android:progress="1"/>
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:progress="1"
+            android:visibility="gone" />
 
         <RelativeLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff" >
-            </android.support.v4.view.ViewPager>
+                android:background="#ffffff"></android.support.v4.view.ViewPager>
 
+            <Button
+                android:id="@+id/onboardingCtn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="20dp"
+                android:text="Continue"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/onboardingSkip"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:text="SKIP"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="visible" />
 
             <LinearLayout
-                android:padding="1dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="1dp">
 
                 <!-- <com.commit451.inkpageindicator.InkPageIndicator
                      android:id="@+id/ink_pager_indicator"
@@ -62,11 +87,10 @@
                      android:layout_centerHorizontal="true"/> -->
 
                 <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:id="@+id/indicator"
-                    android:padding="5dp"/>
-
+                    android:padding="5dp" />
 
 
             </LinearLayout>

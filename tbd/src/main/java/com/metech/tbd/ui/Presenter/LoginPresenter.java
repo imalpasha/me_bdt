@@ -12,24 +12,34 @@ import com.squareup.otto.Subscribe;
 
 public class LoginPresenter {
 
+    public interface ForgotPasswordView {
+        void onForgotPassword(ForgotPasswordReceive obj);
+    }
+
     public interface LoginView {
 
         void onLoginSuccess(LoginReceive obj);
-        void onLoginFailed(String dumm);
-        void onRequestPasswordSuccess(ForgotPasswordReceive obj);
-        //  void onPasswordRequestFailed(ForgotPasswordReceive obj);
-        //void onPasswordRequesFailed(String dumm);
 
+        //void onLoginFailed(String dumm);
+        void onRequestPasswordSuccess(ForgotPasswordReceive obj);
 
     }
 
-    private final LoginView view;
+    private LoginView loginView;
+    private ForgotPasswordView forgotPasswordView;
+
     private final Bus bus;
 
     public LoginPresenter(LoginView view, Bus bus) {
-        this.view = view;
+        this.loginView = view;
         this.bus = bus;
     }
+
+    public LoginPresenter(ForgotPasswordView view, Bus bus) {
+        this.forgotPasswordView = view;
+        this.bus = bus;
+    }
+
 
     public void onResume() {
         bus.register(this);
@@ -39,31 +49,22 @@ public class LoginPresenter {
         bus.unregister(this);
     }
 
-    public void loginFunction(LoginRequest data) {
-        Log.e("xxxx",data.getUsername());
-        bus.post(new LoginRequest(data));
+    public void onLogin(LoginRequest data) {
+        //bus.post(new LoginRequest(data));
+        Log.e(data.getUsername(), data.getPassword());
     }
 
 
     public void forgotPassword(PasswordRequest data) {
-        Log.e("xxxx",data.getEmail());
-        bus.post(new PasswordRequest(data));
+        //bus.post(new PasswordRequest(data));
+        Log.e(data.getEmail(), data.getSignature());
     }
 
     @Subscribe
     public void onUserSuccessLogin(LoginReceive event) {
 
         /*Save Session And Redirect To Homepage*/
-        view.onLoginSuccess(event.getUserObj());
-    }
-
-
-
-    @Subscribe
-    public void onUserSuccessLogin(SplashFailedConnect event) {
-
-        /*Save Session And Redirect To Homepage*/
-        view.onLoginFailed(event.getDummy());
+        loginView.onLoginSuccess(event.getUserObj());
     }
 
 
@@ -71,17 +72,8 @@ public class LoginPresenter {
     public void onUserSuccessReqPassword(ForgotPasswordReceive obj) {
 
         //*Save Session And Redirect To Homepage*//*
-        view.onRequestPasswordSuccess(obj.getUserObj());
-    }
+        forgotPasswordView.onForgotPassword(obj.getUserObj());
 
-   // @Subscribe
-    //public void onUserFailedReqPassword(SplashFailedConnect event) {
-    /*@Subscribe
-    public void onUserFailedReqPassword(FailedConnectToServer event) {
->>>>>>> 6401c7b9c51ce353bbc670f4f01fdaaabf4b7ad8
-//
-        /*//*Save Session And Redirect To Homepage*//**//*
-      view.onPasswordRequestFailed(event.getDummy());
-   }*/
+    }
 
 }

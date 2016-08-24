@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TableRow>
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Total Charges"
@@ -30,7 +30,7 @@
             android:id="@+id/tableRow0"
             android:padding="20px">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Air Fare "
@@ -38,7 +38,7 @@
                 android:layout_column="0"
                 android:textSize="15dp"/>
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/discount10dEditText"
@@ -56,7 +56,7 @@
             android:id="@+id/tableRow2"
             android:padding="20px">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add Ons"
@@ -64,7 +64,7 @@
                 android:layout_column="0"
                 android:textSize="15dp" />
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/discount10EditText"
@@ -82,7 +82,7 @@
             android:id="@+id/tableRow3"
             android:padding="20px">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total"
@@ -91,7 +91,7 @@
                 android:textStyle="bold"
                 android:textSize="15dp"/>
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/total10EditText"
@@ -103,7 +103,7 @@
                 android:textSize="15dp"/>
         </TableRow>
         <TableRow>
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Payment Due"
@@ -123,14 +123,14 @@
             android:id="@+id/tableRow0t"
             android:padding="20px">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BIG Points "
                 android:layout_column="0"
                 android:textSize="15dp"/>
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtBigPoint"
@@ -148,7 +148,7 @@
             android:id="@+id/tableRow2r"
             android:padding="20px">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ringgit Malaysia"
@@ -156,7 +156,7 @@
                 android:layout_column="0"
                 android:textSize="15dp" />
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtDiscount"
@@ -174,7 +174,7 @@
             android:id="@+id/tableRow78"
             android:padding="20px">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Processing Fee"
@@ -182,7 +182,7 @@
                 android:layout_column="0"
                 android:textSize="15dp"/>
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/total10EditTextt"
@@ -200,7 +200,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="min"
@@ -210,7 +210,7 @@
                 android:paddingLeft="10dp"
                 android:textSize="15dp"/>
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/total11EditText"
@@ -238,7 +238,7 @@
                 android:layout_span="4" />
         </TableRow>
         <TableRow>
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pay >"

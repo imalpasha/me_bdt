@@ -661,7 +661,6 @@
     <string name="login_register_txt">Register</string>
     <string name="login_no_account">Don\'t have account yet?</string>
     <string name="title_login_and_password">LOGIN AND PASSWORD</string>
-    <string name="login_forgot_password">Forgot Password?</string>
 
 
     <!-- END LOGIN -->
@@ -785,11 +784,6 @@ select another date or station and try again.</string>
 
     <string name="boarding_pass">BOARDING PASS</string>
 
-    <!-- Forgot Password -->
-    <string name="forgot_password_email">USER ID (Email)</string>
-    <string name="forgot_password">FORGOT PASSWORD</string>
-    <string name="title_activity_password_expired">PasswordExpiredActivity</string>
-    <string name="password_expire_text">Your password has expired and needs to be changed. The password must consist of at least 8 characters, must include one upper case letter, one lower case letter, one numeric digit and one symbol. Example: SkyPark+123</string>
 
     <!-- Update Profile -->
     <string name="title_activity_update_profile">UPDATE INFORMATION</string>
@@ -814,7 +808,6 @@ select another date or station and try again.</string>
 
 
     <!-- Forgot Password Module -->
-    <string name="forgotPassword">Forgot Password</string>
     <string name="ForgotPasswordEmailSent">Your password reset has been confirmed. \nThe link to reset your password has been sent to the \nemail registered to</string>
     <string name="forgotPasswordNextBtn">Next</string>
     <string name="forgotPasswordUserID">User ID</string>
@@ -897,6 +890,14 @@ select another date or station and try again.</string>
     <!-- TBD LOGIN PAGE -->
     <string name="login_">Login</string>
     <string name="login_register_new_acc">Register New Account</string>
+    <string name="login_forgot_password">Forgot Password?</string>
+
+    <!-- TBD FORGOT PASSWORD -->
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_email">example@mail.com</string>
+    <string name="forgot_password">Reset Password</string>
+    <string name="title_activity_password_expired">PasswordExpiredActivity</string>
+    <string name="password_expire_text">Your password has expired and needs to be changed. The password must consist of at least 8 characters, must include one upper case letter, one lower case letter, one numeric digit and one symbol. Example: SkyPark+123</string>
 
     <!-- General -->
     <string name="email">Email</string>

@@ -1,6 +1,7 @@
 package com.metech.tbd.ui.Activity.Login;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.metech.tbd.MainController;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.ForgotPassword.ForgotPasswordActivity;
 import com.metech.tbd.ui.Activity.Profile.ProfileActivity;
 import com.metech.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.metech.tbd.ui.Model.Receive.LoginReceive;
@@ -34,6 +36,9 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Email;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Order;
 
 import java.util.List;
 
@@ -45,7 +50,7 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 import io.realm.RealmResults;
 
-public class LoginFragment extends BaseFragment implements LoginPresenter.LoginView,Validator.ValidationListener {
+public class LoginFragment extends BaseFragment implements LoginPresenter.LoginView, Validator.ValidationListener {
 
     // Validator Attributes
     private Validator mValidator;
@@ -54,32 +59,30 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     @Inject
     LoginPresenter presenter;
 
+    @InjectView(R.id.txtLoginBtn)
+    TextView txtLoginBtn;
 
-    @InjectView(R.id.txtLoginBtn) TextView txtLoginBtn;
-    //LoginButton loginButton;
+    @NotEmpty(sequence = 1)
+    @Email
+    @Order(1)
+    @InjectView(R.id.txtLoginEmail)
+    EditText txtLoginEmail;
 
-    /*@InjectView(R.id.registerBtn) Button registerButton;
-
+    @NotEmpty(sequence = 1)
+    @Order(2)
+    @InjectView(R.id.txtLoginPassword)
+    EditText txtLoginPassword;
 
     @InjectView(R.id.txtForgotPassword)
     TextView txtForgotPassword;
 
-    @NotEmpty(sequence = 1)
-    @Order(1)
-    @InjectView(R.id.txtLoginEmail) EditText txtLoginEmail;
-
-
-    @NotEmpty(sequence = 1)
-    @Length(sequence = 2, min = 6, max = 16 , message = "Must be at least 8 and maximum 16 characters")
-    @Order(2)
-    @InjectView(R.id.txtLoginPassword) EditText txtLoginPassword;
-*/
     private AlertDialog dialog;
     private SharedPrefManager pref;
-    private String storePassword,storeUsername;
+    private String storePassword, storeUsername;
     private int fragmentContainerId;
     private static final String SCREEN_LABEL = "Login";
     private boolean resetPassword = false;
+    private ProgressDialog progress;
 
     public static LoginFragment newInstance() {
 
@@ -103,124 +106,98 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.login, container, false);
         ButterKnife.inject(this, view);
 
+        progress = new ProgressDialog(getActivity());
         pref = new SharedPrefManager(getActivity());
 
         txtLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                profile();
-            }
-        });
-
-        //set edittext password input type
-       /* txtLoginPassword.setTransformationMethod(new PasswordTransformationMethod());
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnalyticsApplication.sendEvent("Click", "btnLogin");
                 mValidator.validate();
-                Utils.hideKeyboard(getActivity(), v);
             }
         });
 
         txtForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnalyticsApplication.sendEvent("Click", "forget password");
                 forgotPassword();
             }
         });
-*/
+
+
+
         return view;
     }
 
-    public void loginFromFragment(String username,String password){
+    public void forgotPassword(){
+        Intent profilePage = new Intent(getActivity(), ForgotPasswordActivity.class);
+        getActivity().startActivity(profilePage);
+    }
+    public void loginFromFragment(String username, String password) {
         /*Start Loading*/
-        initiateLoading(getActivity());
-        LoginRequest data = new LoginRequest();
-        data.setUsername(username);
-        data.setPassword(password);
+        //initiateLoading(getActivity());
+        initiateDefaultLoading(progress, getActivity());
 
-        storeUsername = username;
-        storePassword = password;
-        resetPassword = false;
-        presenter.loginFunction(data);
+        LoginRequest loginData = new LoginRequest();
+        loginData.setUsername(username);
+        loginData.setPassword(password);
+
+        presenter.onLogin(loginData);
+
+        dismissDefaultLoading(progress, getActivity());
+
     }
 
-
     /*Public-Inner Func*/
-    public void profile()
-    {
+    public void profile() {
         Intent profilePage = new Intent(getActivity(), ProfileActivity.class);
         getActivity().startActivity(profilePage);
 
     }
 
-    public void homepage()
-    {
+    public void homepage() {
         Intent loginPage = new Intent(getActivity(), HomeActivity.class);
         getActivity().startActivity(loginPage);
         getActivity().finish();
 
     }
 
-
     @Override
     public void onLoginSuccess(LoginReceive obj) {
 
-        //Log.e("STATUS",obj.getStatus());
-        /*Dismiss Loading*/
-        dismissLoading();
-        pref.setUserEmail(storeUsername);
-        pref.setUserPassword(storePassword);
-        RealmObjectController.clearCachedResult(getActivity());
+        dismissDefaultLoading(progress, getActivity());
 
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
 
-            RealmObjectController.deleteRealmFile(getActivity());
-            if(obj.getUser_info().getCustomer_number() != null){
-                pref.setCustomerNumber(obj.getUser_info().getCustomer_number());
-            }
-            if(obj.getUser_info().getPersonID() != null){
-                pref.setPersonID(obj.getUser_info().getPersonID());
-            }
-
+            RealmObjectController.clearCachedResult(getActivity());
             pref.setLoginStatus("Y");
-            pref.setNewsletterStatus(obj.getUser_info().getNewsletter());
             pref.setSignatureToLocalStorage(obj.getUser_info().getSignature());
             pref.setUsername(obj.getUser_info().getFirst_name());
 
             Gson gsonUserInfo = new Gson();
             String userInfo = gsonUserInfo.toJson(obj.getUser_info());
-            pref.setUserInfo(userInfo);
-            //setSuccessDialog(getActivity(), obj.getMessage(), SearchFlightActivity.class);
+            RealmObjectController.saveUserInformation(getActivity(), userInfo);
+
+            //success login -> homepage
             homepage();
         }
     }
 
-    /*IF Login Failed*/
-    @Override
-    public void onLoginFailed(String obj) {
-        Crouton.makeText(getActivity(), obj, Style.ALERT).show();
-        setAlertDialog(getActivity(),obj,"Login Error");
-
-    }
-
     @Override
     public void onRequestPasswordSuccess(ForgotPasswordReceive obj) {
-        dismissLoading();
+
+        dismissDefaultLoading(progress, getActivity());
 
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
+
             RealmObjectController.clearCachedResult(getActivity());
-            setSuccessDialog(getActivity(), obj.getMessage(),null,"Success!");
+            setSuccessDialog(getActivity(), obj.getMessage(), null, "Success!");
         }
 
     }
@@ -228,8 +205,8 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     /* Validation Success - Start send data to server */
     @Override
     public void onValidationSucceeded() {
-       // loginFromFragment(txtLoginEmail.getText().toString(),
-       //         AESCBC.encrypt(App.KEY, App.IV, txtLoginPassword.getText().toString()));
+
+        loginFromFragment(txtLoginEmail.getText().toString(), txtLoginPassword.getText().toString());
 
     }
 
@@ -246,70 +223,10 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
 
             // Display error messages
             if (view instanceof EditText) {
-               ((EditText) view).setError(splitErrorMsg[0]);
-            } else {
-                croutonAlert(getActivity(), splitErrorMsg[0]);
+                ((EditText) view).setError(splitErrorMsg[0]);
             }
         }
     }
-
-    /*PopupActivity Forgot Password*/
-    public void forgotPassword(){
-
-        LayoutInflater li = LayoutInflater.from(getActivity());
-        final View myView = li.inflate(R.layout.forgot_password_screen, null);
-        Button cont = (Button)myView.findViewById(R.id.btncontinue);
-
-        final EditText editEmail = (EditText)myView.findViewById(R.id.editTextemail_login);
-        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-
-        cont.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            if(editEmail.getText().toString().equals("")) {
-                Toast.makeText(getActivity(), "Email is required", Toast.LENGTH_LONG).show();
-
-            }
-            //else if (!editEmail.getText().toString().matches(emailPattern)) {
-             //   Toast.makeText(getActivity(), "Invalid Email", Toast.LENGTH_LONG).show();
-            //}
-            else{
-                    requestForgotPassword(editEmail.getText().toString(),"");
-                    dialog.dismiss();
-                }
-
-            }
-
-        });
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(myView);
-
-        dialog = builder.create();
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        //lp.height = 570;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
-
-    }
-
-
-    public void requestForgotPassword(String username,String signature){
-        initiateLoading(getActivity());
-        PasswordRequest data = new PasswordRequest();
-        data.setEmail(username);
-        data.setSignature(signature);
-
-        resetPassword = true;
-        presenter.forgotPassword(data);
-    }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -325,20 +242,19 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
         AnalyticsApplication.sendScreenView(SCREEN_LABEL);
         RealmResults<CachedResult> result = RealmObjectController.getCachedResult(MainFragmentActivity.getContext());
 
-        if(resetPassword){
-            if(result.size() > 0){
+        if (resetPassword) {
+            if (result.size() > 0) {
                 Gson gson = new Gson();
                 ForgotPasswordReceive obj = gson.fromJson(result.get(0).getCachedResult(), ForgotPasswordReceive.class);
                 onRequestPasswordSuccess(obj);
             }
-        }else{
-            if(result.size() > 0){
+        } else {
+            if (result.size() > 0) {
                 Gson gson = new Gson();
                 LoginReceive obj = gson.fromJson(result.get(0).getCachedResult(), LoginReceive.class);
                 onLoginSuccess(obj);
             }
         }
-
 
 
         //check for reset password

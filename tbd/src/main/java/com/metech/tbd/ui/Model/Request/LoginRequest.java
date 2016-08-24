@@ -3,21 +3,18 @@ package com.metech.tbd.ui.Model.Request;
 /**
  * Created by Dell on 11/4/2015.
  */
-public class LoginRequest{
+public class LoginRequest {
 
     /*Local Data Send To Server*/
     String username;
     String password;
 
     /*Initiate Class*/
-    public LoginRequest(){
+    public LoginRequest() {
     }
 
-    //public LoginRequest(String username123){
-    //    this.username = username123;
-    //}
 
-    public LoginRequest(LoginRequest data){
+    public LoginRequest(LoginRequest data) {
         username = data.getUsername();
         password = data.getPassword();
     }
@@ -41,7 +38,6 @@ public class LoginRequest{
 
         this.username = username;
     }
-
 
 
     /*Response Data From Server*/

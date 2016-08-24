@@ -5,29 +5,27 @@ package com.metech.tbd.ui.Model.Request;
  */
 public class PasswordRequest extends BaseObj {
 
+    String status;
 
     /*Initiate Class*/
     public PasswordRequest(){
     }
 
     public PasswordRequest(PasswordRequest data){
-        username = data.getEmail();
+        email = data.getEmail();
         signature = data.getSignature();
     }
     public String getEmail() {
 
-        return username;
+        return email;
     }
 
     public void setEmail(String email) {
 
-        this.username = email;
+        this.email = email;
     }
 
-
-
     /*Response Data From Server*/
-    String status;
 
     public String getStatus() {
         return status;

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TableRow>
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Your Credit Card"
@@ -29,7 +29,7 @@
             android:padding="20px"
             android:background="@color/field">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MasterCard"
@@ -39,7 +39,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="10dp"/>
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/discount10dEditText"
@@ -59,7 +59,7 @@
                 android:paddingRight="20dp"/>
         </TableRow>
         <TableRow>
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Proceed >"
@@ -80,7 +80,7 @@
             android:padding="30px"
             android:background="@drawable/drawable_login_bottom_border">
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Visa "
@@ -88,7 +88,7 @@
                 android:layout_column="0"
                 android:textSize="15dp"/>
 
-            <com.metech.tbd.utils.PlayTextView
+            <com.metech.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/discount10EdiatText"
@@ -99,7 +99,7 @@
                 android:paddingRight="20dp"
                 android:layout_marginLeft="10dp"/>
         </TableRow>
-        <com.metech.tbd.utils.PlayTextView
+        <com.metech.tbd.utils.FontStyle.PlayTextView
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

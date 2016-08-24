@@ -8,6 +8,8 @@ import android.content.Intent;
 import com.crashlytics.android.Crashlytics;
 //import com.facebook.FacebookSdk;
 //import com.facebook.appevents.AppEventsLogger;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.metech.tbd.BuildConfig;
 import com.metech.tbd.Modules;
 import com.metech.tbd.api.ApiRequestHandler;
@@ -36,8 +38,9 @@ public class MainApplication extends AnalyticsApplication {
         //Crashlytics crashlytics = new Crashlytics.Builder().disabled(BuildConfig.DEBUG).build();
         //Fabric.with(this, crashlytics, new Crashlytics());
         //Fabric.with(this, new Crashlytics());
-        //FacebookSdk.sdkInitialize(this);
-        //AppEventsLogger.activateApp(this);
+
+        FacebookSdk.sdkInitialize(this);
+        AppEventsLogger.activateApp(this);
 
         buildObjectGraphAndInject();
         createApiRequestHandler();

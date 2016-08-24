@@ -36,7 +36,7 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/previous_icon_tbd" />
 
-                <com.metech.tbd.utils.PlayTextView
+                <com.metech.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtSSRType"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.metech.tbd.utils.PlayTextView
+                                <com.metech.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/txtAdultTotal"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -140,7 +140,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.metech.tbd.utils.PlayTextView
+                                <com.metech.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -208,7 +208,7 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/luggage" />
 
-                    <com.metech.tbd.utils.PlayTextView
+                    <com.metech.tbd.utils.FontStyle.PlayTextView
                         android:id="@+id/txtBaggageWeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/meal_ssr" />
 
-                    <com.metech.tbd.utils.PlayTextView
+                    <com.metech.tbd.utils.FontStyle.PlayTextView
                         android:id="@+id/textView419"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -274,7 +274,7 @@
                         android:textSize="18dp"
                         android:textStyle="bold" />
 
-                    <com.metech.tbd.utils.PlayTextView
+                    <com.metech.tbd.utils.FontStyle.PlayTextView
                         android:id="@+id/textView420"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -302,7 +302,7 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <com.metech.tbd.utils.PlayTextView
+                <com.metech.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView418"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -374,7 +374,7 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/previous_icon_tbd" />
 
-                <com.metech.tbd.utils.PlayTextView
+                <com.metech.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtInsuranceSpecial"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -449,14 +449,14 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp">
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/txtName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Danny Wong"
                             android:textSize="18dp" />
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/txtNationality"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -515,13 +515,13 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp">
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Reuben Wong"
                             android:textSize="18dp" />
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Malaysian"
@@ -563,7 +563,7 @@
                     android:background="@color/dark_lvl5"
                     android:orientation="vertical">
 
-                    <com.metech.tbd.utils.PlayTextView
+                    <com.metech.tbd.utils.FontStyle.PlayTextView
                         android:id="@+id/textView425"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -606,13 +606,13 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp">
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Danny Wong"
                             android:textSize="18dp" />
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Malaysian"
@@ -700,13 +700,13 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp">
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Reuben Wong"
                             android:textSize="18dp" />
 
-                        <com.metech.tbd.utils.PlayTextView
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Malaysian"
@@ -790,7 +790,7 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/previous_icon_tbd" />
 
-                <com.metech.tbd.utils.PlayTextView
+                <com.metech.tbd.utils.FontStyle.PlayTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -844,7 +844,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.metech.tbd.utils.PlayTextView
+                                <com.metech.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -889,7 +889,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.metech.tbd.utils.PlayTextView
+                                <com.metech.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"

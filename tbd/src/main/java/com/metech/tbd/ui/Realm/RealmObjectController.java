@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import com.metech.tbd.ui.Model.JSON.UserInfoJSON;
 import com.metech.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.metech.tbd.ui.Model.Receive.ListBookingReceive;
 import com.metech.tbd.ui.Model.Receive.MobileConfirmCheckInPassengerReceive;
@@ -102,9 +103,6 @@ public class RealmObjectController extends BaseFragment {
         return result;
     }
 
-
-
-
     public static void clearCachedResult(Activity act) {
 
         Realm realm = getRealmInstance(act);
@@ -126,6 +124,42 @@ public class RealmObjectController extends BaseFragment {
         realm.commitTransaction();
 
     }
+
+
+
+    /*Save user info*/
+    public static void saveUserInformation(Activity act, String stringfyObj) {
+
+        Realm realm = getRealmInstance(act);
+
+        //clear user info in realm first.
+        final RealmResults<UserInfoJSON> result = realm.where(UserInfoJSON.class).findAll();
+        realm.beginTransaction();
+        result.clear();
+        realm.commitTransaction();
+
+        //add new user info in realm
+        realm.beginTransaction();
+        UserInfoJSON realmObject = realm.createObject(UserInfoJSON.class);
+        realmObject.setUserInfo(stringfyObj);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /*Save Family and Friends*/

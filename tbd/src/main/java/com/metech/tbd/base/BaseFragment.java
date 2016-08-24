@@ -3,6 +3,7 @@ package com.metech.tbd.base;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -82,6 +83,17 @@ public class BaseFragment extends Fragment {
     private Activity activityContext;
 
 
+    public void initiateDefaultLoading(ProgressDialog progress, Activity act) {
+        progress.setTitle("Loading");
+        progress.setMessage("Please wait...");
+        progress.show();
+    }
+
+    public void dismissDefaultLoading(ProgressDialog progress, Activity act) {
+        progress.dismiss();
+    }
+
+
     //check added fragment
     public boolean checkFragmentAdded() {
 
@@ -154,7 +166,6 @@ public class BaseFragment extends Fragment {
 
         return status;
     }
-
 
     public void blinkText(TextView txt) {
 
@@ -397,7 +408,6 @@ public class BaseFragment extends Fragment {
         }*/
 
 
-
         for (int i = 0; i < json.length(); i++) {
             JSONObject row = (JSONObject) json.opt(i);
 
@@ -411,7 +421,7 @@ public class BaseFragment extends Fragment {
         return countrys;
     }
 
-    public static String[] getCharAt(List<String> countryChar){
+    public static String[] getCharAt(List<String> countryChar) {
 
         String[] charToBeFilter = new String[countryChar.size()];
         for (int i = 0; i < countryChar.size(); i++) {
@@ -1109,7 +1119,7 @@ public class BaseFragment extends Fragment {
 
         try {
             json = new JSONArray(dataFlight);
-            Log.e("How many??",Integer.toString(json.length()));
+            Log.e("How many??", Integer.toString(json.length()));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1303,7 +1313,7 @@ public class BaseFragment extends Fragment {
         return json;
     }
     /*public static void showConnectionError(String test, Activity activity)
-	{
+    {
         if(activity != null) {
             try {
                 TextView txtUTC = (TextView) activity.findViewById(R.id.txtUTC);

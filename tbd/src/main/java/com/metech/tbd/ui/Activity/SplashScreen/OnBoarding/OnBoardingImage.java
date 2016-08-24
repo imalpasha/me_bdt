@@ -26,12 +26,6 @@ import butterknife.InjectView;
 
 public class OnBoardingImage extends BaseFragment {
 
-    @InjectView(R.id.onboardingCtn)
-    Button onboardingCtn;
-
-    @InjectView(R.id.onboardingSkip)
-    Button onboardingSkip;
-
     @InjectView(R.id.onboarding_image)
     ImageView onboarding_image;
 
@@ -95,31 +89,7 @@ public class OnBoardingImage extends BaseFragment {
         aq.recycle(view);
 
         onboarding_image.setImageResource(boardingObj.getDrawableResources());
-        if(boardingObj.getImagePosition().equals("2")){
-            onboardingCtn.setVisibility(View.VISIBLE);
-            onboardingSkip.setVisibility(View.GONE);
-        }else{
-            onboardingCtn.setVisibility(View.GONE);
-            onboardingSkip.setVisibility(View.VISIBLE);
-        }
 
-        onboardingCtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent flightDetail = new Intent(getActivity(), LoginActivity.class);
-                getActivity().startActivity(flightDetail);
-                getActivity().finish();
-            }
-        });
-
-        onboardingSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent flightDetail = new Intent(getActivity(), LoginActivity.class);
-                getActivity().startActivity(flightDetail);
-                getActivity().finish();
-            }
-        });
 
 
 

@@ -34,14 +34,11 @@ public class OnBoardingFragment extends BaseFragment {
     @InjectView(R.id.indicator)
     CircleIndicator indicator;
 
-    /*@InjectView(R.id.onboardingCtn)
-     Button onboardingCtn;
+    @InjectView(R.id.onboardingCtn)
+    Button onboardingCtn;
 
     @InjectView(R.id.onboardingSkip)
-     Button onboardingSkip;*/
-
-    private static Button onboardingSkip;
-    private static Button onboardingCtn;
+    Button onboardingSkip;
 
     private int fragmentContainerId;
 
@@ -65,8 +62,23 @@ public class OnBoardingFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.on_boarding, container, false);
         ButterKnife.inject(this, view);
 
-        onboardingSkip = (Button) view.findViewById(R.id.onboardingSkip);
-        onboardingCtn = (Button) view.findViewById(R.id.onboardingCtn);
+        onboardingCtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent flightDetail = new Intent(getActivity(), LoginActivity.class);
+                getActivity().startActivity(flightDetail);
+                getActivity().finish();
+            }
+        });
+
+        onboardingSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent flightDetail = new Intent(getActivity(), LoginActivity.class);
+                getActivity().startActivity(flightDetail);
+                getActivity().finish();
+            }
+        });
 
         startPagination();
         return view;
@@ -98,42 +110,27 @@ public class OnBoardingFragment extends BaseFragment {
             }
         });
 
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {
+            }
 
-        //CirclePageIndicator mIndicator = (CirclePageIndicator) aq.id(R.id.indicator).getView();
-        //mIndicator.setViewPager(mPager);
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
-    }
+            public void onPageSelected(int position) {
 
-    public static void hideSkipButton(final Activity act) {
+                if (position == 2) {
+                    onboardingCtn.setVisibility(View.VISIBLE);
+                    onboardingSkip.setVisibility(View.GONE);
+                } else {
+                    onboardingCtn.setVisibility(View.GONE);
+                    onboardingSkip.setVisibility(View.VISIBLE);
+                }
 
-        onboardingCtn.setVisibility(View.VISIBLE);
-        onboardingSkip.setVisibility(View.GONE);
-
-        onboardingCtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent flightDetail = new Intent(act, LoginActivity.class);
-                act.startActivity(flightDetail);
-                act.finish();
             }
         });
+
     }
-
-    public static void hideContinueButton(final Activity act) {
-
-        onboardingCtn.setVisibility(View.GONE);
-        onboardingSkip.setVisibility(View.VISIBLE);
-
-        onboardingSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent flightDetail = new Intent(act, LoginActivity.class);
-                act.startActivity(flightDetail);
-                act.finish();
-            }
-        });
-    }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

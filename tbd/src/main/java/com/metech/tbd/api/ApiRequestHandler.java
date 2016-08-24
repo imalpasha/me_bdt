@@ -102,6 +102,50 @@ public class ApiRequestHandler {
 
     // ------------------------------------------------------------------------------ //
 
+
+    // Login API //
+
+    @Subscribe
+    public void onLoginRequest(final LoginRequest event) {
+
+        apiService.onRequestToLogin(event, new Callback<LoginReceive>() {
+
+            @Override
+            public void success(LoginReceive rhymesResponse, Response response) {
+
+                if(rhymesResponse != null) {
+                    bus.post(new LoginReceive(rhymesResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
+                }else{
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Subscribe
     public void onRegisterNotification(final PushNotificationObj event) {
 
@@ -157,30 +201,7 @@ public class ApiRequestHandler {
         });
     }
 
-    @Subscribe
-    public void onLoginRequest(final LoginRequest event) {
 
-        apiService.onRequestToLogin(event, new Callback<LoginReceive>() {
-
-            @Override
-            public void success(LoginReceive rhymesResponse, Response response) {
-
-                if(rhymesResponse != null) {
-                    bus.post(new LoginReceive(rhymesResponse));
-                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                }else{
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-            }
-
-        });
-    }
 
     @Subscribe
     public void onPasswordRequest(final PasswordRequest event) {

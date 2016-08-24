@@ -119,4 +119,8 @@ dependencies {
 
     compile 'dev.dworks.libs:astickyheader:0.1.0'
 
+    //FACEBOOK
+    compile 'com.facebook.android:facebook-android-sdk:4.5.0'
+
+
 }

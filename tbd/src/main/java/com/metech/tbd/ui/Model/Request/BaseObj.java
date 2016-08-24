@@ -6,12 +6,22 @@ package com.metech.tbd.ui.Model.Request;
 public class BaseObj {
 
     String username;
+    String email;
     String signature;
-    public BaseObj(){
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public BaseObj() {
 
     }
 
-    public BaseObj(BaseObj obj){
+    public BaseObj(BaseObj obj) {
         this.username = obj.getUsername();
         this.signature = obj.getSignature();
     }
