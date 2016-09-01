@@ -1,5 +1,8 @@
 <resources>
 
+    <string name="hello_world">Hello World</string>
+    <string name="btn_en">English</string>
+    <string name="btn_ms">Malaysia</string>
 
    <!-- <string name="retrieve_rhymes_failed">The network is slow or unavailable</string>
     <string name="no_rhymes_found_error">Couldn\'t find anything that rhymes with %s</string>

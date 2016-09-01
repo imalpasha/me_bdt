@@ -1,0 +1,405 @@
+<resources>
+
+    <string name="hello_world">Hai Dunia</string>
+    <string name="btn_en">Bahasa Inggeris</string>
+    <string name="btn_ms">Bahasa Malaysia</string>
+
+    <!-- DropDown Value -->
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="travel_doc">
+        <item>Malaysia IC-NRIC</item>
+        <item>Passport-P</item>
+        <item>Visa-V</item>
+    </string-array>
+
+    <!-- Travel Purpose -->
+    <string-array name="purpose">
+        <item>Leisure</item>
+        <item>Business</item>
+    </string-array>
+
+    <!-- Month -->
+    <string-array name="month">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar </item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+
+    <string-array name="full_month">
+        <item>January</item>
+        <item>February</item>
+        <item>March </item>
+        <item>April</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="requestType">
+        <item>Please select</item>
+        <item>Return</item>
+        <item>Refund</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="itemCondition">
+        <item>Please select</item>
+        <item>Opened</item>
+        <item>Unopened</item>
+    </string-array>
+
+    <!-- Filter Code -->
+    <string-array name="filter_review">
+        <item>SHR,Highest Rate</item>
+        <item>SLR,Lowest Rate</item>
+        <item>SNF,Newest First</item>
+        <item>SOF,Oldest First</item>
+    </string-array>
+    <string-array name="filter_code">
+        <item>SAZ,A to Z</item>
+        <item>SZA,Z to A</item>
+        <item>SOS,On Sale </item>
+        <item>SLP,Lowest Price</item>
+        <item>SHP,Highest Price</item>
+        <item>SHR,Highest Rating</item>
+    </string-array>
+    <string-array name="filter">
+        <item>A to Z</item>
+        <item>Z to A</item>
+        <item>On Sale</item>
+        <item>Lowest Price</item>
+        <item>Highest Price</item>
+        <item>Highest Rating</item>
+    </string-array>
+
+    <!-- Global Search -->
+    <string-array name="search_code">
+        <item>STB,Brand,shopbybrand.ShopByBrandListView</item>
+        <item>STM,Merchant,merchant.MerchantDetailView</item>
+        <item>STD,Department,department.DepartmentView</item>
+        <item>STP,Product,productprofile.ProductProfileView</item>
+        <item>STD_LVL1,Department,department.
+            View</item>
+        <item>STD_LVL2,Department,department.DepartmentView</item>
+        <item>STD_LVL3,Department,department.DepartmentView</item>
+        <item>STD_LVL4,Department,department.DepartmentView</item>
+    </string-array>
+    <string name="google_map_api_key"><![CDATA[AIzaSyCK7VCGJomx5--fAPlvJZYGRsq4jyVyev0]]></string>
+    <string name="imal_google_map_api_key"><![CDATA[AIzaSyBPg4DVdsfxlhmo_OT2_9iNVHSKK3OPBEA]]></string>
+
+    <!-- State -->
+    <string-array name="state">
+        <item>Selangor-SL</item>
+        <item>Pahang-PHG</item>
+        <item>Johor-JHR</item>
+        <item>Kedah-KDH</item>
+        <item>Penang-PEN</item>
+    </string-array>
+
+    <string name="app_name">- TBD -</string>
+    <string name="welcome_to_firefly">Welcome to Firefly</string>
+    <string name="beyond_convenience">Beyond Convenience</string>
+    <string name="home_firefly_desc">access your booking,mobile check-in and manage flight by sign-in the system</string>
+    <string name="home_manage_flight">MANAGE FLIGHT</string>
+    <string name="home_book_flight">BOOK FLIGHT</string>
+    <string name="home_mobile_check_in">MOBILE CHECK-IN</string>
+    <string name="home_sign_in">SIGN-IN</string>
+    <string name="home_boarding">Boarding Pass</string>
+
+    <string name="firefly_stroke">/Firefly</string>
+    <string name="firefly_airlines_stroke">/Firefly Airlines</string>
+
+    <!--LANDSCAPE-->
+
+    <string name="home_book_flight_landscape">Book Flight</string>
+    <string name="home_boarding_pass_landscape">Boarding Pass</string>
+    <string name="home_manage_flight_landscape">Manage Flight</string>
+    <string name="home_mobile_check_in_landscape">Mobile Check-In</string>
+    <string name="home_boarding_pass">BOARDING PASS</string>
+
+
+    <!--END HOMEPAGE FIREFLY-->
+
+    <!-- LOGIN FIREFLY -->
+
+    <string name="login_enter_email">User ID (Email) :</string>
+    <string name="login_enter_password">Password</string>
+
+    <string name="login_login_txt">Log in</string>
+    <string name="login_register_txt">Register</string>
+    <string name="login_no_account">Don\'t have account yet?</string>
+    <string name="title_login_and_password">LOGIN AND PASSWORD</string>
+
+
+    <!-- END LOGIN -->
+
+    <!-- REGISTER -->
+
+    <string name="register_continue_button">Continue</string>
+    <string name="register_username">Email </string>
+    <string name="register_password">Password </string>
+    <string name="profile_current_password">Current Password </string>
+    <string name="profile_new_password">New Password </string>
+    <string name="register_confirm_password">Confirm Password </string>
+
+
+    <string name="register_title">Title </string>
+    <string name="register_firstname">First Name / Given Name </string>
+    <string name="register_lastname">Last Name / Family Name </string>
+    <string name="register_dob">Date Of Birth </string>
+
+    <string name="register_basic_information">LOGIN INFORMATION</string>
+    <string name="register_basic_informationV2">BASIC INFORMATION</string>
+    <string name="register_personal_information">PERSONAL INFORMATION</string>
+    <string name="register_address_information">ADDRESS INFORMATION</string>
+    <string name="register_contact_information">CONTACT INFORMATION</string>
+    <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
+
+    <string name="register_address_1">Address Line 1</string>
+    <string name="register_address_2">Address Line 2</string>
+    <string name="register_address_3">Address Line 3</string>
+
+    <string name="register_country">Country</string>
+    <string name="register_town">Town/City</string>
+    <string name="register_state">State</string>
+    <string name="register_postcode">Postcode</string>
+    <string name="register_mobile_phone">Mobile / Home</string>
+    <string name="register_alternate_phone">Alternate</string>
+    <string name="register_bonuslink">BonusLink Card No:</string>
+
+    <string name="register_fax">Fax</string>
+    <string name="register_city">Town/City</string>
+    <string name="register_password_hint">Password must be at least 8 characters, no more than 16 characters, must include at least one upper case letter, one lower case letter, one numeric digit, and one non-alphanumeric. The password cannot contain a period(.) comma(,) or tilde(~).</string>
+    <string name="register_password_policy">Password Policy</string>
+
+    <string name="title_register">REGISTER</string>
+
+    <string name="asterik">*</string>
+
+    <string name="register_term_error_message">You must agree with terms &amp; conditions</string>
+    <!-- END REGISTER -->
+
+
+    <!-- BOOKING FLIGHT - SEARCH FLIGHT -->
+    <string name="book_flight">BOOK FLIGHT</string>
+    <string name="book_flight_one_way">ONE WAY</string>
+    <string name="book_flight_return">RETURN</string>
+
+
+
+    <string name="book_flight_adult">Adult</string>
+    <string name="book_flight_adult_year">2+ years old</string>
+
+    <string name="book_flight_children">Children</string>
+    <string name="book_flight_children_year">2+ years old</string>
+
+    <string name="book_flight_infant">Infant</string>
+    <string name="book_flight_infant_year"> 9 days - 2 years old</string>
+
+
+    <!-- BOOKING FLIGHT - SEARCH FLIGHT -->
+    <string name="book_flight_availability">Sorry, no flights available. Please
+select another date or station and try again.</string>
+
+    <!-- BOOKING FLIGHT - LIST FLIGHT -->
+    <string name="book_flight_basic">BASIC</string>
+    <string name="book_flight_premier">PREMIER</string>
+
+
+    <string name="mobile_checkin">MOBILE CHECK-IN</string>
+
+    <!-- MANAGE FLIGHT -->
+
+    <string name="manage_flight_na">No Flight Available</string>
+
+    <string name="manage_flight">MANAGE FLIGHT</string>
+    <string name="manage_flight_contact_email">Contact Email</string>
+    <string name="manage_flight_confirmation_number">Confirmation Number</string>
+
+    <string name="manage_flight_change_contact">CHANGE CONTACT</string>
+    <string name="manage_flight_edit_passenger">EDIT PASSENGER</string>
+    <string name="manage_flight_change_flight">CHANGE FLIGHT</string>
+    <string name="manage_flight_change_seat">CHANGE SEAT</string>
+    <string name="manage_flight_special_meal_request">SPECIAL MEAL REQUEST</string>
+
+    <string name="manage_flight_add_payment">ADD PAYMENT</string>
+    <string name="manage_flight_send_itinenary">SEND ITINERARY</string>
+    <string name="manage_flight_contact_detail">CONTACT DETAIL</string>
+    <string name="manage_flight_sent_itinenary">SEND ITINERARY</string>
+    <string name="manage_flight_seat_optional">Seat Selection (Optional)</string>
+
+
+    <!-- General -->
+    <string name="general_continue">Continue</string>
+    <string name="general_email_addresss">Email Address</string>
+    <string name="general_travel_purpose">Primary Purpose of Your Travel</string>
+
+    <string name="agreeTnc">I agree with the Terms &amp; Conditions</string>
+    <string name="subscribe">Yes, I do not want to receive promotional information from Firefly and its partners</string>
+    <string name="alertTNC">You must agree to the terms.</string>
+    <string name="bonuslink_hint">e.g. 6018XXXXXXXXXXXX</string>
+    <string name="yes_proceed">Yes, I want to be protected during my trip</string>
+    <string name="no_thank">No, Thank You.</string>
+
+    <!-- Boarding Pass -->
+    <string name="boardingPassTitle">No boarding pass available.</string>
+    <string name="boardingPassNA">Boarding Pass will be displayed after the check-in process is complete. </string>
+
+
+    <string name="boarding_pass">BOARDING PASS</string>
+
+
+    <!-- Update Profile -->
+    <string name="title_activity_update_profile">UPDATE INFORMATION</string>
+    <string name="update_profile_logininfo">Login Information</string>
+    <string name="update_profile_contactinfo">Contact Information</string>
+    <string name="update_profile_btn">Update</string>
+    <string name="ctn_profile_btn">CONTINUE</string>
+
+    <string name="only_fill">Only fill in this section if you wish to change your password</string>
+
+
+    <!-- Mobile Check in -->
+    <string name="mobile_checkin_na">No Flight Available For Check-In</string>
+
+    <string name="mobile_checkin_check1">Yes, I am aware that the dangerous good above are not permitted in my bag, luggage has been in my possession at all times and i am aware of the contents in my bag.</string>
+    <string name="mobile_checkin_check2">Yes, I have read and agree with the important information.</string>
+    <string name="mobile_checkin_check3">Yes, I have access to a printer and print the mobile check-in boarding pass from my email if my departing station is NOT Subang(SZB), Penang(PEN), Johor Bharu(JHB) or Kota Bharu(KBR).</string>
+    <string name="title_activity_terms">Terms</string>
+
+    <!-- Terms-->
+    <string name="title_terms">TERMS AND CONDITIONS</string>
+
+    <!-- Forgot Password Module -->
+    <string name="ForgotPasswordEmailSent">Your password reset has been confirmed. \nThe link to reset your password has been sent to the \nemail registered to</string>
+    <string name="forgotPasswordNextBtn">Next</string>
+    <string name="forgotPasswordUserID">User ID</string>
+    <string name="forgotPasswordTxt">Forgot \nPassword</string>
+    <string name="forgotPasswordExpired">PASSWORD EXPIRED</string>
+    <string name="forgotPasswordCurrent">Current Password</string>
+    <string name="forgotPasswordNew">New Password</string>
+    <string name="forgotPasswordConfirm">Confirm Password</string>
+
+    <string name="update_success">Update Success</string>
+    <string name="exit">EXIT FIREFLY</string>
+    <string name="term_webview">http://fyapidev.me-tech.com.my/api/displayTerm</string>
+
+
+    <string name="start_geofence_service">Starting geofence transition service</string>
+    <string name="entering_geofence">Entering the GeoFence zone</string>
+    <string name="exiting_geofence">Exiting the GeoFence zone</string>
+
+
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Push Notifications</string>
+    <string name="error_config">Please set the %1$s constant and recompile the app.</string>
+    <string name="already_registered">Device is already registered on server.</string>
+    <string name="gcm_registered">From GCM: device successfully registered!</string>
+    <string name="gcm_unregistered">From GCM: device successfully unregistered!</string>
+    <string name="gcm_message">From GCM: you got message!</string>
+    <string name="gcm_error">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">From GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering">Trying (attempt %1$d/%2$d) to register device on Demo Server.</string>
+    <string name="server_registered">From Demo Server: successfully added device!</string>
+    <string name="server_unregistered">From Demo Server: successfully removed device!</string>
+    <string name="server_register_error">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
+    <string name="options_register">Register</string>
+    <string name="options_unregister">Unregister</string>
+    <string name="options_clear">Clear</string>
+    <string name="options_exit">Exit</string>
+
+
+    <!-- General -->
+    <string name="searchCountryHint">Search</string>
+    <string name="dob">DOB: </string>
+    <string name="date_ob">Date Of Birth</string>
+    <string name="dob_">DOB</string>
+    <string name="textview_placeholder_lbl">TextView</string>
+    <string name="action_settings">FIREFLY</string>
+    <string name="register">Register</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="countryListDialogTitle">Please select country</string>
+    <string name="stateListDialogTitle">Please select state</string>
+
+
+    <!-- Drawer/Version -->
+    <string name="x_lbl">.</string>
+
+    <!-- CleanUP -->
+    <!-- General -->
+    <string name="unable_to_connect">Unable to connect to server</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="retry">Retry</string>
+    <string name="ticketReminder">Kindly ensure email itinerary is received. If you don\'t receive email itinerary within 30 minutes , please contact our call centre +603 7845 4543 for assistance.</string>
+    <string name="no_internet_connection_title">Whoops!</string>
+    <string name="no_internet_connection">No internet connection found. Check your internet connection and try again</string>
+
+    <!-- TBD -->
+    <string name="TBD_app_name">TBD</string>
+
+    <!-- TBD LOGIN PAGE -->
+    <string name="login_">Login</string>
+    <string name="login_register_new_acc">Register New Account</string>
+    <string name="login_forgot_password">Forgot Password?</string>
+
+    <!-- TBD FORGOT PASSWORD -->
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_email">example@mail.com</string>
+    <string name="forgot_password">Reset Password</string>
+    <string name="title_activity_password_expired">PasswordExpiredActivity</string>
+    <string name="password_expire_text">Your password has expired and needs to be changed. The password must consist of at least 8 characters, must include one upper case letter, one lower case letter, one numeric digit and one symbol. Example: SkyPark+123</string>
+
+    <!-- General -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="btn_continue">Continue ></string>
+
+    <!-- TBD Facebook ID -->
+    <string name="facebook_app_id">165826577154465</string>
+
+    <!-- TBD Profile -->
+    <string name="tbd_my_profile">My Profile</string>
+    <string name="tbd_my_booking">My Booking</string>
+    <string name="tbd_my_big_point">My BIG Point</string>
+    <string name="tbd_my_credit_card">My Credit Card</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagram</string>
+
+    <!-- TBD Search Flight -->
+
+    <string name="search_flight_title">Select your origin</string>
+
+    <string name="search_flight_page">Routes &amp; Fares</string>
+
+    <string name="book_flight_departure_airport">ASAL</string>
+    <string name="book_flight_arrival_airport">DESTINASI</string>
+
+    <string name="book_flight_departure_date">TARIKH BERLEPAS</string>
+    <string name="book_flight_arrival_date">TARIKH PULANG</string>
+
+    <!-- TBD Holiday Shaker -->
+    <string name="holiday_shaker_reedem">TEBUS</string>
+
+
+</resources>
