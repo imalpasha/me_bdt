@@ -8,71 +8,34 @@ package com.metech.tbd.ui.Model.Receive;
 
 public class RegisterReceive {
 
-    private final RegisterReceive userObj;
-    private String status;
-    private String message;
-    private user_info user_info;
+    private final RegisterReceive thisObj;
+    private String Status;
+    private String Message;
 
-    public RegisterReceive(RegisterReceive param_userObj) {
-        this.userObj = param_userObj;
-        status = param_userObj.getStatus();
-        message = param_userObj.getMessage();
+    public RegisterReceive(RegisterReceive return_data) {
+        this.thisObj = return_data;
+        Status = return_data.getStatus();
+        Message = return_data.getMessage();
     }
 
     public RegisterReceive getUserObj() {
-        return userObj;
-    }
-
-    public class user_info{
-
-        private String username;
-        private String password;
-        private String signature;
-
-        public String getSignature() {
-            return signature;
-        }
-
-        public void setSignature(String signature) {
-            this.signature = signature;
-        }
-        public String getUsername() {
-            return username;
-        }
-        public void setUsername(String username) {
-            this.username = username;
-        }
-        public String getPassword() {
-            return password;
-        }
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-    }
-
-    public user_info getUserInfo() {
-        return user_info;
-    }
-
-    public void setUserInfo(user_info userInfo) {
-        this.user_info = userInfo;
+        return thisObj;
     }
 
     public String getStatus() {
-        return status;
+        return Status;
     }
 
     public String getMessage() {
-        return message;
+        return Message;
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        this.Message = message;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.Status = status;
     }
 
 }

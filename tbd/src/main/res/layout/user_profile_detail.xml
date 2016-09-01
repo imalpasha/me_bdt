@@ -79,7 +79,8 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:inputType="textEmailAddress"
-                            android:padding="10dp" />
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -122,7 +123,8 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:inputType="textPassword"
-                            android:padding="10dp" />
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -145,7 +147,6 @@
                         <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
                             android:gravity="center"
                             android:text="@string/register_confirm_password"
                             android:textColor="@color/dark_lvl6"
@@ -164,8 +165,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
-                            android:inputType="textPassword"
-                            android:padding="10dp" />
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -188,8 +189,7 @@
                     <com.metech.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/register_personal_detail"
-                        android:textColor="@color/dark_lvl6" />
+                        android:text="@string/register_user_information" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -211,7 +211,7 @@
                         <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Title"
+                            android:text="Salutation"
                             android:textColor="@color/dark_lvl6"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -219,41 +219,20 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="left|center_vertical"
                         android:layout_weight="0.7"
                         android:background="@drawable/right_bottom_line_border"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingBottom="3dp"
-                        android:paddingTop="3dp"
-                        android:weightSum="1">
+                        android:orientation="vertical">
 
-                        <!--<com.metech.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/txtRegisterTitle"
-                            android:layout_width="match_parent"
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="@string/register_salutation_hint"
-
-                            android:textColorHint="@color/grey"
-                            android:textSize="16dp" />-->
-                        <com.metech.tbd.utils.FontStyle.PlayButtonText
-                            android:id="@+id/registerMrBtn"
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="0dp"
-                            android:layout_height="35dp"
-                            android:layout_weight="0.3"
-                            android:text="MR"
-                            android:textColor="@color/white" />
-
-                        <com.metech.tbd.utils.FontStyle.PlayButtonText
-                            android:id="@+id/registerMsBtn"
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="0dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="0.3"
-                            android:text="MS"
-                            android:textColor="@color/white" />
+                            android:paddingBottom="13dp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="13dp"
+                            android:text="@string/register_salutation_hint"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -295,7 +274,8 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:inputType="textPersonName"
-                            android:padding="10dp" />
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -338,7 +318,8 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:inputType="textPersonName"
-                            android:padding="10dp" />
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -375,12 +356,14 @@
                         android:orientation="vertical">
 
                         <com.metech.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/txtRegisterDOB"
+                            android:id="@+id/textView397"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/date_ob"
-                            android:padding="10dp"
-                            android:textColorHint="@color/grey" />
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/date_ob"
+                            android:textColor="@color/grey" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -417,15 +400,98 @@
                         android:orientation="vertical">
 
                         <com.metech.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/txtRegisterNationality"
+                            android:id="@+id/txtNationality"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/register_select_nationality"
                             android:paddingBottom="11dp"
                             android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
                             android:paddingTop="11dp"
-                            android:textColorHint="@color/grey" />
+                            android:text="@string/register_nationality"
+                            android:textColor="@color/grey" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bottom_line_border"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/register_mobile"
+                            android:textColor="@color/dark_lvl6"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:orientation="vertical">
+
+                        <com.metech.tbd.utils.FontStyle.PlayEditText
+                            android:id="@+id/txtRegisterMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bottom_line_border"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/register_passport"
+                            android:textColor="@color/dark_lvl6"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/txtRegisterPassport"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -449,8 +515,7 @@
                     <com.metech.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/register_contact_detail"
-                        android:textColor="@color/dark_lvl6" />
+                        android:text="@string/register_address_information" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -472,7 +537,7 @@
                         <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/register_mobile"
+                            android:text="@string/register_street_1"
                             android:textColor="@color/dark_lvl6"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -483,58 +548,9 @@
                         android:layout_gravity="left|center_vertical"
                         android:layout_weight="0.7"
                         android:background="@drawable/right_bottom_line_border"
-                        android:orientation="vertical">
-
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
-                            android:id="@+id/txtRegisterMobile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:inputType="phone"
-                            android:padding="10dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bottom_line_border"
-                    android:clickable="true"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.3"
-                        android:background="@drawable/right_bottom_line_border"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/register_country"
-                            android:textColor="@color/dark_lvl6"
-                            android:textSize="15dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:background="@drawable/right_bottom_line_border"
-                        android:orientation="vertical">
-
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/txtRegisterCountry"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/register_select_country"
-                            android:padding="10dp"
-                            android:textColorHint="@color/grey" />
+                        android:orientation="vertical"
+                        android:paddingBottom="18dp"
+                        android:paddingTop="18dp">
 
                     </LinearLayout>
 
@@ -559,8 +575,7 @@
                         <com.metech.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/register_state"
+                            android:text="@string/register_street_2"
                             android:textColor="@color/dark_lvl6"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -570,19 +585,44 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.7"
                         android:background="@drawable/right_bottom_line_border"
+                        android:orientation="vertical"
+                        android:paddingBottom="18dp"
+                        android:paddingTop="18dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bottom_line_border"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <com.metech.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/txtRegisterState"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:clickable="false"
-                            android:hint="@string/register_select_state"
-                            android:padding="10dp"
-                            android:textColorHint="@color/grey" />
-
+                            android:gravity="center"
+                            android:text="@string/register_city"
+                            android:textColor="@color/dark_lvl6"
+                            android:textSize="15dp" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -615,20 +655,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.7"
                         android:background="@drawable/right_bottom_line_border"
-                        android:orientation="vertical">
-
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
-                            android:id="@+id/txtRegisterPostCode"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:inputType="textPostalAddress"
-                            android:padding="10dp"
-                            android:textSize="15dp" />
-
-                    </LinearLayout>
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="18dp" />
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -650,7 +680,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/register_city"
+                            android:text="@string/register_state"
                             android:textColor="@color/dark_lvl6"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -660,138 +690,53 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.7"
                         android:background="@drawable/right_bottom_line_border"
-                        android:orientation="vertical">
-
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
-                            android:id="@+id/txtRegisterTown"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:padding="10dp"
-                            android:textSize="15dp" />
-
-                    </LinearLayout>
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="18dp" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/registerCheckBoxSelection"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    android:weightSum="1">
-
-                    <com.metech.tbd.utils.FontStyle.PlayTextView
-                        android:id="@+id/registerConfirmInformation"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.85"
-                        android:gravity="left"
-                        android:text="TEXT _ 2"
-                        android:textColor="@color/dark_lvl6"
-                        android:textSize="14dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bottom_line_border"
+                    android:clickable="true"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="0.15"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/registerConfirmInformationBtn"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/un_checked" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    android:weightSum="1">
-
-                    <com.metech.tbd.utils.FontStyle.PlayTextView
-                        android:id="@+id/registerAcknowledgeMemberShip"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.85"
-                        android:gravity="center|left"
-                        android:text="test"
-                        android:textColor="@color/dark_lvl6"
-                        android:textSize="14dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="0.15"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/registerAcknowledgeMemberShipBtn"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/un_checked" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    android:weightSum="1">
-
-                    <com.metech.tbd.utils.FontStyle.PlayTextView
-                        android:id="@+id/registerSubscribeNewsletter"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.85"
-                        android:gravity="center|left"
-                        android:text="TEXT _ 1"
-                        android:textColor="@color/dark_lvl6"
-                        android:textSize="14dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="0.15"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/right_bottom_line_border"
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/registerSubscribeNewsletterBtn"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/checked" />
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/register_country"
+                            android:textColor="@color/dark_lvl6"
+                            android:textSize="15dp" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="18dp" />
                 </LinearLayout>
-
-
             </LinearLayout>
 
-            <com.metech.tbd.utils.FontStyle.PlayButtonText
-                android:id="@+id/btnRegisterContinue"
+            <Button
+                android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/red"
-                android:text="@string/register_continue"
+                android:text="@string/register_title"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 

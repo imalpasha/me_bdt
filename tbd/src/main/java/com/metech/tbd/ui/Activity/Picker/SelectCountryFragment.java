@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import com.metech.tbd.R;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.BookingFlight.SearchFlightFragment;
+import com.metech.tbd.ui.Activity.Register.RegisterFragment;
 import com.metech.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
@@ -29,15 +31,11 @@ import java.util.Locale;
 
 import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
 
-public class SelectFlightFragment extends DialogFragment {
+public class SelectCountryFragment extends DialogFragment {
     public static final String KEY_COUNTRY_LIST = "countryList";
-    public static final String KEY_COUNTRY_LIST2 = "countryList2";
+    public static final String KEY_STATE_LIST = "stateList";
 
-    public static final String FLIGHT_SELECTION = "FLIGHT_SELECTION";
-
-
-    public static final String DEPARTURE_FLIGHT = "DEPARTURE";
-    public static final String RETURN_FLIGHT = "ARRIVAL";
+    public static final String COUNTRY_LIST = "COUNTRY";
 
     String[] filteredCountry;
     Integer[] headerPosition;
@@ -47,11 +45,9 @@ public class SelectFlightFragment extends DialogFragment {
 
     ListView lvCountries;
     EditText txtSearchCustom;
-    CountryListDialogAdapter adapter;
+    SelectCountryAdapter adapter;
     TextView txtCountry;
     SimpleSectionedListAdapter simpleSectionedGridAdapter;
-
-    private ArrayList<SimpleSectionedListAdapter.Section> sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,8 +66,10 @@ public class SelectFlightFragment extends DialogFragment {
         }
     }
 
-    public static SelectFlightFragment newInstance(ArrayList<DropDownItem> countries) {
-        SelectFlightFragment fragment = new SelectFlightFragment();
+    private ArrayList<SimpleSectionedListAdapter.Section> sections = new ArrayList<SimpleSectionedListAdapter.Section>();
+
+    public static SelectCountryFragment newInstance(ArrayList<DropDownItem> countries) {
+        SelectCountryFragment fragment = new SelectCountryFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(KEY_COUNTRY_LIST, countries);
         fragment.setArguments(bundle);
@@ -86,6 +84,7 @@ public class SelectFlightFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_country_list_dialog, container, false);
         lvCountries = (ListView) view.findViewById(R.id.lvCountries);
         getDialog().setTitle(getActivity().getString(R.string.search_flight_title));
+        //getDialog().getWindow().setTitleColor(ContextCompat.getColor(getActivity(),R.color.default_theme_colour));
 
         //GET CHAR AT - FILTER
         List<String> countryChar = new ArrayList<String>();
@@ -117,7 +116,6 @@ public class SelectFlightFragment extends DialogFragment {
             }
         });
 
-        //lvCountries.setAdapter(adapter);
         lvCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -134,17 +132,17 @@ public class SelectFlightFragment extends DialogFragment {
     }
 
     public void initControls() {
-        originalCountries = SearchFlightFragment.initiatePageData(getActivity());
+        originalCountries = BaseFragment.getStaticCountry(getActivity());
 
-        adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries,originalCountries);
+        adapter = new SelectCountryAdapter(getActivity().getApplicationContext(), SelectCountryFragment.this, countries, originalCountries);
         for (int i = 0; i < headerPosition.length; i++) {
             sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
         }
 
-        simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
-        simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
+        //simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
+        //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
 
-        lvCountries.setAdapter(simpleSectionedGridAdapter);
+        lvCountries.setAdapter(adapter);
     }
 
     public void notifyAnotherAdapter() {
@@ -164,17 +162,17 @@ public class SelectFlightFragment extends DialogFragment {
         filteredCountry = BaseFragment.getCharAt(countryChar);
         headerPosition = BaseFragment.headerPosition(countryChar);
 
-        originalCountries = SearchFlightFragment.initiatePageData(getActivity());
+        originalCountries = BaseFragment.getStaticCountry(getActivity());
 
-        adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries2, originalCountries);
+        adapter = new SelectCountryAdapter(getActivity().getApplicationContext(), SelectCountryFragment.this, countries2, originalCountries);
 
         for (int i = 0; i < headerPosition.length; i++) {
             sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
         }
 
-        SimpleSectionedListAdapter simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
-        simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
-        lvCountries.setAdapter(simpleSectionedGridAdapter);
+        //SimpleSectionedListAdapter simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
+        //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
+        lvCountries.setAdapter(adapter);
 
     }
 
@@ -186,7 +184,7 @@ public class SelectFlightFragment extends DialogFragment {
         }
 
         Intent intent = new Intent();
-        intent.putExtra(FLIGHT_SELECTION, country);
+        intent.putExtra(KEY_COUNTRY_LIST, country);
 
         getTargetFragment().onActivityResult(1, Activity.RESULT_OK, intent);
         Log.e("Get Target Fragment", "NOT NULL");
@@ -197,19 +195,6 @@ public class SelectFlightFragment extends DialogFragment {
         countries = getArguments().getParcelableArrayList(KEY_COUNTRY_LIST);
         Log.e("NEW ARRAY", Integer.toString(countries.size()));
     }
-
-
-
-    /*@Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        adapter.getFilter().filter(newText);
-        return false;
-    }*/
 
 
 }

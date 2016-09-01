@@ -7,21 +7,29 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.metech.tbd.R;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
+import com.metech.tbd.ui.Model.JSON.UserInfoJSON;
+import com.metech.tbd.ui.Model.Receive.LoginReceive;
+import com.metech.tbd.ui.Model.Receive.MobileConfirmCheckInPassengerReceive;
+import com.metech.tbd.ui.Model.Request.BoardingPassObj;
 import com.metech.tbd.ui.Realm.RealmObjectController;
 import com.google.android.gms.analytics.Tracker;
 import com.mobsandgeeks.saripaar.Validator;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class ProfileFragment extends BaseFragment {
 
@@ -31,6 +39,16 @@ public class ProfileFragment extends BaseFragment {
 
     @InjectView(R.id.imgUserDP)
     ImageView imgUserDP;
+
+    @InjectView(R.id.txtUserName)
+    TextView txtUserName;
+
+    @InjectView(R.id.txtBigUsername)
+    TextView txtBigUsername;
+
+    @InjectView(R.id.txtUserBigID)
+    TextView txtUserBigID;
+
 
     //@Inject
     //LoginPresenter presenter;
@@ -55,21 +73,35 @@ public class ProfileFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.profile, container, false);
         ButterKnife.inject(this, view);
+        dataSetup();
 
         //maskUserDP();
 
         return view;
     }
 
-    public void maskUserDP(){
+    public void dataSetup() {
+
+        //convert from realm cache data to basic class
+        Realm realm = RealmObjectController.getRealmInstance(getActivity());
+        final RealmResults<UserInfoJSON> result2 = realm.where(UserInfoJSON.class).findAll();
+        final LoginReceive obj = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
+
+        txtUserName.setText(obj.getFirstName());
+        txtBigUsername.setText(obj.getFirstName() + " " + obj.getLastName());
+        txtUserBigID.setText("BIG ID : "+obj.getCustomerNumber());
+
+    }
+
+    public void maskUserDP() {
 
         //mask dp profile
-        Bitmap original = BitmapFactory.decodeResource(getResources(),R.drawable.tbd_dp2);
-        Bitmap mask = BitmapFactory.decodeResource(getResources(),R.drawable.dp_mask);
+        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.tbd_dp2);
+        Bitmap mask = BitmapFactory.decodeResource(getResources(), R.drawable.dp_mask);
         Bitmap result = Bitmap.createBitmap(mask.getWidth(), mask.getHeight(), Bitmap.Config.ARGB_8888);
 
         Bitmap resized = Bitmap.createScaledBitmap(original, mask.getWidth(), mask.getHeight(), true);
@@ -97,13 +129,13 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-       // presenter.onResume();
+        // presenter.onResume();
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-       // presenter.onPause();
+        // presenter.onPause();
     }
 }

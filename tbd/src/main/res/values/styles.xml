@@ -91,5 +91,15 @@
     </style>
 
     <style name="AppTheme"  parent="android:Theme.Holo.Light"/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+    </style>
+
+    <style name="MY.DIALOG" parent="android:Theme" >
+        <item name="android:actionBarStyle">@style/MyActionBarTheme</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 
 </resources>

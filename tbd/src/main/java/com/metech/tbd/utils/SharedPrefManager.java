@@ -53,6 +53,14 @@ public class SharedPrefManager {
 
     public static final String FORCE_LOGOUT = "N";
 
+
+
+
+    // TBD //
+    public static final String FIRST_TIME_USER = "Y";
+
+
+
     int PRIVATE_MODE = 0;
     Context _context;
     private SharedPreferences _sharedPrefs;
@@ -63,6 +71,14 @@ public class SharedPrefManager {
         _sharedPrefs = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         _prefsEditor = _sharedPrefs.edit();
     }
+
+
+    public HashMap<String, String> getFirstTimeUser() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(FIRST_TIME_USER, _sharedPrefs.getString(FIRST_TIME_USER, null));
+        return init;
+    }
+
 
     /*ForceLogout*/
     public HashMap<String, String> getForceLogout() {
@@ -322,6 +338,12 @@ public class SharedPrefManager {
         HashMap<String, String> init = new HashMap<String, String>();
         init.put(PASSWORD, _sharedPrefs.getString(PASSWORD, null));
         return init;
+    }
+
+    /*Set Booking ID*/
+    public void setFirstTimeUser(String status) {
+        _prefsEditor.putString(FIRST_TIME_USER, status);
+        _prefsEditor.apply();
     }
 
     /*Set Booking ID*/

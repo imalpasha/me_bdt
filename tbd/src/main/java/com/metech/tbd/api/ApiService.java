@@ -8,7 +8,7 @@ import com.metech.tbd.ui.Model.Receive.ConfirmUpdateReceive;
 import com.metech.tbd.ui.Model.Receive.ContactInfoReceive;
 import com.metech.tbd.ui.Model.Receive.DeleteCCReceive;
 import com.metech.tbd.ui.Model.Receive.DeleteFFReceive;
-import com.metech.tbd.ui.Model.Receive.DeviceInfoSuccess;
+import com.metech.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.metech.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.metech.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.metech.tbd.ui.Model.Receive.ListBookingReceive;
@@ -29,6 +29,7 @@ import com.metech.tbd.ui.Model.Receive.SearchFlightReceive;
 import com.metech.tbd.ui.Model.Receive.SeatSelectionReveice;
 import com.metech.tbd.ui.Model.Receive.SelectFlightReceive;
 import com.metech.tbd.ui.Model.Receive.ItineraryInfoReceive;
+import com.metech.tbd.ui.Model.Receive.StateReceive;
 import com.metech.tbd.ui.Model.Receive.TermsReceive;
 import com.metech.tbd.ui.Model.Receive.UpdateProfileReceive;
 import com.metech.tbd.ui.Model.Receive.tryObj;
@@ -38,7 +39,7 @@ import com.metech.tbd.ui.Model.Request.ChangeSSR;
 import com.metech.tbd.ui.Model.Request.ConfirmUpdateRequest;
 import com.metech.tbd.ui.Model.Request.ContactInfo;
 import com.metech.tbd.ui.Model.Request.DeleteCCRequest;
-import com.metech.tbd.ui.Model.Request.DeviceInformation;
+import com.metech.tbd.ui.Model.Request.InitialLoadRequest;
 import com.metech.tbd.ui.Model.Request.FlightSummary;
 import com.metech.tbd.ui.Model.Request.FriendFamilyDelete;
 import com.metech.tbd.ui.Model.Request.GetChangeFlight;
@@ -59,6 +60,7 @@ import com.metech.tbd.ui.Model.Request.PassengerInfo;
 import com.metech.tbd.ui.Model.Request.PasswordRequest;
 import com.metech.tbd.ui.Model.Request.Payment;
 import com.metech.tbd.ui.Model.Request.RegisterObj;
+import com.metech.tbd.ui.Model.Request.RegisterRequest;
 import com.metech.tbd.ui.Model.Request.RetrieveBoardingPassObj;
 import com.metech.tbd.ui.Model.Request.SearchFlightObj;
 import com.metech.tbd.ui.Model.Request.SeatAvailabilityRequest;
@@ -67,6 +69,7 @@ import com.metech.tbd.ui.Model.Request.SelectChangeFlight;
 import com.metech.tbd.ui.Model.Request.SelectFlight;
 import com.metech.tbd.ui.Model.Request.SendItinenaryObj;
 import com.metech.tbd.ui.Model.Request.Signature;
+import com.metech.tbd.ui.Model.Request.StateRequest;
 import com.metech.tbd.ui.Model.Request.UpdateProfileRequest;
 
 import retrofit.Callback;
@@ -83,6 +86,47 @@ public interface ApiService {
     //@POST("/api.php")
     //void onRegisterNotification(@Body PushNotificationObj task, Callback<PushNotificationReceive> callback);
 
+    //GET ALL DATA
+    @POST("/GetAllData")
+    void onSendDeviceInfo(@Body InitialLoadRequest task, Callback<InitialLoadReceive> callback);
+
+    //LOGIN
+    @POST("/AuthenticateUser")
+    void onRequestToLogin(@Body LoginRequest task, Callback<LoginReceive> callback);
+
+    //GET STATE
+    @POST("/GetProvinceState")
+    void onStateRequest(@Body StateRequest task, Callback<StateReceive> callback);
+
+    @POST("/RegisterUser")
+    void onRegisterRequest(@Body RegisterRequest obj, Callback<RegisterReceive> callback);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @FormUrlEncoded
     @POST("/api.php")
     void onRegisterNotification(@Field("cmd")String cmd,@Field("user_id")String user_id,@Field("token")String token,@Field("name")String name,@Field("code")String code, Callback<PushNotificationReceive> callback);
@@ -95,19 +139,13 @@ public interface ApiService {
     void getGoogleSpreedSheetData(Callback<tryObj> callback);
 
     //@FormUrlEncoded
-    @POST("/login")
+    //@POST("/login")
     //void getGoogleSpreedSheetData(@Path("user") String user, Callback<tryObj> callback);
     //void onRequestToLogin(@Field("username") String username, @Field("password") String password,Callback<LoginRequest> callback);
     //void onRequestToLogin(@Field("number") int number, @Field("username") String username, @Field("password") String password,Callback<LoginRequest> callback);
-    void onRequestToLogin(@Body LoginRequest task, Callback<LoginReceive> callback);
+    //void onRequestToLogin(@Body LoginRequest task, Callback<LoginReceive> callback);
 
     // @Body JSONObject searchstring
-
-    @POST("/loading")
-    void onSendDeviceInfo(@Body DeviceInformation task, Callback<DeviceInfoSuccess> callback);
-
-    @POST("/register")
-    void onRegisterRequest(@Body RegisterObj obj, Callback<RegisterReceive> callback);
 
     @POST("/searchFlight")
     void onSearchFlightRequest(@Body SearchFlightObj obj, Callback<SearchFlightReceive> callback);

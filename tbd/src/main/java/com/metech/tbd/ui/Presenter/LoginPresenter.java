@@ -50,8 +50,8 @@ public class LoginPresenter {
     }
 
     public void onLogin(LoginRequest data) {
-        //bus.post(new LoginRequest(data));
-        Log.e(data.getUsername(), data.getPassword());
+        bus.post(new LoginRequest(data));
+        //Log.e(data.getUsername(), data.getPassword());
     }
 
 

@@ -126,7 +126,6 @@ public class PersonalDetailFragment extends BaseFragment implements Validator.Va
     private Boolean boolDob = false;
     private Boolean boolExpireDate = false;
     private Boolean formContinue = true;
-    private LoginReceive.UserInfo loginObj;
     private Validator mValidator;
     private View view;
     private String storeUsername;
@@ -1092,20 +1091,7 @@ public class PersonalDetailFragment extends BaseFragment implements Validator.Va
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
 
-            pref.setLoginStatus("Y");
-            pref.setNewsletterStatus(obj.getUser_info().getNewsletter());
-            pref.setSignatureToLocalStorage(obj.getUser_info().getSignature());
-            pref.setUsername(obj.getUser_info().getFirst_name());
-            signature = obj.getUser_info().getSignature();
 
-            pref.setUserEmail(storeUsername);
-            pref.setUserPassword(storePassword);
-
-            Gson gsonUserInfo = new Gson();
-            String userInfo = gsonUserInfo.toJson(obj.getUser_info());
-            pref.setUserInfo(userInfo);
-            autoFill();
-            //memberLoginBlock.setVisibility(View.GONE);
         }
     }
 
@@ -1119,29 +1105,6 @@ public class PersonalDetailFragment extends BaseFragment implements Validator.Va
             //memberLoginBlock.setVisibility(View.GONE);
             friendAndFamilyLayout.setVisibility(View.VISIBLE);
 
-            Gson gson = new Gson();
-            String userInfo = getUserInfoCached(getActivity());
-            loginObj = gson.fromJson(userInfo, LoginReceive.UserInfo.class);
-
-            //modify date//
-            String dob = reformatDOB(loginObj.getDOB());
-            String[] splitDate = dob.split("/");
-
-            datePickerYear1 = DatePickerDialog.newInstance(this, Integer.parseInt(splitDate[2]), Integer.parseInt(splitDate[1])-1, Integer.parseInt(splitDate[0]));
-            datePickerYear1.setYearRange(year - 100, year);
-
-            txtTitle.setText(loginObj.getContact_title());
-            TextView passenger1Title = (TextView) view.findViewWithTag("passenger1_title");
-            TextView passenger1FirstName = (TextView) view.findViewWithTag("passenger1_first_name");
-            TextView passenger1LastName = (TextView) view.findViewWithTag("passenger1_last_name");
-            TextView passenger1Dob = (TextView) view.findViewWithTag("passenger1_dob");
-            TextView passenger1IssuingCountry = (TextView) view.findViewWithTag("passenger1_issuing_country");
-
-            passenger1IssuingCountry.setText(getCountryName(getActivity(),loginObj.getContact_country()));
-            passenger1Title.setText(getTitleCode(getActivity(), loginObj.getContact_title(), "name"));
-            passenger1FirstName.setText(loginObj.getContact_first_name());
-            passenger1LastName.setText(loginObj.getContact_last_name());
-            passenger1Dob.setText(reformatDOB(loginObj.getDOB()));
 
         }else{
             //memberLoginBlock.setVisibility(View.VISIBLE);

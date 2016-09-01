@@ -1,37 +1,37 @@
 <resources>
 
 
-   <!-- <string name="retrieve_rhymes_failed">The network is slow or unavailable</string>
-    <string name="no_rhymes_found_error">Couldn\'t find anything that rhymes with %s</string>
+    <!-- <string name="retrieve_rhymes_failed">The network is slow or unavailable</string>
+     <string name="no_rhymes_found_error">Couldn\'t find anything that rhymes with %s</string>
 
-    <string name="search_hint">Retrofit - Test On api.github.com</string>
-    <string name="rhyme_caps">Search User</string>
-    <string name="retry_caps">RETRY</string>
+     <string name="search_hint">Retrofit - Test On api.github.com</string>
+     <string name="rhyme_caps">Search User</string>
+     <string name="retry_caps">RETRY</string>
 
-    <string name="rhymes_with">Rhymes with %s</string>
-
-
-    <string name="soapURL">http://192.168.0.120:9766/vrsm/generalHTTP/1.1</string>
-
-    <string name="module_package_name">com.silverlake.ifb.module</string>
-
-    <string name="utc">Unable to connect to server</string>
-
-    <string name="internetNA">Internet connection not available </string>
-
-    <string name="loginUserNameHint">Username</string>
-    <string name="loginUserPasswordHint">Password</string>
-    <string name="loginBtnLogin">Login</string>
-    <string name="loginBtnSignUp">Sign Up</string>
-    <string name="loginTxtFYP">Forgot your password?</string>
+     <string name="rhymes_with">Rhymes with %s</string>
 
 
+     <string name="soapURL">http://192.168.0.120:9766/vrsm/generalHTTP/1.1</string>
 
-    <string name="promotionLabel">Promotions</string>
+     <string name="module_package_name">com.silverlake.ifb.module</string>
 
-    <string name="contactUsDescription">VRSM provides merchants with unsurpassed store-front features and functionalities that deliver personalize mobile shopping experience.
-	It is built from customer perspective that is easy to understand, protects customer data and customizable layout tailored to individual need.The velocity at which mobile devices increase its computing power to support complex multimedia rich applications makes VRSM an ideal landscape to bring online shopping experience to the mobile devices.
-</string> -->
+     <string name="utc">Unable to connect to server</string>
+
+     <string name="internetNA">Internet connection not available </string>
+
+     <string name="loginUserNameHint">Username</string>
+     <string name="loginUserPasswordHint">Password</string>
+     <string name="loginBtnLogin">Login</string>
+     <string name="loginBtnSignUp">Sign Up</string>
+     <string name="loginTxtFYP">Forgot your password?</string>
+
+
+
+     <string name="promotionLabel">Promotions</string>
+
+     <string name="contactUsDescription">VRSM provides merchants with unsurpassed store-front features and functionalities that deliver personalize mobile shopping experience.
+     It is built from customer perspective that is easy to understand, protects customer data and customizable layout tailored to individual need.The velocity at which mobile devices increase its computing power to support complex multimedia rich applications makes VRSM an ideal landscape to bring online shopping experience to the mobile devices.
+ </string> -->
 
     <!-- Register Page --> <!--
     <string name="registerLabel">Fill Up \nand \nLets Shop!</string>
@@ -675,26 +675,20 @@
     <string name="register_confirm_password">Confirm Password </string>
 
 
-    <string name="register_title">Title </string>
     <string name="register_firstname">First Name / Given Name </string>
     <string name="register_lastname">Last Name / Family Name </string>
-    <string name="register_dob">Date Of Birth </string>
 
     <string name="register_basic_information">LOGIN INFORMATION</string>
     <string name="register_basic_informationV2">BASIC INFORMATION</string>
     <string name="register_personal_information">PERSONAL INFORMATION</string>
-    <string name="register_address_information">ADDRESS INFORMATION</string>
     <string name="register_contact_information">CONTACT INFORMATION</string>
     <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
 
-    <string name="register_address_1">Address Line 1</string>
-    <string name="register_address_2">Address Line 2</string>
     <string name="register_address_3">Address Line 3</string>
 
     <string name="register_country">Country</string>
     <string name="register_town">Town/City</string>
     <string name="register_state">State</string>
-    <string name="register_postcode">Postcode</string>
     <string name="register_mobile_phone">Mobile / Home</string>
     <string name="register_alternate_phone">Alternate</string>
     <string name="register_bonuslink">BonusLink Card No:</string>
@@ -716,7 +710,6 @@
     <string name="book_flight">BOOK FLIGHT</string>
     <string name="book_flight_one_way">ONE WAY</string>
     <string name="book_flight_return">RETURN</string>
-
 
 
     <string name="book_flight_adult">Adult</string>
@@ -774,9 +767,6 @@ select another date or station and try again.</string>
     <string name="no_thank">No, Thank You.</string>
 
 
-
-
-
     <!-- Boarding Pass -->
     <string name="boardingPassTitle">No boarding pass available.</string>
     <string name="boardingPassNA">Boarding Pass will be displayed after the check-in process is complete. </string>
@@ -818,11 +808,6 @@ select another date or station and try again.</string>
     <string name="forgotPasswordConfirm">Confirm Password</string>
 
 
-
-
-
-
-
     <string name="update_success">Update Success</string>
     <string name="exit">EXIT FIREFLY</string>
     <string name="term_webview">http://fyapidev.me-tech.com.my/api/displayTerm</string>
@@ -861,7 +846,6 @@ select another date or station and try again.</string>
     <string name="dob_">DOB</string>
     <string name="textview_placeholder_lbl">TextView</string>
     <string name="action_settings">FIREFLY</string>
-    <string name="register">Register</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="countryListDialogTitle">Please select country</string>
@@ -870,8 +854,6 @@ select another date or station and try again.</string>
 
     <!-- Drawer/Version -->
     <string name="x_lbl">.</string>
-
-
 
 
     <!-- CleanUP -->
@@ -891,6 +873,7 @@ select another date or station and try again.</string>
     <string name="login_">Login</string>
     <string name="login_register_new_acc">Register New Account</string>
     <string name="login_forgot_password">Forgot Password?</string>
+    <string name="login_fb_button">Login via Facebook</string>
 
     <!-- TBD FORGOT PASSWORD -->
     <string name="forgot_password_title">Forgot Password</string>
@@ -903,6 +886,7 @@ select another date or station and try again.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="btn_continue">Continue ></string>
+    <string name="fill_emtpy_field">Please fill/fix error field.</string>
 
     <!-- TBD Facebook ID -->
     <string name="facebook_app_id">165826577154465</string>
@@ -929,6 +913,36 @@ select another date or station and try again.</string>
 
     <!-- TBD Holiday Shaker -->
     <string name="holiday_shaker_reedem">REDEEM</string>
+
+    <!-- TBD Register -->
+    <string name="register_title">Register</string>
+    <string name="register_continue">Register ></string>
+    <string name="register_salutation_hint">Title</string>
+    <string name="register_salutation">Salutation</string>
+    <string name="register_given_name">Given Name</string>
+    <string name="register_family_name">Family Name</string>
+    <string name="register_dob">Date of Birth Name</string>
+    <string name="register_nationality">Nationality</string>
+    <string name="register_mobile">Mobile</string>
+    <string name="register_passport">Passport</string>
+    <string name="register_user_information">USER INFORMATION</string>
+    <string name="register_personal_detail">PERSONAL DETAIL</string>
+    <string name="register_address_information">ADDRESS</string>
+    <string name="register_contact_detail">CONTACT DETAILS</string>
+    <string name="register_street_1">Street 1</string>
+    <string name="register_street_2">Street 2</string>
+    <string name="register_postcode">Post Code</string>
+
+
+    <string name="register_select_state">Please select state</string>
+    <string name="register_select_country">Please select country</string>
+    <string name="register_select_nationality">Please select nationality</string>
+
+    <string name="register_confirm_information">I confirm that the above information provided by me is true and accurate and understand that the AirAsia BIG Loyalty Programme is operated by Think BIG Digital Sdn Bhd. I have read and hereby agree to the terms and conditions of the AirAsia BIG Loyalty Membership operated by Think BIG Digital Sdn Bhd, which shall be binding on me.</string>
+    <string name="register_acknowledge_member">I further acknowledge that in order to proceed with the membership application, registration and/or subscription and the provision of services, benefits and privileges related to the AirAsia BIG Loyalty Programme and the AirAsia membership, the sharing, transfer, retrieval, updating and processing of my personal information and data as well as creation of member profile and user accounts may occur between Think BIG Digital Sdn Bhd, AirAsia Berhad, Tune Money Sdn Bhd and each of their respective group companies, related corporations, affiliates, subsidiaries, associates (as further stated in Think BIG Digital Sdn Bhd’s and AirAsia Berhad’s Privacy Policies) and I confirm that I have read Think BIG Digital Sdn Bhd’s Privacy Policy and AirAsia Berhad’s Privacy Policy and consent to the processing of my personal data for purposes of the same. I further agree that by browsing and using the website(s) and services and/or products contained herein, I agree to AirAsia Berhad’s Terms of Use and Think BIG Digital Sdn Bhd’s Terms of Use.</string>
+    <string name="register_check_subscribe">Subscribe to AiraAsia Newsletter.</string>
+    <!--<string name="register_check_subscribe">I hereby agree to receive marketing materials, communications and information, promotional offers, newsletters, and any other communication on products and services of AirAsia Berhad and Think BIG Digital Sdn Bhd and their related corporations, affiliates, subsidiaries and associates</string>-->
+    <string name="register_general_loading">Loading ...</string>
 
 
 </resources>

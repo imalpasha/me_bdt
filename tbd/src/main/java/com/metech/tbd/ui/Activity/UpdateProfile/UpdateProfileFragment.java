@@ -77,7 +77,6 @@ public class UpdateProfileFragment extends BaseFragment implements
     private static final String SCREEN_LABEL = "Update Information";
     DropDownItem selectedCountry,selectTitle_code;
     private View view;
-    private LoginReceive.UserInfo loginObj;
     private Boolean validateStatus;
 
     @Inject UpdateProfilePresenter presenter;
@@ -226,53 +225,8 @@ public class UpdateProfileFragment extends BaseFragment implements
         JSONObject jsonUserInfo = getUserInfo(getActivity());
         String userInfo = getUserInfoCached(getActivity());
         //Gson gson = new Gson();
-        loginObj = new Gson().fromJson(userInfo, LoginReceive.UserInfo.class);
 
-        String email = loginObj.getContact_email();
-        String title = loginObj.getContact_title();
-        String first_name = loginObj.getContact_first_name();
-        String last_name = loginObj.getContact_last_name();
-        String addressline1 = loginObj.getContact_address1();
-        String addressline2 = loginObj.getContact_address2();
-        String addressline3 = loginObj.getContact_address3();
-        String countryCode = loginObj.getContact_country();
-        String stateCode = loginObj.getContact_state();
-        String city = loginObj.getContact_city();
-        String postcode = loginObj.getContact_postcode();
-        String dob = loginObj.getDOB();
-        String mobile_phone = loginObj.getContact_mobile_phone();
-        String alternate_phone = loginObj.getContact_alternate_phone();
-        String fax = loginObj.getContact_fax();
-        String bonuslink = loginObj.getBonuslink();
 
-        txtUsername.setText(email);
-        txtFirstName.setText(first_name, TextView.BufferType.EDITABLE);
-        txtLastName.setText(last_name, TextView.BufferType.EDITABLE);
-        txtAddressLine1.setText(addressline1, TextView.BufferType.EDITABLE);
-        txtAddressLine2.setText(addressline2, TextView.BufferType.EDITABLE);
-        txtAddressLine3.setText(addressline3, TextView.BufferType.EDITABLE);
-        txtMobilePhone.setText(mobile_phone, TextView.BufferType.EDITABLE);
-        txtAltPhone.setText(alternate_phone, TextView.BufferType.EDITABLE);
-        txtPostCode.setText(postcode, TextView.BufferType.EDITABLE);
-        txtCity.setText(city, TextView.BufferType.EDITABLE);
-        txtFax.setText(fax, TextView.BufferType.EDITABLE);
-        txtCurrentPassword.setText("",TextView.BufferType.EDITABLE);
-        txtNewPassword.setText("", TextView.BufferType.EDITABLE);
-        txtBonusLink.setText(bonuslink);
-        //Log.e("bonuslink",bonuslink);
-        //Reformat datepicker
-        dobAlphabet = reformatDOB(dob);
-        txtDOB.setText(dobAlphabet);
-        fullDate = dob;
-
-        txtCountry.setText(getCountryName(getActivity(),countryCode));
-        txtCountry.setTag(countryCode);
-        Log.e("Title", title);
-        txtTitle.setText(getTitleCode(getActivity(), title, "name"));
-        txtTitle.setTag(title);
-        txtState.setText(getStateName(getActivity(), stateCode));
-        txtState.setTag(stateCode);
-        setState(countryCode);
 
         /*Select dropdown list*/
         txtCountry.setOnClickListener(new View.OnClickListener() {

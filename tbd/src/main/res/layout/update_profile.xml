@@ -463,7 +463,6 @@
                                         android:inputType="textLongMessage"
                                         android:background="@null"
                                         android:paddingBottom="8dp"
-                                        android:hint="@string/register_address_1"
                                         android:textSize="@dimen/font16sp"
                                         android:textColorHint="@color/loginFontTxt"
                                         android:id="@+id/txtAddressLine1" />
@@ -483,7 +482,6 @@
                                         android:inputType="textLongMessage"
                                         android:background="@null"
                                         android:paddingBottom="8dp"
-                                        android:hint="@string/register_address_2"
                                         android:textSize="@dimen/font16sp"
                                         android:textColorHint="@color/loginFontTxt"
                                         android:id="@+id/txtAddressLine2" />
