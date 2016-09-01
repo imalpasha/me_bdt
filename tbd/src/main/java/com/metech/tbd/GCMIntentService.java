@@ -96,7 +96,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     protected boolean onRecoverableError(Context context, String errorId) {
         // log message
         Log.i(TAG, "Received recoverable error: " + errorId);
-        displayMessage(context, getString(R.string.register,errorId));
+        displayMessage(context, getString(R.string.register_title,errorId));
         return super.onRecoverableError(context, errorId);
     }
 

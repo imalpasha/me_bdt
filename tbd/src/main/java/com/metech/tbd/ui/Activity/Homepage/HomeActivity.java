@@ -20,7 +20,7 @@ public class HomeActivity extends MainFragmentActivity implements FragmentContai
         ButterKnife.inject(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, HomeFragment.newInstance(),"Home").commit();
+        fragmentManager.beginTransaction().replace(R.id.main_content, HomeFragment.newInstance(), "Home").commit();
 
         setTitle(R.string.TBD_app_name);
     }
@@ -32,11 +32,10 @@ public class HomeActivity extends MainFragmentActivity implements FragmentContai
     }*/
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
 
-        final FragmentManager manager = getSupportFragmentManager();
-        HomeFragment fragment = (HomeFragment) manager.findFragmentByTag("Home");
-        fragment.registerBackFunction();
+        //final FragmentManager manager = getSupportFragmentManager();
+        //HomeFragment fragment = (HomeFragment) manager.findFragmentByTag("Home");
     }
 
     /*@Override
@@ -51,7 +50,7 @@ public class HomeActivity extends MainFragmentActivity implements FragmentContai
     @Override
     public void onResume() {
         super.onResume();
-       // presenter.onResume();
+        // presenter.onResume();
     }
 
     @Override

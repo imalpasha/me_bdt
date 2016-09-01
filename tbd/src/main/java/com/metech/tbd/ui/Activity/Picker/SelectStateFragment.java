@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.metech.tbd.R;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.BookingFlight.SearchFlightFragment;
+import com.metech.tbd.ui.Activity.Register.RegisterFragment;
 import com.metech.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
@@ -29,15 +30,8 @@ import java.util.Locale;
 
 import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
 
-public class SelectFlightFragment extends DialogFragment {
-    public static final String KEY_COUNTRY_LIST = "countryList";
-    public static final String KEY_COUNTRY_LIST2 = "countryList2";
-
-    public static final String FLIGHT_SELECTION = "FLIGHT_SELECTION";
-
-
-    public static final String DEPARTURE_FLIGHT = "DEPARTURE";
-    public static final String RETURN_FLIGHT = "ARRIVAL";
+public class SelectStateFragment extends DialogFragment {
+    public static final String KEY_STATE_LIST = "stateList";
 
     String[] filteredCountry;
     Integer[] headerPosition;
@@ -47,7 +41,7 @@ public class SelectFlightFragment extends DialogFragment {
 
     ListView lvCountries;
     EditText txtSearchCustom;
-    CountryListDialogAdapter adapter;
+    SelectStateAdapter adapter;
     TextView txtCountry;
     SimpleSectionedListAdapter simpleSectionedGridAdapter;
 
@@ -70,10 +64,10 @@ public class SelectFlightFragment extends DialogFragment {
         }
     }
 
-    public static SelectFlightFragment newInstance(ArrayList<DropDownItem> countries) {
-        SelectFlightFragment fragment = new SelectFlightFragment();
+    public static SelectStateFragment newInstance(ArrayList<DropDownItem> countries) {
+        SelectStateFragment fragment = new SelectStateFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(KEY_COUNTRY_LIST, countries);
+        bundle.putParcelableArrayList(KEY_STATE_LIST, countries);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -81,7 +75,7 @@ public class SelectFlightFragment extends DialogFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        countries = getArguments().getParcelableArrayList(KEY_COUNTRY_LIST);
+        countries = getArguments().getParcelableArrayList(KEY_STATE_LIST);
 
         View view = inflater.inflate(R.layout.fragment_country_list_dialog, container, false);
         lvCountries = (ListView) view.findViewById(R.id.lvCountries);
@@ -134,17 +128,17 @@ public class SelectFlightFragment extends DialogFragment {
     }
 
     public void initControls() {
-        originalCountries = SearchFlightFragment.initiatePageData(getActivity());
+        originalCountries = RegisterFragment.getStaticState();
 
-        adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries,originalCountries);
+        adapter = new SelectStateAdapter(getActivity().getApplicationContext(), SelectStateFragment.this, countries, originalCountries);
         for (int i = 0; i < headerPosition.length; i++) {
             sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
         }
 
-        simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
-        simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
+        //simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
+        //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
 
-        lvCountries.setAdapter(simpleSectionedGridAdapter);
+        lvCountries.setAdapter(adapter);
     }
 
     public void notifyAnotherAdapter() {
@@ -164,17 +158,17 @@ public class SelectFlightFragment extends DialogFragment {
         filteredCountry = BaseFragment.getCharAt(countryChar);
         headerPosition = BaseFragment.headerPosition(countryChar);
 
-        originalCountries = SearchFlightFragment.initiatePageData(getActivity());
+        originalCountries = RegisterFragment.getStaticState();
 
-        adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries2, originalCountries);
+        adapter = new SelectStateAdapter(getActivity().getApplicationContext(), SelectStateFragment.this, countries2, originalCountries);
 
         for (int i = 0; i < headerPosition.length; i++) {
             sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
         }
 
-        SimpleSectionedListAdapter simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
-        simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
-        lvCountries.setAdapter(simpleSectionedGridAdapter);
+        //SimpleSectionedListAdapter simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
+        //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
+        lvCountries.setAdapter(adapter);
 
     }
 
@@ -186,30 +180,11 @@ public class SelectFlightFragment extends DialogFragment {
         }
 
         Intent intent = new Intent();
-        intent.putExtra(FLIGHT_SELECTION, country);
+        intent.putExtra(KEY_STATE_LIST, country);
 
         getTargetFragment().onActivityResult(1, Activity.RESULT_OK, intent);
         Log.e("Get Target Fragment", "NOT NULL");
         dismiss();
     }
-
-    public void resetAdapter() {
-        countries = getArguments().getParcelableArrayList(KEY_COUNTRY_LIST);
-        Log.e("NEW ARRAY", Integer.toString(countries.size()));
-    }
-
-
-
-    /*@Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        adapter.getFilter().filter(newText);
-        return false;
-    }*/
-
 
 }

@@ -104,7 +104,7 @@ public class PopupNotificationFragment extends BaseFragment {
             proceed = false;
         }
 
-        info = new DeviceInformation();
+        info = new InitialLoadRequest();
         info.setSdkVersion(Integer.toString(sdkVersion));
         info.setVersion(version);
         info.setDeviceId(deviceId);

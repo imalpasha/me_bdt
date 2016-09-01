@@ -127,7 +127,9 @@
 
         <activity
             android:name="com.metech.tbd.ui.Activity.Register.RegisterActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name="com.metech.tbd.ui.Activity.ForgotPassword.ForgotPasswordActivity"
@@ -342,6 +344,12 @@
             android:name="com.metech.tbd.ui.Activity.PasswordExpired.ChangePasswordActivity"
             android:label="@string/title_activity_password_expired"
             android:screenOrientation="portrait" />
+
+        <!--Add this-->
+        <!-- <activity android:name="com.facebook.FacebookActivity"
+             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar"
+             android:label="@string/app_name" />-->
 
         <!--
           Optionally, register AnalyticsReceiver and AnalyticsService to support background

@@ -24,11 +24,12 @@ public class OnBoardingActivity extends MainFragmentActivity implements Fragment
 
         //hideMenuButton();
        // hideTitle();
+        hideTabButton();
         //lockDrawer();
        // BaseFragment.removeLogoHeader(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, OnBoardingFragment.newInstance()).commit();
+        fragmentManager.beginTransaction().replace(R.id.splash_content, OnBoardingFragment.newInstance()).commit();
 
     }
 

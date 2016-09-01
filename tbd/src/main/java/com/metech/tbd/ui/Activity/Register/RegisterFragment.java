@@ -1,32 +1,55 @@
 package com.metech.tbd.ui.Activity.Register;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.text.Html;
 import android.text.InputFilter;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.metech.tbd.application.AnalyticsApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
+import com.metech.tbd.ui.Activity.Picker.BasicPicker;
+import com.metech.tbd.ui.Activity.Picker.SelectCountryFragment;
 import com.metech.tbd.ui.Activity.Picker.SelectFlightFragment;
+import com.metech.tbd.ui.Activity.Picker.SelectStateFragment;
+import com.metech.tbd.ui.Activity.Profile.ProfileActivity;
 import com.metech.tbd.ui.Model.Receive.RegisterReceive;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
 import com.metech.tbd.ui.Activity.Login.LoginActivity;
 import com.metech.tbd.ui.Activity.Picker.DatePickerFragment;
 import com.metech.tbd.ui.Activity.Picker.StateListDialogFragment;
+import com.metech.tbd.ui.Model.Receive.StateReceive;
+import com.metech.tbd.ui.Model.Request.LoginRequest;
+import com.metech.tbd.ui.Model.Request.RegisterRequest;
+import com.metech.tbd.ui.Model.Request.StateRequest;
 import com.metech.tbd.ui.Module.RegisterModule;
 import com.metech.tbd.ui.Model.Request.CachedResult;
 import com.metech.tbd.ui.Model.Request.DatePickerObj;
@@ -38,7 +61,6 @@ import com.metech.tbd.utils.DropDownItem;
 import com.metech.tbd.ui.Realm.RealmObjectController;
 import com.metech.tbd.utils.SharedPrefManager;
 import com.metech.tbd.utils.Utils;
-import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -49,9 +71,11 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Optional;
 import com.mobsandgeeks.saripaar.annotation.Order;
 import com.mobsandgeeks.saripaar.annotation.Password;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,127 +88,119 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import io.realm.RealmResults;
 
-public class RegisterFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener,RegisterPresenter.RegisterView,Validator.ValidationListener {
+public class RegisterFragment extends BaseFragment implements RegisterPresenter.RegisterView, DatePickerDialog.OnDateSetListener, Validator.ValidationListener {
 
 
     // Validator Attributes
     @Inject
     RegisterPresenter presenter;
 
-    @Order(14) @NotEmpty
-    @InjectView(R.id.editTextCountry)
-    TextView editTextCountry;
-
-    @Order(16) @NotEmpty
-    @InjectView(R.id.editTextState)
-    TextView editTextState;
-
-    @Order(1)
     @NotEmpty(sequence = 1)
-    @Email(sequence = 2 ,message = "Invalid Email")
-    @InjectView(R.id.txtUsername)
-    EditText txtUsername;
+    @Email(sequence = 2)
+    @InjectView(R.id.txtRegisterEmail)
+    EditText txtRegisterEmail;
 
-    @Order(2)
     @NotEmpty(sequence = 1)
-    @Length(sequence = 2, min = 6, max = 16 , message = "Must be at least 8 and maximum 16 characters")
-    @Password(sequence = 3,scheme = Password.Scheme.ALPHA_NUMERIC_MIXED_CASE_SYMBOLS,message = "Password invalid , please refer to the password hint") // Password validator
-    @InjectView(R.id.txtPassword)
-    EditText txtPassword;
+    @Password(sequence = 2, scheme = Password.Scheme.ALPHA_NUMERIC_MIXED_CASE, message = "Password invalid.")
+    @Length(sequence = 3, min = 8, max = 15, message = "Must be at least 8 and maximum 16 characters")
+    @InjectView(R.id.txtRegisterPassword)
+    EditText txtRegisterPassword;
 
-    @Order(3)
     @NotEmpty(sequence = 1)
     @ConfirmPassword(sequence = 2)
-    @InjectView(R.id.txtConfirmPassword)
-    EditText txtConfirmPassword;
+    @InjectView(R.id.txtRegisterConfirmPassword)
+    EditText txtRegisterConfirmPassword;
 
-    @Order(4)
-    @NotEmpty
-    @InjectView(R.id.txtFirstName)
-    EditText txtFirstName;
+    /*@NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterTitle)
+    TextView txtRegisterTitle;*/
 
-    @Order(5)
     @NotEmpty(sequence = 1)
-    @InjectView(R.id.txtRegisterDatePicker)
-    TextView txtRegisterDatePicker;
+    @InjectView(R.id.txtRegisterGivenName)
+    EditText txtRegisterGivenName;
 
-    @Order(6) @NotEmpty(sequence = 1)
-    @InjectView(R.id.txtLastName)
-    EditText txtLastName;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterFamilyName)
+    EditText txtRegisterFamilyName;
 
-    @Order(7) @NotEmpty(sequence = 1)
-    @InjectView(R.id.txtAddressLine1)
-    EditText txtAddressLine1;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterDOB)
+    TextView txtRegisterDOB;
 
-    @Order(8) @Optional
-    @InjectView(R.id.txtAddressLine2)
-    EditText txtAddressLine2;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterNationality)
+    TextView txtRegisterNationality;
 
-    @Order(9) @NotEmpty(sequence = 1)
-    @Length(sequence = 2, min = 5,max = 7, message = "Invalid postcode")
-    @InjectView(R.id.editTextPostcode)
-    EditText editTextPostcode;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterMobile)
+    EditText txtRegisterMobile;
 
-    @InjectView(R.id.editTextMobilePhone)
-    EditText editTextMobilePhone;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterCountry)
+    TextView txtRegisterCountry;
 
-    @InjectView(R.id.editTextAlternatePhone)
-    EditText txtAlternatePhoneNumber;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterState)
+    TextView txtRegisterState;
 
-    @InjectView(R.id.editTextFax)
-    EditText txtFaqNumber;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterPostCode)
+    EditText txtRegisterPostCode;
 
-    @Order(13)@NotEmpty
-    @InjectView(R.id.txtCity)
-    EditText txtCity;
+    @NotEmpty(sequence = 1)
+    @InjectView(R.id.txtRegisterTown)
+    TextView txtRegisterTown;
 
-    @Order(15)@NotEmpty
-    @InjectView(R.id.txtTitle)
-    TextView txtTitle;
+    @InjectView(R.id.btnRegisterContinue)
+    Button btnRegisterContinue;
 
-    //@Order(16)
-    //@Checked(message = "You must agree with terms & conditions")
-    @InjectView(R.id.chkTNC)
-    CheckBox chkTNC;
+    @InjectView(R.id.registerMrBtn)
+    Button registerMrBtn;
 
-    @Order(17)
-    @InjectView(R.id.checkBox2)
-    CheckBox checkBox2;
+    @InjectView(R.id.registerMsBtn)
+    Button registerMsBtn;
 
-    @InjectView(R.id.registerContinueButton)
-    Button registerContinueButton;
+    @InjectView(R.id.registerSubscribeNewsletter)
+    TextView registerSubscribeNewsletter;
 
-    @InjectView(R.id.txtBonusLink)
-    EditText txtBonusLink;
+    @InjectView(R.id.registerConfirmInformation)
+    TextView registerConfirmInformation;
 
-    @InjectView(R.id.txtPasswordHint)
-    LinearLayout txtPasswordHint;
+    @InjectView(R.id.registerAcknowledgeMemberShip)
+    TextView registerAcknowledgeMemberShip;
+
+    @InjectView(R.id.registerSubscribeNewsletterBtn)
+    ImageView registerSubscribeNewsletterBtn;
+
+    @InjectView(R.id.registerConfirmInformationBtn)
+    ImageView registerConfirmInformationBtn;
+
+    @InjectView(R.id.registerAcknowledgeMemberShipBtn)
+    ImageView registerAcknowledgeMemberShipBtn;
+
+    ProgressDialog progress;
 
     private Validator mValidator;
-    private int currentPage;
-    private int day;
-    private int month;
-    private int year;
     private int fragmentContainerId;
     private static final String SCREEN_LABEL = "Register";
-    private SharedPrefManager pref;
-    private int month_number;
-    private DatePickerObj date;
-    private String selectedTitle;
-    private String[] state_val;
-    private String selectedState;
-    private String selectedCountryCode;
-    private String dialingCode;
-    public static final String DATEPICKER_TAG = "datepicker";
-    private String fullDate;
-    private Boolean validateStatus = true;
-    private Boolean limitAge;
+    public static final String DATEPICKER_TAG = "DATEPICKER_TAG";
+    private DatePickerDialog register_dob_datepicker;
+    private String CURRENT_PICKER;
+
+    final Calendar calendar = Calendar.getInstance();
+
+    private String subscribeNewsletter = "0";
+    private boolean acknowledgeInfo = false;
+    private boolean confirmInfo = false;
+    private String title = "Mr";
+    private String gender = "1";
+    private String dateOfBirth;
+
+
     /*DropDown Variable*/
     private ArrayList<DropDownItem> titleList = new ArrayList<DropDownItem>();
-    private ArrayList<DropDownItem> countrys  = new ArrayList<DropDownItem>();
-    private ArrayList<DropDownItem> state = new ArrayList<DropDownItem>();
-    private Calendar calendar;
-    private int age;
+    private ArrayList<DropDownItem> countryList = new ArrayList<DropDownItem>();
+    private static ArrayList<DropDownItem> state = new ArrayList<DropDownItem>();
 
     public static RegisterFragment newInstance() {
         RegisterFragment fragment = new RegisterFragment();
@@ -192,7 +208,6 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
         fragment.setArguments(args);
         return fragment;
 
-        // new SearchFragment();
     }
 
     @Override
@@ -208,143 +223,312 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.register, container, false);
         ButterKnife.inject(this, view);
+        datePickerSetting();
+        dataSetup();
 
-        //set textview focusable for error
-        //txtTitle.setFocusable(true);
-        //txtTitle.setFocusableInTouchMode(true);
-       // txtRegisterDatePicker
-       //         editTextCountry
-       //         editTextState
+        registerMrBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.default_theme_colour));
+        registerMsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.grey));
 
-        //set only capital
-        txtFirstName.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
-        txtLastName.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
-
-        calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-
-        final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-
-        pref = new SharedPrefManager(getActivity());
-
-        txtConfirmPassword.setTransformationMethod(new PasswordTransformationMethod());
-        txtPassword.setTransformationMethod(new PasswordTransformationMethod());
-
-        /*Get Data From BaseFragment*/
-        countrys = getStaticCountry(getActivity());
-        titleList = getStaticTitle(getActivity());
-
-          /*Display Password Hint*/
-        txtPasswordHint.setOnClickListener(new View.OnClickListener() {
+        //title
+        registerMrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setNormalDialog(getActivity(), getActivity().getResources().getString(R.string.register_password_hint), getActivity().getResources().getString(R.string.register_password_policy));
+                AnalyticsApplication.sendEvent("Click", "Title");
+                registerMrBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.default_theme_colour));
+                registerMsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.grey));
+                title = "Mr";
+                gender = "1";
             }
         });
 
-         /*Switch register info block*/
-        editTextCountry.setOnClickListener(new View.OnClickListener() {
+        registerMsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnalyticsApplication.sendEvent("Edit", "Country");
-                showCountrySelector(getActivity(), countrys,"country");
+                AnalyticsApplication.sendEvent("Click", "Title");
+                registerMrBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.grey));
+                registerMsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.default_theme_colour));
+                title = "Ms";
+                gender = "2";
+
             }
         });
 
-        editTextState.setOnClickListener(new View.OnClickListener() {
+        //date of birth
+        txtRegisterDOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnalyticsApplication.sendEvent("Edit", "State");
-                showCountrySelector(getActivity(), state,"state");
-            }
-        });
-
-        txtRegisterDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnalyticsApplication.sendEvent("Edit", "Date");
-                datePickerDialog.setYearRange(year - 80, year);
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), DATEPICKER_TAG);
-            }
-        });
-
-        txtTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnalyticsApplication.sendEvent("Edit", "Title");
-                popupSelection(titleList, getActivity(), txtTitle, true, view);
-            }
-        });
-
-        registerContinueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnalyticsApplication.sendEvent("Click", "ContinueButton");
-                Utils.hideKeyboard(getActivity(), v);
-
-                //Multiple Manual Validation - Library Problem (failed to validate optional field)
-                resetManualValidationStatus();
-                manualValidation(txtBonusLink, "bonuslink");
-                if(editTextMobilePhone.getText().toString().length() > 2){
-                    manualValidation(editTextMobilePhone, "phoneNumber");
-                }else{
-                    editTextMobilePhone.setText("");
+                AnalyticsApplication.sendEvent("Click", "Date of Birth");
+                if (checkFragmentAdded()) {
+                    register_dob_datepicker.show(getActivity().getFragmentManager(), DATEPICKER_TAG);
                 }
-                if(txtAlternatePhoneNumber.getText().toString().length() > 2){
-                    manualValidation(txtAlternatePhoneNumber, "phoneNumber");
-                }else{
-                    txtAlternatePhoneNumber.setText("");
+            }
+        });
+
+        //title
+        /*txtRegisterTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnalyticsApplication.sendEvent("Click", "Title");
+                popupSelection(titleList, getActivity(), txtRegisterTitle, true, view);
+            }
+        });*/
+
+        //nationality selection
+        txtRegisterNationality.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnalyticsApplication.sendEvent("Click", "Select Country");
+                if (checkFragmentAdded()) {
+
+                    //basicPicker();
+                    showCountrySelector(getActivity(), countryList, "NATIONALITY");
+                    CURRENT_PICKER = "NATIONALITY";
                 }
-                if(txtFaqNumber.getText().toString().length() > 2){
-                    manualValidation(txtFaqNumber,"faxNumber");
-                }else{
-                    txtFaqNumber.setText("");
+            }
+        });
+
+        //country selection
+        txtRegisterCountry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnalyticsApplication.sendEvent("Click", "Select Country");
+                if (checkFragmentAdded()) {
+                    showCountrySelector(getActivity(), countryList, "COUNTRY");
+                    CURRENT_PICKER = "COUNTRY";
+                    txtRegisterState.setClickable(true);
                 }
+            }
+        });
 
-                manualValidation(editTextMobilePhone, "phoneNumber");
-                validateStatus = getManualValidationStatus();
+        //state selection
+        txtRegisterState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                //get mobile phone dialing code
-                //if(dialingCode != null || dialingCode != ""){
-                    if(!editTextMobilePhone.getText().toString().equals("")){
-                        if(validateDialingCode(dialingCode,editTextMobilePhone.getText().toString())){
-                            editTextMobilePhone.setError("Mobile phone must start with country code.");
-                            validateStatus = false;
-                            setShake(editTextMobilePhone);
-
-                        }
+                if (txtRegisterCountry.getText().toString() != "") {
+                    AnalyticsApplication.sendEvent("Click", "Select state");
+                    if (checkFragmentAdded()) {
+                        showCountrySelector(getActivity(), state, "STATE");
+                        CURRENT_PICKER = "STATE";
                     }
+                } else {
+                    Utils.toastNotification(getActivity(), "Please select country");
+                }
+            }
+        });
 
-                    if(!txtAlternatePhoneNumber.getText().toString().equals("")){
-                        if(validateDialingCode(dialingCode,txtAlternatePhoneNumber.getText().toString())){
-                            txtAlternatePhoneNumber.setError("Mobile phone must start with country code.");
-                            validateStatus = false;
-                            setShake(txtAlternatePhoneNumber);
-                        }
-                    }
 
-                    if(!txtFaqNumber.getText().toString().equals("")){
-                        if(validateDialingCode(dialingCode,txtFaqNumber.getText().toString())){
-                            txtFaqNumber.setError("Mobile phone must start with country code.");
-                            validateStatus = false;
-                            setShake(txtFaqNumber);
+        //subscribe selection
+        registerSubscribeNewsletterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!subscribeNewsletter.equals("0")) {
+                    registerSubscribeNewsletterBtn.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.checked));
+                    subscribeNewsletter = "0";
+                } else {
+                    registerSubscribeNewsletterBtn.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.un_checked));
+                    subscribeNewsletter = "1";
+                }
+            }
+        });
 
-                        }
-                    }
+        //acknowledge information
+        registerConfirmInformationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!acknowledgeInfo) {
+                    registerConfirmInformationBtn.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.checked));
+                    acknowledgeInfo = true;
+                } else {
+                    registerConfirmInformationBtn.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.un_checked));
+                    acknowledgeInfo = false;
+                }
+            }
+        });
 
-                //}
+        //information true
+        registerAcknowledgeMemberShipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!confirmInfo) {
+                    registerAcknowledgeMemberShipBtn.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.checked));
+                    confirmInfo = true;
+                } else {
+                    registerAcknowledgeMemberShipBtn.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.un_checked));
+                    confirmInfo = false;
+                }
+            }
+        });
+
+
+        //checkbox confirm information
+        String confirmInformation = getResources().getString(R.string.register_confirm_information);
+        String upToNCharacters1 = confirmInformation.substring(0, Math.min(confirmInformation.length(), 180));
+        registerConfirmInformation.setText(upToNCharacters1 + "..." + "more", CheckBox.BufferType.SPANNABLE);
+        String filterNo1 = upToNCharacters1 + "..." + "[more]";
+        filterMoreText(confirmInformation, filterNo1, registerConfirmInformation);
+
+        //checkbox acknowledge membership
+        String acknowledgeMemberShip = getResources().getString(R.string.register_acknowledge_member);
+        String upToNCharacters2 = acknowledgeMemberShip.substring(0, Math.min(acknowledgeMemberShip.length(), 180));
+        registerAcknowledgeMemberShip.setText(upToNCharacters2 + "..." + "more", CheckBox.BufferType.SPANNABLE);
+        String filterNo2 = upToNCharacters2 + "..." + "[more]";
+        filterMoreText(acknowledgeMemberShip, filterNo2, registerAcknowledgeMemberShip);
+
+        //checkbox subsribe newsletter
+        String subscribeNewsletter = getResources().getString(R.string.register_check_subscribe);
+        String upToNCharacters3 = subscribeNewsletter.substring(0, Math.min(subscribeNewsletter.length(), 180));
+        registerSubscribeNewsletter.setText(upToNCharacters3);
+
+        //continue to register
+        btnRegisterContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 mValidator.validate();
             }
         });
 
+
         return view;
     }
 
+    public void basicPicker() {
 
+        Intent basicPicker = new Intent(getActivity(), BasicPicker.class);
+        basicPicker.putParcelableArrayListExtra("TOTAL_DUE", countryList);
+        getActivity().startActivity(basicPicker);
+    }
+
+    //more text
+    public void moreText(String text) {
+
+        Dialog moreTextDialog;
+
+        LayoutInflater li = LayoutInflater.from(getActivity());
+        final View thisView = li.inflate(R.layout.default_dialog, null);
+
+        TextView moreTxt = (TextView) thisView.findViewById(R.id.moreTxt);
+        moreTxt.setText(text);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(thisView);
+
+        //moreTextDialog = builder.create();
+        moreTextDialog = new Dialog(getActivity(), R.style.DialogThemePush);
+        moreTextDialog.setContentView(thisView);
+        moreTextDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80000000")));
+        moreTextDialog.setCancelable(true);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(moreTextDialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        moreTextDialog.getWindow().setAttributes(lp);
+        moreTextDialog.show();
+
+    }
+
+    public void filterMoreText(final String originalTxt, final String filter, TextView check) {
+
+        String insurance3 = filter.toString();
+        //txtInsurance3.getText().toString();
+
+        int i1 = insurance3.indexOf("[m");
+        int i2 = insurance3.indexOf("e]");
+
+        Spannable mySpannable = (Spannable) check.getText();
+        ClickableSpan myClickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                    /* do something */
+                moreText(originalTxt);
+            }
+        };
+        mySpannable.setSpan(myClickableSpan, i1, i2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        check.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    public void dataSetup() {
+
+        progress = new ProgressDialog(getActivity());
+        countryList = getStaticCountry(getActivity());
+        titleList = getStaticTitle(getActivity());
+    }
+
+    public void datePickerSetting() {
+        //datePicker setting
+        register_dob_datepicker = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        register_dob_datepicker.setYearRange(calendar.get(Calendar.YEAR) - 80, calendar.get(Calendar.YEAR));
+        register_dob_datepicker.setAccentColor(ContextCompat.getColor(getActivity(), R.color.default_theme_colour));
+
+        Calendar output = Calendar.getInstance();
+        output.set(Calendar.YEAR, output.get(Calendar.YEAR));
+        output.set(Calendar.DAY_OF_MONTH, output.get(Calendar.DAY_OF_MONTH));
+        output.set(Calendar.MONTH, output.get(Calendar.MONTH));
+        register_dob_datepicker.setMaxDate(output);
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+
+
+        //check t&c first
+        if (!confirmInfo || !acknowledgeInfo) {
+            croutonAlert(getActivity(), "Please agree with term & conditions.");
+        } else {
+            //proceed with presenter
+            initiateDefaultLoading(progress, getActivity());
+
+            RegisterRequest registerRequest = new RegisterRequest();
+            registerRequest.setUserName(txtRegisterEmail.getText().toString());
+            registerRequest.setPassword(txtRegisterPassword.getText().toString());
+            registerRequest.setTitle(title);
+            registerRequest.setGender(gender);
+            registerRequest.setAddressLine1("-");
+            registerRequest.setAddressLine2("-");
+            registerRequest.setAddressLine3("-");
+            registerRequest.setMobilePhone(txtRegisterMobile.getText().toString());
+            registerRequest.setFirstName(txtRegisterGivenName.getText().toString());
+            registerRequest.setLastName(txtRegisterFamilyName.getText().toString());
+            registerRequest.setNationality(txtRegisterNationality.getTag().toString());
+            registerRequest.setCountry(txtRegisterCountry.getTag().toString());
+            registerRequest.setState(txtRegisterState.getTag().toString());
+            registerRequest.setPostalCode(txtRegisterPostCode.getText().toString());
+            registerRequest.setCity(txtRegisterTown.getText().toString());
+            registerRequest.setDateOfBirth(dateOfBirth);
+            registerRequest.setQuestionAns1(subscribeNewsletter);
+            registerRequest.setQuestionAns2("en-GB");
+
+            presenter.onRequestRegister(registerRequest);
+        }
+
+
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+
+        for (ValidationError error : errors) {
+
+            View view = error.getView();
+
+            setShake(view);
+            String message = error.getCollatedErrorMessage(getActivity());
+            String splitErrorMsg[] = message.split("\\r?\\n");
+
+            // Display error messages
+            if (view instanceof EditText) {
+                ((EditText) view).setError(splitErrorMsg[0]);
+            } else if (view instanceof TextView) {
+                ((TextView) view).setError(splitErrorMsg[0]);
+            }
+        }
+        croutonAlert(getActivity(), getResources().getString(R.string.fill_emtpy_field));
+
+    }
 
     /*Date Picker -> need to move to main activity*/
     public void showTimePickerDialog(View v) {
@@ -354,17 +538,21 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     /*Country selector - > need to move to main activity*/
-    public void showCountrySelector(Activity act,ArrayList constParam,String data)
-    {
-        if(act != null) {
+    public void showCountrySelector(Activity act, ArrayList constParam, String data) {
+        if (act != null) {
             try {
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                if(data.equals("state")){
-                    StateListDialogFragment countryListDialogFragment = StateListDialogFragment.newInstance(constParam);
+                if (data.equals("COUNTRY") || data.equals("NATIONALITY")) {
+                    SelectCountryFragment countryListDialogFragment = SelectCountryFragment.newInstance(constParam);
                     countryListDialogFragment.setTargetFragment(RegisterFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
-                }else{
-                    SelectFlightFragment countryListDialogFragment = SelectFlightFragment.newInstance(constParam);
+
+                    //FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    //DialogFragment newFragment = SelectCountryFragment.newInstance(constParam);
+                    //newFragment.show(ft, "countryListDialogFragment");
+
+                } else if (data.equals("STATE")) {
+                    SelectStateFragment countryListDialogFragment = SelectStateFragment.newInstance(constParam);
                     countryListDialogFragment.setTargetFragment(RegisterFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
                 }
@@ -374,167 +562,91 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
         }
     }
 
-   @Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-       if (resultCode != Activity.RESULT_OK) {
-           return;
+        if (resultCode != Activity.RESULT_OK) {
+            return;
         } else {
-           if (requestCode == 1) {
-               DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectFlightFragment.DEPARTURE_FLIGHT);
+            if (CURRENT_PICKER.equals("COUNTRY")) {
+                DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectCountryFragment.KEY_COUNTRY_LIST);
+                txtRegisterCountry.setText(selectedCountry.getText());
 
-               if (selectedCountry.getTag() == "Country") {
-                   editTextCountry.setText(selectedCountry.getText());
+                String splitCountryCode = splitCountryDialingCode("CountryCode", selectedCountry.getCode());
+                retrieveState(splitCountryCode);
 
-                   //split country code with dialing code
-                   String toCountryCode =  selectedCountry.getCode();
-                   String[] splitCountryCode = toCountryCode.split("/");
-                   selectedCountryCode = splitCountryCode[0];
-                   dialingCode = splitCountryCode[1];
-                   //editTextMobilePhone.setText(dialingCode);
-                   //txtAlternatePhoneNumber.setText(dialingCode);
-                   //txtFaqNumber.setText(dialingCode);
+                txtRegisterCountry.setTag(splitCountryCode);
 
-                   /*Each country click - reset state obj*/
-                   state = new ArrayList<DropDownItem>();
 
-                    /* Set state from selected Country Code*/
-                   JSONArray jsonState = getState(getActivity());
-                   for(int x = 0 ; x < jsonState.length() ; x++) {
+            } else if (CURRENT_PICKER.equals("STATE")) {
+                DropDownItem selectedState = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectStateFragment.KEY_STATE_LIST);
+                txtRegisterState.setText(selectedState.getText());
+                txtRegisterState.setTag(selectedState.getCode());
 
-                       JSONObject row = (JSONObject) jsonState.opt(x);
-                       if (selectedCountryCode.equals(row.optString("country_code"))) {
-                           DropDownItem itemCountry = new DropDownItem();
-                           itemCountry.setText(row.optString("state_name"));
-                           itemCountry.setCode(row.optString("state_code"));
-                           itemCountry.setTag("State");
-                           state.add(itemCountry);
-                       }
-                   }
+            } else {
+                DropDownItem selectedNationality = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectCountryFragment.KEY_COUNTRY_LIST);
+                txtRegisterNationality.setText(selectedNationality.getText());
 
-               } else {
-                   editTextState.setText(selectedCountry.getText());
-                   selectedState = selectedCountry.getCode();
-               }
-
-           }
-       }
+                //split
+                String splitCountryCode = splitCountryDialingCode("CountryCode", selectedNationality.getCode());
+                txtRegisterNationality.setTag(splitCountryCode);
+            }
+        }
     }
 
-    public void requestRegister(){
+    public void retrieveState(String countryCode) {
 
-            initiateLoading(getActivity());
+        txtRegisterState.setHint(getResources().getString(R.string.register_general_loading));
 
-            HashMap<String, String> init = pref.getSignatureFromLocalStorage();
-            String signatureFromLocal = init.get(SharedPrefManager.SIGNATURE);
+        StateRequest stateRequest = new StateRequest();
+        stateRequest.setLanguageCode("en-GB");
+        stateRequest.setCountryCode(countryCode);
 
-            HashMap<String, String> initi = pref.getNewsletterStatus();
-            String newsletter = initi.get(SharedPrefManager.ISNEWSLETTER);
+        presenter.onStateRequest(stateRequest);
+    }
 
-            RegisterObj regObj = new RegisterObj();
+    @Override
+    public void onSuccessRequestState(StateReceive obj) {
 
-            regObj.setUsername(txtUsername.getText().toString());
-            regObj.setFirst_name(txtFirstName.getText().toString());
-            regObj.setLast_name(txtLastName.getText().toString());
-            regObj.setPassword(AESCBC.encrypt(App.KEY, App.IV, txtPassword.getText().toString()));
-            regObj.setTitle(txtTitle.getTag().toString());
-            regObj.setDob(fullDate);
-            regObj.setAddress_1(txtAddressLine1.getText().toString());
-            regObj.setAddress_2(txtAddressLine2.getText().toString());
-            regObj.setAddress_3(txtAddressLine2.getText().toString());
-            regObj.setAlternate_phone(txtAlternatePhoneNumber.getText().toString());
-            regObj.setMobile_phone(editTextMobilePhone.getText().toString());
-            regObj.setCountry(selectedCountryCode);
-            regObj.setState(selectedState);
-            regObj.setCity(txtCity.getText().toString());
-            regObj.setPostcode(editTextPostcode.getText().toString());
-            regObj.setFax(txtFaqNumber.getText().toString());
-            regObj.setBonuslink(txtBonusLink.getText().toString());
-            regObj.setSignature("");
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
 
-            //regObj.setNewsletter(newsletter);
+            txtRegisterState.setHint(getResources().getString(R.string.register_select_state));
+            setState(obj);
+        }
 
-            if (checkBox2.isChecked()) {
-                pref.setNewsletterStatus("Y");
-                regObj.setNewsletter("Y");
-            }else{
-                pref.setNewsletterStatus("N");
-                regObj.setNewsletter("N");
-            }
-
-            presenter.onRequestRegister(regObj);
     }
 
     @Override
     public void onSuccessRegister(RegisterReceive obj) {
 
-        dismissLoading();
+        dismissDefaultLoading(progress, getActivity());
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
-            Intent loginPage = new Intent(getActivity(), LoginActivity.class);
-            getActivity().startActivity(loginPage);
+
             getActivity().finish();
         }
 
     }
 
-    @Override
-    public void onValidationSucceeded() {
+    public void setState(StateReceive stateList) {
 
-        //need to do optional validation
-        if(limitAge){
-            if(chkTNC.isChecked()){
-                if(validateStatus){
-                    requestRegister();
-                }
-            }else{
-                croutonAlert(getActivity(), "You must agree with terms & conditions");
-            }
-        }else{
-            croutonAlert(getActivity(), "You must be at least 18 years old to register.");
+        /*Each country click - reset state obj*/
+        state = new ArrayList<DropDownItem>();
+
+        for (int x = 0; x < stateList.getStateList().size(); x++) {
+
+            DropDownItem itemCountry = new DropDownItem();
+            itemCountry.setText(stateList.getStateList().get(x).getProvinceStateName());
+            itemCountry.setCode(stateList.getStateList().get(x).getProvinceStateCode());
+            itemCountry.setTag("State");
+
+            state.add(itemCountry);
         }
 
     }
 
-    @Override
-    public void onValidationFailed(List<ValidationError> errors) {
-
-        boolean fieldError = false;
-        String errorMessage = null;
-        boolean firstView = true;
-
-        for (ValidationError error : errors) {
-
-
-            View view = error.getView();
-            view.setFocusable(true);
-
-            setShake(view);
-             /* Split Error Message. Display first sequence only */
-            String message = error.getCollatedErrorMessage(getActivity());
-            String splitErrorMsg[] = message.split("\\r?\\n");
-
-            // Display error messages
-            if (view instanceof EditText) {
-                ((EditText) view).setError(splitErrorMsg[0]);
-            }else if(view instanceof TextView)
-            {
-                ((TextView) view).setError(splitErrorMsg[0]);
-            }
-
-            if(firstView){
-
-                view.requestFocus();
-            }
-            firstView = false;
-        }
-
-
-
-        //if(fieldError){
-        //    croutonAlert(getActivity(), errorMessage);
-        //}
-
-
+    public static ArrayList<DropDownItem> getStaticState() {
+        return state;
     }
 
     @Override
@@ -551,10 +663,10 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
         AnalyticsApplication.sendScreenView(SCREEN_LABEL);
 
         RealmResults<CachedResult> result = RealmObjectController.getCachedResult(MainFragmentActivity.getContext());
-        if(result.size() > 0){
+        if (result.size() > 0) {
             Gson gson = new Gson();
             RegisterReceive obj = gson.fromJson(result.get(0).getCachedResult(), RegisterReceive.class);
-            onSuccessRegister(obj);
+            //onSuccessRegister(obj);
         }
     }
 
@@ -566,27 +678,21 @@ public class RegisterFragment extends BaseFragment implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
-        String monthInAlphabet = getMonthAlphabet(month);
-        txtRegisterDatePicker.setText(day + " " + monthInAlphabet + " " + year);
 
         //Reconstruct DOB
         String varMonth = "";
         String varDay = "";
 
-        if(month < 10){
+        if (month < 10) {
             varMonth = "0";
         }
-        if(day < 10){
+        if (day < 10) {
             varDay = "0";
         }
 
-        fullDate = year + "-" + varMonth+""+(month+1)+"-"+varDay+""+day;
-        int currentYear = calendar.get(Calendar.YEAR);
-        age = currentYear - year;
-        limitAge = age >= 18;
+        txtRegisterDOB.setText(day + "/" + (month + 1) + "/" + year);
+        dateOfBirth = varDay + "" + day + "" + varMonth + "" + (month + 1) + "" + year;
 
-        /*fullDate = varDay+""+day+ "-" + varMonth+""+month + "-" + year;
-        Log.e("fullDate", fullDate);*/
     }
 
 }

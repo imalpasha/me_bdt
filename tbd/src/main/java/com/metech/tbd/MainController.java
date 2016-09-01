@@ -90,10 +90,10 @@ public class MainController extends BaseFragment {
         pref = new SharedPrefManager(act);
 
         Boolean status = false;
-        if (objStatus.equals("success") || objStatus.equals("Redirect")) {
+        if (objStatus.equals("OK") || objStatus.equals("Redirect")) {
             status = true;
 
-        } else if (objStatus.equals("error") || objStatus.equals("error_validation")) {
+        } else if (objStatus.equals("Error") || objStatus.equals("error_validation")) {
             status = false;
             setAlertDialog(act, message,"Error");
 

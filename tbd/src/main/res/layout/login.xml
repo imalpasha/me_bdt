@@ -95,9 +95,9 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -128,13 +128,13 @@
                                 android:orientation="vertical">
 
                                 <com.metech.tbd.utils.FontStyle.PlayTextView
-                                    android:padding="10dp"
                                     android:id="@+id/txtLoginBtn"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:layout_marginRight="15dp"
                                     android:gravity="right"
+                                    android:padding="10dp"
                                     android:text="@string/login_"
                                     android:textAppearance="?android:attr/textAppearanceMedium"
                                     android:textColor="@color/red"
@@ -146,18 +146,11 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginTop="25dp"
                             android:gravity="center"
                             android:orientation="horizontal"
                             android:weightSum="1">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.1"
-                                android:orientation="vertical">
-
-                            </LinearLayout>
 
                             <com.facebook.login.widget.LoginButton
                                 android:id="@+id/login_button"
@@ -167,13 +160,20 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_weight="0.8"
-                                android:gravity="center" />
+                                android:gravity="center"
+                                android:visibility="gone" />
 
-                            <LinearLayout
+                            <com.metech.tbd.utils.FontStyle.PlayButtonText
+                                android:id="@+id/dummyFBButton"
+                                style="?android:attr/buttonStyleSmall"
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.1"
-                                android:orientation="vertical"></LinearLayout>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:textColor="@color/white"
+                                android:background="@drawable/facebook_custom_button"
+                                android:text="@string/login_fb_button" />
 
                         </LinearLayout>
 

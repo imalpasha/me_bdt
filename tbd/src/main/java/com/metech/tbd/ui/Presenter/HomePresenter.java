@@ -1,9 +1,9 @@
 package com.metech.tbd.ui.Presenter;
 
 import com.metech.tbd.MainFragmentActivity;
-import com.metech.tbd.ui.Model.Receive.DeviceInfoSuccess;
+import com.metech.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.metech.tbd.ui.Model.Receive.SplashFailedConnect;
-import com.metech.tbd.ui.Model.Request.DeviceInformation;
+import com.metech.tbd.ui.Model.Request.InitialLoadRequest;
 import com.metech.tbd.ui.Model.Request.PushNotificationObj;
 import com.metech.tbd.utils.SharedPrefManager;
 import com.squareup.otto.Bus;
@@ -22,7 +22,7 @@ public class HomePresenter {
     }
 
     public interface SplashScreen {
-        void loadingSuccess(DeviceInfoSuccess obj);
+        void loadingSuccess(InitialLoadReceive obj);
         void onConnectionFailed();
 
     }
@@ -59,8 +59,8 @@ public class HomePresenter {
         bus.unregister(this);
     }
 
-    public void deviceInformation(DeviceInformation info) {
-        bus.post(new DeviceInformation(info));
+    public void initialLoad(InitialLoadRequest info) {
+        bus.post(new InitialLoadRequest(info));
     }
 
     public void onRegisterNotification(PushNotificationObj info) {
@@ -70,7 +70,7 @@ public class HomePresenter {
 
 
     @Subscribe
-    public void onSuccessSendDeviceInformation(DeviceInfoSuccess event) {
+    public void onSuccessSendDeviceInformation(InitialLoadReceive event) {
         pref = new SharedPrefManager(MainFragmentActivity.getContext());
         if (view2!=null){
             view2.loadingSuccess(event);

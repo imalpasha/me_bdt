@@ -14,7 +14,7 @@ import com.metech.tbd.ui.Model.Receive.ConfirmUpdateReceive;
 import com.metech.tbd.ui.Model.Receive.ContactInfoReceive;
 import com.metech.tbd.ui.Model.Receive.DeleteCCReceive;
 import com.metech.tbd.ui.Model.Receive.DeleteFFReceive;
-import com.metech.tbd.ui.Model.Receive.DeviceInfoSuccess;
+import com.metech.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.metech.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.metech.tbd.ui.Model.Receive.ListBookingReceive;
 import com.metech.tbd.ui.Model.Receive.ManageChangeContactReceive;
@@ -35,6 +35,7 @@ import com.metech.tbd.ui.Model.Receive.SearchFlightReceive;
 import com.metech.tbd.ui.Model.Receive.SeatSelectionReveice;
 import com.metech.tbd.ui.Model.Receive.SelectFlightReceive;
 import com.metech.tbd.ui.Model.Receive.ItineraryInfoReceive;
+import com.metech.tbd.ui.Model.Receive.StateReceive;
 import com.metech.tbd.ui.Model.Receive.TermsReceive;
 import com.metech.tbd.ui.Model.Receive.UpdateProfileReceive;
 import com.metech.tbd.base.BaseFragment;
@@ -44,7 +45,7 @@ import com.metech.tbd.ui.Model.Request.ChangeSSR;
 import com.metech.tbd.ui.Model.Request.ConfirmUpdateRequest;
 import com.metech.tbd.ui.Model.Request.ContactInfo;
 import com.metech.tbd.ui.Model.Request.DeleteCCRequest;
-import com.metech.tbd.ui.Model.Request.DeviceInformation;
+import com.metech.tbd.ui.Model.Request.InitialLoadRequest;
 import com.metech.tbd.ui.Model.Request.FlightSummary;
 import com.metech.tbd.ui.Model.Request.FriendFamilyDelete;
 import com.metech.tbd.ui.Model.Request.GetChangeFlight;
@@ -67,6 +68,7 @@ import com.metech.tbd.ui.Model.Request.PasswordRequest;
 import com.metech.tbd.ui.Model.Request.Payment;
 import com.metech.tbd.ui.Model.Request.PushNotificationObj;
 import com.metech.tbd.ui.Model.Request.RegisterObj;
+import com.metech.tbd.ui.Model.Request.RegisterRequest;
 import com.metech.tbd.ui.Model.Request.RetrieveBoardingPassObj;
 import com.metech.tbd.ui.Model.Request.SearchFlightObj;
 import com.metech.tbd.ui.Model.Request.SeatAvailabilityRequest;
@@ -75,6 +77,7 @@ import com.metech.tbd.ui.Model.Request.SelectChangeFlight;
 import com.metech.tbd.ui.Model.Request.SelectFlight;
 import com.metech.tbd.ui.Model.Request.SendItinenaryObj;
 import com.metech.tbd.ui.Model.Request.Signature;
+import com.metech.tbd.ui.Model.Request.StateRequest;
 import com.metech.tbd.ui.Model.Request.TermsRequest;
 import com.metech.tbd.ui.Model.Request.UpdateProfileRequest;
 import com.metech.tbd.ui.Realm.RealmObjectController;
@@ -113,10 +116,10 @@ public class ApiRequestHandler {
             @Override
             public void success(LoginReceive rhymesResponse, Response response) {
 
-                if(rhymesResponse != null) {
+                if (rhymesResponse != null) {
                     bus.post(new LoginReceive(rhymesResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
             }
@@ -129,65 +132,101 @@ public class ApiRequestHandler {
         });
     }
 
+    @Subscribe
+    public void onStateRequest(final StateRequest event) {
 
+        apiService.onStateRequest(event, new Callback<StateReceive>() {
 
+            @Override
+            public void success(StateReceive retroResponse, Response response) {
 
+                if (retroResponse != null) {
+                    bus.post(new StateReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
 
+            }
 
+            @Override
+            public void failure(RetrofitError error) {
 
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
 
+        });
+    }
 
+    @Subscribe
+    public void onRegisterRequest(final RegisterRequest event) {
 
+        apiService.onRegisterRequest(event, new Callback<RegisterReceive>() {
 
+            @Override
+            public void success(RegisterReceive rhymesResponse, Response response) {
 
+                if (rhymesResponse != null) {
+                    bus.post(new RegisterReceive(rhymesResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
 
+            @Override
+            public void failure(RetrofitError error) {
 
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
+            }
 
+        });
+    }
 
 
     @Subscribe
     public void onRegisterNotification(final PushNotificationObj event) {
 
-       //
-       // apiService.onRegisterNotification(event, new Callback<PushNotificationReceive>() {
-       apiService.onRegisterNotification(event.getCmd(), event.getUser_id(), event.getToken(), event.getName(), event.getCode(), new Callback<PushNotificationReceive>() {
+        //
+        // apiService.onRegisterNotification(event, new Callback<PushNotificationReceive>() {
+        apiService.onRegisterNotification(event.getCmd(), event.getUser_id(), event.getToken(), event.getName(), event.getCode(), new Callback<PushNotificationReceive>() {
 
-           @Override
-           public void success(PushNotificationReceive retroResponse, Response response) {
+            @Override
+            public void success(PushNotificationReceive retroResponse, Response response) {
 
-               if(retroResponse != null){
-                   bus.post(new PushNotificationReceive(retroResponse));
-                   RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-               }else{
-                   BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-               }
+                if (retroResponse != null) {
+                    bus.post(new PushNotificationReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
 
-           }
+            }
 
-           @Override
-           public void failure(RetrofitError error) {
+            @Override
+            public void failure(RetrofitError error) {
 
                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-           }
+            }
 
-       });
+        });
     }
     // ------------------------------------------------------------------------------ //
 
     /* Subscribe From HomePresenter - Send Device Information to server - ImalPasha */
     @Subscribe
-    public void onDeviceInfo(final DeviceInformation event) {
+    public void onDeviceInfo(final InitialLoadRequest event) {
 
-        apiService.onSendDeviceInfo(event, new Callback<DeviceInfoSuccess>() {
+        apiService.onSendDeviceInfo(event, new Callback<InitialLoadReceive>() {
 
             @Override
-            public void success(DeviceInfoSuccess retroResponse, Response response) {
+            public void success(InitialLoadReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
-                    bus.post(new DeviceInfoSuccess(retroResponse));
+                if (retroResponse != null) {
+                    bus.post(new InitialLoadReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -200,7 +239,6 @@ public class ApiRequestHandler {
 
         });
     }
-
 
 
     @Subscribe
@@ -211,10 +249,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ForgotPasswordReceive rhymesResponse, Response response) {
 
-                if(rhymesResponse != null) {
+                if (rhymesResponse != null) {
                     bus.post(new ForgotPasswordReceive(rhymesResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -238,11 +276,11 @@ public class ApiRequestHandler {
             @Override
             public void success(ChangePasswordReceive rhymesResponse, Response response) {
 
-                if(rhymesResponse != null) {
+                if (rhymesResponse != null) {
                     bus.post(new ChangePasswordReceive(rhymesResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
 
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -251,7 +289,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
             }
 
         });
@@ -265,11 +303,11 @@ public class ApiRequestHandler {
             @Override
             public void success(UpdateProfileReceive rhymesResponse, Response response) {
 
-                if(rhymesResponse != null) {
+                if (rhymesResponse != null) {
                     bus.post(new UpdateProfileReceive(rhymesResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
 
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -278,42 +316,13 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
         });
     }
 
-
-
-
-    @Subscribe
-    public void onRegisterRequest(final RegisterObj event) {
-
-        apiService.onRegisterRequest(event, new Callback<RegisterReceive>() {
-
-            @Override
-            public void success(RegisterReceive rhymesResponse, Response response) {
-
-                if(rhymesResponse != null) {
-                    bus.post(new RegisterReceive(rhymesResponse));
-                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                }else{
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-                }
-
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-                  BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-
-            }
-
-        });
-    }
 
     @Subscribe
     public void onSearchFlight(final SearchFlightObj event) {
@@ -323,10 +332,10 @@ public class ApiRequestHandler {
             @Override
             public void success(SearchFlightReceive rhymesResponse, Response response) {
 
-                if(rhymesResponse != null) {
+                if (rhymesResponse != null) {
                     bus.post(new SearchFlightReceive(rhymesResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -335,12 +344,10 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
             }
 
         });
-
-
 
 
     }
@@ -353,10 +360,10 @@ public class ApiRequestHandler {
             @Override
             public void success(MobileCheckinReceive rhymesResponse, Response response) {
 
-                if(rhymesResponse != null) {
+                if (rhymesResponse != null) {
                     bus.post(new MobileCheckinReceive(rhymesResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -365,7 +372,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
             }
 
         });
@@ -374,55 +381,55 @@ public class ApiRequestHandler {
     @Subscribe
     public void onPassengerCheckIn(final MobileCheckInPassenger event) {
 
-            apiService.onPassengerCheckIn(event, new Callback<MobileCheckInPassengerReceive>() {
+        apiService.onPassengerCheckIn(event, new Callback<MobileCheckInPassengerReceive>() {
 
-                @Override
-                public void success(MobileCheckInPassengerReceive rhymesResponse, Response response) {
+            @Override
+            public void success(MobileCheckInPassengerReceive rhymesResponse, Response response) {
 
-                    if(rhymesResponse != null) {
-                        bus.post(new MobileCheckInPassengerReceive(rhymesResponse));
-                        RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                    }else{
-                        BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-                    }
-
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-
+                if (rhymesResponse != null) {
+                    bus.post(new MobileCheckInPassengerReceive(rhymesResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-
                 }
 
-            });
-        }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+
+            }
+
+        });
+    }
 
     @Subscribe
     public void onConfirmPassengerCheckIn(final MobileConfirmCheckInPassenger event) {
 
-               apiService.onConfirmPassengerCheckIn(event, new Callback<MobileConfirmCheckInPassengerReceive>() {
+        apiService.onConfirmPassengerCheckIn(event, new Callback<MobileConfirmCheckInPassengerReceive>() {
 
-                   @Override
-                   public void success(MobileConfirmCheckInPassengerReceive rhymesResponse, Response response) {
+            @Override
+            public void success(MobileConfirmCheckInPassengerReceive rhymesResponse, Response response) {
 
-                       if(rhymesResponse != null) {
-                           bus.post(new MobileConfirmCheckInPassengerReceive(rhymesResponse));
-                           RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                       }else{
-                           BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-                       }
+                if (rhymesResponse != null) {
+                    bus.post(new MobileConfirmCheckInPassengerReceive(rhymesResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
 
-                   }
+            }
 
-                   @Override
-                   public void failure(RetrofitError error) {
+            @Override
+            public void failure(RetrofitError error) {
 
-                        BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
-                   }
+            }
 
-               });
+        });
 
     }
 
@@ -434,10 +441,10 @@ public class ApiRequestHandler {
             @Override
             public void success(SelectFlightReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new SelectFlightReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -446,7 +453,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
         });
@@ -460,10 +467,10 @@ public class ApiRequestHandler {
             @Override
             public void success(PassengerInfoReveice retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new PassengerInfoReveice(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -472,7 +479,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                  BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -487,10 +494,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ContactInfoReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ContactInfoReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -499,7 +506,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -514,10 +521,10 @@ public class ApiRequestHandler {
             @Override
             public void success(TermsReceive rhymesResponse, Response response) {
 
-                if(rhymesResponse != null) {
+                if (rhymesResponse != null) {
                     bus.post(new TermsReceive(rhymesResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -526,7 +533,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                  BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -541,10 +548,10 @@ public class ApiRequestHandler {
             @Override
             public void success(SeatSelectionReveice retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new SeatSelectionReveice(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -553,7 +560,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -568,10 +575,10 @@ public class ApiRequestHandler {
             @Override
             public void success(PaymentInfoReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new PaymentInfoReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -596,10 +603,10 @@ public class ApiRequestHandler {
             @Override
             public void success(PaymentReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new PaymentReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -623,10 +630,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ItineraryInfoReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ItineraryInfoReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -650,10 +657,10 @@ public class ApiRequestHandler {
             @Override
             public void success(FlightSummaryReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new FlightSummaryReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -678,10 +685,10 @@ public class ApiRequestHandler {
             @Override
             public void success(FlightSummaryReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new FlightSummaryReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -705,27 +712,27 @@ public class ApiRequestHandler {
             @Override
             public void success(ListBookingReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
-                    if(retroResponse.getStatus().equals("retry")){
+                if (retroResponse != null) {
+                    if (retroResponse.getStatus().equals("retry")) {
                         onManageFlight(event);
-                    }else{
+                    } else {
 
-                        if(event.getModule().equals("manage_booking")){
+                        if (event.getModule().equals("manage_booking")) {
                             //save manage flight list to realm.
-                            RealmObjectController.saveManageFlightList(MainFragmentActivity.getContext(),retroResponse);
-                        }else if(event.getModule().equals("check_in")){
+                            RealmObjectController.saveManageFlightList(MainFragmentActivity.getContext(), retroResponse);
+                        } else if (event.getModule().equals("check_in")) {
                             //save mobile-checkin list to realm.
-                            RealmObjectController.saveMobileCheckInList(MainFragmentActivity.getContext(),retroResponse);
-                        }else if(event.getModule().equals("on_boarding_image")){
+                            RealmObjectController.saveMobileCheckInList(MainFragmentActivity.getContext(), retroResponse);
+                        } else if (event.getModule().equals("on_boarding_image")) {
                             //save mobile-checkin list to realm.
-                            RealmObjectController.saveBoardingPassPNRList(MainFragmentActivity.getContext(),retroResponse);
+                            RealmObjectController.saveBoardingPassPNRList(MainFragmentActivity.getContext(), retroResponse);
                         }
 
                         bus.post(new ListBookingReceive(retroResponse));
                         RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
                     }
 
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
             }
@@ -733,7 +740,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -748,10 +755,10 @@ public class ApiRequestHandler {
             @Override
             public void success(CheckInListReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new CheckInListReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -760,12 +767,11 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
             }
 
         });
     }
-
 
 
     @Subscribe
@@ -776,10 +782,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ManageChangeContactReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ManageChangeContactReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -788,7 +794,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -804,10 +810,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ConfirmUpdateReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ConfirmUpdateReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -830,10 +836,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ManageChangeContactReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ManageChangeContactReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -842,7 +848,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
             }
 
         });
@@ -857,10 +863,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ContactInfoReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ContactInfoReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -869,7 +875,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                  BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -884,10 +890,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ManageChangeContactReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ManageChangeContactReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -896,7 +902,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                   BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -911,10 +917,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ManageRequestIntinenary retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ManageRequestIntinenary(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -938,10 +944,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ChangeSearchFlightReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ChangeSearchFlightReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -950,7 +956,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                  BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -965,10 +971,10 @@ public class ApiRequestHandler {
             @Override
             public void success(SearchFlightReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new SearchFlightReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -977,7 +983,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                  BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -993,10 +999,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ManageChangeContactReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ManageChangeContactReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1005,7 +1011,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                  BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -1020,13 +1026,13 @@ public class ApiRequestHandler {
             @Override
             public void success(RetrieveBoardingPassReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new RetrieveBoardingPassReceive(retroResponse));
-                    if(!retroResponse.getStatus().equals("error")){
-                        RealmObjectController.cachedBoardingPass(MainFragmentActivity.getContext(),retroResponse);
+                    if (!retroResponse.getStatus().equals("error")) {
+                        RealmObjectController.cachedBoardingPass(MainFragmentActivity.getContext(), retroResponse);
                     }
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1035,7 +1041,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                   BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -1050,10 +1056,10 @@ public class ApiRequestHandler {
             @Override
             public void success(AboutUsReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new AboutUsReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1062,7 +1068,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -1077,10 +1083,10 @@ public class ApiRequestHandler {
             @Override
             public void success(SSRReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new SSRReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1089,7 +1095,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                   BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -1104,10 +1110,10 @@ public class ApiRequestHandler {
             @Override
             public void success(ManageChangeContactReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new ManageChangeContactReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1116,7 +1122,7 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
-                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
             }
 
@@ -1132,10 +1138,10 @@ public class ApiRequestHandler {
             @Override
             public void success(SelectFlightReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new SelectFlightReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1145,7 +1151,7 @@ public class ApiRequestHandler {
             public void failure(RetrofitError error) {
 
                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-                Log.e("error",error.getMessage());
+                Log.e("error", error.getMessage());
             }
 
         });
@@ -1159,10 +1165,10 @@ public class ApiRequestHandler {
             @Override
             public void success(DeleteFFReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new DeleteFFReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1187,10 +1193,10 @@ public class ApiRequestHandler {
             @Override
             public void success(DeleteCCReceive retroResponse, Response response) {
 
-                if(retroResponse != null) {
+                if (retroResponse != null) {
                     bus.post(new DeleteCCReceive(retroResponse));
                     RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                }else{
+                } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
 
@@ -1205,7 +1211,6 @@ public class ApiRequestHandler {
 
         });
     }
-
 
 
 }

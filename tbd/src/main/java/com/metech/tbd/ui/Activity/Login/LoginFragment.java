@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.metech.tbd.application.AnalyticsApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.application.MainApplication;
@@ -20,6 +28,7 @@ import com.metech.tbd.MainFragmentActivity;
 import com.metech.tbd.R;
 import com.metech.tbd.ui.Activity.ForgotPassword.ForgotPasswordActivity;
 import com.metech.tbd.ui.Activity.Profile.ProfileActivity;
+import com.metech.tbd.ui.Activity.Register.RegisterActivity;
 import com.metech.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.metech.tbd.ui.Model.Receive.LoginReceive;
 import com.metech.tbd.base.BaseFragment;
@@ -76,6 +85,15 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     @InjectView(R.id.txtForgotPassword)
     TextView txtForgotPassword;
 
+    @InjectView(R.id.dummyFBButton)
+    Button dummyFBButton;
+
+    @InjectView(R.id.login_button)
+    LoginButton login_button;
+
+    @InjectView(R.id.btnLogin)
+    Button btnLogin;
+
     private AlertDialog dialog;
     private SharedPrefManager pref;
     private String storePassword, storeUsername;
@@ -83,6 +101,8 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     private static final String SCREEN_LABEL = "Login";
     private boolean resetPassword = false;
     private ProgressDialog progress;
+    private CallbackManager callbackManager;
+
 
     public static LoginFragment newInstance() {
 
@@ -98,6 +118,9 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
         super.onCreate(savedInstanceState);
         MainApplication.get(getActivity()).createScopedGraph(new LoginModule(this)).inject(this);
         RealmObjectController.clearCachedResult(getActivity());
+
+        callbackManager = CallbackManager.Factory.create();
+
 
         // Validator
         mValidator = new Validator(this);
@@ -128,15 +151,72 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             }
         });
 
+        dummyFBButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //fb login
+                login_button.performClick();
+                Log.e("?", "?");
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilePage = new Intent(getActivity(), RegisterActivity.class);
+                getActivity().startActivity(profilePage);
+            }
+        });
+
+
+        LoginManager.getInstance().logOut();
+
+        login_button.setReadPermissions("email");
+        login_button.setFragment(this);
+
+        // Callback registration
+        login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                //friendProfilePicture.setProfileId(loginResult.getAccessToken().getUserId());
+
+                /*try{
+                    Profile profile = Profile.getCurrentProfile();
+                    shakeDevice.setText(profile.getName());
+                }catch (Exception e){
+
+                }*/
+                Log.e("?", "1");
+
+                Log.e("FB ID", loginResult.getAccessToken().getUserId());
+                Log.e("FB TOKEN", loginResult.getAccessToken().getToken());
+                Log.e("Another ID", loginResult.getAccessToken().getApplicationId());
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+                Log.e("?", "2");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+                Log.e("Exception", exception.getMessage());
+                Log.e("?", "3");
+            }
+        });
 
 
         return view;
     }
 
-    public void forgotPassword(){
+    public void forgotPassword() {
         Intent profilePage = new Intent(getActivity(), ForgotPasswordActivity.class);
         getActivity().startActivity(profilePage);
     }
+
     public void loginFromFragment(String username, String password) {
         /*Start Loading*/
         //initiateLoading(getActivity());
@@ -148,7 +228,6 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
 
         presenter.onLogin(loginData);
 
-        dismissDefaultLoading(progress, getActivity());
 
     }
 
@@ -156,6 +235,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     public void profile() {
         Intent profilePage = new Intent(getActivity(), ProfileActivity.class);
         getActivity().startActivity(profilePage);
+        getActivity().finish();
 
     }
 
@@ -176,15 +256,14 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
 
             RealmObjectController.clearCachedResult(getActivity());
             pref.setLoginStatus("Y");
-            pref.setSignatureToLocalStorage(obj.getUser_info().getSignature());
-            pref.setUsername(obj.getUser_info().getFirst_name());
+            pref.setUsername(obj.getUserName());
 
             Gson gsonUserInfo = new Gson();
-            String userInfo = gsonUserInfo.toJson(obj.getUser_info());
+            String userInfo = gsonUserInfo.toJson(obj);
             RealmObjectController.saveUserInformation(getActivity(), userInfo);
 
-            //success login -> homepage
-            homepage();
+            //success login -> homepage*/
+            profile();
         }
     }
 
@@ -213,9 +292,13 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     /* Validation Failed - Toast Error */
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
+        boolean firstView = true;
+
         for (ValidationError error : errors) {
             View view = error.getView();
             setShake(view);
+            view.setFocusable(true);
+            view.requestFocus();
 
             /* Split Error Message. Display first sequence only */
             String message = error.getCollatedErrorMessage(getActivity());
@@ -225,6 +308,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             if (view instanceof EditText) {
                 ((EditText) view).setError(splitErrorMsg[0]);
             }
+
         }
     }
 

@@ -6,8 +6,8 @@ package com.metech.tbd.ui.Model.Request;
 public class LoginRequest {
 
     /*Local Data Send To Server*/
-    String username;
-    String password;
+    String UserName;
+    String Password;
 
     /*Initiate Class*/
     public LoginRequest() {
@@ -15,34 +15,33 @@ public class LoginRequest {
 
 
     public LoginRequest(LoginRequest data) {
-        username = data.getUsername();
-        password = data.getPassword();
+        UserName = data.getUsername();
+        Password = data.getPassword();
     }
 
     public String getPassword() {
 
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
 
-        this.password = password;
+        this.Password = password;
     }
 
     public String getUsername() {
 
-        return username;
+        return UserName;
     }
 
     public void setUsername(String username) {
 
-        this.username = username;
+        this.UserName = username;
     }
 
 
     /*Response Data From Server*/
     String status;
-
 
     public String getStatus() {
         return status;

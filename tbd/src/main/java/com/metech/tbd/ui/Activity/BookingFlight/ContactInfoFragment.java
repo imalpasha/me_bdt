@@ -235,7 +235,6 @@ public class ContactInfoFragment extends BaseFragment implements Validator.Valid
     private String insuranceTxt1,insuranceTxt2,insuranceTxt3,insuranceTxt4;
     private boolean withSeat = false;
     private View view;
-    private LoginReceive.UserInfo loginObj;
     private DefaultPassengerObj defaultPassengerObj;
     private ArrayList<DefaultPassengerObj> defaultObj = new ArrayList<DefaultPassengerObj>();
     private ArrayList<DropDownItem> passengerList = new ArrayList<DropDownItem>();
@@ -301,30 +300,6 @@ public class ContactInfoFragment extends BaseFragment implements Validator.Valid
 
         if(loginStatus != null && loginStatus.equals("Y")) {
 
-            String userInfo = getUserInfoCached(getActivity());
-            loginObj = gson.fromJson(userInfo, LoginReceive.UserInfo.class);
-            txtTitle.setText(getTitleCode(getActivity(), loginObj.getContact_title(), "name"));
-            txtTitle.setTag(loginObj.getContact_title());
-            txtFirstName.setText(loginObj.getContact_first_name());
-            txtLastName.setText(loginObj.getContact_last_name());
-            txtEmailAddress.setText(loginObj.getContact_email());
-            txtPhone.setText(loginObj.getContact_mobile_phone());
-            txtAlternatePhone.setText(loginObj.getContact_alternate_phone());
-            txtState.setText(getStateName(getActivity(), loginObj.getContact_state()));
-            txtState.setTag(loginObj.getContact_state());
-            txtCity.setText(loginObj.getContact_city());
-            selectedCountryCode = loginObj.getContact_country();
-            txtCountry.setTag(loginObj.getContact_country());
-            txtCountry.setText(getCountryName(getActivity(), loginObj.getContact_country()));
-
-            //set state
-            setState(selectedCountryCode);
-
-            txtCountryBusiness.setTag(loginObj.getContact_country());
-            txtCountryBusiness.setText(getCountryName(getActivity(), loginObj.getContact_country()));
-
-            txtPostCode.setText(loginObj.getContact_postcode());
-            dialingCode = getDialingCode(loginObj.getContact_country(),getActivity());
         }
         /* ---------------------------------------------------------- */
 

@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.metech.tbd.R;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
-import com.metech.tbd.ui.Model.Request.DeviceInformation;
+import com.metech.tbd.ui.Model.Request.InitialLoadRequest;
 import com.metech.tbd.ui.Presenter.HomePresenter;
 import com.metech.tbd.utils.SharedPrefManager;
 
@@ -31,7 +31,7 @@ public class ForceUpdateFragment extends BaseFragment{
 
     private int fragmentContainerId;
     private SharedPrefManager pref;
-    private DeviceInformation info;
+    private InitialLoadRequest info;
     private Boolean running = false;
     private static SweetAlertDialog pDialog;
 

@@ -119,7 +119,6 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         final View view = inflater.inflate(R.layout.search_flight, container, false);
         ButterKnife.inject(this, view);
 
-        searchFlight_DatePicker = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         Log.e("Year", Integer.toString(calendar.get(Calendar.YEAR)));
         Log.e("Month", Integer.toString(calendar.get(Calendar.MONTH)));
         Log.e("Day", Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)));
@@ -233,6 +232,7 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
 
     public void datePickerSetting() {
         //datePicker setting
+        searchFlight_DatePicker = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         searchFlight_DatePicker.setYearRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);
         searchFlight_DatePicker.setAccentColor(ContextCompat.getColor(getActivity(), R.color.default_theme_colour));
         Calendar output = Calendar.getInstance();

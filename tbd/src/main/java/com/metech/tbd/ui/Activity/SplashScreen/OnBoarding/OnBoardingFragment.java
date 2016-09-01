@@ -15,10 +15,12 @@ import android.widget.Button;
 import com.metech.tbd.R;
 import com.metech.tbd.base.BaseFragment;
 import com.metech.tbd.ui.Activity.FragmentContainerActivity;
+import com.metech.tbd.ui.Activity.Homepage.HomeActivity;
 import com.metech.tbd.ui.Activity.Login.LoginActivity;
 import com.metech.tbd.ui.Activity.SlidePage.ProductImagesPagerAdapter;
 import com.metech.tbd.ui.Model.Receive.RetrieveBoardingPassReceive;
 import com.metech.tbd.ui.Model.Request.PagerBoardingPassObj;
+import com.metech.tbd.utils.SharedPrefManager;
 
 import java.util.ArrayList;
 
@@ -41,6 +43,7 @@ public class OnBoardingFragment extends BaseFragment {
     Button onboardingSkip;
 
     private int fragmentContainerId;
+    private SharedPrefManager pref;
 
     public static OnBoardingFragment newInstance() {
 
@@ -61,11 +64,14 @@ public class OnBoardingFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.on_boarding, container, false);
         ButterKnife.inject(this, view);
+        pref = new SharedPrefManager(getActivity());
+
+        pref.setFirstTimeUser("Y");
 
         onboardingCtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent flightDetail = new Intent(getActivity(), LoginActivity.class);
+                Intent flightDetail = new Intent(getActivity(), HomeActivity.class);
                 getActivity().startActivity(flightDetail);
                 getActivity().finish();
             }
@@ -74,7 +80,7 @@ public class OnBoardingFragment extends BaseFragment {
         onboardingSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent flightDetail = new Intent(getActivity(), LoginActivity.class);
+                Intent flightDetail = new Intent(getActivity(), HomeActivity.class);
                 getActivity().startActivity(flightDetail);
                 getActivity().finish();
             }

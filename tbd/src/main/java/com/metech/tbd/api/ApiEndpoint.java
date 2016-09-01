@@ -8,7 +8,7 @@ public class ApiEndpoint implements Endpoint {
     public String getUrl() {
 
        //return "https://m.fireflyz.com.my/api";
-       return "http://fyapidev.me-tech.com.my/api";
+       return "http://airasiabig.me-tech.com.my";
 
     }
 

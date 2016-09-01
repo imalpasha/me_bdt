@@ -52,6 +52,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -93,6 +95,21 @@ public class BaseFragment extends Fragment {
         progress.dismiss();
     }
 
+
+    public String splitCountryDialingCode(String data, String codeToSplit) {
+
+        String code;
+
+        String string = codeToSplit;
+        String[] parts = string.split("/");
+
+        if (data.equals("CountryCode")) {
+            code = parts[0];
+        } else {
+            code = parts[1];
+        }
+        return code;
+    }
 
     //check added fragment
     public boolean checkFragmentAdded() {
@@ -364,58 +381,60 @@ public class BaseFragment extends Fragment {
             e.printStackTrace();
         }
 
-        //get alphabet
 
-
-        /*JSONArray sortedJsonArray = new JSONArray();
-
-        List<JSONObject> jsonValues = new ArrayList<JSONObject>();
+        //sort here
+        JSONArray sortedJsonArray = new JSONArray();
+        List<JSONObject> jsonList = new ArrayList<JSONObject>();
         for (int i = 0; i < json.length(); i++) {
             try {
-                jsonValues.add(json.getJSONObject(i));
+                jsonList.add(json.getJSONObject(i));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
-        Collections.sort( jsonValues, new Comparator<JSONObject>() {
-            //You can change "Name" with "ID" if you want to sort by ID
-            private static final String KEY_NAME = "country_name";
+        Collections.sort(jsonList, new Comparator<JSONObject>() {
 
-            @Override
             public int compare(JSONObject a, JSONObject b) {
                 String valA = new String();
                 String valB = new String();
 
                 try {
-                    valA = (String) a.get(KEY_NAME);
-                    valB = (String) b.get(KEY_NAME);
-                }
-                catch (JSONException e) {
+                    valA = (String) a.get("CountryName");
+                    valB = (String) b.get("CountryName");
+                } catch (JSONException e) {
                     //do something
                 }
-                Character cA = valA.charAt(0);
-                Character cB = valB.charAt(0);
 
-                return cA.compareTo(cB);
-                //if you want to change the sort order, simply use the following:
-                //return -valA.compareTo(valB);
+                return valA.compareTo(valB);
             }
         });
 
         for (int i = 0; i < json.length(); i++) {
-            sortedJsonArray.put(jsonValues.get(i));
-        }*/
-
+            sortedJsonArray.put(jsonList.get(i));
+        }
 
         for (int i = 0; i < json.length(); i++) {
-            JSONObject row = (JSONObject) json.opt(i);
-
+            JSONObject row = (JSONObject) sortedJsonArray.opt(i);
             DropDownItem itemCountry = new DropDownItem();
-            itemCountry.setText(row.optString("country_name"));
-            itemCountry.setCode(row.optString("country_code") + "/" + row.optString("dialing_code"));
-            itemCountry.setTag("Country");
-            countrys.add(itemCountry);
+
+            if (i == 0) {
+                itemCountry.setText("Malaysia");
+                itemCountry.setCode("MY/60");
+                itemCountry.setTag("Country");
+                countrys.add(itemCountry);
+            } else {
+                if (row.optString("CountryCode").equals("MY")) {
+                    //do nothing
+                } else {
+                    itemCountry.setText(row.optString("CountryName"));
+                    itemCountry.setCode(row.optString("CountryCode") + "/" + row.optString("DialingCode"));
+                    itemCountry.setTag("Country");
+                    countrys.add(itemCountry);
+                }
+
+            }
+
         }
 
         return countrys;
@@ -1376,7 +1395,7 @@ public class BaseFragment extends Fragment {
     }
 
 	/*public void showUTCError(String msg)
-	{
+    {
 		Activity activity = getActivity();
 		if (activity instanceof MainFragmentActivity)
 		{
