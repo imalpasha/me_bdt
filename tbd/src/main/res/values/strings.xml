@@ -3,6 +3,10 @@
     <string name="hello_world">Hello World</string>
     <string name="btn_en">English</string>
     <string name="btn_ms">Malaysia</string>
+    <string name="btn_nxt">NEXT</string>
+    <string name="hometext">HOMEPAGE</string>
+
+    <string name="search_language_title">Choose language</string>
 
     <!-- <string name="retrieve_rhymes_failed">The network is slow or unavailable</string>
      <string name="no_rhymes_found_error">Couldn\'t find anything that rhymes with %s</string>
@@ -111,6 +115,20 @@
         <item>Malaysia IC-NRIC</item>
         <item>Passport-P</item>
         <item>Visa-V</item>
+    </string-array>
+
+    <string-array name="language">
+        <item>English-en</item>
+        <item>Malay-ms</item>
+        <item>Thai-th</item>
+    </string-array>
+
+    <string-array name="lang_country">
+        <item>Malaysia-MY</item>
+        <item>Thailand-TH</item>
+        <item>Indonesia-IDN</item>
+        <item>Brunei-BR</item>
+        <item>Singapore-SG</item>
     </string-array>
 
     <!-- Travel Purpose -->
@@ -690,8 +708,9 @@
     <string name="register_address_3">Address Line 3</string>
 
     <string name="register_country">Country</string>
-    <string name="register_town">Town/City</string>
     <string name="register_state">State</string>
+    <string name="register_town">Town/City</string>
+    <string name="register_language">Language</string>
     <string name="register_mobile_phone">Mobile / Home</string>
     <string name="register_alternate_phone">Alternate</string>
     <string name="register_bonuslink">BonusLink Card No:</string>
@@ -809,6 +828,11 @@ select another date or station and try again.</string>
     <string name="forgotPasswordCurrent">Current Password</string>
     <string name="forgotPasswordNew">New Password</string>
     <string name="forgotPasswordConfirm">Confirm Password</string>
+
+    <!--TBD Choose Language-->
+    <string name="lang_next">Next ></string>
+    <string name="lang_country">Country</string>
+
 
 
     <string name="update_success">Update Success</string>
@@ -938,6 +962,7 @@ select another date or station and try again.</string>
 
 
     <string name="register_select_state">Please select state</string>
+    <string name="register_select_language">Please select language</string>
     <string name="register_select_country">Please select country</string>
     <string name="register_select_nationality">Please select nationality</string>
 

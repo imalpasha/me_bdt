@@ -1,39 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:background="@color/white"
+    android:fillViewport="false"
+    android:orientation="vertical"
+    android:scrollbars="none">
 
-    <com.metech.tbd.utils.FontStyle.PlayTextView
-        android:id="@+id/txt_hello"
-        android:text="@string/hello_world"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:textSize="20dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <com.metech.tbd.utils.FontStyle.PlayButtonText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_en"
-        android:id="@+id/btn_en"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-    <com.metech.tbd.utils.FontStyle.PlayButtonText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_ms"
-        android:id="@+id/btn_ms"
-        android:layout_below="@+id/btn_en"
-        android:layout_centerHorizontal="true" />
+            <LinearLayout
+                android:id="@+id/addressInformationBlock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-</RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_lvl1"
+                    android:gravity="center|left"
+                    android:orientation="vertical"
+                    android:padding="0.7dp">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bottom_line_border"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/register_country"
+                            android:textColor="@color/dark_lvl6"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:orientation="vertical">
+
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:id="@+id/txtLangCountry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/register_select_country"
+                            android:padding="10dp"
+                            android:textColorHint="@color/grey" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bottom_line_border"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:id="@+id/register_language"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/register_language"
+                            android:textColor="@color/dark_lvl6"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/right_bottom_line_border"
+                        android:orientation="vertical">
+
+                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                            android:id="@+id/txtLangLanguage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:hint="@string/register_select_language"
+                            android:padding="10dp"
+                            android:textColorHint="@color/grey" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <com.metech.tbd.utils.FontStyle.PlayButtonText
+                android:id="@+id/btn_nxt"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/red"
+                android:text="@string/lang_next"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

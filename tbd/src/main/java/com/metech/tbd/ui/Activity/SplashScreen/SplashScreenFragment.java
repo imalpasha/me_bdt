@@ -13,6 +13,7 @@ import com.metech.tbd.application.MainApplication;
 import com.metech.tbd.MainController;
 import com.metech.tbd.R;
 import com.metech.tbd.ui.Activity.Login.LoginActivity;
+import com.metech.tbd.ui.Activity.SplashScreen.Language.LanguageActivity;
 import com.metech.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
 import com.metech.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.metech.tbd.base.BaseFragment;
@@ -181,8 +182,8 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
             getActivity().finish();
         }
         else{
-            Intent onboard = new Intent(getActivity(), OnBoardingActivity.class);
-            getActivity().startActivity(onboard);
+            Intent language = new Intent(getActivity(), LanguageActivity.class);
+            getActivity().startActivity(language);
             getActivity().finish();
         }
     }

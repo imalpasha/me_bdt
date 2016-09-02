@@ -3,6 +3,24 @@
     <string name="hello_world">Hai Dunia</string>
     <string name="btn_en">Bahasa Inggeris</string>
     <string name="btn_ms">Bahasa Malaysia</string>
+    <string name="btn_nxt">SETERUSNYA</string>
+    <string name="hometext">LAMAN UTAMA</string>
+
+    <string name="search_language_title">Pilih Bahasa</string>
+
+    <string-array name="language">
+        <item>Bahasa Inggeris-en</item>
+        <item>Bahasa Melayu-ms</item>
+        <item>Thai-th</item>
+    </string-array>
+
+    <string-array name="lang_country">
+        <item>Malaysia-MY</item>
+        <item>Thailand-TH</item>
+        <item>Indonesia-IDN</item>
+        <item>Brunei-BR</item>
+        <item>Singapore-SG</item>
+    </string-array>
 
     <!-- DropDown Value -->
     <string-array name="gender">
@@ -177,9 +195,10 @@
     <string name="register_address_2">Address Line 2</string>
     <string name="register_address_3">Address Line 3</string>
 
-    <string name="register_country">Country</string>
+    <string name="register_country">Negara</string>
     <string name="register_town">Town/City</string>
     <string name="register_state">State</string>
+    <string name="register_language">Bahasa</string>
     <string name="register_postcode">Postcode</string>
     <string name="register_mobile_phone">Mobile / Home</string>
     <string name="register_alternate_phone">Alternate</string>
@@ -400,6 +419,10 @@ select another date or station and try again.</string>
 
     <!-- TBD Holiday Shaker -->
     <string name="holiday_shaker_reedem">TEBUS</string>
+
+
+    <string name="register_select_language">Sila pilih bahasa</string>
+    <string name="register_select_country">Please pilih negara</string>
 
 
 </resources>

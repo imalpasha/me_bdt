@@ -14,10 +14,10 @@
         android:weightSum="1">
 
         <com.metech.tbd.utils.FontStyle.PlayTextView
-            android:id="@+id/textView7"
+            android:id="@+id/textHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HOMEPAGE"
+            android:text="@string/hometext"
             android:textSize="28dp" />
     </LinearLayout>
 

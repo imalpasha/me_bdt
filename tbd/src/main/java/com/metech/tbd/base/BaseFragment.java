@@ -325,6 +325,7 @@ public class BaseFragment extends Fragment {
         return travelDocList;
     }
 
+
     public static void staticPopup(final ArrayList<DropDownItem> array, Activity act, final TextView txt, final Boolean tagStatus, final LinearLayout txt2, final String indicate, final CheckInAdapter adapt) {
 
         final ArrayList<DropDownItem> a = array;
