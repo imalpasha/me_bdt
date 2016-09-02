@@ -13,7 +13,6 @@ import com.app.tbd.application.MainApplication;
 import com.app.tbd.MainController;
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
-import com.app.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
@@ -21,7 +20,6 @@ import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Module.SplashScreenModule;
 import com.app.tbd.ui.Presenter.HomePresenter;
 import com.app.tbd.utils.SharedPrefManager;
-import com.metech.tbd.ui.Activity.SplashScreen.Language.LanguageActivity;
 
 
 import java.util.HashMap;

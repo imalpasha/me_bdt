@@ -1,4 +1,4 @@
-package com.metech.tbd.ui.Activity.SplashScreen.Language;
+package com.app.tbd.ui.Activity.SplashScreen;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -18,11 +18,7 @@ public class LanguageActivity extends MainFragmentActivity implements FragmentCo
         super.onCreate(savedInstanceState);
 
         ButterKnife.inject(this);
-
-        //hideMenuButton();
-        // hideTitle();
-        //lockDrawer();
-        // BaseFragment.removeLogoHeader(this);
+        setTitle(getResources().getString(R.string.TBD_app_name));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, LanguageFragment.newInstance()).commit();

@@ -300,7 +300,7 @@
         </activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.SplashScreen.Language.LanguageActivity"
+            android:name=".ui.Activity.SplashScreen.LanguageActivity"
             android:screenOrientation="portrait"></activity>
 
 

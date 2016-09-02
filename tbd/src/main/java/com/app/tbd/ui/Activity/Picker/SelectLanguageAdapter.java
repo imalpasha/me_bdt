@@ -1,15 +1,14 @@
-package com.metech.tbd.ui.Activity.Picker;
+package com.app.tbd.ui.Activity.Picker;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.metech.tbd.R;
-import com.metech.tbd.utils.DropDownItem;
+import com.app.tbd.R;
+import com.app.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
 

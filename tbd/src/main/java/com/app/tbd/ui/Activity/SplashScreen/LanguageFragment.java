@@ -1,4 +1,4 @@
-package com.metech.tbd.ui.Activity.SplashScreen.Language;
+package com.app.tbd.ui.Activity.SplashScreen;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,12 +14,10 @@ import com.app.tbd.R;
 import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
-import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageCountryFragment;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageFragment;
 import com.app.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
 import com.app.tbd.utils.DropDownItem;
-import com.app.tbd.utils.Utils;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.ArrayList;
@@ -128,12 +126,12 @@ public class LanguageFragment extends BaseFragment {
             return;
         } else {
             if (CURRENT_PICKER.equals("LANGUAGE")) {
-                DropDownItem selectedLanguage = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectLanguageFragment.KEY_LANGUAGE_LIST);
+                DropDownItem selectedLanguage = data.getParcelableExtra(SelectLanguageFragment.KEY_LANGUAGE_LIST);
                 txtLangLanguage.setText(selectedLanguage.getText());
                 txtLangLanguage.setTag(selectedLanguage.getCode());
                 changeLanguage(selectedLanguage.getCode());
             } else if (CURRENT_PICKER.equals("COUNTRY")) {
-                DropDownItem selectedCountry = data.getParcelableExtra(com.metech.tbd.ui.Activity.Picker.SelectLanguageCountryFragment.KEY_LANGUAGE_COUNTRY_LIST);
+                DropDownItem selectedCountry = data.getParcelableExtra(SelectLanguageCountryFragment.KEY_LANGUAGE_COUNTRY_LIST);
                 txtLangCountry.setText(selectedCountry.getText());
                 txtLangCountry.setTag(selectedCountry.getCode());
             }

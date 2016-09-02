@@ -1,13 +1,13 @@
-package com.metech.tbd.ui.Activity.Picker;
+package com.app.tbd.ui.Activity.Picker;
+
 
 import android.app.Activity;
 import android.app.Dialog;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,31 +15,29 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.metech.tbd.R;
-import com.metech.tbd.base.BaseFragment;
-import com.metech.tbd.ui.Activity.SplashScreen.Language.LanguageFragment;
-import com.metech.tbd.utils.DropDownItem;
+import com.app.tbd.R;
+import com.app.tbd.base.BaseFragment;
+import com.app.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
 
-public class SelectLanguageCountryFragment extends DialogFragment {
-    public static final String KEY_LANGUAGE_COUNTRY_LIST = "langCountryList";
+public class SelectLanguageFragment extends DialogFragment {
+    public static final String KEY_LANGUAGE_LIST = "languageList";
 
     String[] filteredCountry;
     Integer[] headerPosition;
 
-    ArrayList<DropDownItem> country;
-
+    ArrayList<DropDownItem> language;
+    LinearLayout searchViewLayout;
     ListView lvCountries;
     EditText txtSearchCustom;
-    SelectLanguageCountryAdapter adapter;
+    SelectLanguageAdapter adapter;
     TextView txtCountry;
     SimpleSectionedListAdapter simpleSectionedGridAdapter;
 
@@ -62,10 +60,10 @@ public class SelectLanguageCountryFragment extends DialogFragment {
         }
     }
 
-    public static SelectLanguageCountryFragment newInstance(ArrayList<DropDownItem> countries) {
-        SelectLanguageCountryFragment fragment = new SelectLanguageCountryFragment();
+    public static SelectLanguageFragment newInstance(ArrayList<DropDownItem> countries) {
+        SelectLanguageFragment fragment = new SelectLanguageFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(KEY_LANGUAGE_COUNTRY_LIST, countries);
+        bundle.putParcelableArrayList(KEY_LANGUAGE_LIST, countries);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -73,11 +71,13 @@ public class SelectLanguageCountryFragment extends DialogFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        country = getArguments().getParcelableArrayList(KEY_LANGUAGE_COUNTRY_LIST);
+        language = getArguments().getParcelableArrayList(KEY_LANGUAGE_LIST);
 
         View view = inflater.inflate(R.layout.fragment_country_list_dialog, container, false);
         lvCountries = (ListView) view.findViewById(R.id.lvCountries);
-        getDialog().setTitle(getActivity().getString(R.string.search_flight_title));
+        searchViewLayout = (LinearLayout) view.findViewById(R.id.searchViewLayout);
+        searchViewLayout.setVisibility(View.GONE);
+        getDialog().setTitle("Select Language");
 
         initControls();
 
@@ -99,7 +99,7 @@ public class SelectLanguageCountryFragment extends DialogFragment {
 
     public void initControls() {
 
-        adapter = new SelectLanguageCountryAdapter(getActivity().getApplicationContext(), SelectLanguageCountryFragment.this, country);
+        adapter = new SelectLanguageAdapter(getActivity().getApplicationContext(), SelectLanguageFragment.this, language);
 
         //simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
         //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
@@ -115,7 +115,7 @@ public class SelectLanguageCountryFragment extends DialogFragment {
         }
 
         Intent intent = new Intent();
-        intent.putExtra(KEY_LANGUAGE_COUNTRY_LIST, country);
+        intent.putExtra(KEY_LANGUAGE_LIST, country);
 
         getTargetFragment().onActivityResult(1, Activity.RESULT_OK, intent);
         Log.e("Get Target Fragment", "NOT NULL");

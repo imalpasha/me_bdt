@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
 public class SelectDefaultFragment extends DialogFragment {
     public static final String KEY_LANGUAGE_LIST = "languageList";
 
+    LinearLayout searchViewLayout;
     ArrayList<DropDownItem> language;
     ListView lvCountries;
     SelectDefaultFragmentAdapter adapter;
@@ -69,6 +71,8 @@ public class SelectDefaultFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_country_list_dialog, container, false);
         lvCountries = (ListView) view.findViewById(R.id.lvCountries);
         getDialog().setTitle("Select preferred language");
+        searchViewLayout = (LinearLayout) view.findViewById(R.id.searchViewLayout);
+        searchViewLayout.setVisibility(View.GONE);
 
         initControls();
 

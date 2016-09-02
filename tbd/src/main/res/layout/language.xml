@@ -50,7 +50,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -66,7 +66,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/txtLangCountry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/register_language"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/txtLangLanguage"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-            <com.metech.tbd.utils.FontStyle.PlayButtonText
+            <com.app.tbd.utils.FontStyle.PlayButtonText
                 android:id="@+id/btn_nxt"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
