@@ -299,6 +299,10 @@
 
         </activity>
 
+        <activity
+            android:name="com.metech.tbd.ui.Activity.SplashScreen.Language.LanguageActivity"
+            android:screenOrientation="portrait"></activity>
+
 
         <activity
             android:name="com.app.tbd.ui.Activity.Profile.ProfileActivity"

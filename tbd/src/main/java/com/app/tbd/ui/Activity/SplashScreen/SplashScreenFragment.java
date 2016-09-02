@@ -21,6 +21,8 @@ import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Module.SplashScreenModule;
 import com.app.tbd.ui.Presenter.HomePresenter;
 import com.app.tbd.utils.SharedPrefManager;
+import com.metech.tbd.ui.Activity.SplashScreen.Language.LanguageActivity;
+
 
 import java.util.HashMap;
 
@@ -28,7 +30,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public class SplashScreenFragment extends BaseFragment implements HomePresenter.SplashScreen{
+public class SplashScreenFragment extends BaseFragment implements HomePresenter.SplashScreen {
 
     @Inject
     HomePresenter presenter;
@@ -107,7 +109,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
     @Override
     public void loadingSuccess(InitialLoadReceive obj) {
 
-        dismissDefaultLoading(progress,getActivity());
+        dismissDefaultLoading(progress, getActivity());
 
         Boolean status = MainController.getRequestStatus(obj.getObj().getStatus(), obj.getObj().getMessage(), getActivity());
         if (status) {
@@ -175,14 +177,13 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
         HashMap<String, String> initAppData = pref.getFirstTimeUser();
         String firstTime = initAppData.get(SharedPrefManager.FIRST_TIME_USER);
 
-        if(firstTime != null && firstTime.equals("N")){
+        if (firstTime != null && firstTime.equals("N")) {
             Intent home = new Intent(getActivity(), LoginActivity.class);
             getActivity().startActivity(home);
             getActivity().finish();
-        }
-        else{
-            Intent onboard = new Intent(getActivity(), OnBoardingActivity.class);
-            getActivity().startActivity(onboard);
+        } else {
+            Intent language = new Intent(getActivity(), LanguageActivity.class);
+            getActivity().startActivity(language);
             getActivity().finish();
         }
     }
@@ -195,7 +196,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
 
     @Override
     public void onConnectionFailed() {
-       // connectionRetry("Unable to connect to server");
+        // connectionRetry("Unable to connect to server");
     }
 
 

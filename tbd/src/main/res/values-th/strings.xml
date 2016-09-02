@@ -1,10 +1,10 @@
 <resources>
 
-    <string name="hello_world">Hello World</string>
-    <string name="btn_en">English</string>
-    <string name="btn_ms">Malaysia</string>
-    <string name="btn_nxt">NEXT</string>
-    <string name="hometext">HOMEPAGE</string>
+    <string name="hello_world">Hai Dunia</string>
+    <string name="btn_en">อังกฤษ</string>
+    <string name="btn_ms">ภาษาบาฮาซา มาเลเซีย</string>
+    <string name="btn_nxt">NEXT(THAI)</string>
+    <string name="hometext">HOMEPAGE (THAI)</string>
 
     <string name="search_language_title">Choose language</string>
 
@@ -716,6 +716,7 @@
     <string name="register_bonuslink">BonusLink Card No:</string>
 
     <string name="register_fax">Fax</string>
+    <string name="register_city">Town/City</string>
     <string name="register_password_hint">Password must be at least 8 characters, no more than 16 characters, must include at least one upper case letter, one lower case letter, one numeric digit, and one non-alphanumeric. The password cannot contain a period(.) comma(,) or tilde(~).</string>
     <string name="register_password_policy">Password Policy</string>
 
@@ -914,6 +915,8 @@ select another date or station and try again.</string>
     <string name="btn_continue">Continue ></string>
     <string name="fill_emtpy_field">Please fill/fix error field.</string>
 
+    <!-- TBD Facebook ID -->
+    <string name="facebook_app_id">165826577154465</string>
 
     <!-- TBD Profile -->
     <string name="tbd_my_profile">My Profile</string>
@@ -945,7 +948,6 @@ select another date or station and try again.</string>
     <string name="register_salutation">Salutation</string>
     <string name="register_given_name">Given Name</string>
     <string name="register_family_name">Family Name</string>
-    <string name="register_nick_name">Nickname</string>
     <string name="register_dob">Date of Birth Name</string>
     <string name="register_nationality">Nationality</string>
     <string name="register_mobile">Mobile</string>
@@ -957,34 +959,18 @@ select another date or station and try again.</string>
     <string name="register_street_1">Street 1</string>
     <string name="register_street_2">Street 2</string>
     <string name="register_postcode">Post Code</string>
+
+
     <string name="register_select_state">Please select state</string>
     <string name="register_select_language">Please select language</string>
     <string name="register_select_country">Please select country</string>
     <string name="register_select_nationality">Please select nationality</string>
+
+    <string name="register_confirm_information">I confirm that the above information provided by me is true and accurate and understand that the AirAsia BIG Loyalty Programme is operated by Think BIG Digital Sdn Bhd. I have read and hereby agree to the terms and conditions of the AirAsia BIG Loyalty Membership operated by Think BIG Digital Sdn Bhd, which shall be binding on me.</string>
+    <string name="register_acknowledge_member">I further acknowledge that in order to proceed with the membership application, registration and/or subscription and the provision of services, benefits and privileges related to the AirAsia BIG Loyalty Programme and the AirAsia membership, the sharing, transfer, retrieval, updating and processing of my personal information and data as well as creation of member profile and user accounts may occur between Think BIG Digital Sdn Bhd, AirAsia Berhad, Tune Money Sdn Bhd and each of their respective group companies, related corporations, affiliates, subsidiaries, associates (as further stated in Think BIG Digital Sdn Bhd’s and AirAsia Berhad’s Privacy Policies) and I confirm that I have read Think BIG Digital Sdn Bhd’s Privacy Policy and AirAsia Berhad’s Privacy Policy and consent to the processing of my personal data for purposes of the same. I further agree that by browsing and using the website(s) and services and/or products contained herein, I agree to AirAsia Berhad’s Terms of Use and Think BIG Digital Sdn Bhd’s Terms of Use.</string>
     <string name="register_check_subscribe">Subscribe to AiraAsia Newsletter.</string>
-    <string name="register_newsletter_language_hint">Please select language</string>
     <!--<string name="register_check_subscribe">I hereby agree to receive marketing materials, communications and information, promotional offers, newsletters, and any other communication on products and services of AirAsia Berhad and Think BIG Digital Sdn Bhd and their related corporations, affiliates, subsidiaries and associates</string>-->
     <string name="register_general_loading">Loading ...</string>
-    <string name="register_password_style">Password must be 8-15 alphanumeric characters with these reuirement: number (0-9), lowercase letter (a-z),uppercase letter (A-Z)</string>
-    <string name="register_city">Town/City</string>
-    <string name="register_newsletter_language">Newsletter Language</string>
 
-    <string name="register_confirm_information">
-    <![CDATA[
-        I confirm that the above information provided by me is true and accurate and understand that the AirAsia BIG Loyalty Programme is operated by Think BIG Digital Sdn Bhd. I have read and hereby agree to the <a href="http://www.airasiabig.com/my/en/assets/pdf/tnc-big-loyalty_en-GB.pdf" style="color: #FF0000;">terms and conditions of the AirAsia BIG Loyalty Membership</a> operated by Think BIG Digital Sdn Bhd, which shall be binding on me.
-    ]]>
-    </string>
-
-     <string name="register_acknowledge_member">
-    <![CDATA[
-    I further acknowledge that in order to proceed with the membership application, registration and/or subscription and the provision of services, benefits and privileges related to the AirAsia BIG Loyalty Programme and the AirAsia membership, the sharing, transfer, retrieval, updating and processing of my personal information and data as well as creation of member profile and user accounts may occur between Think BIG Digital Sdn Bhd, AirAsia Berhad, Tune Money Sdn Bhd and each of their respective group companies, related corporations, affiliates, subsidiaries, associates (as further stated in Think BIG Digital Sdn Bhd’s and AirAsia Berhad’s Privacy Policies) and I confirm that I have read <a href="http://www.airasiabig.com/my/en/assets/pdf/privacypolicy.pdf" style="color: #FF0000;">Think BIG Digital Sdn Bhd’s Privacy Policy</a> and <a href="http://www.airasia.com/my/en/about-us/privacy-policy.page" style="color: #FF0000;">AirAsia Berhad’s Privacy Policy</a> and consent to the processing of my personal data for purposes of the same. I further agree that by browsing and using the website(s) and services and/or products contained herein, I agree to <a href="http://www.airasiabig.com/my/en/assets/pdf/term-of-use.pdf" style="color: #FF0000;">AirAsia Berhad’s Terms of Use</a> and <a href="http://www.airasiabig.com/my/en/assets/pdf/term-of-use.pdf" style="color: #FF0000;">Think BIG Digital Sdn Bhd’s Terms of Use</a>.
-    ]]>
-    </string>
-
-    <!-- Forgot Password -->
-    <string name="reset_password_success_send">Forgot password link send to your registered email.</string>
-
-    <!-- TBD Facebook ID -->
-    <string name="facebook_app_id">1143272665731321</string>
 
 </resources>

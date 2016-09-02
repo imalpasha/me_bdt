@@ -693,7 +693,7 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
         if (status) {
 
             setSuccessDialog(getActivity(), "Thank You! Please check your email to complete your registration", LoginActivity.class, "Success!");
-         
+
         }
 
     }
