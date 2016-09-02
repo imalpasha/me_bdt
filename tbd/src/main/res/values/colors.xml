@@ -15,7 +15,6 @@
     <color name="theme1_header_transparent">#CCff6a4d</color>
 
 
-
     <color name="theme1_drawer_bg">#362f2d</color>
     <color name="grey">#d3d3d3</color>
 
@@ -49,7 +48,6 @@
     <color name="seat_desired">#71db71</color>
 
 
-
     <!-- HomePage Firefly UI -->
     <color name="dark_lvl0">#f2f2f2</color>
 
@@ -69,10 +67,8 @@
     <color name="blackv5">#262626</color>
 
 
-
     <color name="dark_lvl6">#333333</color>
     <color name="red_lvl6">#FF8566</color>
-
 
 
     <!-- Login -->
@@ -95,12 +91,6 @@
 
     <color name="test1">#E6E6E6</color>
     <color name="test2">#E6E6E6</color>
-
-
-
-
-
-
 
 
     <!-- TBD THEME -->
@@ -141,5 +131,8 @@
     <!--Date Picker -->
     <color name="mdtp_accent_color">#E43117</color>
     <color name="mdtp_accent_color_dark">#ED5C45</color>
+
+    <color name="textLinkColor">#FF0000</color>
+
 
 </resources>

@@ -13,7 +13,7 @@
 
         <TableRow>
 
-            <com.metech.tbd.utils.FontStyle.PlayTextView
+            <com.app.tbd.utils.FontStyle.PlayTextView
                 android:id="@+id/textView421"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:padding="20px">
 
-            <com.metech.tbd.utils.FontStyle.PlayTextView
+            <com.app.tbd.utils.FontStyle.PlayTextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
 
         <TableRow>
 
-            <com.metech.tbd.utils.FontStyle.PlayTextView
+            <com.app.tbd.utils.FontStyle.PlayTextView
                 android:id="@+id/textView4s41"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

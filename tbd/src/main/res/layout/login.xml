@@ -56,7 +56,7 @@
                                  android:paddingBottom="10dp"
                                  android:textSize="@dimen/font16sp"/>-->
 
-                            <com.metech.tbd.utils.FontStyle.PlayEditText
+                            <com.app.tbd.utils.FontStyle.PlayEditText
                                 android:id="@+id/txtLoginEmail"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                             android:background="@drawable/drawable_login_bottom_border"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayEditText
+                            <com.app.tbd.utils.FontStyle.PlayEditText
                                 android:id="@+id/txtLoginPassword"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                                 android:layout_weight="0.6"
                                 android:orientation="vertical">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/txtForgotPassword"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
@@ -127,7 +127,7 @@
                                 android:layout_weight="0.4"
                                 android:orientation="vertical">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/txtLoginBtn"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                                 android:gravity="center"
                                 android:visibility="gone" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayButtonText
+                            <com.app.tbd.utils.FontStyle.PlayButtonText
                                 android:id="@+id/dummyFBButton"
                                 style="?android:attr/buttonStyleSmall"
                                 android:layout_width="0dp"
@@ -184,7 +184,7 @@
                             android:orientation="vertical"
                             android:padding="10dp">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
 
                             </LinearLayout>
 
-                            <com.metech.tbd.utils.FontStyle.PlayButtonText
+                            <com.app.tbd.utils.FontStyle.PlayButtonText
                                 android:id="@+id/btnLogin"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"

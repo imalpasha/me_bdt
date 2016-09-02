@@ -264,7 +264,7 @@
                                 android:textStyle="bold" />
                         </LinearLayout>
 
-                        <com.metech.tbd.utils.ExpandAbleGridView
+                        <com.app.tbd.utils.ExpandAbleGridView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:horizontalSpacing="1dp"
@@ -307,7 +307,7 @@
                                 android:textStyle="bold" />
                         </LinearLayout>
 
-                        <com.metech.tbd.utils.ExpandAbleGridView
+                        <com.app.tbd.utils.ExpandAbleGridView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:id="@+id/listViewDepart" />

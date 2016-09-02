@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:launchMode="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.metech.tbd">
+    package="com.app.tbd">
 
     <uses-sdk
         android:minSdkVersion="2"
@@ -43,17 +43,17 @@
 
     <!-- Creates a custom permission so only this app can receive its messages. -->
     <permission
-        android:name="com.metech.tbd.permission.C2D_MESSAGE"
+        android:name="com.app.tbd.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.metech.firefly.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.app.firefly.permission.C2D_MESSAGE" />
 
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
 
     <application
-        android:name=".application.MainApplication"
+        android:name="com.app.tbd.application.MainApplication"
         android:allowBackup="true"
         android:icon="@drawable/tbd_icon"
         android:label="@string/app_name"
@@ -63,189 +63,189 @@
         tools:replace="android:icon">
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.Homepage.HomeActivity"
+            android:name="com.app.tbd.ui.Activity.Homepage.HomeActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.Aboutus.AboutUsActivity"
+            android:name="com.app.tbd.ui.Activity.Aboutus.AboutUsActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.PushNotification.PushNotificationActivity"
+            android:name="com.app.tbd.ui.Activity.PushNotification.PushNotificationActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.PushNotification.MainActivity"
+            android:name="com.app.tbd.ui.Activity.PushNotification.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BeaconV2.BoardingGateActivity"
+            android:name="com.app.tbd.ui.Activity.BeaconV2.BoardingGateActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.SlidePage.NearKioskActivity"
+            android:name="com.app.tbd.ui.Activity.SlidePage.NearKioskActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BeaconV2.PushNotificationV1"
+            android:name="com.app.tbd.ui.Activity.BeaconV2.PushNotificationV1"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BeaconV2.ArriveEntranceActivity"
+            android:name="com.app.tbd.ui.Activity.BeaconV2.ArriveEntranceActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BeaconV2.BoardingGateActivityV2"
+            android:name="com.app.tbd.ui.Activity.BeaconV2.BoardingGateActivityV2"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.ContactInfoActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.ContactInfoActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.Login.LoginActivity"
+            android:name="com.app.tbd.ui.Activity.Login.LoginActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.HolidayShaker.HolidayShakerActivity"
+            android:name="com.app.tbd.ui.Activity.HolidayShaker.HolidayShakerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme">
 
         </activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.SSR.BaggageActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.SSR.BaggageActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.TravellerInfo.TravellerInfoActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.TravellerInfo.TravellerInfoActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.Register.RegisterActivity"
+            android:name="com.app.tbd.ui.Activity.Register.RegisterActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ForgotPassword.ForgotPasswordActivity"
+            android:name="com.app.tbd.ui.Activity.ForgotPassword.ForgotPasswordActivity"
             android:screenOrientation="portrait"></activity>
 
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.SearchFlightActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.SearchFlightActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
         <activity
-            android:name=".ui.Activity.BookingFlight.FlightListActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.FlightListActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.PersonalDetailActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.PersonalDetailActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.ManageFamilyAndFriend.ManageFriendAndFamilyActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.ManageFamilyAndFriend.ManageFriendAndFamilyActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.ManageFamilyAndFriend.EditFamilyFriendsActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.ManageFamilyAndFriend.EditFamilyFriendsActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.SeatSelectionActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.SeatSelectionActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.FlightSummaryActivity2"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.FlightSummaryActivity2"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.ItinenaryActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.ItinenaryActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.PaymentFlightActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.PaymentFlightActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.PaymentWebViewActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.PaymentWebViewActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity1"
+            android:name="com.app.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity1"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity2"
+            android:name="com.app.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity2"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity3"
+            android:name="com.app.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity3"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity4"
+            android:name="com.app.tbd.ui.Activity.MobileCheckIn.MobileCheckInActivity4"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_Activity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_Activity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_ActionActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_ActionActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_ChangeContactActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_ChangeContactActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_EditPassengerActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_EditPassengerActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_ChangeFlightActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_ChangeFlightActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_SeatSelectionActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_SeatSelectionActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_SpecialServiceRequestActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_SpecialServiceRequestActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.MF_SentItineraryActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.MF_SentItineraryActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.UpdateProfile.UpdateProfileActivity"
+            android:name="com.app.tbd.ui.Activity.UpdateProfile.UpdateProfileActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.ManageFlight.CommitChangeActivity"
+            android:name="com.app.tbd.ui.Activity.ManageFlight.CommitChangeActivity"
             android:screenOrientation="portrait" />
 
         <!-- Boarding PASS -->
         <activity
-            android:name="com.metech.tbd.ui.Activity.BoardingPass.BoardingPassActivity"
+            android:name="com.app.tbd.ui.Activity.BoardingPass.BoardingPassActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BoardingPass.BoardingPassDisplayActivity"
+            android:name="com.app.tbd.ui.Activity.BoardingPass.BoardingPassDisplayActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.GlobalPopup.PopupActivity"
+            android:name="com.app.tbd.ui.Activity.GlobalPopup.PopupActivity"
             android:screenOrientation="portrait" />
 
         <!-- DEMO -->
@@ -253,37 +253,37 @@
             android:name=".ui.Activity.Gate.CurrentGateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.metech.tbd.ui.Activity.Beacon.BeaconRanging"
+            android:name="com.app.tbd.ui.Activity.Beacon.BeaconRanging"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Activity.Beacon.RangingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.metech.tbd.ui.Activity.Map.IndoorMapActivity"
+            android:name="com.app.tbd.ui.Activity.Map.IndoorMapActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.metech.tbd.ui.Activity.Sensor.SensorActivity"
+            android:name="com.app.tbd.ui.Activity.Sensor.SensorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.metech.tbd.ui.Activity.Sensor.Compass"
+            android:name="com.app.tbd.ui.Activity.Sensor.Compass"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.GeoFencing.GenFencingActivity"
+            android:name="com.app.tbd.ui.Activity.GeoFencing.GenFencingActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.metech.tbd.ui.Activity.GeoFencing.GeofenceTransitionReceiver$switchButtonListener" />
+        <activity android:name="com.app.tbd.ui.Activity.GeoFencing.GeofenceTransitionReceiver$switchButtonListener" />
 
         <!-- LocalNotification -->
 
         <!-- ForceUpdate -->
         <activity
-            android:name="com.metech.tbd.ui.Activity.SplashScreen.ForceUpdateActivity"
+            android:name="com.app.tbd.ui.Activity.SplashScreen.ForceUpdateActivity"
             android:screenOrientation="portrait" />
 
         <!-- SPLASH SCREEN -->
         <activity
-            android:name="com.metech.tbd.ui.Activity.SplashScreen.SplashScreenActivity"
+            android:name="com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme">
             <intent-filter>
@@ -293,7 +293,7 @@
         </activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity"
+            android:name="com.app.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme">
 
@@ -301,47 +301,47 @@
 
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.Profile.ProfileActivity"
+            android:name="com.app.tbd.ui.Activity.Profile.ProfileActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.Checkout.PaymentMSOSActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.Checkout.PaymentMSOSActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.Checkout.PaymentActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.Checkout.PaymentActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.Checkout.CheckoutActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.Checkout.CheckoutActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.BookingFlight.TravellerInfo.TravellerInfoAddActivity"
+            android:name="com.app.tbd.ui.Activity.BookingFlight.TravellerInfo.TravellerInfoAddActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.DragDrop.DragDropActivity"
+            android:name="com.app.tbd.ui.Activity.DragDrop.DragDropActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.SplashScreen.Pop2NotificationActivity"
+            android:name="com.app.tbd.ui.Activity.SplashScreen.Pop2NotificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.SplashScreen.TokenActivity"
+            android:name="com.app.tbd.ui.Activity.SplashScreen.TokenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme" />
 
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.PasswordExpired.ChangePasswordActivity"
+            android:name="com.app.tbd.ui.Activity.PasswordExpired.ChangePasswordActivity"
             android:label="@string/title_activity_password_expired"
             android:screenOrientation="portrait" />
 
@@ -364,7 +364,7 @@
         </receiver>
 
         <receiver
-            android:name="com.metech.tbd.ui.Activity.GeoFencing.GeofenceTransitionReceiver"
+            android:name="com.app.tbd.ui.Activity.GeoFencing.GeofenceTransitionReceiver"
             android:enabled="true"
             android:exported="false"></receiver>
 
@@ -395,11 +395,11 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <!-- Receives the registration id. -->
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="com.metech.firefly" />
+                <category android:name="com.app.firefly" />
             </intent-filter>
         </receiver>
 
-        <service android:name="com.metech.tbd.GCMIntentService" />
+        <service android:name="com.app.tbd.GCMIntentService" />
 
 
         <!-- <receiver android:name="com.fly.firefly.ui.activity.GeoFencing.GeofenceTransitionReceiver$switchButtonListener" />-->
@@ -411,7 +411,7 @@
             android:value="6f38953bcf07d7c4f8dd57baf34092f3e0c08720" />
 
         <activity
-            android:name="com.metech.tbd.ui.Activity.Terms.Terms"
+            android:name="com.app.tbd.ui.Activity.Terms.Terms"
             android:label="@string/title_activity_terms"></activity>
 
         <meta-data

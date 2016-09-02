@@ -28,7 +28,7 @@
                 android:src="@drawable/tbd_icon"
                 android:scaleType="centerInside"/>
 
-            <com.metech.tbd.utils.FontStyle.PlayTextView
+            <com.app.tbd.utils.FontStyle.PlayTextView
                 android:layout_width="200dp"
                 android:gravity="center"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:id="@+id/push_title" />
         </LinearLayout>
 
-        <com.metech.tbd.utils.FontStyle.PlayTextView
+        <com.app.tbd.utils.FontStyle.PlayTextView
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

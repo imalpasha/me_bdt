@@ -33,7 +33,7 @@
                     android:orientation="vertical"
                     android:padding="15dp">
 
-                    <com.metech.tbd.utils.FontStyle.PlayTextView
+                    <com.app.tbd.utils.FontStyle.PlayTextView
                         android:id="@+id/textView86"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/email"
@@ -73,7 +73,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
+                        <com.app.tbd.utils.FontStyle.PlayEditText
                             android:id="@+id/txtRegisterEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView14"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
+                        <com.app.tbd.utils.FontStyle.PlayEditText
                             android:id="@+id/txtRegisterPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -160,7 +160,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
+                        <com.app.tbd.utils.FontStyle.PlayEditText
                             android:id="@+id/txtRegisterConfirmPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
                     android:orientation="vertical"
                     android:padding="15dp">
 
-                    <com.metech.tbd.utils.FontStyle.PlayTextView
+                    <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/register_user_information" />
@@ -208,7 +208,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Salutation"
@@ -224,7 +224,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="13dp"
@@ -253,7 +253,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/register_given_name"
@@ -268,7 +268,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
+                        <com.app.tbd.utils.FontStyle.PlayEditText
                             android:id="@+id/txtRegisterGivenName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -295,7 +295,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -312,7 +312,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
+                        <com.app.tbd.utils.FontStyle.PlayEditText
                             android:id="@+id/txtRegisterFamilyName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -339,7 +339,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -355,7 +355,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView397"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -383,7 +383,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -399,7 +399,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/txtNationality"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -427,7 +427,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -443,7 +443,7 @@
                         android:background="@drawable/right_bottom_line_border"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayEditText
+                        <com.app.tbd.utils.FontStyle.PlayEditText
                             android:id="@+id/txtRegisterMobile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -469,7 +469,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -512,7 +512,7 @@
                     android:orientation="vertical"
                     android:padding="15dp">
 
-                    <com.metech.tbd.utils.FontStyle.PlayTextView
+                    <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/register_address_information" />
@@ -534,7 +534,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/register_street_1"
@@ -572,7 +572,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/register_street_2"
@@ -606,7 +606,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -641,7 +641,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -676,7 +676,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -711,7 +711,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"

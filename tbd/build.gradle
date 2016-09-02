@@ -29,7 +29,7 @@ android {
     buildToolsVersion "22.0.0"
 
     defaultConfig {
-        applicationId "com.metech.tbd"
+        applicationId "com.app.tbd"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 13
@@ -120,7 +120,13 @@ dependencies {
     compile 'dev.dworks.libs:astickyheader:0.1.0'
 
     //FACEBOOK
-    compile 'com.facebook.android:facebook-android-sdk:4.5.0'
+    //compile 'com.facebook.android:facebook-android-sdk:4.15.0'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 
+    //material dialog
+    //compile 'com.afollestad.material-dialogs:core:0.9.0.1'
+
+    //material dialog
+    //compile 'com.afollestad.material-dialogs:commons:0.9.0.1'
 
 }

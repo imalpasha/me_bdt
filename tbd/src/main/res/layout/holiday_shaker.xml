@@ -32,7 +32,7 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/shake_phone_tbd" />
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/shakeDevice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                         android:orientation="vertical"
                         android:weightSum="1">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView353"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                             android:textSize="28dp"
                             android:textStyle="bold" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                             android:textColor="@color/white"
                             android:textSize="17dp" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/txtPoint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/txtTopup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/txtTopuptxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/txtAirport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView366"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -171,7 +171,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/txtArrival"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/txtDepart"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/txtReturn"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -203,7 +203,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/txtReturnDate"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -338,7 +338,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
 
-                                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                                            <com.app.tbd.utils.FontStyle.PlayTextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text="Mayho_89"
@@ -347,7 +347,7 @@
                                                 android:textColor="@color/black"
                                                 android:id="@+id/textView417" />
 
-                                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                                            <com.app.tbd.utils.FontStyle.PlayTextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text="Tokyo , Japan"
@@ -376,7 +376,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Miyuki Dory , Tokyo"
@@ -385,7 +385,7 @@
                                     android:textStyle="bold"
                                     android:id="@+id/textView429" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_marginTop="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -394,7 +394,7 @@
                                     android:id="@+id/textView431" />
                             </LinearLayout>
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:layout_marginTop="20dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -403,7 +403,7 @@
                                 android:textSize="28dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="5dp"
@@ -411,7 +411,7 @@
                                 android:textColor="@color/dark_lvl5"
                                 android:textSize="17dp" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="5dp"
@@ -426,7 +426,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:padding="5dp"
@@ -435,7 +435,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="top up"
@@ -448,7 +448,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:padding="5dp"
@@ -457,7 +457,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="airport tax"
@@ -476,7 +476,7 @@
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
-                                    <com.metech.tbd.utils.FontStyle.PlayTextView
+                                    <com.app.tbd.utils.FontStyle.PlayTextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="DEPART"
@@ -484,7 +484,7 @@
                                         android:textSize="17dp"
                                         android:textStyle="bold" />
 
-                                    <com.metech.tbd.utils.FontStyle.PlayTextView
+                                    <com.app.tbd.utils.FontStyle.PlayTextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text=": 29/10/2016"
@@ -497,7 +497,7 @@
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
-                                    <com.metech.tbd.utils.FontStyle.PlayTextView
+                                    <com.app.tbd.utils.FontStyle.PlayTextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="RETURN"
@@ -505,7 +505,7 @@
                                         android:textSize="17dp"
                                         android:textStyle="bold" />
 
-                                    <com.metech.tbd.utils.FontStyle.PlayTextView
+                                    <com.app.tbd.utils.FontStyle.PlayTextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text=": 01/11/2016"
@@ -583,7 +583,7 @@
                         android:orientation="vertical"
                         android:weightSum="1">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView354"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -592,7 +592,7 @@
                             android:textSize="28dp"
                             android:textStyle="bold" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView367"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -601,7 +601,7 @@
                             android:textColor="@color/white"
                             android:textSize="17dp" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView368"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -617,7 +617,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView369"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -627,7 +627,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView370"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -641,7 +641,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView371"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -651,7 +651,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView372"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -671,7 +671,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView373"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -680,7 +680,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView374"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -694,7 +694,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView375"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -703,7 +703,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView376"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -771,7 +771,7 @@
                         android:orientation="vertical"
                         android:weightSum="1">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView413"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -780,7 +780,7 @@
                             android:textSize="28dp"
                             android:textStyle="bold" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView414"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -789,7 +789,7 @@
                             android:textColor="@color/white"
                             android:textSize="17dp" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:id="@+id/textView415"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -805,7 +805,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView377"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -815,7 +815,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView378"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -829,7 +829,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView407"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -839,7 +839,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView408"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -859,7 +859,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView409"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -868,7 +868,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView410"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -882,7 +882,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView411"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -891,7 +891,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:id="@+id/textView412"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -959,7 +959,7 @@
                         android:orientation="vertical"
                         android:weightSum="1">
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PHUKET"
@@ -967,7 +967,7 @@
                             android:textSize="28dp"
                             android:textStyle="bold" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
@@ -975,7 +975,7 @@
                             android:textColor="@color/white"
                             android:textSize="17dp" />
 
-                        <com.metech.tbd.utils.FontStyle.PlayTextView
+                        <com.app.tbd.utils.FontStyle.PlayTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
@@ -990,7 +990,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="5dp"
@@ -999,7 +999,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="top up"
@@ -1012,7 +1012,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="5dp"
@@ -1021,7 +1021,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="airport tax"
@@ -1040,7 +1040,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="DEPART"
@@ -1048,7 +1048,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=": 13/03/2016"
@@ -1061,7 +1061,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="RETURN"
@@ -1069,7 +1069,7 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold" />
 
-                                <com.metech.tbd.utils.FontStyle.PlayTextView
+                                <com.app.tbd.utils.FontStyle.PlayTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=": 13/03/2016"

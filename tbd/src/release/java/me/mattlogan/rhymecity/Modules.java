@@ -1,6 +1,6 @@
 package me.firefly.rhymecity;
 
-import com.metech.tbd.AppModule;
+import com.app.tbd.AppModule;
 
 public final class Modules {
     public static Object[] list(String apiKey) {

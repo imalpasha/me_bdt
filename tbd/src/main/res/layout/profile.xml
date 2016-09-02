@@ -90,7 +90,7 @@
                             android:orientation="vertical"
                             android:padding="4dp">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/txtUserName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
+                            <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/txtUserBigID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -114,8 +114,8 @@
                             android:gravity="left|bottom"
                             android:orientation="vertical">
 
-                            <com.metech.tbd.utils.FontStyle.PlayTextView
-                                android:id="@+id/textView395"
+                            <com.app.tbd.utils.FontStyle.PlayTextView
+                                android:id="@+id/txtLogout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Logout"
@@ -161,7 +161,7 @@
                 android:paddingTop="15dp"
                 android:weightSum="1">
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView396"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                     android:text="@string/tbd_my_profile"
                     android:textSize="16dp" />
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtBigUsername"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -207,7 +207,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="15dp">
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView400"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -215,7 +215,7 @@
                     android:text="@string/tbd_my_booking"
                     android:textSize="16dp" />
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtTotalBooking"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -254,7 +254,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="15dp">
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView402"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -262,7 +262,7 @@
                     android:text="@string/tbd_my_big_point"
                     android:textSize="16dp" />
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView404"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -300,7 +300,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="15dp">
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView403"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -308,7 +308,7 @@
                     android:text="@string/tbd_my_credit_card"
                     android:textSize="16dp" />
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtMyCreditCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -346,7 +346,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="15dp">
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtFacebook"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -354,7 +354,7 @@
                     android:text="@string/facebook"
                     android:textSize="16dp" />
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView405"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -392,7 +392,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="15dp">
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtInstagram"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -400,7 +400,7 @@
                     android:text="@string/instagram"
                     android:textSize="16dp" />
 
-                <com.metech.tbd.utils.FontStyle.PlayTextView
+                <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView406"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
