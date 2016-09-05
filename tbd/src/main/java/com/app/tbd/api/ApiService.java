@@ -11,6 +11,7 @@ import com.app.tbd.ui.Model.Receive.DeleteFFReceive;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
+import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Receive.ListBookingReceive;
 import com.app.tbd.ui.Model.Receive.LoginReceive;
 import com.app.tbd.ui.Model.Receive.ManageChangeContactReceive;
@@ -46,6 +47,7 @@ import com.app.tbd.ui.Model.Request.FriendFamilyDelete;
 import com.app.tbd.ui.Model.Request.GetChangeFlight;
 import com.app.tbd.ui.Model.Request.GetFlightAvailability;
 import com.app.tbd.ui.Model.Request.GetSSR;
+import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.LoginRequest;
 import com.app.tbd.ui.Model.Request.ManageContactInfo;
 import com.app.tbd.ui.Model.Request.ManageFlightObj;
@@ -107,6 +109,9 @@ public interface ApiService {
 
     @POST("/GetPreferredLanguage")
     void onRequestNewsletterLanguage(@Body NewsletterLanguageRequest task, Callback<NewsletterLanguageReceive> callback);
+
+    @POST("/Language/GetLanguage")
+    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);
 
 
 

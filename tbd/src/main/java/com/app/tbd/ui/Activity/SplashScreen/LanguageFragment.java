@@ -1,6 +1,7 @@
 package com.app.tbd.ui.Activity.SplashScreen;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,25 +9,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.tbd.R;
 import com.app.tbd.application.AnalyticsApplication;
+import com.app.tbd.application.MainApplication;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageCountryFragment;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageFragment;
 import com.app.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
+import com.app.tbd.ui.Model.Receive.LanguageReceive;
+import com.app.tbd.ui.Model.Request.LanguageRequest;
+import com.app.tbd.ui.Module.LanguageModule;
+import com.app.tbd.ui.Presenter.LanguagePresenter;
+import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class LanguageFragment extends BaseFragment {
+public class LanguageFragment extends BaseFragment implements LanguagePresenter.LanguageView, Validator.ValidationListener {
+
+    @Inject
+    LanguagePresenter presenter;
+
     @NotEmpty(sequence = 1)
     @InjectView(R.id.txtLangCountry)
     TextView txtLangCountry;
@@ -38,9 +55,8 @@ public class LanguageFragment extends BaseFragment {
     @InjectView(R.id.btn_nxt)
     Button btn_nxt;
 
-    @InjectView(R.id.register_language)
-    TextView register_language;
-
+    ProgressDialog progress;
+    private Validator mValidator;
     private int fragmentContainerId;
     private Locale myLocale;
     private ArrayList<DropDownItem> language = new ArrayList<DropDownItem>();
@@ -58,6 +74,13 @@ public class LanguageFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MainApplication.get(getActivity()).createScopedGraph(new LanguageModule(this)).inject(this);
+        RealmObjectController.clearCachedResult(getActivity());
+
+        // Validator
+        mValidator = new Validator(this);
+        mValidator.setValidationListener(this);
+        mValidator.setValidationMode(Validator.Mode.BURST);
     }
 
     @Override
@@ -66,7 +89,7 @@ public class LanguageFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.language, container, false);
         ButterKnife.inject(this, view);
 
-        language = getLanguage(getActivity());
+        //language = getLanguage(getActivity());
         country = getLangCountry(getActivity());
 
         loadLocale();
@@ -74,9 +97,7 @@ public class LanguageFragment extends BaseFragment {
         btn_nxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent home = new Intent(getActivity(), OnBoardingActivity.class);
-                getActivity().startActivity(home);
-                getActivity().finish();
+                mValidator.validate();
             }
         });
 
@@ -102,9 +123,9 @@ public class LanguageFragment extends BaseFragment {
                     showCountrySelector(getActivity(), language, "LANGUAGE");
                     CURRENT_PICKER = "LANGUAGE";
                 }
-                } //else {
-                  // Utils.toastNotification(getActivity(), "Please select country");
-                //}
+            } //else {
+            // Utils.toastNotification(getActivity(), "Please select country");
+            //}
             //}
         });
 
@@ -126,14 +147,16 @@ public class LanguageFragment extends BaseFragment {
             return;
         } else {
             if (CURRENT_PICKER.equals("LANGUAGE")) {
-                DropDownItem selectedLanguage = data.getParcelableExtra(SelectLanguageFragment.KEY_LANGUAGE_LIST);
+                DropDownItem selectedLanguage = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectLanguageFragment.KEY_LANGUAGE_LIST);
                 txtLangLanguage.setText(selectedLanguage.getText());
                 txtLangLanguage.setTag(selectedLanguage.getCode());
                 changeLanguage(selectedLanguage.getCode());
+
             } else if (CURRENT_PICKER.equals("COUNTRY")) {
-                DropDownItem selectedCountry = data.getParcelableExtra(SelectLanguageCountryFragment.KEY_LANGUAGE_COUNTRY_LIST);
+                DropDownItem selectedCountry = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectLanguageCountryFragment.KEY_LANGUAGE_COUNTRY_LIST);
                 txtLangCountry.setText(selectedCountry.getText());
                 txtLangCountry.setTag(selectedCountry.getCode());
+                retrieveLanguage("ms");
             }
         }
     }
@@ -159,25 +182,6 @@ public class LanguageFragment extends BaseFragment {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static ArrayList<DropDownItem> getLanguage(Activity act) {
-
-		/*Travelling Purpose*/
-        ArrayList<DropDownItem> languageList = new ArrayList<DropDownItem>();
-
-		/*Travel Doc*/
-        final String[] language = act.getResources().getStringArray(R.array.language);
-        for (int i = 0; i < language.length; i++) {
-            String travelDoc = language[i];
-            String[] splitDoc = travelDoc.split("-");
-
-            DropDownItem itemDoc = new DropDownItem();
-            itemDoc.setText(splitDoc[0]);
-            itemDoc.setCode(splitDoc[1]);
-            languageList.add(itemDoc);
-        }
-        return languageList;
     }
 
     public static ArrayList<DropDownItem> getLangCountry(Activity act) {
@@ -262,6 +266,66 @@ public class LanguageFragment extends BaseFragment {
             Locale.setDefault(myLocale);
             getActivity().getBaseContext().getResources().updateConfiguration(newConfig, getActivity().getBaseContext().getResources().getDisplayMetrics());
         }
+    }
+
+    @Override
+    public void onSuccessRequestLanguage(LanguageReceive obj) {
+        ArrayList<DropDownItem> languageList = new ArrayList<DropDownItem>();
+
+		/*Travel Doc*/
+        for (int i = 0; i < obj.getLanguageList().size(); i++) {
+
+            DropDownItem itemDoc = new DropDownItem();
+            itemDoc.setText(obj.getLanguageList().get(i).getLanguageName());
+            itemDoc.setCode(obj.getLanguageList().get(i).getLanguageCode());
+            languageList.add(itemDoc);
+        }
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+        initiateDefaultLoading(progress, getActivity());
+        home();
+
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+
+        for (ValidationError error : errors) {
+
+            View view = error.getView();
+
+            setShake(view);
+            String message = error.getCollatedErrorMessage(getActivity());
+            String splitErrorMsg[] = message.split("\\r?\\n");
+
+            // Display error messages
+            if (view instanceof EditText) {
+                ((EditText) view).setError(splitErrorMsg[0]);
+            } else if (view instanceof TextView) {
+                ((TextView) view).setError(splitErrorMsg[0]);
+            }
+        }
+        croutonAlert(getActivity(), getResources().getString(R.string.fill_emtpy_field));
+
+
+    }
+
+    public void home(){
+        Intent home = new Intent(getActivity(), OnBoardingActivity.class);
+        getActivity().startActivity(home);
+        getActivity().finish();
+    }
+
+    public void retrieveLanguage(String countryCode) {
+
+        txtLangLanguage.setHint(getResources().getString(R.string.register_general_loading));
+
+        LanguageRequest languageRequest = new LanguageRequest();
+        languageRequest.setCountryCode(countryCode);
+
+        presenter.onLanguageRequest(languageRequest);
     }
 }
 
