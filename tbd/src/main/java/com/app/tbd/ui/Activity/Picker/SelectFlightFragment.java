@@ -136,7 +136,17 @@ public class SelectFlightFragment extends DialogFragment {
     public void initControls() {
         originalCountries = SearchFlightFragment.initiatePageData(getActivity());
 
-        adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries,originalCountries);
+        sections = new ArrayList<SimpleSectionedListAdapter.Section>();
+
+        List<String> countryChar = new ArrayList<String>();
+        for (int i = 0; i < originalCountries.size(); i++) {
+            String country = originalCountries.get(i).getText();
+            countryChar.add(Character.toString(country.charAt(0)));
+        }
+        filteredCountry = BaseFragment.getCharAt(countryChar);
+        headerPosition = BaseFragment.headerPosition(countryChar);
+
+        adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries, originalCountries);
         for (int i = 0; i < headerPosition.length; i++) {
             sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
         }
@@ -147,34 +157,29 @@ public class SelectFlightFragment extends DialogFragment {
         lvCountries.setAdapter(simpleSectionedGridAdapter);
     }
 
-    public void notifyAnotherAdapter() {
-        simpleSectionedGridAdapter.notifyDataSetChanged();
-    }
-
     public void recreateAdapter(ArrayList<DropDownItem> countries2) {
 
         lvCountries.setAdapter(null);
-        sections = new ArrayList<SimpleSectionedListAdapter.Section>();
+        //sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
-        List<String> countryChar = new ArrayList<String>();
-        for (int i = 0; i < countries2.size(); i++) {
-            String country = countries2.get(i).getText();
-            countryChar.add(Character.toString(country.charAt(0)));
-        }
-        filteredCountry = BaseFragment.getCharAt(countryChar);
-        headerPosition = BaseFragment.headerPosition(countryChar);
+        //List<String> countryChar = new ArrayList<String>();
+        //for (int i = 0; i < countries2.size(); i++) {
+        //    String country = countries2.get(i).getText();
+        //    countryChar.add(Character.toString(country.charAt(0)));
+        // }
+        //filteredCountry = BaseFragment.getCharAt(countryChar);
+        //headerPosition = BaseFragment.headerPosition(countryChar);
 
         originalCountries = SearchFlightFragment.initiatePageData(getActivity());
-
         adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries2, originalCountries);
 
-        for (int i = 0; i < headerPosition.length; i++) {
-            sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
-        }
+        //for (int i = 0; i < headerPosition.length; i++) {
+        //    sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
+        //}
 
-        SimpleSectionedListAdapter simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
-        simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
-        lvCountries.setAdapter(simpleSectionedGridAdapter);
+        //SimpleSectionedListAdapter simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
+        //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
+        lvCountries.setAdapter(adapter);
 
     }
 

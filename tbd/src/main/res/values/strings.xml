@@ -123,6 +123,20 @@
         <item>Thai-th</item>
     </string-array>
 
+    <!-- Dummy Flight -->
+    <string-array name="dummy_flight">
+        <item>Subang-sbz</item>
+        <item>KLia-kul</item>
+        <item>Kota Bharu-kb</item>
+        <item>Bintulu-btl</item>
+        <item>Hanoi-kb</item>
+        <item>Denpasar-kb</item>
+        <item>Alor Setar-kb</item>
+        <item>Penang-pen</item>
+        <item>KLia2-klia2</item>
+
+    </string-array>
+
     <string-array name="lang_country">
         <item>Malaysia-MY</item>
         <item>Thailand-TH</item>

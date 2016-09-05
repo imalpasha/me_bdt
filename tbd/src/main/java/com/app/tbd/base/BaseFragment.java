@@ -993,13 +993,6 @@ public class BaseFragment extends Fragment {
         mDialog.getWindow().setAttributes(lp);
     }
 
-    public String getSelectedPopupSelection(Activity act) {
-        HashMap<String, String> init = prefManager.getSelectedPopupSelection();
-        String selectedValue = init.get(SharedPrefManager.SELECTED);
-        return selectedValue;
-    }
-
-
     public String getTitleCode(Activity act, String title, String data) {
 
         String titleCode = null;

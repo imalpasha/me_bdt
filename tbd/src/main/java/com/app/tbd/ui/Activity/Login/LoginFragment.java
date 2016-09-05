@@ -310,7 +310,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             RealmObjectController.clearCachedResult(getActivity());
             pref.setLoginStatus("Y");
             pref.setUsername(obj.getUserName());
-
+            pref.setTicketId(obj.getTicketId());
             Gson gsonUserInfo = new Gson();
             String userInfo = gsonUserInfo.toJson(obj);
             RealmObjectController.saveUserInformation(getActivity(), userInfo);

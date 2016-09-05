@@ -1,5 +1,6 @@
 package com.app.tbd.ui.Activity.Profile;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.tbd.MainController;
+import com.app.tbd.application.MainApplication;
+import com.app.tbd.ui.Activity.Homepage.HomeActivity;
+import com.app.tbd.ui.Activity.Register.RegisterActivity;
+import com.app.tbd.ui.Model.Receive.LoginFacebookReceive;
+import com.app.tbd.ui.Model.Receive.LogoutReceive;
+import com.app.tbd.ui.Model.Request.LogoutRequest;
+import com.app.tbd.ui.Module.ProfileModule;
+import com.app.tbd.ui.Presenter.LoginPresenter;
+import com.app.tbd.ui.Presenter.ProfilePresenter;
 import com.google.gson.Gson;
 import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
@@ -26,16 +37,19 @@ import com.google.android.gms.analytics.Tracker;
 import com.app.tbd.utils.SharedPrefManager;
 import com.mobsandgeeks.saripaar.Validator;
 
+import java.util.HashMap;
+
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class ProfileFragment extends BaseFragment {
+public class ProfileFragment extends BaseFragment implements ProfilePresenter.ProfileView {
 
-    // Validator Attributes
-    private Validator mValidator;
-    private Tracker mTracker;
+    @Inject
+    ProfilePresenter presenter;
 
     @InjectView(R.id.imgUserDP)
     ImageView imgUserDP;
@@ -52,12 +66,14 @@ public class ProfileFragment extends BaseFragment {
     @InjectView(R.id.txtLogout)
     TextView txtLogout;
 
-    //@Inject
-    //LoginPresenter presenter;
+    // Validator Attributes
+    private Validator mValidator;
+    private Tracker mTracker;
 
     private int fragmentContainerId;
     private static final String SCREEN_LABEL = "Login";
     private SharedPrefManager pref;
+    private ProgressDialog progress;
 
     public static ProfileFragment newInstance() {
 
@@ -71,7 +87,7 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //MainApplication.get(getActivity()).createScopedGraph(new LoginModule(this)).inject(this);
+        MainApplication.get(getActivity()).createScopedGraph(new ProfileModule(this)).inject(this);
         RealmObjectController.clearCachedResult(getActivity());
     }
 
@@ -87,18 +103,48 @@ public class ProfileFragment extends BaseFragment {
         txtLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 pref.clearLoginStatus();
-                Intent profilePage = new Intent(getActivity(), LoginActivity.class);
-                getActivity().startActivity(profilePage);
-                getActivity().finish();
+                HashMap<String, String> initTicketId = pref.getTicketId();
+                String ticketId = initTicketId.get(SharedPrefManager.TICKET_ID);
+
+                HashMap<String, String> initUserName = pref.getUsername();
+                String userName = initUserName.get(SharedPrefManager.USERNAME);
+
+                LogoutRequest logoutRequest = new LogoutRequest();
+                logoutRequest.setTicketId(ticketId);
+                logoutRequest.setUsername(userName);
+
+                initiateDefaultLoading(progress,getActivity());
+                presenter.onRequestLogout(logoutRequest);
+
+
             }
         });
         return view;
     }
 
+
+    @Override
+    public void onLogoutReceive(LogoutReceive obj) {
+
+        dismissDefaultLoading(progress, getActivity());
+
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
+
+            Intent profilePage = new Intent(getActivity(), LoginActivity.class);
+            getActivity().startActivity(profilePage);
+            getActivity().finish();
+
+        }
+    }
+
+
     public void dataSetup() {
 
         pref = new SharedPrefManager(getActivity());
+        progress = new ProgressDialog(getActivity());
 
         //convert from realm cache data to basic class
         Realm realm = RealmObjectController.getRealmInstance(getActivity());
@@ -143,13 +189,13 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        // presenter.onResume();
+        presenter.onResume();
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        // presenter.onPause();
+        presenter.onPause();
     }
 }

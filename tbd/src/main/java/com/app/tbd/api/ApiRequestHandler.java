@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 
+import com.app.tbd.ui.Model.Receive.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
+import com.app.tbd.ui.Model.Request.LogoutRequest;
 import com.app.tbd.ui.Model.Request.NewsletterLanguageRequest;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 import com.app.tbd.MainFragmentActivity;
@@ -212,13 +214,31 @@ public class ApiRequestHandler {
     }
 
 
+    @Subscribe
+    public void onRequestLogout(final LogoutRequest event) {
 
+        apiService.onRequestLogout(event, new Callback<LogoutReceive>() {
 
+            @Override
+            public void success(LogoutReceive rhymesResponse, Response response) {
 
+                if (rhymesResponse != null) {
+                    bus.post(new LogoutReceive(rhymesResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
 
+            @Override
+            public void failure(RetrofitError error) {
 
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
 
+            }
 
+        });
+    }
 
 
 

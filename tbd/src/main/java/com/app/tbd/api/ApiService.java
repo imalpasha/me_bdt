@@ -13,6 +13,7 @@ import com.app.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.app.tbd.ui.Model.Receive.ListBookingReceive;
 import com.app.tbd.ui.Model.Receive.LoginReceive;
+import com.app.tbd.ui.Model.Receive.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.ManageChangeContactReceive;
 import com.app.tbd.ui.Model.Receive.ManageRequestIntinenary;
 import com.app.tbd.ui.Model.Receive.MobileCheckInPassengerReceive;
@@ -47,6 +48,7 @@ import com.app.tbd.ui.Model.Request.GetChangeFlight;
 import com.app.tbd.ui.Model.Request.GetFlightAvailability;
 import com.app.tbd.ui.Model.Request.GetSSR;
 import com.app.tbd.ui.Model.Request.LoginRequest;
+import com.app.tbd.ui.Model.Request.LogoutRequest;
 import com.app.tbd.ui.Model.Request.ManageContactInfo;
 import com.app.tbd.ui.Model.Request.ManageFlightObj;
 import com.app.tbd.ui.Model.Request.ManageFlightObjV2;
@@ -107,6 +109,10 @@ public interface ApiService {
 
     @POST("/GetPreferredLanguage")
     void onRequestNewsletterLanguage(@Body NewsletterLanguageRequest task, Callback<NewsletterLanguageReceive> callback);
+
+    @POST("/Logout")
+    void onRequestLogout(@Body LogoutRequest task, Callback<LogoutReceive> callback);
+
 
 
 

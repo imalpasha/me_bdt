@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.androidquery.AQuery;
+import com.app.tbd.ui.Activity.BookingFlight.SearchFlightActivity;
 import com.app.tbd.ui.Activity.HolidayShaker.HolidayShakerActivity;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
 import com.app.tbd.ui.Activity.Profile.ProfileActivity;
@@ -80,7 +81,7 @@ public class TabButtomFragment extends Fragment {
                 //fragmentManager.beginTransaction().replace(R.id.main_content, BaggageFragment.newInstance()).commit();
 
 
-                Intent searchFlight = new Intent(getActivity(), HolidayShakerActivity.class);
+                Intent searchFlight = new Intent(getActivity(), SearchFlightActivity.class);
                 searchFlight.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //need to clear previous activity
                 getActivity().startActivity(searchFlight);

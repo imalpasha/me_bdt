@@ -21,7 +21,7 @@ public class LanguageActivity extends MainFragmentActivity implements FragmentCo
         setTitle(getResources().getString(R.string.TBD_app_name));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, LanguageFragment.newInstance()).commit();
+        fragmentManager.beginTransaction().replace(R.id.splash_content, LanguageFragment.newInstance()).commit();
 
     }
 

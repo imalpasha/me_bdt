@@ -73,7 +73,6 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     TextView txtArrivalFlight;
 
 
-
     private int fragmentContainerId;
     private static final String SCREEN_LABEL = "Book Flight: Search Flight";
 
@@ -197,9 +196,10 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     public static ArrayList<DropDownItem> initiatePageData(Activity act) {
 
         ArrayList<DropDownItem> flightMarket = new ArrayList<DropDownItem>();
+        /*ArrayList<DropDownItem> flightMarket = new ArrayList<DropDownItem>();
         JSONArray jsonFlight = getFlight(act);
 
-        /*Get All Airport - remove redundant*/
+        //Get All Airport - remove redundant
         List<String> al = new ArrayList<>();
         Set<String> hs = new LinkedHashSet<>();
         for (int i = 0; i < jsonFlight.length(); i++) {
@@ -211,8 +211,9 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         hs.addAll(al);
         al.clear();
         al.addAll(hs);
+        */
 
-        /*Display Airport*/
+        /*
         for (int i = 0; i < al.size(); i++) {
             String flightSplit = al.get(i).toString();
             String[] str1 = flightSplit.split("/-");
@@ -225,6 +226,19 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
             itemFlight.setTag("FLIGHT");
             flightMarket.add(itemFlight);
 
+        }*/
+
+        	/*Travel Doc*/
+        final String[] language = act.getResources().getStringArray(R.array.dummy_flight);
+        for (int i = 0; i < language.length; i++) {
+            String flight = language[i];
+            String[] splitDoc = flight
+                    .split("-");
+
+            DropDownItem itemDoc = new DropDownItem();
+            itemDoc.setText(splitDoc[0]);
+            itemDoc.setCode(splitDoc[1]);
+            flightMarket.add(itemDoc);
         }
 
         return flightMarket;
@@ -300,24 +314,24 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         String varMonth = "";
         String varDay = "";
 
-        if(month < 9) {
+        if (month < 9) {
             varMonth = "0";
         }
-        if(day < 10){
+        if (day < 10) {
             varDay = "0";
         }
-        if(PICKER.equals(DEPARTURE_DATE_PICKER)) {
+        if (PICKER.equals(DEPARTURE_DATE_PICKER)) {
 
-           // departureDay = day;
-           // departureMonth = month;
+            // departureDay = day;
+            // departureMonth = month;
             //departureYear = year;
 
-            bookFlightDepartureDate.setText(day + "/"+varMonth + "" + (month+1)+ "/" + year);
-            bookFlightDepartureDate.setTag(year + "-" + varMonth + "" + (month+1) + "-" + varDay + "" + day);
-        }else if(PICKER.equals(RETURN_DATE_PICKER)){
-            bookFlightReturnDate.setText(day + "/"+varMonth + "" + (month+1)+ "/" + year);
-            bookFlightReturnDate.setTag(year + "-" + varMonth + "" + (month+1) + "-" + varDay + "" + day);
-        }else{
+            bookFlightDepartureDate.setText(day + "/" + varMonth + "" + (month + 1) + "/" + year);
+            bookFlightDepartureDate.setTag(year + "-" + varMonth + "" + (month + 1) + "-" + varDay + "" + day);
+        } else if (PICKER.equals(RETURN_DATE_PICKER)) {
+            bookFlightReturnDate.setText(day + "/" + varMonth + "" + (month + 1) + "/" + year);
+            bookFlightReturnDate.setTag(year + "-" + varMonth + "" + (month + 1) + "-" + varDay + "" + day);
+        } else {
             //DeadBlock
         }
 

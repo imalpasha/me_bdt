@@ -79,6 +79,8 @@ public class OnBoardingFragment extends BaseFragment {
             }
         });
 
+        //retrieve onboardingImage.
+        //presenter.onRequestOnBoardingImage();
         startPagination();
         return view;
     }

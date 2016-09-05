@@ -108,7 +108,10 @@ public class CountryListDialogAdapter extends BaseAdapter {
         countries.clear();
 
         if (charText.length() == 0) {
-            countries.addAll(originalCountries);
+            //countries.addAll(originalCountries);
+            frag.initControls();
+            Log.e("Init","True");
+            
            // frag.recreateAdapter(countries);
         } else {
 
