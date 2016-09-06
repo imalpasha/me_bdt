@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.app.tbd.R;
 import com.app.tbd.ui.Model.Receive.MobileConfirmCheckInPassengerReceive;
-import com.app.tbd.ui.Activity.ManageFlight.MF_Fragment;
 import com.app.tbd.ui.Model.Request.BoardingPassObj;
 import com.google.gson.Gson;
 
@@ -25,7 +24,6 @@ public class OfflineBookingListAdapter extends BaseAdapter {
     private String arrivalAirport;
     private String flightClass;
     private Integer selected_position = -1;
-    private MF_Fragment fragment;
     private String flightWay;
     private Boolean active = false;
 

@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:scrollbars="none"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imgTaggedPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.8"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/tbd_cover_dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:orientation="vertical"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.35"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imgUserDP"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/tbd_dp2" />
+                    </LinearLayout>
+                    <!--android:background="@drawable/tbd_image_border"-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.65"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/name_transparent_background"
+                            android:orientation="vertical"
+                            android:padding="4dp">
+
+                            <com.app.tbd.utils.FontStyle.PlayTextView
+                                android:id="@+id/txtUserName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Danny Wong"
+                                android:textColor="@color/white"
+                                android:textSize="17dp"
+                                android:textStyle="bold" />
+
+                            <com.app.tbd.utils.FontStyle.PlayTextView
+                                android:id="@+id/txtUserBigID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="BIG ID : 293339282"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="left|bottom"
+                            android:orientation="vertical">
+
+                            <com.app.tbd.utils.FontStyle.PlayTextView
+                                android:id="@+id/txtLogout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Logout"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/homepage_white_with_gradient"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:weightSum="1">
+
+                <com.app.tbd.utils.FontStyle.PlayTextView
+                    android:id="@+id/textView396"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:text="@string/profile_salutation"
+                    android:textSize="16dp" />
+
+                <com.app.tbd.utils.FontStyle.PlayTextView
+                    android:id="@+id/txtBigUsername"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right"
+                    android:text="Imal Pasha Zainal"
+                    android:textColor="@color/dark_lvl2"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:gravity="center_vertical|right"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/register_family_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterFamilyName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="textPersonName"
+                        android:padding="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/register_nick_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="textPersonName"
+                        android:padding="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_given_name"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayEditText
+                        android:id="@+id/txtRegisterNickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="Hai"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_lvl5"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

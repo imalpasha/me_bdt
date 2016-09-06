@@ -34,6 +34,7 @@ import com.app.tbd.ui.Model.Receive.ItineraryInfoReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TermsReceive;
 import com.app.tbd.ui.Model.Receive.UpdateProfileReceive;
+import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Receive.tryObj;
 import com.app.tbd.ui.Model.Request.AboutUs;
 import com.app.tbd.ui.Model.Request.ChangePasswordRequest;
@@ -74,6 +75,7 @@ import com.app.tbd.ui.Model.Request.SendItinenaryObj;
 import com.app.tbd.ui.Model.Request.Signature;
 import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Model.Request.UpdateProfileRequest;
+import com.app.tbd.ui.Model.Request.ViewUserRequest;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -112,6 +114,12 @@ public interface ApiService {
 
     @POST("/Language/GetLanguage")
     void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);
+
+    @POST("/GetUser")
+    void onViewUserRequest(@Body ViewUserRequest obj, Callback<ViewUserReceive> callback);
+
+    /*@POST("/Language/GetLanguage")
+    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);*/
 
 
 

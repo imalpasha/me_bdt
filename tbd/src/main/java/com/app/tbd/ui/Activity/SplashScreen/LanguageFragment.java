@@ -156,7 +156,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                 DropDownItem selectedCountry = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectLanguageCountryFragment.KEY_LANGUAGE_COUNTRY_LIST);
                 txtLangCountry.setText(selectedCountry.getText());
                 txtLangCountry.setTag(selectedCountry.getCode());
-                retrieveLanguage("ms");
+                retrieveLanguage("my");
             }
         }
     }
