@@ -12,6 +12,25 @@
         android:visibility="visible" >
 
         <LinearLayout
+            android:id="@+id/tabMyHome2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/click_bottom_tab"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tbd_setting"
+                android:layout_marginBottom="2dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:id="@+id/tabMyProfile"
             android:layout_width="0dp"
             android:layout_height="match_parent"

@@ -1,134 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fillViewport="false"
-    android:orientation="vertical"
-    android:scrollbars="none">
+    android:gravity="center"
+    android:weightSum="1"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/imageLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/tbd_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/selectionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_weight="0.4"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:visibility="gone">
 
         <LinearLayout
+            android:id="@+id/addressInformationBlock"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/addressInformationBlock"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:background="@color/dark_lvl1"
+                android:gravity="center|left"
+                android:orientation="vertical"
+                android:padding="0.7dp"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:background="@color/dark_lvl1"
-                    android:gravity="center|left"
-                    android:orientation="vertical"
-                    android:padding="0.7dp">
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/register_country"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="15dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bottom_line_border"
-                    android:clickable="true"
-                    android:orientation="horizontal">
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.3"
-                        android:background="@drawable/right_bottom_line_border"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.app.tbd.utils.FontStyle.PlayTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/register_country"
-                            android:textColor="@color/dark_lvl6"
-                            android:textSize="15dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:id="@+id/txtLangCountry"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:background="@drawable/right_bottom_line_border"
-                        android:orientation="vertical">
-
-                        <com.app.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/txtLangCountry"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/register_select_country"
-                            android:padding="10dp"
-                            android:textColorHint="@color/grey" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bottom_line_border"
-                    android:clickable="true"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.3"
-                        android:background="@drawable/right_bottom_line_border"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.app.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/register_language"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/register_language"
-                            android:textColor="@color/dark_lvl6"
-                            android:textSize="15dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:background="@drawable/right_bottom_line_border"
-                        android:orientation="vertical">
-
-                        <com.app.tbd.utils.FontStyle.PlayTextView
-                            android:id="@+id/txtLangLanguage"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="false"
-                            android:hint="@string/register_select_language"
-                            android:padding="10dp"
-                            android:textColorHint="@color/grey" />
-                    </LinearLayout>
+                        android:hint="@string/register_general_loading"
+                        android:padding="10dp"
+                        android:textColorHint="@color/grey" />
                 </LinearLayout>
             </LinearLayout>
-            <com.app.tbd.utils.FontStyle.PlayButtonText
-                android:id="@+id/btn_nxt"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bottom_line_border"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:id="@+id/register_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/register_language"
+                        android:textColor="@color/dark_lvl6"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/right_bottom_line_border"
+                    android:orientation="vertical">
+
+                    <com.app.tbd.utils.FontStyle.PlayTextView
+                        android:id="@+id/txtLangLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:hint="@string/register_select_language"
+                        android:padding="10dp"
+                        android:textColorHint="@color/grey" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:background="@color/red"
-                android:text="@string/lang_next"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <com.app.tbd.utils.FontStyle.PlayButtonText
+                    android:id="@+id/btn_nxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/red"
+                    android:text="@string/lang_next"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

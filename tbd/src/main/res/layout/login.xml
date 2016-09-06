@@ -150,6 +150,7 @@
                             android:layout_marginTop="25dp"
                             android:gravity="center"
                             android:orientation="horizontal"
+                            android:visibility="gone"
                             android:weightSum="1">
 
                             <com.facebook.login.widget.LoginButton
@@ -169,11 +170,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
-                                android:textStyle="bold"
-                                android:textSize="16dp"
-                                android:textColor="@color/white"
                                 android:background="@drawable/facebook_custom_button"
-                                android:text="@string/login_fb_button" />
+                                android:text="@string/login_fb_button"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -182,7 +183,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="10dp">
+                            android:padding="10dp"
+                            android:visibility="gone">
 
                             <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/textView4"
@@ -195,6 +197,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
                             android:orientation="horizontal"
                             android:weightSum="1">
 

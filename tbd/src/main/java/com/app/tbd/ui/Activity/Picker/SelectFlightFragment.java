@@ -135,7 +135,7 @@ public class SelectFlightFragment extends DialogFragment {
 
     public void initControls() {
         originalCountries = SearchFlightFragment.initiatePageData(getActivity());
-
+        Log.e("Original",Integer.toString(originalCountries.size()));
         sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
         List<String> countryChar = new ArrayList<String>();
@@ -143,6 +143,7 @@ public class SelectFlightFragment extends DialogFragment {
             String country = originalCountries.get(i).getText();
             countryChar.add(Character.toString(country.charAt(0)));
         }
+
         filteredCountry = BaseFragment.getCharAt(countryChar);
         headerPosition = BaseFragment.headerPosition(countryChar);
 

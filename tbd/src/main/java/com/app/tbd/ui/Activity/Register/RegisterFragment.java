@@ -64,6 +64,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -172,8 +173,10 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
     @InjectView(R.id.txtRegisterNewsletterLanguage)
     TextView txtRegisterNewsletterLanguage;
 
-    ProgressDialog progress;
+    @InjectView(R.id.userParentInformationBlock)
+    LinearLayout userParentInformationBlock;
 
+    ProgressDialog progress;
     private Validator mValidator;
     private int fragmentContainerId;
     private static final String SCREEN_LABEL = "Register";
@@ -189,7 +192,7 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
     private String title = "Mr";
     private String gender = "1";
     private String dateOfBirth;
-
+    private int travellerAge;
 
     /*DropDown Variable*/
     private ArrayList<DropDownItem> titleList = new ArrayList<DropDownItem>();
@@ -531,7 +534,9 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
             registerRequest.setQuestionAns1(subscribeNewsletter);
             registerRequest.setQuestionAns2(txtRegisterNewsletterLanguage.getTag().toString());
             registerRequest.setNickName(txtRegisterNickName.getText().toString());
-
+           // if(parentInfo){
+           //
+           // }
             presenter.onRequestRegister(registerRequest);
         }
 
@@ -778,9 +783,37 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
             varDay = "0";
         }
 
+        //check age
+        travellerAge = getAge(year, month + 1, day);
+        if (travellerAge < 18) {
+            userParentInformationBlock.setVisibility(View.VISIBLE);
+        }else{
+            userParentInformationBlock.setVisibility(View.GONE);
+        }
+
         txtRegisterDOB.setText(day + "/" + (month + 1) + "/" + year);
         dateOfBirth = varDay + "" + day + "" + varMonth + "" + (month + 1) + "" + year;
 
+    }
+
+    public int getAge(int _year, int _month, int _day) {
+
+        GregorianCalendar cal = new GregorianCalendar();
+        int y, m, d, a;
+
+        y = cal.get(Calendar.YEAR);
+        m = cal.get(Calendar.MONTH);
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        cal.set(_year, _month, _day);
+        a = y - cal.get(Calendar.YEAR);
+        if ((m < cal.get(Calendar.MONTH))
+                || ((m == cal.get(Calendar.MONTH)) && (d < cal
+                .get(Calendar.DAY_OF_MONTH)))) {
+            --a;
+        }
+        if (a < 0)
+            throw new IllegalArgumentException("Age < 0");
+        return a;
     }
 
 }

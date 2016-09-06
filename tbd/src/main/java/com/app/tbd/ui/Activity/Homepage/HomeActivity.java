@@ -25,28 +25,6 @@ public class HomeActivity extends MainFragmentActivity implements FragmentContai
         setTitle(R.string.TBD_app_name);
     }
 
-   /* private void goToSearchFragment() {
-        fragmentManager.beginTransaction()
-                .add(R.id.main_activity_fragment_container, SearchFragment.newInstance())
-                .commit();
-    }*/
-
-    @Override
-    public void onBackPressed() {
-
-        //final FragmentManager manager = getSupportFragmentManager();
-        //HomeFragment fragment = (HomeFragment) manager.findFragmentByTag("Home");
-    }
-
-    /*@Override
-    public ProgressBar getProgressIndicator() {
-        return progressIndicator;
-    }
-
-    @Override
-    public Toolbar getToolbar() {
-        return toolbar;
-    }*/
     @Override
     public void onResume() {
         super.onResume();

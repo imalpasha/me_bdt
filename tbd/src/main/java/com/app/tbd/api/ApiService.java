@@ -11,6 +11,8 @@ import com.app.tbd.ui.Model.Receive.DeleteFFReceive;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
+import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
+import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Receive.ListBookingReceive;
 import com.app.tbd.ui.Model.Receive.LoginReceive;
 import com.app.tbd.ui.Model.Receive.LogoutReceive;
@@ -47,6 +49,7 @@ import com.app.tbd.ui.Model.Request.FriendFamilyDelete;
 import com.app.tbd.ui.Model.Request.GetChangeFlight;
 import com.app.tbd.ui.Model.Request.GetFlightAvailability;
 import com.app.tbd.ui.Model.Request.GetSSR;
+import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.LoginRequest;
 import com.app.tbd.ui.Model.Request.LogoutRequest;
 import com.app.tbd.ui.Model.Request.ManageContactInfo;
@@ -113,25 +116,11 @@ public interface ApiService {
     @POST("/Logout")
     void onRequestLogout(@Body LogoutRequest task, Callback<LogoutReceive> callback);
 
+    @POST("/Language/GetLanguage")
+    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @GET("/Language/GetCountry")
+    void onCountryRequest(Callback<LanguageCountryReceive> callback);
 
 
 

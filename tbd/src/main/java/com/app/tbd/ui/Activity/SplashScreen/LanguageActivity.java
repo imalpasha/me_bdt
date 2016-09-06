@@ -18,7 +18,7 @@ public class LanguageActivity extends MainFragmentActivity implements FragmentCo
         super.onCreate(savedInstanceState);
 
         ButterKnife.inject(this);
-        setTitle(getResources().getString(R.string.TBD_app_name));
+        //setTitle(getResources().getString(R.string.TBD_app_name));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.splash_content, LanguageFragment.newInstance()).commit();

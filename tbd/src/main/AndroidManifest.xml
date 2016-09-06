@@ -286,10 +286,7 @@
             android:name="com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -301,7 +298,13 @@
 
         <activity
             android:name=".ui.Activity.SplashScreen.LanguageActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/landingTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
 
         <activity

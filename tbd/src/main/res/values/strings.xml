@@ -32,8 +32,6 @@
      <string name="loginBtnSignUp">Sign Up</string>
      <string name="loginTxtFYP">Forgot your password?</string>
 
-
-
      <string name="promotionLabel">Promotions</string>
 
      <string name="contactUsDescription">VRSM provides merchants with unsurpassed store-front features and functionalities that deliver personalize mobile shopping experience.
@@ -847,7 +845,6 @@ select another date or station and try again.</string>
     <string name="lang_country">Country</string>
 
 
-
     <string name="update_success">Update Success</string>
     <string name="exit">EXIT FIREFLY</string>
     <string name="term_webview">http://fyapidev.me-tech.com.my/api/displayTerm</string>
@@ -907,7 +904,7 @@ select another date or station and try again.</string>
 
 
     <!-- TBD -->
-    <string name="TBD_app_name">TBD</string>
+    <string name="TBD_app_name">AABP</string>
 
     <!-- TBD LOGIN PAGE -->
     <string name="login_">Login</string>
@@ -926,7 +923,7 @@ select another date or station and try again.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="btn_continue">Continue ></string>
-    <string name="fill_emtpy_field">Please fill/fix error field.</string>
+    <string name="fill_emtpy_field">Something went wrong. Please correct any errors indicated</string>
 
 
     <!-- TBD Profile -->

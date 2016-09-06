@@ -59,15 +59,15 @@ public class HomePresenter {
         bus.unregister(this);
     }
 
-    public void initialLoad(InitialLoadRequest info) {
-        bus.post(new InitialLoadRequest(info));
-    }
-
     public void onRegisterNotification(PushNotificationObj info) {
         bus.post(new PushNotificationObj(info));
     }
 
 
+
+    public void initialLoad(InitialLoadRequest info) {
+        bus.post(new InitialLoadRequest(info));
+    }
 
     @Subscribe
     public void onSuccessSendDeviceInformation(InitialLoadReceive event) {

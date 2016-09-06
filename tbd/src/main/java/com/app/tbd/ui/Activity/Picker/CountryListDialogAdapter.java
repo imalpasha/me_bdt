@@ -111,7 +111,7 @@ public class CountryListDialogAdapter extends BaseAdapter {
             //countries.addAll(originalCountries);
             frag.initControls();
             Log.e("Init","True");
-            
+
            // frag.recreateAdapter(countries);
         } else {
 
@@ -121,10 +121,9 @@ public class CountryListDialogAdapter extends BaseAdapter {
                     Log.e(charText,pic.toString());
                 }
             }
-
+            frag.recreateAdapter(countries);
         }
         //frag.notifyAnotherAdapter();
-        frag.recreateAdapter(countries);
 
         // notifyDataSetChanged();
     }

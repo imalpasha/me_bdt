@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.androidquery.AQuery;
 import com.app.tbd.ui.Activity.BookingFlight.SearchFlightActivity;
 import com.app.tbd.ui.Activity.HolidayShaker.HolidayShakerActivity;
+import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
 import com.app.tbd.ui.Activity.Profile.ProfileActivity;
 import com.app.tbd.utils.SharedPrefManager;
@@ -43,6 +44,17 @@ public class TabButtomFragment extends Fragment {
         View layout = inflater.inflate(R.layout.layout_tab_container, null);
         aq.recycle(layout);
 
+        aq.id(R.id.tabMyHome2).clicked(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent homepage = new Intent(getActivity(), HomeActivity.class);
+                homepage.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(homepage);
+                getActivity().finish();
+
+            }
+        });
 
         aq.id(R.id.tabMyProfile).clicked(new OnClickListener() {
             @Override

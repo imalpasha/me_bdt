@@ -78,7 +78,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
 
     public void sendDeviceInformationToServer(InitialLoadRequest info) {
 
-        initiateDefaultLoading(progress, getActivity());
+        //initiateDefaultLoading(progress, getActivity());
 
         if (MainController.connectionAvailable(getActivity())) {
             presenter.initialLoad(info);
@@ -107,7 +107,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
     @Override
     public void loadingSuccess(InitialLoadReceive obj) {
 
-        dismissDefaultLoading(progress, getActivity());
+        //dismissDefaultLoading(progress, getActivity());
 
         Boolean status = MainController.getRequestStatus(obj.getObj().getStatus(), obj.getObj().getMessage(), getActivity());
         if (status) {
@@ -181,7 +181,7 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
             getActivity().finish();
         } else {
             Intent language = new Intent(getActivity(), LanguageActivity.class);
-            getActivity().startActivity(language);
+            startActivity(language);
             getActivity().finish();
         }
     }
