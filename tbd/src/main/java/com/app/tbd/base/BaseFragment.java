@@ -34,9 +34,6 @@ import com.app.tbd.R;
 import com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity;
 //import com.fly.firefly.ui.adapter.CheckInPassengerListAdapter;
 import com.app.tbd.ui.Activity.SplashScreen.TokenActivity;
-import com.app.tbd.ui.Adapter.CheckInAdapter;
-import com.app.tbd.ui.Activity.BoardingPass.BoardingPassFragment;
-import com.app.tbd.ui.Activity.MobileCheckIn.MobileCheckInFragment1;
 import com.app.tbd.ui.Model.Request.Country;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.DropMenuAdapter;
@@ -326,7 +323,7 @@ public class BaseFragment extends Fragment {
     }
 
 
-    public static void staticPopup(final ArrayList<DropDownItem> array, Activity act, final TextView txt, final Boolean tagStatus, final LinearLayout txt2, final String indicate, final CheckInAdapter adapt) {
+    public static void staticPopup(final ArrayList<DropDownItem> array, Activity act, final TextView txt, final Boolean tagStatus, final LinearLayout txt2, final String indicate) {
 
         final ArrayList<DropDownItem> a = array;
         DropMenuAdapter dropState = new DropMenuAdapter(act);
@@ -343,10 +340,10 @@ public class BaseFragment extends Fragment {
                 txt.setText(selected);
                 if (selectedCode.equals(indicate)) {
                     txt2.setVisibility(View.VISIBLE);
-                    adapt.returnNotifyDataChanged(selectedCode);
+                    //adapt.returnNotifyDataChanged(selectedCode);
                 } else {
                     txt2.setVisibility(View.GONE);
-                    adapt.returnNotifyDataChanged(selectedCode);
+                    //adapt.returnNotifyDataChanged(selectedCode);
                 }
 
                 staticIndex = which;
@@ -917,9 +914,6 @@ public class BaseFragment extends Fragment {
                 }
 
                 if (a.get(which).getTag() == "FLIGHT") {
-                    //SelectFlightFrament.filterArrivalAirport(selectedCode);
-                    MobileCheckInFragment1.filterArrivalAirport(selectedCode);
-                    BoardingPassFragment.filterArrivalAirport(selectedCode);
                 }
 
                 indexForState = which;

@@ -19,7 +19,6 @@ import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
-import com.app.tbd.ui.Activity.ManageFlight.MF_ActionActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -113,12 +112,7 @@ public class PaymentWebViewFragment extends BaseFragment  {
                             System.gc();
                             getActivity().finish();
                         }else {
-                            Intent intent = new Intent(getActivity(), MF_ActionActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("AlertDialog", "Y");
-                            getActivity().startActivity(intent);
-                            System.gc();
-                            getActivity().finish();
+
                         }
                         status = true;
                         //}
@@ -198,12 +192,7 @@ public class PaymentWebViewFragment extends BaseFragment  {
                             System.gc();
                             getActivity().finish();
                         }else {
-                            Intent intent = new Intent(getActivity(), MF_ActionActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("AlertDialog", "Y");
-                            getActivity().startActivity(intent);
-                            System.gc();
-                            getActivity().finish();
+
 
                         }
                     }else{

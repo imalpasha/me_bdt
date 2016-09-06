@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.BookingFlight.FlightListFragment;
-import com.app.tbd.ui.Activity.ManageFlight.MF_SeatSelectionFragment;
+//import com.app.tbd.ui.Activity.ManageFlight.MF_SeatSelectionFragment;
 import com.app.tbd.ui.Model.Request.PasssengerInfoV2;
 
 import java.util.List;
@@ -30,12 +30,12 @@ public class PassengerSeatAdapterV3 extends BaseAdapter {
     private FlightListFragment fragment;
     private String flightWay;
     private Boolean active = false;
-    MF_SeatSelectionFragment frag;
+    //MF_SeatSelectionFragment frag;
 
-    public PassengerSeatAdapterV3(Context context, List<PasssengerInfoV2> passengers, MF_SeatSelectionFragment fragment) {
+    public PassengerSeatAdapterV3(Context context, List<PasssengerInfoV2> passengers/*, MF_SeatSelectionFragment fragment*/) {
         this.context = context;
         this.obj = passengers;
-        this.frag = fragment;
+        //this.frag = fragment;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class PassengerSeatAdapterV3 extends BaseAdapter {
                 if(obj.get(position).isSelected()){
 
                     if(obj.get(position).getSeat() != null){
-                        frag.clearSelectedOnFragmentV1(obj.get(position).getSeat());
+                        //frag.clearSelectedOnFragmentV1(obj.get(position).getSeat());
                         obj.get(position).setSeat(null);
                         notifyDataSetChanged();
                     }
@@ -186,12 +186,12 @@ public class PassengerSeatAdapterV3 extends BaseAdapter {
         }
 
         if(obj.get(passengerPosition).getCheckedIn().equals("N")){
-            frag.clearSeatTag1(passengerPosition);
+            //frag.clearSeatTag1(passengerPosition);
             obj.get(passengerPosition).setSelected(true);
             obj.get(passengerPosition).setActive(true);
         }else{
             try{
-                frag.clearSeatTag1(passengerPosition+1);
+                //frag.clearSeatTag1(passengerPosition+1);
                 obj.get(passengerPosition+1).setSelected(true);
                 obj.get(passengerPosition+1).setActive(true);
             }catch (Exception e){

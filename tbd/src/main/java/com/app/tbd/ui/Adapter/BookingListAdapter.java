@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.app.tbd.R;
 import com.app.tbd.ui.Model.Receive.ListBookingReceive;
-import com.app.tbd.ui.Activity.ManageFlight.MF_Fragment;
 
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class BookingListAdapter extends BaseAdapter {
     private String arrivalAirport;
     private String flightClass;
     private Integer selected_position = -1;
-    private MF_Fragment fragment;
     private String flightWay;
     private Boolean active = false;
     private String module;

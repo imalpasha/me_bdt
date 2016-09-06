@@ -217,6 +217,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                 txtLangCountry.setTag(selectedCountry.getCode());
                 countryCode = selectedCountry.getCode();
                 retrieveLanguage(selectedCountry.getCode());
+
             }
         }
     }
