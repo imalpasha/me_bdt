@@ -13,11 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.tbd.MainController;
 import com.app.tbd.application.MainApplication;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
+import com.app.tbd.ui.Activity.Options.OptionsActivity;
 import com.app.tbd.ui.Activity.Register.RegisterActivity;
 import com.app.tbd.ui.Model.Receive.LoginFacebookReceive;
 import com.app.tbd.ui.Model.Receive.LogoutReceive;
@@ -65,6 +67,10 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
     @InjectView(R.id.txtLogout)
     TextView txtLogout;
+
+
+    @InjectView(R.id.profile_options)
+    LinearLayout profile_options;
 
     // Validator Attributes
     private Validator mValidator;
@@ -119,6 +125,15 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
                 presenter.onRequestLogout(logoutRequest);
 
 
+            }
+        });
+
+        profile_options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent optionsPage = new Intent(getActivity(), OptionsActivity.class);
+                getActivity().startActivity(optionsPage);
+                getActivity().finish();
             }
         });
         return view;

@@ -251,7 +251,8 @@
                 android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="5dp"
-                android:paddingTop="15dp">
+                android:paddingTop="15dp"
+                android:id="@+id/profile_options">
 
                 <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtInstagram"

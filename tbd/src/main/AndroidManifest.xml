@@ -312,6 +312,10 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
+            android:name="com.app.tbd.ui.Activity.Options.OptionsActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
             android:name="com.app.tbd.ui.Activity.BookingFlight.Checkout.PaymentMSOSActivity"
             android:screenOrientation="portrait"></activity>
 
