@@ -1,7 +1,7 @@
 <resources>
 
     <string name="btn_nxt">NEXT</string>
-    <string name="hometext">HOMEPAGE</string>
+    <string name="hometext">Laman Utama</string>
 
     <!-- DropDown Value -->
     <string-array name="gender">
@@ -278,6 +278,14 @@
     I further acknowledge that in order to proceed with the membership application, registration and/or subscription and the provision of services, benefits and privileges related to the AirAsia BIG Loyalty Programme and the AirAsia membership, the sharing, transfer, retrieval, updating and processing of my personal information and data as well as creation of member profile and user accounts may occur between Think BIG Digital Sdn Bhd, AirAsia Berhad, Tune Money Sdn Bhd and each of their respective group companies, related corporations, affiliates, subsidiaries, associates (as further stated in Think BIG Digital Sdn Bhd’s and AirAsia Berhad’s Privacy Policies) and I confirm that I have read <a href="http://www.airasiabig.com/my/en/assets/pdf/privacypolicy.pdf" style="color: #FF0000;">Think BIG Digital Sdn Bhd’s Privacy Policy</a> and <a href="http://www.airasia.com/my/en/about-us/privacy-policy.page" style="color: #FF0000;">AirAsia Berhad’s Privacy Policy</a> and consent to the processing of my personal data for purposes of the same. I further agree that by browsing and using the website(s) and services and/or products contained herein, I agree to <a href="http://www.airasiabig.com/my/en/assets/pdf/term-of-use.pdf" style="color: #FF0000;">AirAsia Berhad’s Terms of Use</a> and <a href="http://www.airasiabig.com/my/en/assets/pdf/term-of-use.pdf" style="color: #FF0000;">Think BIG Digital Sdn Bhd’s Terms of Use</a>.
     ]]>
     </string>
+
+         <string name="register_parent_confirm">
+    <![CDATA[
+    In making this AirAsia BIG Loyalty membership and AirAsia membership, I hereby declare that (i) I, the applicant, am at least 18 years of age; (ii) I am the parent and/or guardian of the Minor; (iii) I am applying for the BIG Loyalty Membership and AirAsia Membership for and on behalf of the Minor (iv) I consent to the sharing and processing of the Minor’s personal data and information in accordance with <a href="http://www.airasiabig.com/my/en/assets/pdf/privacypolicy.pdf" style="color: #FF0000;">Think BIG Digital Sdn Bhd’s Privacy Policy</a> and <a href="http://www.airasia.com/my/en/about-us/privacy-policy.page" style="color: #FF0000;">AirAsia Berhad’s Privacy Policy</a>.
+
+    ]]>
+    </string>
+
 
     <!-- Forgot Password -->
     <string name="reset_password_success_send">Forgot password link send to your registered email.</string>

@@ -167,11 +167,17 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
     @InjectView(R.id.registerAcknowledgeMemberShipBtn)
     ImageView registerAcknowledgeMemberShipBtn;
 
+    @InjectView(R.id.registerConfirmParent)
+    ImageView registerConfirmParent;
+
     @InjectView(R.id.newsletterPreferredLanguage)
     LinearLayout newsletterPreferredLanguage;
 
     @InjectView(R.id.txtRegisterNewsletterLanguage)
     TextView txtRegisterNewsletterLanguage;
+
+    @InjectView(R.id.registerParentConfirmInformation)
+    TextView registerParentConfirmInformation;
 
     @InjectView(R.id.userParentInformationBlock)
     LinearLayout userParentInformationBlock;
@@ -189,6 +195,7 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
     private String subscribeNewsletter = "0";
     private boolean acknowledgeInfo = false;
     private boolean confirmInfo = false;
+    private boolean confirmParent = false;
     private String title = "Mr";
     private String gender = "1";
     private String dateOfBirth;
@@ -384,6 +391,26 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
             }
         });
 
+        //confirm parent
+        registerConfirmParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!confirmParent) {
+                    registerConfirmParent.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.checked));
+                    confirmParent = true;
+                } else {
+                    registerConfirmParent.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.un_checked));
+                    confirmParent = false;
+                }
+            }
+        });
+
+        //checkbox confirm information
+        String parentConfirmation = getResources().getString(R.string.register_parent_confirm);
+        String upToNCharacters0 = parentConfirmation.substring(0, Math.min(parentConfirmation.length(), 180));
+        registerParentConfirmInformation.setText(upToNCharacters0 + "..." + "more", CheckBox.BufferType.SPANNABLE);
+        String filterNo0 = upToNCharacters0 + "..." + "[more]";
+        filterMoreText(parentConfirmation, filterNo0, registerParentConfirmInformation);
 
         //checkbox confirm information
         String confirmInformation = getResources().getString(R.string.register_confirm_information);

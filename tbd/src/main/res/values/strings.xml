@@ -427,6 +427,13 @@
     ]]>
     </string>
 
+       <string name="register_parent_confirm">
+    <![CDATA[
+    In making this AirAsia BIG Loyalty membership and AirAsia membership, I hereby declare that (i) I, the applicant, am at least 18 years of age; (ii) I am the parent and/or guardian of the Minor; (iii) I am applying for the BIG Loyalty Membership and AirAsia Membership for and on behalf of the Minor (iv) I consent to the sharing and processing of the Minor’s personal data and information in accordance with <a href="http://www.airasiabig.com/my/en/assets/pdf/privacypolicy.pdf" style="color: #FF0000;">Think BIG Digital Sdn Bhd’s Privacy Policy</a> and <a href="http://www.airasia.com/my/en/about-us/privacy-policy.page" style="color: #FF0000;">AirAsia Berhad’s Privacy Policy</a>.
+    ]]>
+    </string>
+
+
     <!-- Forgot Password -->
     <string name="reset_password_success_send">Forgot password link send to your registered email.</string>
 

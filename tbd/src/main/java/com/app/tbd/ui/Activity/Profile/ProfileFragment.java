@@ -115,7 +115,7 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
                 logoutRequest.setTicketId(ticketId);
                 logoutRequest.setUsername(userName);
 
-                initiateDefaultLoading(progress,getActivity());
+                initiateDefaultLoading(progress, getActivity());
                 presenter.onRequestLogout(logoutRequest);
 
 
@@ -129,15 +129,19 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     public void onLogoutReceive(LogoutReceive obj) {
 
         dismissDefaultLoading(progress, getActivity());
+        Intent profilePage = new Intent(getActivity(), LoginActivity.class);
+        getActivity().startActivity(profilePage);
+        getActivity().finish();
+        pref.setLoginStatus("N");
 
-        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        /*Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
 
             Intent profilePage = new Intent(getActivity(), LoginActivity.class);
             getActivity().startActivity(profilePage);
             getActivity().finish();
 
-        }
+        }*/
     }
 
 
