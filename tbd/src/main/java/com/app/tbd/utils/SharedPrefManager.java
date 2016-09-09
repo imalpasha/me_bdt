@@ -25,9 +25,25 @@ public class SharedPrefManager {
     public static final String PROMO_BANNER = "PM";
     public static final String DEFAULT_BANNER = "DB";
     public static final String USERNAME = "USERNAME";
+    public static final String STATECODE = "STATECODE";
 
     public static final String BOOKING_ID = "BOOKING_ID";
     // public static final String SELECTED = "SELECTED";
+
+    //Edit Profile
+    public static final String EDIT_DOB = "EDIT_DOB";
+    public static final String EDIT_STATE_NAME = "EDIT_STATE_NAME";
+    public static final String EDIT_SALUTATION = "EDIT_SALUTATION";
+    public static final String EDIT_GIVEN_NAME = "EDIT_GIVEN_NAME";
+    public static final String EDIT_NATIONALITY = "EDIT_NATIONALITY";
+    public static final String EDIT_FAMILY_NAME = "EDIT_FAMILY_NAME";
+    public static final String EDIT_MOBILE = "EDIT_MOBILE";
+    public static final String EDIT_PASSPORT = "EDIT_PASSPORT";
+    public static final String EDIT_STREET1 = "EDIT_STREET1";
+    public static final String EDIT_STREET2 = "EDIT_STREET2";
+    public static final String EDIT_CITY = "EDIT_CITY";
+    public static final String EDIT_POSTCODE = "EDIT_POSTCODE";
+    public static final String EDIT_COUNTRY = "EDIT_COUNTRY";
 
     public static final String SEAT = "SEAT";
     public static final String PAYMENT_DUMMY = "PAYMENT_DUMMY";
@@ -53,9 +69,6 @@ public class SharedPrefManager {
 
     public static final String FORCE_LOGOUT = "N";
 
-
-
-
     // TBD //
     public static final String FIRST_TIME_USER = "Y";
 
@@ -66,6 +79,7 @@ public class SharedPrefManager {
     Context _context;
     private SharedPreferences _sharedPrefs;
     private Editor _prefsEditor;
+
 
     public SharedPrefManager(Context context) {
         this._context = context;
@@ -227,6 +241,13 @@ public class SharedPrefManager {
         return init;
     }
 
+    /*Return State Code*/
+    public HashMap<String, String> getStateCode() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(STATECODE, _sharedPrefs.getString(STATECODE, null));
+        return init;
+    }
+
     /*Return UserInfo*/
     public HashMap<String, String> getUserInfo() {
         HashMap<String, String> init = new HashMap<String, String>();
@@ -306,6 +327,28 @@ public class SharedPrefManager {
     public HashMap<String, String> getTermInfo() {
         HashMap<String, String> init = new HashMap<String, String>();
         init.put(TERM_INFO, _sharedPrefs.getString(TERM_INFO, null));
+        return init;
+    }
+
+    public void setEditDOB(String dob) {
+        _prefsEditor.putString(EDIT_DOB, dob);
+        _prefsEditor.apply();
+    }
+
+    public void setEditStateName(String stateName) {
+        _prefsEditor.putString(EDIT_STATE_NAME, stateName);
+        _prefsEditor.apply();
+    }
+
+    public HashMap<String, String> getEditStateName() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(EDIT_STATE_NAME, _sharedPrefs.getString(EDIT_STATE_NAME, null));
+        return init;
+    }
+
+    public HashMap<String, String> getEditDOB() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(EDIT_DOB, _sharedPrefs.getString(EDIT_DOB, null));
         return init;
     }
 
@@ -450,6 +493,12 @@ public class SharedPrefManager {
         _prefsEditor.apply();
     }
 
+    /*Set Username Value*/
+    public void setStateCode(String url) {
+        _prefsEditor.putString(STATECODE, url);
+        _prefsEditor.apply();
+    }
+
     /*Set STATE value*/
     public void setState(String url) {
         _prefsEditor.putString(STATE, url);
@@ -530,7 +579,6 @@ public class SharedPrefManager {
         _prefsEditor.putString(COUNTRY, country);
         _prefsEditor.apply();
     }
-
 
     /*Set Userinfo Value*/
     public void setUserEmail(String url) {
@@ -636,6 +684,12 @@ public class SharedPrefManager {
     public void setUsername() {
         // Clearing Siganture
         _sharedPrefs.edit().remove(USERNAME).apply();
+    }
+
+    /*Clear State Code Value*/
+    public void setStateCode() {
+        // Clearing State Code
+        _sharedPrefs.edit().remove(STATECODE).apply();
     }
 
     public void setUserInfo() {

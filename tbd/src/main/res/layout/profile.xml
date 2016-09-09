@@ -159,7 +159,8 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="5dp"
                 android:paddingTop="15dp"
-                android:weightSum="1">
+                android:weightSum="1"
+                android:id="@+id/profile_myProfile">
 
                 <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/textView396"

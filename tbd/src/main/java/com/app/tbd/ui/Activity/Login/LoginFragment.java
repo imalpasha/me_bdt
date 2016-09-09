@@ -311,6 +311,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             pref.setLoginStatus("Y");
             pref.setUsername(obj.getUserName());
             pref.setTicketId(obj.getTicketId());
+            pref.setUserPassword(txtLoginPassword.getText().toString());
             Gson gsonUserInfo = new Gson();
             String userInfo = gsonUserInfo.toJson(obj);
             RealmObjectController.saveUserInformation(getActivity(), userInfo);
@@ -391,7 +392,6 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             if (view instanceof EditText) {
                 ((EditText) view).setError(splitErrorMsg[0]);
             }
-
         }
     }
 

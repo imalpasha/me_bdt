@@ -7,11 +7,13 @@ import android.util.Log;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
+import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.LogoutRequest;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.NewsletterLanguageRequest;
+import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.ui.Model.Receive.AboutUsReceive;
@@ -1320,7 +1322,26 @@ public class ApiRequestHandler {
         });
     }
 
+    @Subscribe
+    public void onViewUserRequest(final ViewUserRequest event) {
 
+        apiService.onViewUserRequest(event, new Callback<ViewUserReceive>() {
 
+            @Override
+            public void success(ViewUserReceive retroResponse, Response response) {
 
+                if (retroResponse != null) {
+                    bus.post(new ViewUserReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
 }

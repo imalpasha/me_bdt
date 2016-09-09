@@ -3,9 +3,6 @@ package com.app.tbd.ui.Model.Receive;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Dell on 9/2/2016.
- */
 public class NewsletterLanguageReceive {
 
     private String Status;

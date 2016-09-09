@@ -1,7 +1,5 @@
 package com.app.tbd.ui.Presenter;
 
-import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
-import com.app.tbd.ui.Model.Receive.LoginFacebookReceive;
 import com.app.tbd.ui.Model.Receive.LogoutReceive;
 import com.app.tbd.ui.Model.Request.LogoutRequest;
 import com.squareup.otto.Bus;

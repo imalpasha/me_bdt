@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.app.tbd.MainController;
 import com.app.tbd.application.MainApplication;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
+import com.app.tbd.ui.Activity.MyProfile.MyProfileActivity;
 import com.app.tbd.ui.Activity.Options.OptionsActivity;
 import com.app.tbd.ui.Activity.Register.RegisterActivity;
 import com.app.tbd.ui.Model.Receive.LoginFacebookReceive;
@@ -72,6 +73,9 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     @InjectView(R.id.profile_options)
     LinearLayout profile_options;
 
+    @InjectView(R.id.profile_myProfile)
+    LinearLayout profile_myProfile;
+
     // Validator Attributes
     private Validator mValidator;
     private Tracker mTracker;
@@ -104,7 +108,6 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         ButterKnife.inject(this, view);
         dataSetup();
 
-
         //maskUserDP();
         txtLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +127,6 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
                 initiateDefaultLoading(progress,getActivity());
                 presenter.onRequestLogout(logoutRequest);
 
-
             }
         });
 
@@ -136,6 +138,16 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
                 getActivity().finish();
             }
         });
+
+        profile_myProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myProfilePage = new Intent(getActivity(), MyProfileActivity.class);
+                getActivity().startActivity(myProfilePage);
+                getActivity().finish();
+            }
+        });
+
         return view;
     }
 

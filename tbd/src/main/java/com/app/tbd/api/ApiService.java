@@ -123,11 +123,15 @@ public interface ApiService {
 
     @GET("/Language/GetCountry")
     void onCountryRequest(Callback<LanguageCountryReceive> callback);
+
     @POST("/GetUser")
     void onViewUserRequest(@Body ViewUserRequest obj, Callback<ViewUserReceive> callback);
 
     /*@POST("/Language/GetLanguage")
-    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);*/
+    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);
+
+    @POST("/UpdateUser")
+    void onUpdateUserRequest(@Body UpdateUserRequest obj, Callback<UpdateUserReceive> callback);*/
 
     @FormUrlEncoded
     @POST("/api.php")

@@ -776,7 +776,7 @@ public class RegisterFragment extends BaseFragment implements RegisterPresenter.
         String varMonth = "";
         String varDay = "";
 
-        if (month < 10) {
+        if (month < 9) {
             varMonth = "0";
         }
         if (day < 10) {

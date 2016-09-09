@@ -59,5 +59,3 @@ public class OptionsFragment extends BaseFragment{
         super.onPause();
     }
 }
-
-
