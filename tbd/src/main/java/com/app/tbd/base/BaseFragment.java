@@ -76,6 +76,8 @@ public class BaseFragment extends Fragment {
     private static SpotsDialog mProgressDialog;
     private static SweetAlertDialog pDialog;
     private static Dialog dialog;
+    private static ProgressDialog progressDialog;
+
     private static Boolean status;
     Boolean manualValidationStatus = true;
     private static int staticIndex = -1;
@@ -840,11 +842,14 @@ public class BaseFragment extends Fragment {
 
     public static void initiateLoading(Activity act) {
 
-        if (dialog != null) {
-            dialog.dismiss();
+        if (progressDialog != null) {
+            progressDialog.dismiss();
         }
 
-        dialog = new Dialog(act, R.style.DialogTheme);
+        progressDialog = new ProgressDialog(act);
+        progressDialog.show();
+
+        /*dialog = new Dialog(act, R.style.DialogTheme);
 
         LayoutInflater li = LayoutInflater.from(act);
         final View myView = li.inflate(R.layout.loading_screen, null);
@@ -860,15 +865,15 @@ public class BaseFragment extends Fragment {
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setAttributes(lp);
-        dialog.show();
+        dialog.show();*/
 
     }
 
     public static void dismissLoading() {
 
-        if (dialog != null) {
-            if (dialog.isShowing()) {
-                dialog.dismiss();
+        if (progressDialog != null) {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
                 Log.e("Dismiss", "Y");
             }
         }
@@ -1547,31 +1552,5 @@ public class BaseFragment extends Fragment {
 
 
     /* -- TBD --*/
-
-    public static void calendar(Activity act) {
-
-        if (dialog != null) {
-            dialog.dismiss();
-        }
-
-        dialog = new Dialog(act, R.style.DialogTheme);
-
-        LayoutInflater li = LayoutInflater.from(act);
-        final View myView = li.inflate(R.layout.loading_screen, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(act);
-        builder.setView(myView);
-
-        dialog.setContentView(myView);
-        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
-        dialog.setCancelable(false);
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
-
-    }
 
 }

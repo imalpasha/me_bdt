@@ -1,4 +1,4 @@
-package com.app.tbd.ui.Activity.Options;
+package com.app.tbd.ui.Activity.Profile.Option;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;

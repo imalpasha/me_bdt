@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+    </style>
+
 
     <!-- Latest Theme -->
     <style name="MyCustomTheme" parent="@android:style/Theme.Holo.Light">
@@ -14,7 +18,7 @@
     </style>
 
     <style name="landingTheme" parent="android:Theme.Holo.NoActionBar">
-        <item name="android:windowBackground">@color/default_theme_colour</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
 

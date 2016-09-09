@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,28 +19,21 @@ import android.widget.TextView;
 
 import com.app.tbd.MainController;
 import com.app.tbd.application.MainApplication;
-import com.app.tbd.ui.Activity.Homepage.HomeActivity;
-import com.app.tbd.ui.Activity.Options.OptionsActivity;
-import com.app.tbd.ui.Activity.Register.RegisterActivity;
-import com.app.tbd.ui.Model.Receive.LoginFacebookReceive;
-import com.app.tbd.ui.Model.Receive.LogoutReceive;
-import com.app.tbd.ui.Model.Request.LogoutRequest;
+import com.app.tbd.ui.Activity.Profile.Option.OptionsActivity;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
 import com.app.tbd.ui.Module.ProfileModule;
-import com.app.tbd.ui.Presenter.LoginPresenter;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
 import com.google.gson.Gson;
 import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
-import com.app.tbd.ui.Activity.Login.LoginActivity;
 import com.app.tbd.ui.Model.JSON.UserInfoJSON;
-import com.app.tbd.ui.Model.Receive.LoginReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.google.android.gms.analytics.Tracker;
 import com.app.tbd.utils.SharedPrefManager;
 import com.mobsandgeeks.saripaar.Validator;
-
-import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -65,12 +59,15 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     @InjectView(R.id.txtUserBigID)
     TextView txtUserBigID;
 
-    @InjectView(R.id.txtLogout)
-    TextView txtLogout;
-
 
     @InjectView(R.id.profile_options)
     LinearLayout profile_options;
+
+    @InjectView(R.id.txtBigPoint)
+    TextView txtBigPoint;
+
+    @InjectView(R.id.profileBigPointClickLayout)
+    LinearLayout profileBigPointClickLayout;
 
     // Validator Attributes
     private Validator mValidator;
@@ -105,59 +102,32 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         dataSetup();
 
 
-        //maskUserDP();
-        txtLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        maskUserDP();
 
-                pref.clearLoginStatus();
-                HashMap<String, String> initTicketId = pref.getTicketId();
-                String ticketId = initTicketId.get(SharedPrefManager.TICKET_ID);
-
-                HashMap<String, String> initUserName = pref.getUsername();
-                String userName = initUserName.get(SharedPrefManager.USERNAME);
-
-                LogoutRequest logoutRequest = new LogoutRequest();
-                logoutRequest.setTicketId(ticketId);
-                logoutRequest.setUsername(userName);
-
-                initiateDefaultLoading(progress, getActivity());
-                presenter.onRequestLogout(logoutRequest);
-
-
-            }
-        });
 
         profile_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent optionsPage = new Intent(getActivity(), OptionsActivity.class);
                 getActivity().startActivity(optionsPage);
-                getActivity().finish();
             }
         });
         return view;
     }
 
-
     @Override
-    public void onLogoutReceive(LogoutReceive obj) {
+    public void onBigPointReceive(BigPointReceive obj) {
 
-        dismissDefaultLoading(progress, getActivity());
-        Intent profilePage = new Intent(getActivity(), LoginActivity.class);
-        getActivity().startActivity(profilePage);
-        getActivity().finish();
-        pref.setLoginStatus("N");
-
-        /*Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
 
-            Intent profilePage = new Intent(getActivity(), LoginActivity.class);
-            getActivity().startActivity(profilePage);
-            getActivity().finish();
+            profileBigPointClickLayout.setClickable(true);
+            txtBigPoint.setText(obj.getPtsBal());
 
-        }*/
+        }
     }
+
+
 
 
     public void dataSetup() {
@@ -170,16 +140,30 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         final RealmResults<UserInfoJSON> result2 = realm.where(UserInfoJSON.class).findAll();
         final LoginReceive obj = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
 
-        txtUserName.setText(obj.getFirstName());
+        txtUserName.setText(obj.getFirstName() + " " + obj.getLastName());
         txtBigUsername.setText(obj.getFirstName() + " " + obj.getLastName());
         txtUserBigID.setText("BIG ID : " + obj.getCustomerNumber());
+
+        Log.e("Hash", obj.getHash());
+        Log.e("Customer Number", obj.getCustomerNumber());
+
+        loadBigPointData(obj);
+    }
+
+    public void loadBigPointData(LoginReceive obj) {
+
+        txtBigPoint.setText(getResources().getString(R.string.register_general_loading));
+        BigPointRequest bigPointRequest = new BigPointRequest();
+        bigPointRequest.setHash(obj.getHash());
+        bigPointRequest.setCustomerNumber(obj.getCustomerNumber());
+        presenter.onRequestBigPoint(bigPointRequest);
 
     }
 
     public void maskUserDP() {
 
         //mask dp profile
-        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.tbd_dp2);
+        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.no_profile_image);
         Bitmap mask = BitmapFactory.decodeResource(getResources(), R.drawable.dp_mask);
         Bitmap result = Bitmap.createBitmap(mask.getWidth(), mask.getHeight(), Bitmap.Config.ARGB_8888);
 
@@ -194,7 +178,7 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         paint.setXfermode(null);
         imgUserDP.setImageBitmap(result);
         imgUserDP.setScaleType(ImageView.ScaleType.CENTER);
-        //imgUserDP.setBackgroundResource(R.drawable.tbd_image_border);
+        //imgUserDP.setBackgroundResource(R.drawable.image_border);
 
     }
 

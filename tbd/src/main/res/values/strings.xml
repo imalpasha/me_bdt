@@ -191,7 +191,6 @@
     <string name="register_firstname">First Name / Given Name </string>
     <string name="register_lastname">Last Name / Family Name </string>
 
-    <string name="register_basic_information">LOGIN INFORMATION</string>
     <string name="register_personal_information">PERSONAL INFORMATION</string>
     <string name="register_contact_information">CONTACT INFORMATION</string>
     <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
@@ -338,6 +337,12 @@
     <string name="password">Password</string>
     <string name="btn_continue">Continue ></string>
     <string name="fill_emtpy_field">Something went wrong. Please correct any errors indicated</string>
+    <string name="success">Success!</string>
+
+    <!-- Reset Password -->
+    <string name="reset_old_password">Old Password</string>
+    <string name="reset_new_password">New Password</string>
+    <string name="reset_confirm_password">Confirm Password</string>
 
     <!-- TBD Profile -->
     <string name="tbd_my_profile">My Profile</string>
@@ -354,7 +359,7 @@
     <string name="options_reset_password">Reset Password</string>
     <string name="options_change_language">Change Language</string>
     <string name="options_logout">Logout</string>
-
+    <string name="option_reset_password">PASSWORD INFORMATION</string>
 
     <!--AAB View My Profile -->
     <string name="profile_salutation">Salutation</string>

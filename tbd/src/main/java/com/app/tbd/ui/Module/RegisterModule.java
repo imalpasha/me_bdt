@@ -2,6 +2,7 @@ package com.app.tbd.ui.Module;
 
 import com.app.tbd.AppModule;
 import com.app.tbd.ui.Activity.Register.RegisterFragment;
+import com.app.tbd.ui.Activity.Register.RegisterFragmentPending;
 import com.app.tbd.ui.Presenter.RegisterPresenter;
 import com.squareup.otto.Bus;
 
@@ -11,7 +12,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(
-        injects = RegisterFragment.class,
+        injects = RegisterFragmentPending.class,
         addsTo = AppModule.class,
         complete = false
 )

@@ -25,6 +25,11 @@ public class RegisterRequest {
     private String QuestionAns2;
     private String NickName;
 
+    private String ParentGuardianFullName;
+    private String ParentGuardianEmail;
+    private String ParentGuardianDocNumber;
+    private String ParentGuardian;
+
     /*Initiate Class*/
     public RegisterRequest() {
     }
@@ -49,6 +54,43 @@ public class RegisterRequest {
         QuestionAns1 = data.getQuestionAns1();
         QuestionAns2 = data.getQuestionAns2();
         NickName = data.getNickName();
+
+        ParentGuardian = data.getParentGuardian();
+        ParentGuardianDocNumber = data.getParentGuardianDocNumber();
+        ParentGuardianEmail = data.getParentGuardianEmail();
+        ParentGuardianFullName = data.getParentGuardianFullName();
+    }
+
+    public String getParentGuardianFullName() {
+        return ParentGuardianFullName;
+    }
+
+    public void setParentGuardianFullName(String parentGuardianFullName) {
+        ParentGuardianFullName = parentGuardianFullName;
+    }
+
+    public String getParentGuardianEmail() {
+        return ParentGuardianEmail;
+    }
+
+    public void setParentGuardianEmail(String parentGuardianEmail) {
+        ParentGuardianEmail = parentGuardianEmail;
+    }
+
+    public String getParentGuardianDocNumber() {
+        return ParentGuardianDocNumber;
+    }
+
+    public void setParentGuardianDocNumber(String parentGuardianDocNumber) {
+        ParentGuardianDocNumber = parentGuardianDocNumber;
+    }
+
+    public String getParentGuardian() {
+        return ParentGuardian;
+    }
+
+    public void setParentGuardian(String parentGuardian) {
+        ParentGuardian = parentGuardian;
     }
 
     public String getNickName() {

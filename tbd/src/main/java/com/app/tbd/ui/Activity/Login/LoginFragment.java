@@ -13,15 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.tbd.ui.Model.JSON.UserFacebookInfo;
-import com.app.tbd.ui.Model.Receive.LoginFacebookReceive;
-import com.app.tbd.ui.Model.Request.LoginFacebookRequest;
+import com.app.tbd.ui.Model.Receive.TBD.LoginFacebookReceive;
+import com.app.tbd.ui.Model.Request.TBD.LoginFacebookRequest;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -34,13 +32,13 @@ import com.app.tbd.ui.Activity.ForgotPassword.ForgotPasswordActivity;
 import com.app.tbd.ui.Activity.Profile.ProfileActivity;
 import com.app.tbd.ui.Activity.Register.RegisterActivity;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
-import com.app.tbd.ui.Model.Receive.LoginReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Module.LoginModule;
 import com.app.tbd.ui.Model.Request.CachedResult;
-import com.app.tbd.ui.Model.Request.LoginRequest;
+import com.app.tbd.ui.Model.Request.TBD.LoginRequest;
 import com.app.tbd.ui.Presenter.LoginPresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.SharedPrefManager;
@@ -51,12 +49,9 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Order;
-import com.facebook.FacebookSdk;
 
 import org.json.JSONObject;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -273,7 +268,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     public void loginFromFragment(String username, String password) {
         /*Start Loading*/
         //initiateLoading(getActivity());
-        initiateDefaultLoading(progress, getActivity());
+        initiateLoading(getActivity());
 
         LoginRequest loginData = new LoginRequest();
         loginData.setUsername(username);
@@ -302,7 +297,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     @Override
     public void onLoginSuccess(LoginReceive obj) {
 
-        dismissDefaultLoading(progress, getActivity());
+        dismissLoading();
 
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
@@ -311,12 +306,13 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             pref.setLoginStatus("Y");
             pref.setUsername(obj.getUserName());
             pref.setTicketId(obj.getTicketId());
+
             Gson gsonUserInfo = new Gson();
             String userInfo = gsonUserInfo.toJson(obj);
             RealmObjectController.saveUserInformation(getActivity(), userInfo);
 
             //success login -> homepage*/
-            profile();
+            homepage();
         }
     }
 

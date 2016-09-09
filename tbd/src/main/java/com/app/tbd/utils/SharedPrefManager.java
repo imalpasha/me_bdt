@@ -60,7 +60,7 @@ public class SharedPrefManager {
     public static final String FIRST_TIME_USER = "Y";
 
     public static final String TICKET_ID = "TI";
-
+    public static final String LANGUAGE_COUNTRY = "LC";
 
     int PRIVATE_MODE = 0;
     Context _context;
@@ -71,6 +71,12 @@ public class SharedPrefManager {
         this._context = context;
         _sharedPrefs = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         _prefsEditor = _sharedPrefs.edit();
+    }
+
+    public HashMap<String, String> getLanguageCountry() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(LANGUAGE_COUNTRY, _sharedPrefs.getString(LANGUAGE_COUNTRY, null));
+        return init;
     }
 
     public HashMap<String, String> getFirstTimeUser() {
@@ -307,6 +313,13 @@ public class SharedPrefManager {
         HashMap<String, String> init = new HashMap<String, String>();
         init.put(TERM_INFO, _sharedPrefs.getString(TERM_INFO, null));
         return init;
+    }
+
+
+    /*ForceLogout*/
+    public void setLanguageCountry(String languageCountry) {
+        _prefsEditor.putString(LANGUAGE_COUNTRY, languageCountry);
+        _prefsEditor.apply();
     }
 
     /*ForceLogout*/

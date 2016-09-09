@@ -25,10 +25,11 @@ public class RegisterActivity extends MainFragmentActivity implements FragmentCo
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
+
         Bundle bundle = getIntent().getExtras();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, RegisterFragment.newInstance(bundle), "xx").commit();
+        fragmentManager.beginTransaction().replace(R.id.main_content, RegisterFragmentPending.newInstance(bundle), "xx").commit();
 
         setBackButton();
         setTitle(getResources().getString(R.string.register_title));

@@ -3,10 +3,10 @@ package com.app.tbd.ui.Presenter;
 import android.util.Log;
 
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
-import com.app.tbd.ui.Model.Receive.LoginFacebookReceive;
-import com.app.tbd.ui.Model.Receive.LoginReceive;
-import com.app.tbd.ui.Model.Request.LoginFacebookRequest;
-import com.app.tbd.ui.Model.Request.LoginRequest;
+import com.app.tbd.ui.Model.Receive.TBD.LoginFacebookReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
+import com.app.tbd.ui.Model.Request.TBD.LoginFacebookRequest;
+import com.app.tbd.ui.Model.Request.TBD.LoginRequest;
 import com.app.tbd.ui.Model.Request.PasswordRequest;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;

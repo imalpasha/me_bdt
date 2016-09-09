@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     android:scrollbars="none"
-    android:orientation="vertical">
+    android:fillViewport="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,10 +73,10 @@
                             android:layout_height="100dp"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="10dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/tbd_dp2" />
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/no_profile_image" />
                     </LinearLayout>
-<!--android:background="@drawable/tbd_image_border"-->
+                    <!--android:background="@drawable/tbd_image_border"-->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -149,11 +150,11 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/homepage_white_with_gradient"
+                android:clickable="true"
                 android:orientation="horizontal"
                 android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
@@ -196,11 +197,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:clickable="true"
+                android:id="@+id/profileBigPointClickLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/homepage_white_with_gradient"
+                android:clickable="false"
                 android:orientation="horizontal"
                 android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
@@ -216,12 +218,11 @@
                     android:textSize="16dp" />
 
                 <com.app.tbd.utils.FontStyle.PlayTextView
-                    android:id="@+id/textView404"
+                    android:id="@+id/txtBigPoint"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:gravity="right"
-                    android:text="8,950 pts"
                     android:textColor="@color/dark_lvl2"
                     android:textSize="16dp" />
 
@@ -242,17 +243,17 @@
             </LinearLayout>
 
             <LinearLayout
-                android:clickable="true"
+                android:id="@+id/profile_options"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/homepage_white_with_gradient"
+                android:clickable="true"
                 android:orientation="horizontal"
                 android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="5dp"
-                android:paddingTop="15dp"
-                android:id="@+id/profile_options">
+                android:paddingTop="15dp">
 
                 <com.app.tbd.utils.FontStyle.PlayTextView
                     android:id="@+id/txtInstagram"

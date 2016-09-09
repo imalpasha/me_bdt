@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.tbd.MainController;
@@ -23,6 +24,7 @@ import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.application.MainApplication;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
+import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageCountryFragment;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageFragment;
 import com.app.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
@@ -46,6 +48,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.squareup.otto.Bus;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -68,11 +71,13 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     TextView txtLangLanguage;
 
     @InjectView(R.id.selectionLayout)
-    LinearLayout selectionLayout;
+    RelativeLayout selectionLayout;
 
     @InjectView(R.id.btn_nxt)
     Button btn_nxt;
 
+    @InjectView(R.id.chooseLayout)
+    LinearLayout chooseLayout;
 
     @InjectView(R.id.imageLayout)
     LinearLayout imageLayout;
@@ -85,7 +90,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     private ArrayList<DropDownItem> country = new ArrayList<DropDownItem>();
     private String CURRENT_PICKER;
     private SharedPrefManager pref;
-    private String languageCode,countryCode;
+    private String languageCode, countryCode;
 
     public static LanguageFragment newInstance() {
 
@@ -119,15 +124,22 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         //Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.abc_popup_enter);
         //selectionLayout.setAnimation(animation);
 
-        //Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.center_top);
-        //imageLayout.setAnimation(animation);
-
         //load country
-        LanguageCountryRequest languageCountryRequest = new LanguageCountryRequest();
-        presenter.onCountryRequest(languageCountryRequest);
-        txtLangCountry.setClickable(false);
 
-        loadLocale();
+        HashMap<String, String> initAppData = pref.getFirstTimeUser();
+        String firstTime = initAppData.get(SharedPrefManager.FIRST_TIME_USER);
+
+        if (firstTime != null && firstTime.equals("N")) {
+            Intent language = new Intent(getActivity(), HomeActivity.class);
+            startActivity(language);
+            getActivity().finish();
+        } else {
+            LanguageCountryRequest languageCountryRequest = new LanguageCountryRequest();
+            presenter.onCountryRequest(languageCountryRequest);
+            txtLangCountry.setClickable(false);
+
+            loadLocale();
+        }
 
         btn_nxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,10 +184,12 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     @Override
     public void loadingSuccess(InitialLoadReceive obj) {
 
-        dismissDefaultLoading(progress, getActivity());
+        dismissLoading();
 
         Boolean status = MainController.getRequestStatus(obj.getObj().getStatus(), obj.getObj().getMessage(), getActivity());
         if (status) {
+
+            pref.setFirstTimeUser("Y");
 
             Gson gson = new Gson();
 
@@ -222,7 +236,6 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         }
     }
 
-
     /*Country selector - > need to move to main activity*/
     public void showCountrySelector(Activity act, ArrayList constParam, String data) {
         if (act != null) {
@@ -244,14 +257,12 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         }
     }
 
-
     public void loadLocale() {
         String langPref = "Language";
         SharedPreferences prefs = getActivity().getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
         String language = prefs.getString(langPref, "");
         changeLang(language);
     }
-
 
     public void saveLocale(String lang) {
         String langPref = "Language";
@@ -274,9 +285,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     }
 
     private void updateTexts() {
-
         btn_nxt.setText(R.string.btn_nxt);
-        //register_language.setText(R.string.register_language);
     }
 
     @Override
@@ -343,6 +352,10 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     @Override
     public void onSuccessRequestLanguageCountry(LanguageCountryReceive obj) {
 
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.center_top);
+        animation.setFillAfter(true);
+        imageLayout.setAnimation(animation);
+
         country = new ArrayList<DropDownItem>();
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
@@ -350,10 +363,15 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    selectionLayout.setVisibility(View.VISIBLE);
-                }
-            }, 2000);
 
+                    //Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.fadein_right);
+                    //animation.setFillAfter(true);
+                    //selectionLayout.setAnimation(animation);
+                    selectionLayout.setVisibility(View.VISIBLE);
+                    chooseLayout.animate().alpha(1.0f);
+                    imageLayout.setVisibility(View.GONE);
+                }
+            }, 3000);
 
             txtLangCountry.setClickable(true);
             txtLangCountry.setHint(getResources().getString(R.string.register_select_country));
@@ -374,13 +392,15 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
 
     @Override
     public void onValidationSucceeded() {
-        initiateDefaultLoading(progress, getActivity());
+        initiateLoading(getActivity());
         //retrieve back all data with selected language
 
         InitialLoadRequest infoData = new InitialLoadRequest();
         infoData = new InitialLoadRequest();
-        infoData.setLanguageCode(languageCode+"-"+countryCode);
+        infoData.setLanguageCode(languageCode + "-" + countryCode);
         presenter.initialLoad(infoData);
+
+        pref.setLanguageCountry(languageCode + "-" + countryCode);
     }
 
     @Override

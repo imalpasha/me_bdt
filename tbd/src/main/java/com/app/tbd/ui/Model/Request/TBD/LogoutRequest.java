@@ -1,4 +1,4 @@
-package com.app.tbd.ui.Model.Request;
+package com.app.tbd.ui.Model.Request.TBD;
 
 /**
  * Created by Dell on 11/4/2015.

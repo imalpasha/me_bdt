@@ -568,7 +568,7 @@
                             android:textColor="@color/white" />
 
                         <com.app.tbd.utils.FontStyle.PlayButtonText
-                            android:id="@+id/registeruardingTitle"
+                            android:id="@+id/registerGuardianTitle"
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="0dp"
                             android:layout_height="35dp"
@@ -612,7 +612,7 @@
                         android:orientation="vertical">
 
                         <com.app.tbd.utils.FontStyle.PlayEditText
-                            android:id="@+id/txtRegisterGivenName"
+                            android:id="@+id/txtRegisterParentFullName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
@@ -654,7 +654,7 @@
                         android:orientation="vertical">
 
                         <com.app.tbd.utils.FontStyle.PlayEditText
-                            android:id="@+id/txtRegisterFamilyName"
+                            android:id="@+id/txtRegisterParentID"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
@@ -696,7 +696,7 @@
                         android:orientation="vertical">
 
                         <com.app.tbd.utils.FontStyle.PlayEditText
-                            android:id="@+id/txtRegisterNickName"
+                            android:id="@+id/txtRegisterParentEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"

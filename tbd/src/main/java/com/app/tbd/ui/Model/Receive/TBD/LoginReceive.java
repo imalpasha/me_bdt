@@ -1,4 +1,4 @@
-package com.app.tbd.ui.Model.Receive;
+package com.app.tbd.ui.Model.Receive.TBD;
 
 /*
  * Created by ImalPasha on 11/6/2015.

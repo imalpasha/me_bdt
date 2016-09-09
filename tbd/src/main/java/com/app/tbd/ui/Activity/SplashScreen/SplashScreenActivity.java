@@ -1,5 +1,6 @@
 package com.app.tbd.ui.Activity.SplashScreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
@@ -22,17 +23,17 @@ public class SplashScreenActivity extends MainFragmentActivity implements Fragme
 
         ButterKnife.inject(this);
 
-        //hideMenuButton();
-        //hideTitle();
-        //lockDrawer();
-
         hideTabButton();
         BaseFragment.removeLogoHeader(this);
 
+        Intent intent = new Intent(this, LanguageActivity.class);
+        startActivity(intent);
+        finish();
+
        // Bundle bundle = getIntent().getExtras();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.splash_content, SplashScreenFragment.newInstance()).commit();
+        //FragmentManager fragmentManager = getSupportFragmentManager();
+        //fragmentManager.beginTransaction().replace(R.id.splash_content, SplashScreenFragment.newInstance()).commit();
 
     }
 

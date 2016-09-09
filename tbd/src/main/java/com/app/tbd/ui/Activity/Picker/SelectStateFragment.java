@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.Register.RegisterFragment;
+import com.app.tbd.ui.Activity.Register.RegisterFragmentPending;
 import com.app.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
@@ -127,7 +128,7 @@ public class SelectStateFragment extends DialogFragment {
     }
 
     public void initControls() {
-        originalCountries = RegisterFragment.getStaticState();
+        originalCountries = RegisterFragmentPending.getStaticState();
 
         adapter = new SelectStateAdapter(getActivity().getApplicationContext(), SelectStateFragment.this, countries, originalCountries);
         for (int i = 0; i < headerPosition.length; i++) {
@@ -157,7 +158,7 @@ public class SelectStateFragment extends DialogFragment {
         filteredCountry = BaseFragment.getCharAt(countryChar);
         headerPosition = BaseFragment.headerPosition(countryChar);
 
-        originalCountries = RegisterFragment.getStaticState();
+        originalCountries = RegisterFragmentPending.getStaticState();
 
         adapter = new SelectStateAdapter(getActivity().getApplicationContext(), SelectStateFragment.this, countries2, originalCountries);
 

@@ -5,10 +5,14 @@ import android.content.Context;
 import android.util.Log;
 
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
-import com.app.tbd.ui.Model.Receive.LogoutReceive;
+import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
-import com.app.tbd.ui.Model.Request.LogoutRequest;
+import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
+import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
+import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.NewsletterLanguageRequest;
@@ -33,7 +37,7 @@ import com.app.tbd.ui.Model.Receive.PushNotificationReceive;
 import com.app.tbd.ui.Model.Receive.RetrieveBoardingPassReceive;
 import com.app.tbd.ui.Model.Receive.SSRReceive;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
-import com.app.tbd.ui.Model.Receive.LoginReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
 import com.app.tbd.ui.Model.Receive.MobileCheckinReceive;
 import com.app.tbd.ui.Model.Receive.PassengerInfoReveice;
 import com.app.tbd.ui.Model.Receive.PaymentInfoReceive;
@@ -60,7 +64,7 @@ import com.app.tbd.ui.Model.Request.GetChangeFlight;
 import com.app.tbd.ui.Model.Request.GetFlightAvailability;
 import com.app.tbd.ui.Model.Request.GetSSR;
 import com.app.tbd.ui.Model.Request.ItineraryObj;
-import com.app.tbd.ui.Model.Request.LoginRequest;
+import com.app.tbd.ui.Model.Request.TBD.LoginRequest;
 import com.app.tbd.ui.Model.Request.ManageContactInfo;
 import com.app.tbd.ui.Model.Request.ManageFlightObj;
 import com.app.tbd.ui.Model.Request.ManageFlightObjV2;
@@ -242,6 +246,102 @@ public class ApiRequestHandler {
 
         });
     }
+
+    @Subscribe
+    public void onLanguageRequest(final LanguageRequest event) {
+
+        apiService.onLanguageRequest(event, new Callback<LanguageReceive>() {
+
+            @Override
+            public void success(LanguageReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new LanguageReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+    @Subscribe
+    public void onCountryRequest(final LanguageCountryRequest event) {
+
+        apiService.onCountryRequest(new Callback<LanguageCountryReceive>() {
+
+            @Override
+            public void success(LanguageCountryReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new LanguageCountryReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+    @Subscribe
+    public void onBigPointRequest(final BigPointRequest event) {
+
+        apiService.onBigPointRequest(event,new Callback<BigPointReceive>() {
+
+            @Override
+            public void success(BigPointReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new BigPointReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+    @Subscribe
+    public void onResetPasswordRequest(final ResetPasswordRequest event) {
+
+        apiService.onResetPasswordRequest(event,new Callback<ResetPasswordReceive>() {
+
+            @Override
+            public void success(ResetPasswordReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new ResetPasswordReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+
+
+
 
 
 
@@ -1273,54 +1373,6 @@ public class ApiRequestHandler {
 
         });
     }
-
-    @Subscribe
-    public void onLanguageRequest(final LanguageRequest event) {
-
-        apiService.onLanguageRequest(event, new Callback<LanguageReceive>() {
-
-            @Override
-            public void success(LanguageReceive retroResponse, Response response) {
-
-                if (retroResponse != null) {
-                    bus.post(new LanguageReceive(retroResponse));
-                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                } else {
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-            }
-        });
-    }
-
-    @Subscribe
-    public void onCountryRequest(final LanguageCountryRequest event) {
-
-        apiService.onCountryRequest(new Callback<LanguageCountryReceive>() {
-
-            @Override
-            public void success(LanguageCountryReceive retroResponse, Response response) {
-
-                if (retroResponse != null) {
-                    bus.post(new LanguageCountryReceive(retroResponse));
-                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
-                } else {
-                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
-            }
-        });
-    }
-
-
 
 
 }

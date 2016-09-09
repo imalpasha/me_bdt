@@ -127,6 +127,13 @@
 
         <activity
             android:name="com.app.tbd.ui.Activity.Register.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+
+        <activity
+            android:name="com.app.tbd.ui.Activity.Profile.Option.ResetPasswordActivity"
             android:screenOrientation="portrait">
 
         </activity>
@@ -285,8 +292,11 @@
         <activity
             android:name="com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/landingTheme">
-
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -300,10 +310,7 @@
             android:name=".ui.Activity.SplashScreen.LanguageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
 
@@ -312,7 +319,7 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name="com.app.tbd.ui.Activity.Options.OptionsActivity"
+            android:name=".ui.Activity.Profile.Option.OptionsActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
@@ -349,7 +356,6 @@
             android:name="com.app.tbd.ui.Activity.SplashScreen.TokenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/landingTheme" />
-
 
         <activity
             android:name="com.app.tbd.ui.Activity.PasswordExpired.ChangePasswordActivity"

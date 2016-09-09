@@ -59,7 +59,7 @@ public class OnBoardingFragment extends BaseFragment {
         ButterKnife.inject(this, view);
         pref = new SharedPrefManager(getActivity());
 
-        pref.setFirstTimeUser("Y");
+        pref.setFirstTimeUser("N");
 
         onboardingCtn.setOnClickListener(new View.OnClickListener() {
             @Override

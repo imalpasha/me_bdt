@@ -14,8 +14,10 @@ import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Receive.ListBookingReceive;
-import com.app.tbd.ui.Model.Receive.LoginReceive;
-import com.app.tbd.ui.Model.Receive.LogoutReceive;
+import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.ManageChangeContactReceive;
 import com.app.tbd.ui.Model.Receive.ManageRequestIntinenary;
 import com.app.tbd.ui.Model.Receive.MobileCheckInPassengerReceive;
@@ -51,8 +53,10 @@ import com.app.tbd.ui.Model.Request.GetChangeFlight;
 import com.app.tbd.ui.Model.Request.GetFlightAvailability;
 import com.app.tbd.ui.Model.Request.GetSSR;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
-import com.app.tbd.ui.Model.Request.LoginRequest;
-import com.app.tbd.ui.Model.Request.LogoutRequest;
+import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
+import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
+import com.app.tbd.ui.Model.Request.TBD.LoginRequest;
+import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 import com.app.tbd.ui.Model.Request.ManageContactInfo;
 import com.app.tbd.ui.Model.Request.ManageFlightObj;
 import com.app.tbd.ui.Model.Request.ManageFlightObjV2;
@@ -123,15 +127,22 @@ public interface ApiService {
 
     @GET("/Language/GetCountry")
     void onCountryRequest(Callback<LanguageCountryReceive> callback);
+
     @POST("/GetUser")
     void onViewUserRequest(@Body ViewUserRequest obj, Callback<ViewUserReceive> callback);
+
+    @POST("/GetBalance")
+    void onBigPointRequest(@Body BigPointRequest obj, Callback<BigPointReceive> callback);
+
+    @POST("/UpdatePassword")
+    void onResetPasswordRequest(@Body ResetPasswordRequest obj, Callback<ResetPasswordReceive> callback);
 
     /*@POST("/Language/GetLanguage")
     void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);*/
 
     @FormUrlEncoded
     @POST("/api.php")
-    void onRegisterNotification(@Field("cmd")String cmd,@Field("user_id")String user_id,@Field("token")String token,@Field("name")String name,@Field("code")String code, Callback<PushNotificationReceive> callback);
+    void onRegisterNotification(@Field("cmd") String cmd, @Field("user_id") String user_id, @Field("token") String token, @Field("name") String name, @Field("code") String code, Callback<PushNotificationReceive> callback);
 
     @GET("/users/{user}")
     void getFeed2(@Path("user") String user, Callback<LoginRequest> callback);
@@ -178,13 +189,13 @@ public interface ApiService {
     void onConfirmPassengerCheckIn(@Body MobileConfirmCheckInPassenger obj, Callback<MobileConfirmCheckInPassengerReceive> callback);
 
     @POST("/flightSummary")
-    void onItineraryRequest( Callback<ItineraryInfoReceive> callback);
+    void onItineraryRequest(Callback<ItineraryInfoReceive> callback);
 
     @POST("/seatMap")
     void onSeatSelection(@Body SeatSelection obj, Callback<SeatSelectionReveice> callback);
 
     @POST("/terms")
-    //void onTermsRequest(@Body TermsRequest obj, Callback<TermsReceive> callback);
+        //void onTermsRequest(@Body TermsRequest obj, Callback<TermsReceive> callback);
     void onTermsRequest(Callback<TermsReceive> callback);
 
     @POST("/selectionPayment")
@@ -253,8 +264,6 @@ public interface ApiService {
 
     @POST("/removeCC")
     void onRequestDeleteCC(@Body DeleteCCRequest obj, Callback<DeleteCCReceive> callback);
-
-
 
 
     //@POST("/retrieveBooking")

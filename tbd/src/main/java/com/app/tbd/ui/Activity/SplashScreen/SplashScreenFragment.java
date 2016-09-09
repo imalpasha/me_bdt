@@ -61,20 +61,19 @@ public class SplashScreenFragment extends BaseFragment implements HomePresenter.
         ButterKnife.inject(this, view);
 
         pref = new SharedPrefManager(getActivity());
-        progress = new ProgressDialog(getActivity());
+        HashMap<String, String> initAppData = pref.getFirstTimeUser();
+        String firstTime = initAppData.get(SharedPrefManager.FIRST_TIME_USER);
 
-        info = new InitialLoadRequest();
-        info.setLanguageCode("en");
-        sendDeviceInformationToServer(info);
+        if (firstTime != null && firstTime.equals("N")) {
+
+        }else{
+
+        }
 
         return view;
     }
 
-    public static void splash(Context act, String regId) {
-        Intent home = new Intent(act, SplashScreenActivity.class);
-        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        act.startActivity(home);
-    }
+
 
     public void sendDeviceInformationToServer(InitialLoadRequest info) {
 

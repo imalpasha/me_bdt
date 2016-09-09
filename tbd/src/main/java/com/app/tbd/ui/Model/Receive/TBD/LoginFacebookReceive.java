@@ -1,4 +1,4 @@
-package com.app.tbd.ui.Model.Receive;
+package com.app.tbd.ui.Model.Receive.TBD;
 
 /**
  * Created by Dell on 9/2/2016.
