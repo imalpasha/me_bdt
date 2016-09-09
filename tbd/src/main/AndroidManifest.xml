@@ -323,6 +323,14 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
+            android:name="com.app.tbd.ui.Activity.EditProfile.EditProfileActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.app.tbd.ui.Activity.MyProfile.MyProfileActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
             android:name="com.app.tbd.ui.Activity.BookingFlight.Checkout.PaymentMSOSActivity"
             android:screenOrientation="portrait"></activity>
 

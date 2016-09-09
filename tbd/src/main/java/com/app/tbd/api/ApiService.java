@@ -138,7 +138,10 @@ public interface ApiService {
     void onResetPasswordRequest(@Body ResetPasswordRequest obj, Callback<ResetPasswordReceive> callback);
 
     /*@POST("/Language/GetLanguage")
-    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);*/
+    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);
+
+    @POST("/UpdateUser")
+    void onUpdateUserRequest(@Body UpdateUserRequest obj, Callback<UpdateUserReceive> callback);*/
 
     @FormUrlEncoded
     @POST("/api.php")

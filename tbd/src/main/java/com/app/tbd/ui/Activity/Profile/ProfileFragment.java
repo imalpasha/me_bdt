@@ -22,6 +22,7 @@ import com.app.tbd.application.MainApplication;
 import com.app.tbd.ui.Activity.Profile.Option.OptionsActivity;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
+import com.app.tbd.ui.Activity.MyProfile.MyProfileActivity;
 import com.app.tbd.ui.Module.ProfileModule;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
 import com.google.gson.Gson;
@@ -68,6 +69,8 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
     @InjectView(R.id.profileBigPointClickLayout)
     LinearLayout profileBigPointClickLayout;
+    @InjectView(R.id.profile_myProfile)
+    LinearLayout profile_myProfile;
 
     // Validator Attributes
     private Validator mValidator;
@@ -112,6 +115,16 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
                 getActivity().startActivity(optionsPage);
             }
         });
+
+        profile_myProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myProfilePage = new Intent(getActivity(), MyProfileActivity.class);
+                getActivity().startActivity(myProfilePage);
+                getActivity().finish();
+            }
+        });
+
         return view;
     }
 
@@ -126,8 +139,6 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
         }
     }
-
-
 
 
     public void dataSetup() {

@@ -1,11 +1,14 @@
 package com.app.tbd.ui.Presenter;
 
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+
 import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
 import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
+
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 

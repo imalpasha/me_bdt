@@ -1086,8 +1086,8 @@ public class BaseFragment extends Fragment {
         for (int i = 0; i < json.length(); i++) {
             JSONObject row = (JSONObject) json.opt(i);
 
-            if (countryCode.equals(row.optString("country_code"))) {
-                countryName = row.optString("country_name");
+            if (countryCode.equals(row.optString("CountryCode"))) {
+                countryName = row.optString("CountryName");
             }
         }
 
@@ -1287,8 +1287,8 @@ public class BaseFragment extends Fragment {
         for (int x = 0; x < jsonState.length(); x++) {
 
             JSONObject row = (JSONObject) jsonState.opt(x);
-            if (stateCode.equals(row.optString("state_code"))) {
-                stateName = row.optString("state_name");
+            if (stateCode.equals(row.optString("ProvinceStateCode"))) {
+                stateName = row.optString("ProvinceStateName");
             }
         }
 

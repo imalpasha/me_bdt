@@ -9,6 +9,7 @@ import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
+import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
@@ -16,6 +17,7 @@ import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.NewsletterLanguageRequest;
+import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.ui.Model.Receive.AboutUsReceive;
@@ -296,7 +298,7 @@ public class ApiRequestHandler {
     @Subscribe
     public void onBigPointRequest(final BigPointRequest event) {
 
-        apiService.onBigPointRequest(event,new Callback<BigPointReceive>() {
+        apiService.onBigPointRequest(event, new Callback<BigPointReceive>() {
 
             @Override
             public void success(BigPointReceive retroResponse, Response response) {
@@ -319,7 +321,7 @@ public class ApiRequestHandler {
     @Subscribe
     public void onResetPasswordRequest(final ResetPasswordRequest event) {
 
-        apiService.onResetPasswordRequest(event,new Callback<ResetPasswordReceive>() {
+        apiService.onResetPasswordRequest(event, new Callback<ResetPasswordReceive>() {
 
             @Override
             public void success(ResetPasswordReceive retroResponse, Response response) {
@@ -338,13 +340,6 @@ public class ApiRequestHandler {
             }
         });
     }
-
-
-
-
-
-
-
 
 
     @Subscribe
@@ -1375,4 +1370,72 @@ public class ApiRequestHandler {
     }
 
 
+    /*@Subscribe
+    public void onLanguageRequest(final LanguageRequest event) {
+
+        apiService.onLanguageRequest(event, new Callback<LanguageReceive>() {
+
+            @Override
+            public void success(LanguageReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new LanguageReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+    @Subscribe
+    public void onCountryRequest(final LanguageCountryRequest event) {
+
+        apiService.onCountryRequest(new Callback<LanguageCountryReceive>() {
+
+            @Override
+            public void success(LanguageCountryReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new LanguageCountryReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }*/
+
+    @Subscribe
+    public void onViewUserRequest(final ViewUserRequest event) {
+
+        apiService.onViewUserRequest(event, new Callback<ViewUserReceive>() {
+
+            @Override
+            public void success(ViewUserReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new ViewUserReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
 }

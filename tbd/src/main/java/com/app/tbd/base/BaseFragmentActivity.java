@@ -139,6 +139,13 @@ public class BaseFragmentActivity extends FragmentActivity {
         aq.id(R.id.btnAR).visible();
     }
 
+    /*public void setEditButton()
+    {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.btn).visible();
+    }*/
+
     public void setBackButton()
     {
         View actionBarView = getActionBar().getCustomView();

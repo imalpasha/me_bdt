@@ -95,7 +95,6 @@ public class LoginReceive {
         Hash = hash;
     }
 
-
     public LoginReceive getUserObj() {
         return userObj;
     }

@@ -346,7 +346,6 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
 
         }
 
-
     }
 
     @Override
@@ -364,14 +363,13 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                 @Override
                 public void run() {
 
-                    //Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.fadein_right);
-                    //animation.setFillAfter(true);
-                    //selectionLayout.setAnimation(animation);
                     selectionLayout.setVisibility(View.VISIBLE);
                     chooseLayout.animate().alpha(1.0f);
                     imageLayout.setVisibility(View.GONE);
+
                 }
             }, 3000);
+
 
             txtLangCountry.setClickable(true);
             txtLangCountry.setHint(getResources().getString(R.string.register_select_country));
@@ -384,9 +382,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                 itemDoc.setCode(obj.getCountryList().get(i).getCountryCode());
                 country.add(itemDoc);
             }
-
         }
-
     }
 
 
