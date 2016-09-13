@@ -14,10 +14,17 @@
         android:weightSum="1">
 
         <com.app.tbd.utils.FontStyle.PlayTextView
-            android:id="@+id/textHome"
+        android:id="@+id/textHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hometext"
+        android:textSize="28dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:id="@+id/txtVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hometext"
+            android:text="V0.2"
             android:textSize="28dp" />
     </LinearLayout>
 

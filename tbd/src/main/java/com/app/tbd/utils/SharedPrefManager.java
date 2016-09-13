@@ -336,9 +336,20 @@ public class SharedPrefManager {
         return init;
     }
 
+
     /*ForceLogout*/
     public void setLanguageCountry(String languageCountry) {
         _prefsEditor.putString(LANGUAGE_COUNTRY, languageCountry);
+        _prefsEditor.apply();
+    }
+
+    public void setEditDOB(String dob) {
+        _prefsEditor.putString(EDIT_DOB, dob);
+        _prefsEditor.apply();
+    }
+
+    public void setEditStateName(String stateName) {
+        _prefsEditor.putString(EDIT_STATE_NAME, stateName);
         _prefsEditor.apply();
     }
 
@@ -502,8 +513,8 @@ public class SharedPrefManager {
     }
 
     /*Set STATE value*/
-    public void setState(String url) {
-        _prefsEditor.putString(STATE, url);
+    public void setState(String state) {
+        _prefsEditor.putString(STATE, state);
         _prefsEditor.apply();
     }
 

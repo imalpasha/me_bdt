@@ -1,8 +1,7 @@
-package com.app.tbd.ui.Activity.MyProfile;
+package com.app.tbd.ui.Activity.Profile.UserProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +10,12 @@ import android.widget.TextView;
 
 import com.app.tbd.MainController;
 import com.app.tbd.R;
-import com.app.tbd.application.MainApplication;
 import com.app.tbd.base.BaseFragment;
-import com.app.tbd.ui.Activity.EditProfile.EditProfileActivity;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.StateRequest;
-import com.app.tbd.ui.Model.Request.ViewUserRequest;
-import com.app.tbd.ui.Module.MyProfileModule;
-import com.app.tbd.ui.Presenter.MyProfilePresenter;
+import com.app.tbd.ui.Presenter.ProfilePresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.SharedPrefManager;
 import com.google.gson.Gson;
@@ -31,15 +26,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class MyProfileFragment extends BaseFragment implements MyProfilePresenter.MyProfileView{
-
-    @Inject
-    MyProfilePresenter presenter;
+public class MyProfileFragment extends BaseFragment implements ProfilePresenter.MyProfileView {
 
     @InjectView(R.id.profile_salutation)
     TextView profile_salutation;
@@ -80,25 +70,34 @@ public class MyProfileFragment extends BaseFragment implements MyProfilePresente
     @InjectView(R.id.profile_country)
     TextView profile_country;
 
+    @InjectView(R.id.txtUserName)
+    TextView txtUserName;
+
+    @InjectView(R.id.txtUserBigID)
+    TextView txtUserBigID;
+
+
     @InjectView(R.id.edit_btn)
     Button edit_btn;
 
     private int fragmentContainerId;
     private SharedPrefManager pref;
-    String userInfo;
+    private String customerNumber;
+    private String userInfo;
+    private String stateCode;
+    String stateName;
 
-    public static MyProfileFragment newInstance() {
+    public static MyProfileFragment newInstance(Bundle bundle) {
 
         MyProfileFragment fragment = new MyProfileFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
+        fragment.setArguments(bundle);
         return fragment;
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainApplication.get(getActivity()).createScopedGraph(new MyProfileModule(this)).inject(this);
         RealmObjectController.clearCachedResult(getActivity());
     }
 
@@ -110,23 +109,13 @@ public class MyProfileFragment extends BaseFragment implements MyProfilePresente
         aq.recycle(view);
         pref = new SharedPrefManager(getActivity());
 
-        HashMap<String, String> initAuth = pref.getUsername();
-        final String username = initAuth.get(SharedPrefManager.USERNAME);
+        Bundle bundle = getArguments();
+        customerNumber = bundle.getString("BIG_ID");
+        String userInformation = bundle.getString("USER_INFORMATION");
 
-        HashMap<String, String> initPassword = pref.getUserPassword();
-        String password = initPassword.get(SharedPrefManager.PASSWORD);
-
-        HashMap<String, String> initTicketId = pref.getTicketId();
-        String ticketId = initTicketId.get(SharedPrefManager.TICKET_ID);
-
-        ViewUserRequest data = new ViewUserRequest();
-        data.setUserName(username);
-        data.setPassword(password);
-        data.setTicketId(ticketId);
-        Log.e("Username from pref", username);
-        Log.e("Password from pref", password);
-        Log.e("Ticket ID from pref", ticketId);
-        presenter.showFunction(data);
+        Gson gson = new Gson();
+        ViewUserReceive obj = gson.fromJson(userInformation, ViewUserReceive.class);
+        setShow(obj);
 
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +131,22 @@ public class MyProfileFragment extends BaseFragment implements MyProfilePresente
     }
 
     @Override
+    public void onSuccessRequestState(StateReceive obj) {
+
+        dismissLoading();
+
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
+
+            Gson gson = new Gson();
+            String stateList = gson.toJson(obj.getStateList());
+            pref.setState(stateList);
+            stateName = getStateName(getActivity(), stateCode);
+        }
+    }
+
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         fragmentContainerId = ((FragmentContainerActivity) getActivity()).getFragmentContainerId();
@@ -150,58 +155,31 @@ public class MyProfileFragment extends BaseFragment implements MyProfilePresente
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onResume();
+        //presenter.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        presenter.onPause();
+        //presenter.onPause();
     }
 
-    @Override
-    public void onViewUserSuccess(ViewUserReceive obj) {
-        dismissLoading();
-        Boolean status = MainController.getRequestStatus(obj.getStatus(), "", getActivity());
-        if (status){
-            Log.e("status", obj.getStatus());
-            setShow(obj);
-            userInfo = new Gson().toJson(obj);
-
-        }
-    }
-
-    @Override
-    public void onSuccessRequestState(StateReceive obj) {
-        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
-        if (status) {
-            HashMap<String, String> initStateCode = pref.getStateCode();
-            String stateCode = initStateCode.get(SharedPrefManager.STATECODE);
-
-            for (int x = 0; x < obj.getStateList().size(); x++) {
-                if (stateCode.equals(obj.getStateList().get(x).getProvinceStateCode())) {
-                    String z = obj.getStateList().get(x).getProvinceStateName();
-                    profile_state.setText(z);
-                    pref.setEditStateName(z);
-                }
-            }
-        }
-    }
 
     public void setShow(ViewUserReceive returnData) {
         String salutation = returnData.getTitle();
         String givenName = returnData.getFirstName();
         String familyName = returnData.getLastName();
         String dob = returnData.getDOB();
-        String nationality = returnData.getNationality();
+        String nationalityCode = returnData.getNationality();
         String mobile = returnData.getMobilePhone();
         String passport = returnData.getPID();
         String street1 = returnData.getAddressLine1();
         String street2 = returnData.getAddressLine2();
         String city = returnData.getCity();
         String postcode = returnData.getPostalCode();
-        pref.setStateCode(returnData.getProvinceStateCode());
-        String country = returnData.getCountryCode();
+        stateCode = returnData.getProvinceStateCode();
+
+        String countryCode = returnData.getCountryCode();
 
         String date = dob;
 
@@ -209,57 +187,52 @@ public class MyProfileFragment extends BaseFragment implements MyProfilePresente
         String month = date.substring(2, 4);
         String year = date.substring(4);
 
-        Log.e("Day", day);
-        Log.e("Month", month);
-        Log.e("year", year);
-
         String newDob = day + "-" + month + "-" + year;
 
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date startDate;
         try {
             startDate = df.parse(newDob);
-
             Date myDate = startDate;
-            System.out.println(myDate);
-            System.out.println(new SimpleDateFormat("dd-MM-yyyy").format(myDate));
-            System.out.println(new SimpleDateFormat("dd MMM yyyy").format(myDate));
-            System.out.println(myDate);
             String reportDate = (new SimpleDateFormat("dd MMM yyyy").format(myDate));
             profile_dob.setText(reportDate);
-            pref.setEditDOB(reportDate);
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        //State API request
-        StateRequest stateRequest = new StateRequest();
-        stateRequest.setLanguageCode("en-GB");
-        stateRequest.setCountryCode(country);
-
-        presenter.onStateRequest(stateRequest);
-
         //call from local
-        String c = getCountryName(getActivity(), country);
-        String n = getCountryName(getActivity(), nationality);
+        String country = getCountryName(getActivity(), countryCode);
+        String nationality = getCountryName(getActivity(), nationalityCode);
 
-        Log.e("CountryName", c);
-        Log.e("Nationality", n);
+        if (getStateName(getActivity(), stateCode) == null) {
+
+            HashMap<String, String> initAppData = pref.getLanguageCountry();
+            String langCountryCode = initAppData.get(SharedPrefManager.LANGUAGE_COUNTRY);
+
+            StateRequest stateRequest = new StateRequest();
+            stateRequest.setLanguageCode(langCountryCode);
+            stateRequest.setCountryCode(countryCode);
+            stateRequest.setPresenterName("ProfilePresenter");
+
+        } else {
+            stateName = getStateName(getActivity(), stateCode);
+        }
 
         profile_salutation.setText(salutation);
         profile_given_name.setText(givenName);
         profile_family_name.setText(familyName);
-        profile_nationality.setText(n);
+        profile_nationality.setText(nationality);
         profile_mobile.setText(mobile);
         profile_passport.setText(passport);
         profile_street1.setText(street1);
         profile_street2.setText(street2);
         profile_city.setText(city);
         profile_post_code.setText(postcode);
-        profile_country.setText(c);
+        profile_country.setText(country);
+        profile_state.setText(stateName);
 
-
+        txtUserName.setText(returnData.getFirstName() + " " + returnData.getLastName());
+        txtUserBigID.setText("BIG ID : " + customerNumber);
 
     }
 }

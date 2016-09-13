@@ -134,6 +134,9 @@ public class SelectFlightFragment extends DialogFragment {
     }
 
     public void initControls() {
+
+        lvCountries.setAdapter(null);
+
         originalCountries = SearchFlightFragment.initiatePageData(getActivity());
         Log.e("Original",Integer.toString(originalCountries.size()));
         sections = new ArrayList<SimpleSectionedListAdapter.Section>();

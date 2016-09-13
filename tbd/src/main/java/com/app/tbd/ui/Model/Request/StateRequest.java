@@ -7,6 +7,16 @@ public class StateRequest {
 
     private String LanguageCode;
     private String CountryCode;
+    private String presenterName;
+
+    public String getPresenterName() {
+        return presenterName;
+    }
+
+    public void setPresenterName(String presenterName) {
+        this.presenterName = presenterName;
+    }
+
 
     public StateRequest() {
     }
@@ -14,6 +24,7 @@ public class StateRequest {
     public StateRequest(StateRequest data) {
         LanguageCode = data.getLanguageCode();
         CountryCode = data.getCountryCode();
+        presenterName = data.getPresenterName();
     }
 
     public String getCountryCode() {

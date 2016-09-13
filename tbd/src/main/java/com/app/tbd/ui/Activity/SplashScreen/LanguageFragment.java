@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -31,9 +32,11 @@ import com.app.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
+import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
+import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Module.LanguageModule;
 import com.app.tbd.ui.Presenter.HomePresenter;
 import com.app.tbd.ui.Presenter.LanguagePresenter;
@@ -91,6 +94,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     private String CURRENT_PICKER;
     private SharedPrefManager pref;
     private String languageCode, countryCode;
+    private Boolean languageClickable = false;
 
     public static LanguageFragment newInstance() {
 
@@ -128,6 +132,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
 
         HashMap<String, String> initAppData = pref.getFirstTimeUser();
         String firstTime = initAppData.get(SharedPrefManager.FIRST_TIME_USER);
+        pref.setFirstTimeUser("N");
 
         if (firstTime != null && firstTime.equals("N")) {
             Intent language = new Intent(getActivity(), HomeActivity.class);
@@ -165,13 +170,15 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
             @Override
             public void onClick(View v) {
                 if (txtLangCountry.getText().toString() != "") {
-                    AnalyticsApplication.sendEvent("Click", "Select language");
-                    if (checkFragmentAdded()) {
-                        showCountrySelector(getActivity(), languageList, "LANGUAGE");
-                        CURRENT_PICKER = "LANGUAGE";
+                    if (languageClickable) {
+                        AnalyticsApplication.sendEvent("Click", "Select language");
+                        if (checkFragmentAdded()) {
+                            showCountrySelector(getActivity(), languageList, "LANGUAGE");
+                            CURRENT_PICKER = "LANGUAGE";
+                        }
+                    } else {
+                        Utils.toastNotification(getActivity(), "Loading language...");
                     }
-                } else if (txtLangLanguage.getHint().toString().equals("Loading...")) {
-                    Utils.toastNotification(getActivity(), "Loading language...");
                 } else {
                     Utils.toastNotification(getActivity(), "Please select country");
                 }
@@ -184,12 +191,10 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     @Override
     public void loadingSuccess(InitialLoadReceive obj) {
 
-        dismissLoading();
 
         Boolean status = MainController.getRequestStatus(obj.getObj().getStatus(), obj.getObj().getMessage(), getActivity());
         if (status) {
 
-            pref.setFirstTimeUser("Y");
 
             Gson gson = new Gson();
 
@@ -199,7 +204,13 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
             String country = gson.toJson(obj.getObj().getData_country());
             pref.setCountry(country);
 
-            home();
+            //load state - need to move later on
+            StateRequest stateRequest = new StateRequest();
+            stateRequest.setLanguageCode(languageCode + "-" + countryCode);
+            stateRequest.setCountryCode(countryCode);
+            stateRequest.setPresenterName("LanguagePresenter");
+            presenter.onStateRequest(stateRequest);
+
 
         }
 
@@ -332,6 +343,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
 
+            languageClickable = true;
             txtLangLanguage.setClickable(true);
             txtLangLanguage.setHint(getResources().getString(R.string.register_newsletter_language_hint));
 
@@ -343,6 +355,24 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                 itemDoc.setCode(obj.getLanguageList().get(i).getLanguageCode());
                 languageList.add(itemDoc);
             }
+
+        }
+
+    }
+
+    @Override
+    public void onSuccessRequestState(StateReceive obj) {
+
+        dismissLoading();
+
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
+            //save to pref
+            Gson gson = new Gson();
+            String state = gson.toJson(obj.getStateList());
+            pref.setState(state);
+
+            home();
 
         }
 
@@ -395,6 +425,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         infoData = new InitialLoadRequest();
         infoData.setLanguageCode(languageCode + "-" + countryCode);
         presenter.initialLoad(infoData);
+
 
         pref.setLanguageCountry(languageCode + "-" + countryCode);
     }

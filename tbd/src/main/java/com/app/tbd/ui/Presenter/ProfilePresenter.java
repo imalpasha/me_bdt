@@ -1,14 +1,20 @@
 package com.app.tbd.ui.Presenter;
 
+import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 
 import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
+import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
+import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
+import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
 import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 
+import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
+import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -16,18 +22,33 @@ public class ProfilePresenter {
 
     public interface ProfileView {
         void onBigPointReceive(BigPointReceive obj);
+        void onViewUserSuccess(ViewUserReceive obj);
+        //void onSuccessRequestState(StateReceive obj);
     }
 
-    public interface OptionView{
+    public interface MyProfileView {
+        void onSuccessRequestState(StateReceive obj);
+    }
+
+    public interface OptionView {
         void onLogoutReceive(LogoutReceive obj);
     }
 
-    public interface ResetPasswordView{
+    public interface ResetPasswordView {
         void onResetPasswordReceive(ResetPasswordReceive obj);
     }
 
+
+    public interface BigPointView {
+        void onTransactionHistorySuccess(TransactionHistoryReceive obj);
+    }
+
+
+
     private ProfileView loginView;
     private OptionView optionView;
+    private BigPointView bigPointView;
+    private MyProfileView myProfileView;
     private ResetPasswordView resetPasswordView;
 
     private final Bus bus;
@@ -42,12 +63,22 @@ public class ProfilePresenter {
         this.bus = bus;
     }
 
+    public ProfilePresenter(BigPointView view, Bus bus) {
+        this.bigPointView = view;
+        this.bus = bus;
+    }
+
     public ProfilePresenter(ResetPasswordView view, Bus bus) {
         this.resetPasswordView = view;
         this.bus = bus;
     }
 
-    public void onRequestResetPassword(ResetPasswordRequest data){
+    public ProfilePresenter(MyProfileView view, Bus bus) {
+        this.myProfileView = view;
+        this.bus = bus;
+    }
+
+    public void onRequestResetPassword(ResetPasswordRequest data) {
         bus.post(new ResetPasswordRequest(data));
     }
 
@@ -57,6 +88,34 @@ public class ProfilePresenter {
 
     public void onRequestLogout(LogoutRequest data) {
         bus.post(new LogoutRequest(data));
+    }
+
+    public void onRequestTransactionHistory(TransactionHistoryRequest data) {
+        bus.post(new TransactionHistoryRequest(data));
+    }
+
+    public void showFunction(ViewUserRequest data) {
+        bus.post(new ViewUserRequest(data));
+    }
+
+    public void onStateRequest(StateRequest obj) {
+        bus.post(new StateRequest(obj));
+    }
+
+    @Subscribe
+    public void onTransactionHistoryReceive(TransactionHistoryReceive event) {
+        bigPointView.onTransactionHistorySuccess(event);
+    }
+
+    @Subscribe
+    public void onProfileShowSuccess(ViewUserReceive event) {
+        loginView.onViewUserSuccess(event);
+    }
+
+    @Subscribe
+    public void onSuccessRequestState(StateReceive event) {
+
+        //loginView.onSuccessRequestState(event);
     }
 
     @Subscribe

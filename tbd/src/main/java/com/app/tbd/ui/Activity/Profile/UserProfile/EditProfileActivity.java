@@ -1,8 +1,6 @@
-package com.app.tbd.ui.Activity.EditProfile;
+package com.app.tbd.ui.Activity.Profile.UserProfile;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.app.tbd.MainFragmentActivity;

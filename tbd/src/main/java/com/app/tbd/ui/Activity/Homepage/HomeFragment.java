@@ -49,6 +49,7 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.inject(this, view);
         aq.recycle(view);
 
+        getActivity().setTitle("Homepage");
 
         return view;
     }

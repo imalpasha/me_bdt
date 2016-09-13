@@ -39,8 +39,8 @@
                 android:layout_height="0dp"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="25dp"
-                android:alpha="0"
                 android:layout_weight="0.4"
+                android:alpha="0"
                 android:orientation="vertical"
                 android:visibility="visible"
                 android:weightSum="1">
@@ -92,6 +92,7 @@
 
                             <com.app.tbd.utils.FontStyle.PlayTextView
                                 android:id="@+id/txtLangCountry"
+                                android:clickable="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/register_general_loading"
@@ -164,9 +165,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_marginTop="10dp"
-                            android:background="@color/red"
+                            android:background="@drawable/red_button_click"
                             android:text="@string/lang_next"
                             android:textColor="@color/white"
+                            android:textSize="16dp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -179,6 +181,7 @@
         android:id="@+id/imageLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:orientation="vertical">
 

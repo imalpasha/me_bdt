@@ -1,4 +1,4 @@
-package com.app.tbd.ui.Activity.EditProfile;
+package com.app.tbd.ui.Activity.Profile.UserProfile;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -67,6 +67,9 @@ public class EditProfileFragment  extends BaseFragment{
     @InjectView(R.id.edit_country)
     TextView edit_country;
 
+    @InjectView(R.id.txtUserName)
+    TextView txtUserName;
+
     private int fragmentContainerId;
     private SharedPrefManager pref;
 
@@ -109,6 +112,9 @@ public class EditProfileFragment  extends BaseFragment{
         edit_street2.setText(obj.getAddressLine2());
         edit_city.setText(obj.getCity());
         edit_post_code.setText(obj.getPostalCode());
+
+        txtUserName.setText(obj.getFirstName() + obj.getLastName());
+        txtUserName.setText(obj.getFirstName() + obj.getLastName());
 
         String date = obj.getDOB();
 

@@ -71,7 +71,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     LoginPresenter presenter;
 
     @InjectView(R.id.txtLoginBtn)
-    TextView txtLoginBtn;
+    Button txtLoginBtn;
 
     @NotEmpty(sequence = 1)
     @Email(sequence = 2)
@@ -94,7 +94,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     LoginButton login_button;
 
     @InjectView(R.id.btnLogin)
-    Button btnLogin;
+    TextView btnLogin;
 
     private String facebookInfoGSON;
 
@@ -137,6 +137,8 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
         View view = inflater.inflate(R.layout.login, container, false);
         ButterKnife.inject(this, view);
 
+        getActivity().setTitle("Member Login");
+
         progress = new ProgressDialog(getActivity());
         pref = new SharedPrefManager(getActivity());
 
@@ -144,6 +146,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             @Override
             public void onClick(View v) {
                 mValidator.validate();
+                hideKeyboard();
             }
         });
 

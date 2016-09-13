@@ -9,6 +9,7 @@ import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
+import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
@@ -17,6 +18,7 @@ import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.NewsletterLanguageRequest;
+import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
 import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 import com.app.tbd.MainFragmentActivity;
@@ -340,6 +342,45 @@ public class ApiRequestHandler {
             }
         });
     }
+
+    @Subscribe
+    public void onTransactionHistoryRequest(final TransactionHistoryRequest event) {
+
+        apiService.onTransactionHistoryRequest(event, new Callback<TransactionHistoryReceive>() {
+
+            @Override
+            public void success(TransactionHistoryReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new TransactionHistoryReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+    ////
+    ////
+    ///
+    //
+    ///
+    ///
+    ////
 
 
     @Subscribe

@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,13 @@ import android.widget.TextView;
 
 import com.app.tbd.MainController;
 import com.app.tbd.application.MainApplication;
+import com.app.tbd.ui.Activity.Profile.BigPoint.BigPointBaseActivity;
 import com.app.tbd.ui.Activity.Profile.Option.OptionsActivity;
+import com.app.tbd.ui.Activity.Profile.UserProfile.MyProfileActivity;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
-import com.app.tbd.ui.Activity.MyProfile.MyProfileActivity;
+import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.app.tbd.ui.Module.ProfileModule;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
 import com.google.gson.Gson;
@@ -35,6 +37,8 @@ import com.app.tbd.ui.Realm.RealmObjectController;
 import com.google.android.gms.analytics.Tracker;
 import com.app.tbd.utils.SharedPrefManager;
 import com.mobsandgeeks.saripaar.Validator;
+
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -80,6 +84,9 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     private static final String SCREEN_LABEL = "Login";
     private SharedPrefManager pref;
     private ProgressDialog progress;
+    private String customerNumber;
+    private String userInfo;
+    private String bigPoint;
 
     public static ProfileFragment newInstance() {
 
@@ -104,9 +111,9 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         ButterKnife.inject(this, view);
         dataSetup();
 
+        getActivity().setTitle("Profile");
 
         maskUserDP();
-
 
         profile_options.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,16 +123,65 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
             }
         });
 
+        profileBigPointClickLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent optionsPage = new Intent(getActivity(), BigPointBaseActivity.class);
+                optionsPage.putExtra("BIG_POINT", bigPoint);
+                getActivity().startActivity(optionsPage);
+            }
+        });
+
         profile_myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myProfilePage = new Intent(getActivity(), MyProfileActivity.class);
-                getActivity().startActivity(myProfilePage);
-                getActivity().finish();
+
+                initiateLoading(getActivity());
+                //presenter
+                loadProfileInfo();
+
+
             }
         });
 
         return view;
+    }
+
+    public void loadProfileInfo() {
+
+        initiateLoading(getActivity());
+        HashMap<String, String> initAuth = pref.getUsername();
+        final String username = initAuth.get(SharedPrefManager.USERNAME);
+
+        HashMap<String, String> initPassword = pref.getUserPassword();
+        String password = initPassword.get(SharedPrefManager.PASSWORD);
+
+        HashMap<String, String> initTicketId = pref.getTicketId();
+        String ticketId = initTicketId.get(SharedPrefManager.TICKET_ID);
+
+        ViewUserRequest data = new ViewUserRequest();
+        data.setUserName(username);
+        data.setPassword(password);
+        data.setTicketId(ticketId);
+
+        presenter.showFunction(data);
+
+    }
+
+    @Override
+    public void onViewUserSuccess(ViewUserReceive obj) {
+        dismissLoading();
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), "", getActivity());
+        if (status) {
+
+            userInfo = new Gson().toJson(obj);
+
+            Intent myProfilePage = new Intent(getActivity(), MyProfileActivity.class);
+            myProfilePage.putExtra("BIG_ID", customerNumber);
+            myProfilePage.putExtra("USER_INFORMATION", userInfo);
+            getActivity().startActivity(myProfilePage);
+
+        }
     }
 
     @Override
@@ -136,6 +192,7 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
             profileBigPointClickLayout.setClickable(true);
             txtBigPoint.setText(obj.getPtsBal());
+            bigPoint = obj.getPtsBal();
 
         }
     }
@@ -154,9 +211,7 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         txtUserName.setText(obj.getFirstName() + " " + obj.getLastName());
         txtBigUsername.setText(obj.getFirstName() + " " + obj.getLastName());
         txtUserBigID.setText("BIG ID : " + obj.getCustomerNumber());
-
-        Log.e("Hash", obj.getHash());
-        Log.e("Customer Number", obj.getCustomerNumber());
+        customerNumber = obj.getCustomerNumber();
 
         loadBigPointData(obj);
     }

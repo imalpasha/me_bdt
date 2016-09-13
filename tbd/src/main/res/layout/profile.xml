@@ -115,12 +115,6 @@
                             android:gravity="left|bottom"
                             android:orientation="vertical">
 
-                            <com.app.tbd.utils.FontStyle.PlayTextView
-                                android:id="@+id/txtLogout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Logout"
-                                android:textSize="16dp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

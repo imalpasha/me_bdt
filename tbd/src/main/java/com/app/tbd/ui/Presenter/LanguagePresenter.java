@@ -6,9 +6,11 @@ import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
+import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
+import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.utils.SharedPrefManager;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
@@ -16,11 +18,10 @@ import com.squareup.otto.Subscribe;
 public class LanguagePresenter {
 
     public interface LanguageView {
-
         void onSuccessRequestLanguage(LanguageReceive obj);
         void onSuccessRequestLanguageCountry(LanguageCountryReceive obj);
         void loadingSuccess(InitialLoadReceive obj);
-
+        void onSuccessRequestState(StateReceive obj);
     }
 
     private final LanguageView view;
@@ -52,6 +53,10 @@ public class LanguagePresenter {
         bus.post(new InitialLoadRequest(info));
     }
 
+    public void onStateRequest(StateRequest obj) {
+        bus.post(new StateRequest(obj));
+    }
+
     @Subscribe
     public void onSuccessSendDeviceInformation(InitialLoadReceive event) {
         view.loadingSuccess(event);
@@ -62,11 +67,16 @@ public class LanguagePresenter {
         view.onSuccessRequestLanguage(event);
     }
 
+    @Subscribe
+    public void onSuccessRequestState(StateReceive event) {
+
+        view.onSuccessRequestState(event);
+    }
 
     @Subscribe
     public void onSuccessRequestLanguageCountry(LanguageCountryReceive event) {
         view.onSuccessRequestLanguageCountry(event);
-        Log.e("Subscribe","tRUE");
+        Log.e("Subscribe", "tRUE");
 
     }
 }

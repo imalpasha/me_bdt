@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -848,6 +849,8 @@ public class BaseFragment extends Fragment {
 
         progressDialog = new ProgressDialog(act);
         progressDialog.show();
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
 
         /*dialog = new Dialog(act, R.style.DialogTheme);
 
@@ -878,6 +881,11 @@ public class BaseFragment extends Fragment {
             }
         }
         Log.e("Dismiss", "N");
+    }
+
+    public void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 
     public void popupAlert(String message) {
@@ -1282,16 +1290,26 @@ public class BaseFragment extends Fragment {
     public String getStateName(Activity act, String stateCode) {
 
         String stateName = null;
+        JSONArray json = null;
 
-        JSONArray jsonState = getState(act);
-        for (int x = 0; x < jsonState.length(); x++) {
+        prefManager = new SharedPrefManager(act);
+        HashMap<String, String> init = prefManager.getState();
+        String dataState = init.get(SharedPrefManager.STATE);
 
-            JSONObject row = (JSONObject) jsonState.opt(x);
+        try {
+            json = new JSONArray(dataState);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //JSONArray jsonState = getState(act);
+        for (int x = 0; x < json.length(); x++) {
+
+            JSONObject row = (JSONObject) json.opt(x);
             if (stateCode.equals(row.optString("ProvinceStateCode"))) {
                 stateName = row.optString("ProvinceStateName");
             }
         }
-
 
         return stateName;
 

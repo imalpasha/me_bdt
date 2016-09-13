@@ -309,7 +309,7 @@
     <string name="stateListDialogTitle">Please select state</string>
 
     <!-- Drawer/Version -->
-    <string name="x_lbl">.</string>
+    <string name="x_lbl">1.3</string>
 
     <!-- CleanUP -->
     <!-- General-->
@@ -445,6 +445,13 @@
     <!-- TBD Facebook ID -->
     <string name="facebook_app_id">1143272665731321</string>
 
-    <!--UPDATE PROFILE-->
+    <!--Big Point-->
+    <string name="big_shot_id">Big Shot ID:</string>
+    <string name="transaction_history">Transaction History</string>
+    <string name="big_point_expiry_date">BIG Point Expiry Date</string>
+    <string name="tbd_big_point_expiry_date">Point Expiration</string>
+
+
+
 
 </resources>

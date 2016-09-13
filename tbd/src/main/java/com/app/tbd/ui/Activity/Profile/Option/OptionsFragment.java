@@ -82,7 +82,7 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
                 logoutRequest.setTicketId(ticketId);
                 logoutRequest.setUsername(userName);
 
-                initiateDefaultLoading(progress, getActivity());
+                initiateLoading(getActivity());
                 presenter.onRequestLogout(logoutRequest);
 
 
@@ -95,11 +95,9 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
 
                 Intent resetPassword = new Intent(getActivity(), ResetPasswordActivity.class);
                 getActivity().startActivity(resetPassword);
-                getActivity().finish();
 
             }
         });
-
 
 
         return view;
@@ -109,7 +107,7 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
     @Override
     public void onLogoutReceive(LogoutReceive obj) {
 
-        dismissDefaultLoading(progress, getActivity());
+        dismissLoading();
         Intent profilePage = new Intent(getActivity(), LoginActivity.class);
         getActivity().startActivity(profilePage);
         getActivity().finish();

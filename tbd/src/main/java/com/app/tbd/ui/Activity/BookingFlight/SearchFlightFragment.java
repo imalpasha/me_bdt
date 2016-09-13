@@ -118,9 +118,7 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         final View view = inflater.inflate(R.layout.search_flight, container, false);
         ButterKnife.inject(this, view);
 
-        Log.e("Year", Integer.toString(calendar.get(Calendar.YEAR)));
-        Log.e("Month", Integer.toString(calendar.get(Calendar.MONTH)));
-        Log.e("Day", Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)));
+        getActivity().setTitle(R.string.search_flight_page);
 
         datePickerSetting();
         //initiatePageData();

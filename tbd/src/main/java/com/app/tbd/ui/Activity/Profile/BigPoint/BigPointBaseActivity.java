@@ -1,18 +1,21 @@
-package com.app.tbd.ui.Activity.MyProfile;
+package com.app.tbd.ui.Activity.Profile.BigPoint;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
+import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
-import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.google.android.gms.analytics.Tracker;
 
 import butterknife.ButterKnife;
 
-public class MyProfileActivity extends MainFragmentActivity implements FragmentContainerActivity {
+//import android.view.WindowManager;
 
+public class BigPointBaseActivity extends MainFragmentActivity implements FragmentContainerActivity {
+
+    //@InjectView(R.id.btnLogin) Button btnLogin;
     private Tracker mTracker;
     private FragmentManager fragmentManager;
 
@@ -21,10 +24,13 @@ public class MyProfileActivity extends MainFragmentActivity implements FragmentC
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, MyProfileFragment.newInstance()).commit();
+        Bundle bundle = getIntent().getExtras();
 
-        setTitle("My Profile");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_content, BigPointBaseFragment.newInstance(bundle)).commit();
+
+        setTitle(getResources().getString(R.string.tbd_my_big_point));
+        setBackButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.
@@ -47,4 +53,3 @@ public class MyProfileActivity extends MainFragmentActivity implements FragmentC
         return R.id.main_activity_fragment_container;
     }
 }
-

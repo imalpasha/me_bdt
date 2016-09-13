@@ -104,7 +104,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="left|center_horizontal"
-                                android:layout_weight="0.6"
+                                android:layout_weight="0.4"
                                 android:orientation="vertical">
 
                                 <com.app.tbd.utils.FontStyle.PlayTextView
@@ -116,7 +116,7 @@
                                     android:text="@string/login_forgot_password"
                                     android:textAppearance="?android:attr/textAppearanceMedium"
                                     android:textColor="@color/black"
-                                    android:textSize="16dp" />
+                                    android:textSize="14dp" />
 
                             </LinearLayout>
 
@@ -124,21 +124,21 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right"
-                                android:layout_weight="0.4"
+                                android:layout_weight="0.6"
                                 android:orientation="vertical">
 
                                 <com.app.tbd.utils.FontStyle.PlayTextView
-                                    android:id="@+id/txtLoginBtn"
+                                    android:id="@+id/btnLogin"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:layout_marginRight="15dp"
                                     android:gravity="right"
                                     android:padding="10dp"
-                                    android:text="@string/login_"
+                                    android:text="@string/login_register_new_acc"
                                     android:textAppearance="?android:attr/textAppearanceMedium"
                                     android:textColor="@color/red"
-                                    android:textSize="18dp"
+                                    android:textSize="14dp"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
@@ -210,14 +210,15 @@
                             </LinearLayout>
 
                             <com.app.tbd.utils.FontStyle.PlayButtonText
-                                android:id="@+id/btnLogin"
+                                android:id="@+id/txtLoginBtn"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
                                 android:background="@drawable/login_register_button_clicked"
-                                android:text="@string/login_register_new_acc"
+                                android:text="@string/login_"
                                 android:textColor="@color/red"
-                                android:textSize="16dp" />
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="0dp"

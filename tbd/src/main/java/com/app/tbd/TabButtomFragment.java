@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,10 +12,14 @@ import android.view.ViewGroup;
 
 import com.androidquery.AQuery;
 import com.app.tbd.ui.Activity.BookingFlight.SearchFlightActivity;
+import com.app.tbd.ui.Activity.BookingFlight.SearchFlightFragment;
 import com.app.tbd.ui.Activity.HolidayShaker.HolidayShakerActivity;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
+import com.app.tbd.ui.Activity.Homepage.HomeFragment;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
+import com.app.tbd.ui.Activity.Login.LoginFragment;
 import com.app.tbd.ui.Activity.Profile.ProfileActivity;
+import com.app.tbd.ui.Activity.Profile.ProfileFragment;
 import com.app.tbd.utils.SharedPrefManager;
 import com.app.tbd.utils.Utils;
 
@@ -48,10 +53,13 @@ public class TabButtomFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent homepage = new Intent(getActivity(), HomeActivity.class);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main_content, HomeFragment.newInstance()).commit();
+
+                /*Intent homepage = new Intent(getActivity(), HomeActivity.class);
                 homepage.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getActivity().startActivity(homepage);
-                getActivity().finish();
+                getActivity().finish();*/
 
             }
         });
@@ -60,8 +68,6 @@ public class TabButtomFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                //fragmentManager.beginTransaction().replace(R.id.main_content, ProfileFragment.newInstance()).commit();
 
                 //BaseFragmentActivity.setTitle2("MY PROFILE");
 
@@ -71,16 +77,17 @@ public class TabButtomFragment extends Fragment {
                 String loginStatus = init.get(SharedPrefManager.ISLOGIN);
 
 
-                Intent tabProfile = null;
-                if (loginStatus == null || loginStatus.equals("N")) {
-                    tabProfile = new Intent(getActivity(), LoginActivity.class);
-                } else {
-                    tabProfile = new Intent(getActivity(), ProfileActivity.class);
-                }
-                tabProfile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                getActivity().startActivity(tabProfile);
-                getActivity().finish();
+                //Intent tabProfile = null;
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
+                if (loginStatus == null || loginStatus.equals("N")) {
+                    fragmentManager.beginTransaction().replace(R.id.main_content, LoginFragment.newInstance()).commit();
+                } else {
+                    fragmentManager.beginTransaction().replace(R.id.main_content, ProfileFragment.newInstance()).commit();
+                }
+                /*tabProfile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(tabProfile);
+                getActivity().finish();*/
             }
         });
 
@@ -89,15 +96,16 @@ public class TabButtomFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Utils.toastNotification(getActivity(), "N/A");
+
                 //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                //fragmentManager.beginTransaction().replace(R.id.main_content, BaggageFragment.newInstance()).commit();
+                //fragmentManager.beginTransaction().replace(R.id.main_content, SearchFlightFragment.newInstance()).commit();
 
-
-                Intent searchFlight = new Intent(getActivity(), SearchFlightActivity.class);
+                /*Intent searchFlight = new Intent(getActivity(), SearchFlightActivity.class);
                 searchFlight.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //need to clear previous activity
                 getActivity().startActivity(searchFlight);
-                getActivity().finish();
+                getActivity().finish();*/
             }
         });
 

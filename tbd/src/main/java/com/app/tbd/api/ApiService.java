@@ -37,6 +37,7 @@ import com.app.tbd.ui.Model.Receive.SelectFlightReceive;
 import com.app.tbd.ui.Model.Receive.ItineraryInfoReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TermsReceive;
+import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
 import com.app.tbd.ui.Model.Receive.UpdateProfileReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Receive.tryObj;
@@ -81,6 +82,7 @@ import com.app.tbd.ui.Model.Request.SelectFlight;
 import com.app.tbd.ui.Model.Request.SendItinenaryObj;
 import com.app.tbd.ui.Model.Request.Signature;
 import com.app.tbd.ui.Model.Request.StateRequest;
+import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
 import com.app.tbd.ui.Model.Request.UpdateProfileRequest;
 import com.app.tbd.ui.Model.Request.ViewUserRequest;
 
@@ -136,6 +138,9 @@ public interface ApiService {
 
     @POST("/UpdatePassword")
     void onResetPasswordRequest(@Body ResetPasswordRequest obj, Callback<ResetPasswordReceive> callback);
+
+    @POST("/GetPointsExpiry")
+    void onTransactionHistoryRequest(@Body TransactionHistoryRequest obj, Callback<TransactionHistoryReceive> callback);
 
     /*@POST("/Language/GetLanguage")
     void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);

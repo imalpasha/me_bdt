@@ -73,7 +73,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="10dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/tbd_dp2" />
+                            android:src="@drawable/no_profile_image" />
                     </LinearLayout>
                     <!--android:background="@drawable/tbd_image_border"-->
                     <LinearLayout
@@ -94,7 +94,6 @@
                                 android:id="@+id/txtUserName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Danny Wong"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
@@ -103,7 +102,6 @@
                                 android:id="@+id/txtUserBigID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="BIG ID : 293339282"
                                 android:textColor="@color/white" />
 
                         </LinearLayout>
@@ -114,12 +112,6 @@
                             android:gravity="left|bottom"
                             android:orientation="vertical">
 
-                            <com.app.tbd.utils.FontStyle.PlayTextView
-                                android:id="@+id/txtLogout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Logout"
-                                android:textSize="16dp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -175,7 +167,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -219,7 +211,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -263,7 +255,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -306,7 +298,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -350,7 +342,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -394,7 +386,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -438,7 +430,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -509,7 +501,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -553,7 +545,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -597,7 +589,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -641,7 +633,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -685,7 +677,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -729,7 +721,7 @@
                         android:background="@null"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="@color/dark_lvl5"
+                        android:textColor="@color/dark_lvl2"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -756,6 +748,7 @@
                         android:text="EDIT"
                         android:textColor="@color/dark_lvl6"
                         android:textSize="16dp"
+                        android:visibility="gone"
                         android:layout_marginBottom="1dp"/>
                 </LinearLayout>
             </LinearLayout>
