@@ -124,6 +124,9 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         pref = new SharedPrefManager(getActivity());
         progress = new ProgressDialog(getActivity());
 
+        String locale = getContext().getResources().getConfiguration().locale.getCountry();
+        Log.e("locale", locale);
+
         //set animation to choose country & language layout
         //Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.abc_popup_enter);
         //selectionLayout.setAnimation(animation);

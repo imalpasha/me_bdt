@@ -9,8 +9,8 @@ import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.BookingFlight.SearchFlightActivity;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Activity.PasswordExpired.ChangePasswordActivity;
+import com.app.tbd.ui.Activity.Profile.Option.TermsActivity;
 import com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity;
-import com.app.tbd.ui.Activity.Terms.Terms;
 import com.app.tbd.utils.SharedPrefManager;
 import com.app.tbd.utils.Utils;
 
@@ -56,7 +56,7 @@ public class MainController extends BaseFragment {
             bannerIntent = new Intent(act,SearchFlightActivity.class);
             act.startActivity(bannerIntent);
         }else if(page.equals("faq")){
-            bannerIntent = new Intent(act,Terms.class);
+            bannerIntent = new Intent(act,TermsActivity.class);
             act.startActivity(bannerIntent);
         }
     }

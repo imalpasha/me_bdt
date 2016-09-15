@@ -1,4 +1,4 @@
-package com.app.tbd.ui.Activity.Terms;
+package com.app.tbd.ui.Activity.Profile.Option;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,29 +8,29 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.R;
+import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.base.BaseFragment;
-import com.app.tbd.ui.Presenter.TermsPresenter;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class TermsFragment extends BaseFragment {
+public class AboutFragment extends BaseFragment {
 
-    @Inject
-    TermsPresenter presenter;
+    //@Inject
+    //TermsPresenter presenter;
 
-    @InjectView(R.id.mainWebView)WebView mainWebView;
+    @InjectView(R.id.mainWebView)
+    WebView mainWebView;
 
-    String URL= "http://fyapidev.me-tech.com.my/api/displayTerm";
-    private static final String SCREEN_LABEL = "FAQ";
+    String URL= "http://www.airasiabig.com/my/en/?page=thinkbig";
+    private static final String SCREEN_LABEL = "About";
 
-    public static TermsFragment newInstance() {
+    public static AboutFragment newInstance() {
 
-        TermsFragment fragment = new TermsFragment();
+        AboutFragment fragment = new AboutFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -46,7 +46,7 @@ public class TermsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.term, container, false);
+        View view = inflater.inflate(R.layout.aboutus, container, false);
         ButterKnife.inject(this, view);
 
         initiateLoading(getActivity());

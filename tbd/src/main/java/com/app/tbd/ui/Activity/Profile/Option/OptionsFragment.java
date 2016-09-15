@@ -1,6 +1,5 @@
 package com.app.tbd.ui.Activity.Profile.Option;
 
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +38,15 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
 
     @InjectView(R.id.resetPasswordLayout)
     LinearLayout resetPasswordLayout;
+
+    @InjectView(R.id.options_about)
+    LinearLayout options_about;
+
+    @InjectView(R.id.options_terms)
+    LinearLayout options_terms;
+
+    @InjectView(R.id.options_policy)
+    LinearLayout options_policy;
 
     private SharedPrefManager pref;
     private ProgressDialog progress;
@@ -92,10 +100,32 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
         resetPasswordLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent resetPassword = new Intent(getActivity(), ResetPasswordActivity.class);
                 getActivity().startActivity(resetPassword);
+            }
+        });
 
+        options_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent about = new Intent(getActivity(), AboutActivity.class);
+                getActivity().startActivity(about);
+            }
+        });
+
+        options_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent term = new Intent(getActivity(), TermsActivity.class);
+                getActivity().startActivity(term);
+            }
+        });
+
+        options_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent policy = new Intent(getActivity(), PrivacyPolicyActivity.class);
+                getActivity().startActivity(policy);
             }
         });
 
@@ -123,7 +153,6 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
         }*/
     }
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -143,5 +172,3 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
         presenter.onPause();
     }
 }
-
-

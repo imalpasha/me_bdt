@@ -5,14 +5,14 @@ import android.support.v4.app.FragmentManager;
 
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
-import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.google.android.gms.analytics.Tracker;
 
 import butterknife.ButterKnife;
 
-public class OptionsActivity extends MainFragmentActivity implements FragmentContainerActivity {
+public class AboutActivity extends MainFragmentActivity implements FragmentContainerActivity {
 
+    //@InjectView(R.id.btnLogin) Button btnLogin;
     private Tracker mTracker;
     private FragmentManager fragmentManager;
 
@@ -21,16 +21,10 @@ public class OptionsActivity extends MainFragmentActivity implements FragmentCon
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
+        setTitle("About");
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, OptionsFragment.newInstance()).commit();
-
-        setTitle("Options");
-
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
+        fragmentManager.beginTransaction().replace(R.id.main_content, AboutFragment.newInstance()).commit();
 
     }
 
@@ -39,6 +33,7 @@ public class OptionsActivity extends MainFragmentActivity implements FragmentCon
     public void onResume() {
         super.onResume();
         // presenter.onResume();
+
     }
 
 

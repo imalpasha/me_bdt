@@ -1,4 +1,4 @@
-package com.app.tbd.ui.Activity.Terms;
+package com.app.tbd.ui.Activity.Profile.Option;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -10,7 +10,7 @@ import com.google.android.gms.analytics.Tracker;
 
 import butterknife.ButterKnife;
 
-public class Terms extends MainFragmentActivity implements FragmentContainerActivity {
+public class PrivacyPolicyActivity extends MainFragmentActivity implements FragmentContainerActivity {
 
     //@InjectView(R.id.btnLogin) Button btnLogin;
     private Tracker mTracker;
@@ -21,24 +21,21 @@ public class Terms extends MainFragmentActivity implements FragmentContainerActi
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
+        setTitle("Privacy Policy");
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, TermsFragment.newInstance()).commit();
-
-
+        fragmentManager.beginTransaction().replace(R.id.main_content, PrivacyPolicyFragment.newInstance()).commit();
 
     }
-
 
     @Override
     public void onResume() {
         super.onResume();
-        // presenter.onResume();
-
     }
-
 
     @Override
     public int getFragmentContainerId() {
         return R.id.main_activity_fragment_container;
     }
+
 }

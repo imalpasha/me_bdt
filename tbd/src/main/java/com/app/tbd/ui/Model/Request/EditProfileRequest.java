@@ -1,7 +1,7 @@
 package com.app.tbd.ui.Model.Request;
 
 public class EditProfileRequest {
-   /* String UserName;
+    String UserName;
     String AddressLine1;
     String AddressLine2;
     String AddressLine3;
@@ -34,9 +34,37 @@ public class EditProfileRequest {
 
     public EditProfileRequest() { }
 
-    public EditProfileRequest(ViewUserRequest data) {
+    public EditProfileRequest(EditProfileRequest data) {
         UserName = data.getUserName();
         TicketId = data.getTicketId();
+        AddressLine1 = data.getAddressLine1();
+        AddressLine2 = data.getAddressLine2();
+        AddressLine3 = data.getAddressLine3();
+        City = data.getCity();
+        PostalCode = data.getPostalCode();
+        State = data.getState();
+        Country = data.getCountry();
+        FirstName = data.getFirstName();
+        LastName = data.getLastName();
+        Gender = data.getGender();
+        DateOfBirth = data.getDateOfBirth();
+        MobilePhone = data.getMobilePhone();
+        Nationality = data.getNationality();
+        Title = data.getTitle();
+        BusinessEmail = data.getBusinessEmail();
+        ParentGuardianEmail = data.getParentGuardianEmail();
+        ParentGuardianFullName = data.getParentGuardianFullName();
+        EmergencyDialingCode = data.getEmergencyDialingCode();
+        EmergencyFamilyName = data.getEmergencyFamilyName();
+        EmergencyGivenName = data.getEmergencyGivenName();
+        EmergencyPhoneNumber = data.getEmergencyPhoneNumber();
+        EmergencyRelationship = data.getEmergencyRelationship();
+        ParentGuardian = data.getParentGuardian();
+        ParentGuardianDocNumber = data.getParentGuardianDocNumber();
+        QuestionAns1 = data.getQuestionAns1();
+        QuestionAns2 = data.getQuestionAns2();
+        CID = data.getCID();
+        PID = data.getPID();
     }
 
     public String getUserName() {
@@ -279,11 +307,11 @@ public class EditProfileRequest {
         Country = country;
     }
 
-    Response Data From Server
+    //Response Data From Server
     String status;
 
     public String getStatus() {
         return status;
-    }*/
+    }
 }
 
