@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 
+import com.app.tbd.ui.Model.Receive.EditProfileReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
@@ -11,6 +12,7 @@ import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
+import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
@@ -167,6 +169,30 @@ public class ApiRequestHandler {
             @Override
             public void failure(RetrofitError error) {
 
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+
+        });
+    }
+
+    @Subscribe
+    public void onEditProfileRequest(final EditProfileRequest event) {
+
+        apiService.onEditProfileRequest(event, new Callback<EditProfileReceive>() {
+
+            @Override
+            public void success(EditProfileReceive rhymesResponse, Response response) {
+
+                if (rhymesResponse != null) {
+                    bus.post(new EditProfileReceive(rhymesResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
                 BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
             }
 

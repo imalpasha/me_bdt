@@ -8,6 +8,7 @@ import com.app.tbd.ui.Model.Receive.ConfirmUpdateReceive;
 import com.app.tbd.ui.Model.Receive.ContactInfoReceive;
 import com.app.tbd.ui.Model.Receive.DeleteCCReceive;
 import com.app.tbd.ui.Model.Receive.DeleteFFReceive;
+import com.app.tbd.ui.Model.Receive.EditProfileReceive;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
@@ -47,6 +48,7 @@ import com.app.tbd.ui.Model.Request.ChangeSSR;
 import com.app.tbd.ui.Model.Request.ConfirmUpdateRequest;
 import com.app.tbd.ui.Model.Request.ContactInfo;
 import com.app.tbd.ui.Model.Request.DeleteCCRequest;
+import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.FlightSummary;
 import com.app.tbd.ui.Model.Request.FriendFamilyDelete;
@@ -143,10 +145,10 @@ public interface ApiService {
     void onTransactionHistoryRequest(@Body TransactionHistoryRequest obj, Callback<TransactionHistoryReceive> callback);
 
     /*@POST("/Language/GetLanguage")
-    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);
+    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);*/
 
     @POST("/UpdateUser")
-    void onUpdateUserRequest(@Body UpdateUserRequest obj, Callback<UpdateUserReceive> callback);*/
+    void onEditProfileRequest(@Body EditProfileRequest obj, Callback<EditProfileReceive> callback);
 
     @FormUrlEncoded
     @POST("/api.php")
