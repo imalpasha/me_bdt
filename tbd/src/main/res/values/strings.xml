@@ -378,6 +378,7 @@
     <string name="profile_post_code">Post Code</string>
     <string name="profile_state">State</string>
     <string name="profile_country">Country</string>
+    <string name="edit_profile">Edit Profile</string>
 
     <!-- TBD Search Flight -->
     <string name="search_flight_title">Select your origin</string>

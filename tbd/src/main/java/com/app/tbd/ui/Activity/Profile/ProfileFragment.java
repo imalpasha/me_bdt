@@ -216,7 +216,7 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     @Override
     public void onViewUserSuccess(ViewUserReceive obj) {
         dismissLoading();
-        Boolean status = MainController.getRequestStatus(obj.getStatus(), "", getActivity());
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
 
             userInfo = new Gson().toJson(obj);

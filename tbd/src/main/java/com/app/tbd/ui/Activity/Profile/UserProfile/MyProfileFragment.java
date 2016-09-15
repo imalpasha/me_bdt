@@ -2,6 +2,7 @@ package com.app.tbd.ui.Activity.Profile.UserProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +86,9 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
     private String customerNumber;
     private String userInfo;
     private String stateCode;
-    String stateName;
+    private String stateName;
+    private static String userInformation;
+    private ViewUserReceive viewUserReceive;
 
     public static MyProfileFragment newInstance(Bundle bundle) {
 
@@ -111,23 +114,29 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
 
         Bundle bundle = getArguments();
         customerNumber = bundle.getString("BIG_ID");
-        final String userInformation = bundle.getString("USER_INFORMATION");
+        userInformation = bundle.getString("USER_INFORMATION");
 
         Gson gson = new Gson();
-        ViewUserReceive obj = gson.fromJson(userInformation, ViewUserReceive.class);
-        setShow(obj);
+        viewUserReceive = gson.fromJson(userInformation, ViewUserReceive.class);
+        setShow(viewUserReceive);
+
 
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //reconvert
                 Intent editPage = new Intent(getActivity(), EditProfileActivity.class);
                 editPage.putExtra("USER_INFORMATION", userInformation);
                 getActivity().startActivity(editPage);
-                getActivity().finish();
 
             }
         });
         return view;
+    }
+
+    public static String returnUserInfo(){
+        return userInformation;
     }
 
     @Override

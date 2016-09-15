@@ -300,7 +300,7 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
                 registerMrBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.grey));
                 registerMsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.default_theme_colour));
                 title = "Ms";
-                gender = "2";
+                gender = "0";
 
             }
         });

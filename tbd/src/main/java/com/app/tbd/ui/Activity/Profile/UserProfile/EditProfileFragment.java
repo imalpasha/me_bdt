@@ -26,7 +26,7 @@ import java.util.HashMap;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class EditProfileFragment  extends BaseFragment{
+public class EditProfileFragment extends BaseFragment {
 
     @InjectView(R.id.edit_salutation)
     TextView edit_salutation;
@@ -92,15 +92,13 @@ public class EditProfileFragment  extends BaseFragment{
 
         View view = inflater.inflate(R.layout.edit_profile, container, false);
         ButterKnife.inject(this, view);
-        aq.recycle(view);
-        pref = new SharedPrefManager(getActivity());
 
+        pref = new SharedPrefManager(getActivity());
 
         Bundle bundle = getArguments();
         String insurance = bundle.getString("USER_INFORMATION");
 
         Gson gson = new Gson();
-
         ViewUserReceive obj = gson.fromJson(insurance, ViewUserReceive.class);
 
         edit_salutation.setText(obj.getTitle());

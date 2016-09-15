@@ -16,6 +16,7 @@ import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.BookingFlight.Checkout.CheckoutActivity;
 import com.app.tbd.ui.Activity.Profile.UserProfile.EditProfileActivity;
+import com.app.tbd.ui.Activity.Profile.UserProfile.MyProfileFragment;
 import com.app.tbd.ui.Model.Request.NotificationMessage;
 import com.app.tbd.utils.App;
 import com.app.tbd.ui.Realm.RealmObjectController;
@@ -34,8 +35,8 @@ public class BaseFragmentActivity extends FragmentActivity {
 
     //TabView tabsView;
 
-    public static String getAppStatus(){
-       return appStatus;
+    public static String getAppStatus() {
+        return appStatus;
     }
 
    /* public void tabSearch(View v)
@@ -58,16 +59,15 @@ public class BaseFragmentActivity extends FragmentActivity {
         BaseFragmentActivity.this.startActivity(intent);
     }*/
 
-    public static void setAppStatus(String status){
+    public static void setAppStatus(String status) {
         appStatus = status;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         aq = new com.app.tbd.base.AQuery(this);
-        Log.e("test2","test2");
+        Log.e("test2", "test2");
 
         //SET TO POTRAIT ONLY
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -85,33 +85,29 @@ public class BaseFragmentActivity extends FragmentActivity {
         }*/
 
 
-        try
-        {
+        try {
             ActionBar actionBar = getActionBar();
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-           // actionBar.setElevation(0);
+            // actionBar.setElevation(0);
             //actionBar.setBackgroundDrawable(null);
-           // tabsView = new ScrollingTabContainerView(actionBar.getThemedContext());
-             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            // tabsView = new ScrollingTabContainerView(actionBar.getThemedContext());
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             actionBar.setCustomView(R.layout.actionbar);
             View actionBarView = actionBar.getCustomView();
             aq.recycle(actionBarView);
             aq.id(R.id.title).typeface(Typeface.createFromAsset(getAssets(), App.FONT_HELVETICA_NEUE)).textSize(22).textColor(Color.WHITE);
-           // if(Utils.getDeviceType(this) == "1")
+            // if(Utils.getDeviceType(this) == "1")
             //{
-             //   aq.id(R.id.tabContainerTablet).visible();
-                //display tab here
-           // }
-        }
-        catch (Exception e)
-        {
+            //   aq.id(R.id.tabContainerTablet).visible();
+            //display tab here
+            // }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void setTitle(CharSequence title)
-    {
+    public void setTitle(CharSequence title) {
         super.setTitle(title);
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
@@ -119,16 +115,13 @@ public class BaseFragmentActivity extends FragmentActivity {
     }
 
 
-
-    public void hideTitle()
-    {
+    public void hideTitle() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.title).visibility(View.GONE);
     }
 
-    public void setEditButton()
-    {
+    public void setEditButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.txtEdit).visible();
@@ -136,20 +129,20 @@ public class BaseFragmentActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BaseFragmentActivity.this, EditProfileActivity.class);
+                String userInfo = MyProfileFragment.returnUserInfo();
+                intent.putExtra("USER_INFORMATION", userInfo);
                 BaseFragmentActivity.this.startActivity(intent);
             }
         });
     }
 
-    public void setLogOutButton()
-    {
+    public void setLogOutButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.btnLogOut).visible();
     }
 
-    public void setARButton()
-    {
+    public void setARButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.btnAR).visible();
@@ -162,8 +155,7 @@ public class BaseFragmentActivity extends FragmentActivity {
         aq.id(R.id.btn).visible();
     }*/
 
-    public void setBackButton()
-    {
+    public void setBackButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.backbutton).visible();
@@ -175,8 +167,7 @@ public class BaseFragmentActivity extends FragmentActivity {
         });
     }
 
-    public void setCheckOutButton()
-    {
+    public void setCheckOutButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.checkOut).visible();
@@ -190,8 +181,7 @@ public class BaseFragmentActivity extends FragmentActivity {
         });
     }
 
-    public void setGlobalSearchButton()
-    {
+    public void setGlobalSearchButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.tabMySearch1).gone();
@@ -211,8 +201,7 @@ public class BaseFragmentActivity extends FragmentActivity {
         });*/
     }
 
-    public void setTabBackButton()
-    {
+    public void setTabBackButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.tabBackButton).visible();
@@ -225,29 +214,25 @@ public class BaseFragmentActivity extends FragmentActivity {
     }
 
     @Override
-    public void setTitle(int titleId)
-    {
+    public void setTitle(int titleId) {
         super.setTitle(titleId);
     }
 
-    public void setTitleImage(String imageUrl)
-    {
+    public void setTitleImage(String imageUrl) {
         View actionBarView = getActionBar().getCustomView();
 
         //aq.recycle(actionBarView);
         //aq.id(R.id.icon).image(imageUrl);
     }
 
-    public void setTitleImage(int imageId)
-    {
+    public void setTitleImage(int imageId) {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.icon).image(imageId);
     }
 
     @Override
-    public void startActivity(Intent intent)
-    {
+    public void startActivity(Intent intent) {
         super.startActivity(intent);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         //RealmObjectController.clearCachedResult(this);
@@ -255,8 +240,7 @@ public class BaseFragmentActivity extends FragmentActivity {
     }
 
     @Override
-    public void finish()
-    {
+    public void finish() {
         super.finish();
         RealmObjectController.clearCachedResult(this);
         System.gc();
@@ -266,46 +250,44 @@ public class BaseFragmentActivity extends FragmentActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
         System.gc();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_out);
-       // RealmObjectController.clearCachedResult(this);
+        // RealmObjectController.clearCachedResult(this);
         //setResult(RESULT_CANCELED);
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         super.onPause();
 
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
 
         super.onResume();
         MainFragmentActivity.setContext(this);
 
         //push notification alert
-        try{
-            if(!this.getClass().getSimpleName().equals("SplashScreenActivity")){
-                if(appStatus != null && appStatus.equals("ready_for_notification")){
-                    if(appStatus.equals("ready_for_notification")){
+        try {
+            if (!this.getClass().getSimpleName().equals("SplashScreenActivity")) {
+                if (appStatus != null && appStatus.equals("ready_for_notification")) {
+                    if (appStatus.equals("ready_for_notification")) {
                         RealmResults<NotificationMessage> result = RealmObjectController.getNotificationMessage(this);
-                        if(result.size() > 0){
-                            BaseFragment.setPushNotificationAlert(this,result.get(0).getMessage(),result.get(0).getTitle());
+                        if (result.size() > 0) {
+                            BaseFragment.setPushNotificationAlert(this, result.get(0).getMessage(), result.get(0).getTitle());
                             MainFragmentActivity.setAppStatus("not_ready_for_notification");
                             RealmObjectController.clearNotificationMessage(this);
                         }
-                    }else{
+                    } else {
                     }
-                }else{
+                } else {
                     appStatus = "not_for_notification";
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

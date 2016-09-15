@@ -61,6 +61,15 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
     @InjectView(R.id.changeLanguageLayout)
     LinearLayout changeLanguageLayout;
 
+    @InjectView(R.id.options_about)
+    LinearLayout options_about;
+
+    @InjectView(R.id.options_terms)
+    LinearLayout options_terms;
+
+    @InjectView(R.id.options_policy)
+    LinearLayout options_policy;
+
     private SharedPrefManager pref;
     private ProgressDialog progress;
     private String CURRENT_PICKER;
@@ -136,6 +145,31 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
                     CURRENT_PICKER = "LANGUAGE";
                 }
 
+            }
+        });
+
+
+        options_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent about = new Intent(getActivity(), AboutActivity.class);
+                getActivity().startActivity(about);
+            }
+        });
+
+        options_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent term = new Intent(getActivity(), TermsActivity.class);
+                getActivity().startActivity(term);
+            }
+        });
+
+        options_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent policy = new Intent(getActivity(), PrivacyPolicyActivity.class);
+                getActivity().startActivity(policy);
             }
         });
 

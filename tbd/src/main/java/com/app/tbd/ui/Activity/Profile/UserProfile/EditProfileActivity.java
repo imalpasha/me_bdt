@@ -26,7 +26,8 @@ public class EditProfileActivity extends MainFragmentActivity implements Fragmen
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, EditProfileFragment.newInstance(bundle)).commit();
 
-        setTitle("Edit Profile");
+        setTitle(getResources().getString(R.string.edit_profile));
+        setBackButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.
