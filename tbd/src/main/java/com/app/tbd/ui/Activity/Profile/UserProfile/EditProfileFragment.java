@@ -51,7 +51,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class EditProfileFragment  extends BaseFragment implements EditProfilePresenter.EditProfileView, DatePickerDialog.OnDateSetListener, Validator.ValidationListener {
+public class EditProfileFragment extends BaseFragment implements EditProfilePresenter.EditProfileView, DatePickerDialog.OnDateSetListener, Validator.ValidationListener {
 
     @Inject
     EditProfilePresenter presenter;
@@ -140,64 +140,6 @@ public class EditProfileFragment  extends BaseFragment implements EditProfilePre
         aq.recycle(view);
 
         datePickerSetting();
-/*
-        Bundle bundle = getArguments();
-        String insurance = bundle.getString("USER_INFORMATION");
-
-        Gson gson = new Gson();
-
-        ViewUserReceive obj = gson.fromJson(insurance, ViewUserReceive.class);
-
-        edit_salutation.setText(obj.getTitle());
-        edit_given_name.setText(obj.getFirstName());
-        edit_family_name.setText(obj.getEmergencyFamilyName());
-        edit_mobile.setText(obj.getMobilePhone());
-        edit_passport.setText(obj.getPID());
-        edit_street1.setText(obj.getAddressLine1());
-        edit_street2.setText(obj.getAddressLine2());
-        edit_city.setText(obj.getCity());
-        edit_post_code.setText(obj.getPostalCode());
-
-        String date = obj.getDOB();
-
-        String day = date.substring(0, 2);
-        String month = date.substring(2, 4);
-        String year = date.substring(4);
-
-        Log.e("Day", day);
-        Log.e("Month", month);
-        Log.e("year", year);
-
-        String newDob = day + "-" + month + "-" + year;
-
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Date startDate;
-        try {
-            startDate = df.parse(newDob);
-
-            Date myDate = startDate;
-            System.out.println(myDate);
-            System.out.println(new SimpleDateFormat("dd-MM-yyyy").format(myDate));
-            System.out.println(new SimpleDateFormat("dd MMM yyyy").format(myDate));
-            System.out.println(myDate);
-            String reportDate = (new SimpleDateFormat("dd MMM yyyy").format(myDate));
-            edit_dob.setText(reportDate);
-            pref.setEditDOB(reportDate);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        String c = getCountryName(getActivity(), obj.getCountryCode());
-        String n = getCountryName(getActivity(), obj.getNationality());
-
-        edit_country.setText(c);
-        edit_nationality.setText(n);
-
-        HashMap<String, String> initAuth = pref.getEditStateName();
-        final String state = initAuth.get(SharedPrefManager.EDIT_STATE_NAME);
-
-        edit_state.setText(state);*/
 
         //date of birth
         edit_dob.setOnClickListener(new View.OnClickListener() {
@@ -215,8 +157,6 @@ public class EditProfileFragment  extends BaseFragment implements EditProfilePre
             public void onClick(View v) {
                 AnalyticsApplication.sendEvent("Click", "Select Country");
                 if (checkFragmentAdded()) {
-
-                    //basicPicker();
                     showCountrySelector(getActivity(), countryList, "NATIONALITY");
                     CURRENT_PICKER = "NATIONALITY";
                 }
@@ -435,7 +375,7 @@ public class EditProfileFragment  extends BaseFragment implements EditProfilePre
         editRequest.setAddressLine1(edit_street1.getText().toString());
         editRequest.setAddressLine2(edit_street2.getText().toString());
         editRequest.setAddressLine3("-");
-        editRequest.setGender("2");
+        editRequest.setGender("0");
         editRequest.setMobilePhone(edit_mobile.getText().toString());
         editRequest.setNationality(edit_nationality.getTag().toString());
         editRequest.setCountry(edit_country.getTag().toString());

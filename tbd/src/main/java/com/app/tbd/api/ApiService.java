@@ -1,5 +1,6 @@
 package com.app.tbd.api;
 
+import com.app.tbd.ui.Model.Receive.EditProfileReceive;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
@@ -14,6 +15,7 @@ import com.app.tbd.ui.Model.Receive.RegisterReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
+import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
@@ -86,11 +88,13 @@ public interface ApiService {
     @POST("/GetTransaction")
     void onTransactionHistoryRequest(@Body TransactionHistoryRequest obj, Callback<TransactionHistoryReceive> callback);
 
+
+
     /*@POST("/Language/GetLanguage")
-    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);
+    void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);*/
 
     @POST("/UpdateUser")
-    void onUpdateUserRequest(@Body UpdateUserRequest obj, Callback<UpdateUserReceive> callback);*/
+    void onUpdateProfileRequest(@Body EditProfileRequest obj, Callback<EditProfileReceive> callback);
 
     @FormUrlEncoded
     @POST("/api.php")
