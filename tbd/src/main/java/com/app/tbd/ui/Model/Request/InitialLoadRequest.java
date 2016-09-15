@@ -3,7 +3,7 @@ package com.app.tbd.ui.Model.Request;
 /**
  * Created by Dell on 11/9/2015.
  */
-public class InitialLoadRequest extends BaseObj {
+public class InitialLoadRequest {
 
 
     private String LanguageCode;

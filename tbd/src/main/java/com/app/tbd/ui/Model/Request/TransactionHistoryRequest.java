@@ -5,33 +5,53 @@ package com.app.tbd.ui.Model.Request;
  */
 public class TransactionHistoryRequest {
 
-    private String CustomerNumber;
-    private String Hash;
+
+    private String UserName;
+    private String TicketId;
+    private String StartDate;
+    private String EndDate;
+
+    public String getEndDate() {
+        return EndDate;
+    }
+
+    public void setEndDate(String endDate) {
+        EndDate = endDate;
+    }
+
+    public String getStartDate() {
+        return StartDate;
+    }
+
+    public void setStartDate(String startDate) {
+        StartDate = startDate;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getTicketId() {
+        return TicketId;
+    }
+
+    public void setTicketId(String ticketId) {
+        TicketId = ticketId;
+    }
 
     public TransactionHistoryRequest() {
 
     }
 
     public TransactionHistoryRequest(TransactionHistoryRequest data) {
-        CustomerNumber = data.getCustomerNumber();
-        Hash = data.getHash();
+        UserName = data.getUserName();
+        TicketId = data.getTicketId();
+        StartDate = data.getStartDate();
+        EndDate = data.getEndDate();
     }
-
-    public String getCustomerNumber() {
-        return CustomerNumber;
-    }
-
-    public void setCustomerNumber(String customerNumber) {
-        CustomerNumber = customerNumber;
-    }
-
-    public String getHash() {
-        return Hash;
-    }
-
-    public void setHash(String hash) {
-        Hash = hash;
-    }
-
 
 }

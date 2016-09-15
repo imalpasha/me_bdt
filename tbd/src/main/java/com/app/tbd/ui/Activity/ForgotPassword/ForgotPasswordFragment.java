@@ -18,7 +18,7 @@ import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Module.ForgotPasswordModule;
-import com.app.tbd.ui.Model.Request.CachedResult;
+import com.app.tbd.ui.Realm.Cached.CachedResult;
 import com.app.tbd.ui.Model.Request.PasswordRequest;
 import com.app.tbd.ui.Presenter.LoginPresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;

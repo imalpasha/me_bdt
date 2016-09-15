@@ -6,6 +6,7 @@ import android.app.Dialog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,9 +38,12 @@ public class SelectLanguageFragment extends DialogFragment {
     ArrayList<DropDownItem> language;
     LinearLayout searchViewLayout;
     ListView lvCountries;
+    TextView txtSelectionTitle;
     EditText txtSearchCustom;
     SelectLanguageAdapter adapter;
     TextView txtCountry;
+    ImageView backbutton;
+
     SimpleSectionedListAdapter simpleSectionedGridAdapter;
 
     private ArrayList<SimpleSectionedListAdapter.Section> sections = new ArrayList<SimpleSectionedListAdapter.Section>();
@@ -75,12 +80,23 @@ public class SelectLanguageFragment extends DialogFragment {
 
         View view = inflater.inflate(R.layout.fragment_country_list_dialog, container, false);
         lvCountries = (ListView) view.findViewById(R.id.lvCountries);
+        txtSelectionTitle = (TextView) view.findViewById(R.id.txtSelectionTitle);
+
         searchViewLayout = (LinearLayout) view.findViewById(R.id.searchViewLayout);
         searchViewLayout.setVisibility(View.GONE);
-        getDialog().setTitle("Select Language");
+        txtSelectionTitle.setText(getResources().getString(R.string.option_select_language));
+
+        backbutton = (ImageView) view.findViewById(R.id.backbutton);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+
+
 
         initControls();
-
         //lvCountries.setAdapter(adapter);
         lvCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -100,10 +116,6 @@ public class SelectLanguageFragment extends DialogFragment {
     public void initControls() {
 
         adapter = new SelectLanguageAdapter(getActivity().getApplicationContext(), SelectLanguageFragment.this, language);
-
-        //simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
-        //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
-
         lvCountries.setAdapter(adapter);
     }
 

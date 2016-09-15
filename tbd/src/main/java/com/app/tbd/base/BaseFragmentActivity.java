@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.BookingFlight.Checkout.CheckoutActivity;
+import com.app.tbd.ui.Activity.Profile.UserProfile.EditProfileActivity;
 import com.app.tbd.ui.Model.Request.NotificationMessage;
 import com.app.tbd.utils.App;
 import com.app.tbd.ui.Realm.RealmObjectController;
@@ -118,11 +119,26 @@ public class BaseFragmentActivity extends FragmentActivity {
     }
 
 
+
     public void hideTitle()
     {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
         aq.id(R.id.title).visibility(View.GONE);
+    }
+
+    public void setEditButton()
+    {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.txtEdit).visible();
+        aq.id(R.id.txtEdit).clicked(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BaseFragmentActivity.this, EditProfileActivity.class);
+                BaseFragmentActivity.this.startActivity(intent);
+            }
+        });
     }
 
     public void setLogOutButton()

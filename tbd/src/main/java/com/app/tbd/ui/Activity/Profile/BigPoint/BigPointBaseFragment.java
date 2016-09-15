@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.app.tbd.MainController;
 import com.app.tbd.application.MainApplication;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
+import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
 import com.app.tbd.ui.Module.BigPointBaseModule;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
@@ -51,6 +53,8 @@ public class BigPointBaseFragment extends BaseFragment implements ProfilePresent
     private static final String SCREEN_LABEL = "Login";
     private SharedPrefManager pref;
     private String customerNumber;
+    private BigPointReceive bigPointReceive;
+    private String bigPointInfo;
 
     public static BigPointBaseFragment newInstance(Bundle bundle) {
 
@@ -77,27 +81,48 @@ public class BigPointBaseFragment extends BaseFragment implements ProfilePresent
         bigPointExpiryDateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent home = new Intent(getActivity(), TransactionHistoryActivity.class);
-                //getActivity().startActivity(home);
-                loadExpiryDate();
-
+                Intent expiryDate = new Intent(getActivity(), ExpiryDateActivity.class);
+                expiryDate.putExtra("BIG_POINT_EXPIRY", bigPointInfo);
+                getActivity().startActivity(expiryDate);
             }
         });
 
         transactionHistoryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //loadTransactionHistory();
-                Intent home = new Intent(getActivity(), TransactionHistoryActivity.class);
-                getActivity().startActivity(home);
+                //Intent home = new Intent(getActivity(), TransactionHistoryActivity.class);
+                //getActivity().startActivity(home);
+                loadTransactionHistory();
             }
         });
 
         return view;
     }
 
+    public void loadTransactionHistory() {
 
-    public void loadExpiryDate() {
+        initiateLoading(getActivity());
+        //convert from realm cache data to basic class
+        Realm realm = RealmObjectController.getRealmInstance(getActivity());
+        final RealmResults<UserInfoJSON> result2 = realm.where(UserInfoJSON.class).findAll();
+        final LoginReceive obj = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
+
+        //Log.e(obj.getCustomerNumber(), obj.getHash());
+        TransactionHistoryRequest transactionHistoryRequest = new TransactionHistoryRequest();
+        transactionHistoryRequest.setUserName(obj.getUserName());
+
+        //modify this later
+        transactionHistoryRequest.setStartDate("20160901");
+        transactionHistoryRequest.setEndDate("20160914");
+
+        //transactionHistoryRequest.setCustomerNumber(obj.getCustomerNumber());
+        transactionHistoryRequest.setTicketId(obj.getTicketId());
+        //transactionHistoryRequest.setHash(obj.getHash());
+        presenter.onRequestTransactionHistory(transactionHistoryRequest);
+
+    }
+
+    /*public void loadExpiryDate() {
 
         initiateLoading(getActivity());
 
@@ -113,14 +138,17 @@ public class BigPointBaseFragment extends BaseFragment implements ProfilePresent
         transactionHistoryRequest.setHash("4f2767f04b731d6186a8fc2ba06b3eb7");
         //transactionHistoryRequest.setHash(obj.getHash());
         presenter.onRequestTransactionHistory(transactionHistoryRequest);
-    }
+    }*/
 
     public void dataSetup() {
 
         pref = new SharedPrefManager(getActivity());
 
         Bundle bundle = getArguments();
-        String bigPoint = bundle.getString("BIG_POINT");
+        bigPointInfo = bundle.getString("BIG_POINT");
+
+        Gson gson = new Gson();
+        bigPointReceive = gson.fromJson(bigPointInfo, BigPointReceive.class);
 
         //convert from realm cache data to basic class
         Realm realm = RealmObjectController.getRealmInstance(getActivity());
@@ -129,7 +157,7 @@ public class BigPointBaseFragment extends BaseFragment implements ProfilePresent
 
         customerNumber = obj.getCustomerNumber();
         txtBigShotId.setText(customerNumber);
-        txtBigShotPoint.setText(bigPoint);
+        txtBigShotPoint.setText(bigPointReceive.getAvailablePts());
     }
 
     @Override
@@ -140,7 +168,7 @@ public class BigPointBaseFragment extends BaseFragment implements ProfilePresent
         if (status) {
 
             String transObj = new Gson().toJson(obj);
-            Intent transactionHistory = new Intent(getActivity(), ExpiryDateActivity.class);
+            Intent transactionHistory = new Intent(getActivity(), TransactionHistoryActivity.class);
             transactionHistory.putExtra("TRANSACTION_HISTORY", transObj);
             getActivity().startActivity(transactionHistory);
 

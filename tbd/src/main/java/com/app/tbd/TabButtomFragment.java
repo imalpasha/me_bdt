@@ -54,8 +54,7 @@ public class TabButtomFragment extends Fragment {
             public void onClick(View v) {
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.main_content, HomeFragment.newInstance()).commit();
-
+                fragmentManager.beginTransaction().replace(R.id.main_content, HomeFragment.newInstance()).addToBackStack(null).commit();
                 /*Intent homepage = new Intent(getActivity(), HomeActivity.class);
                 homepage.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getActivity().startActivity(homepage);
@@ -81,9 +80,9 @@ public class TabButtomFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
                 if (loginStatus == null || loginStatus.equals("N")) {
-                    fragmentManager.beginTransaction().replace(R.id.main_content, LoginFragment.newInstance()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.main_content, LoginFragment.newInstance()).addToBackStack(null).commit();
                 } else {
-                    fragmentManager.beginTransaction().replace(R.id.main_content, ProfileFragment.newInstance()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.main_content, ProfileFragment.newInstance()).addToBackStack(null).commit();
                 }
                 /*tabProfile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getActivity().startActivity(tabProfile);

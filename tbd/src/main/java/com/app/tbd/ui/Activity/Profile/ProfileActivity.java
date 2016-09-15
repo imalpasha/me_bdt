@@ -25,7 +25,7 @@ public class ProfileActivity extends MainFragmentActivity implements FragmentCon
         ButterKnife.inject(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, ProfileFragment.newInstance()).commit();
+        fragmentManager.beginTransaction().replace(R.id.main_content, ProfileFragment.newInstance(), "Profile").commit();
 
         setTitle("My Profile");
 
@@ -42,6 +42,14 @@ public class ProfileActivity extends MainFragmentActivity implements FragmentCon
     public void onResume() {
         super.onResume();
         // presenter.onResume();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        final FragmentManager manager = getSupportFragmentManager();
+        ProfileFragment fragment = (ProfileFragment) manager.findFragmentByTag("Profile");
+        fragment.exitApp();
     }
 
 

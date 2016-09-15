@@ -5,34 +5,32 @@ package com.app.tbd.ui.Model.Request.TBD;
  */
 public class BigPointRequest {
 
+    String UserName;
+    String TicketId;
 
-    /*Local Data Send To Server*/
-    String CustomerNumber;
-    String Hash;
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getTicketId() {
+        return TicketId;
+    }
+
+    public void setTicketId(String ticketId) {
+        TicketId = ticketId;
+    }
 
     /*Initiate Class*/
     public BigPointRequest() {
     }
 
     public BigPointRequest(BigPointRequest data) {
-        CustomerNumber = data.getCustomerNumber();
-        Hash = data.getHash();
-    }
-
-    public String getCustomerNumber() {
-        return CustomerNumber;
-    }
-
-    public void setCustomerNumber(String customerNumber) {
-        CustomerNumber = customerNumber;
-    }
-
-    public String getHash() {
-        return Hash;
-    }
-
-    public void setHash(String hash) {
-        Hash = hash;
+        UserName = data.getUserName();
+        TicketId = data.getTicketId();
     }
 
 }

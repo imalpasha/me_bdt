@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Realm.RealmObjectController;
@@ -88,32 +89,31 @@ public class ExpiryDateFragment extends BaseFragment {
         ButterKnife.inject(this, view);
 
         Bundle bundle = getArguments();
-        String transactionHistory = bundle.getString("TRANSACTION_HISTORY");
+        String bigPointExpiry = bundle.getString("BIG_POINT_EXPIRY");
 
         Gson gson = new Gson();
-        TransactionHistoryReceive obj = gson.fromJson(transactionHistory, TransactionHistoryReceive.class);
+        BigPointReceive obj = gson.fromJson(bigPointExpiry, BigPointReceive.class);
 
         setData(obj);
 
         return view;
     }
 
-    public void setData(TransactionHistoryReceive obj) {
+    public void setData(BigPointReceive obj) {
 
-        Log.e("obj.getExpiryPts1()",obj.getExpiryPts1());
-        txtExpiryDate1.setText(obj.getExpiryPts1());
-        txtExpiryDate2.setText(obj.getExpiryPts2());
-        txtExpiryDate3.setText(obj.getExpiryPts3());
-        txtExpiryDate4.setText(obj.getExpiryPts4());
-        txtExpiryDate5.setText(obj.getExpiryPts5());
-        txtExpiryDate6.setText(obj.getExpiryPts6());
+        txtExpiryDate1.setText(obj.getExpPts1());
+        txtExpiryDate2.setText(obj.getExpPts2());
+        txtExpiryDate3.setText(obj.getExpPts3());
+        txtExpiryDate4.setText(obj.getExpPts4());
+        txtExpiryDate5.setText(obj.getExpPts5());
+        txtExpiryDate6.setText(obj.getExpPts6());
 
-        txtPoints1.setText(obj.getExpiryMonth1());
-        txtPoints2.setText(obj.getExpiryMonth2());
-        txtPoints3.setText(obj.getExpiryMonth3());
-        txtPoints4.setText(obj.getExpiryMonth4());
-        txtPoints5.setText(obj.getExpiryMonth5());
-        txtPoints6.setText(obj.getExpiryMonth6());
+        txtPoints1.setText(obj.getExpMonth1());
+        txtPoints2.setText(obj.getExpMonth2());
+        txtPoints3.setText(obj.getExpMonth3());
+        txtPoints4.setText(obj.getExpMonth4());
+        txtPoints5.setText(obj.getExpMonth5());
+        txtPoints6.setText(obj.getExpMonth6());
 
     }
 

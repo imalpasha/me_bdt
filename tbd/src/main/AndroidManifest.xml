@@ -83,10 +83,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.app.tbd.ui.Activity.SlidePage.NearKioskActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.app.tbd.ui.Activity.BeaconV2.PushNotificationV1"
             android:screenOrientation="portrait" />
 
@@ -96,10 +92,6 @@
 
         <activity
             android:name="com.app.tbd.ui.Activity.BeaconV2.BoardingGateActivityV2"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.app.tbd.ui.Activity.BookingFlight.ContactInfoActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -157,35 +149,11 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.app.tbd.ui.Activity.BookingFlight.PersonalDetailActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.app.tbd.ui.Activity.BookingFlight.ManageFamilyAndFriend.ManageFriendAndFamilyActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name="com.app.tbd.ui.Activity.BookingFlight.ManageFamilyAndFriend.EditFamilyFriendsActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.app.tbd.ui.Activity.BookingFlight.SeatSelectionActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.app.tbd.ui.Activity.BookingFlight.FlightSummaryActivity2"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.app.tbd.ui.Activity.BookingFlight.ItinenaryActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.app.tbd.ui.Activity.BookingFlight.PaymentFlightActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.app.tbd.ui.Activity.BookingFlight.PaymentWebViewActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -331,7 +299,9 @@
 
         <activity
             android:name="com.app.tbd.ui.Activity.Profile.ProfileActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".ui.Activity.Profile.Option.OptionsActivity"

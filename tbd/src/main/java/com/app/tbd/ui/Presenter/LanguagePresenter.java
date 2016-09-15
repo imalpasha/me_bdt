@@ -49,12 +49,13 @@ public class LanguagePresenter {
     }
 
 
-    public void initialLoad(InitialLoadRequest info) {
-        bus.post(new InitialLoadRequest(info));
-    }
-
     public void onStateRequest(StateRequest obj) {
         bus.post(new StateRequest(obj));
+    }
+
+    public void initialLoad(InitialLoadRequest info) {
+        bus.post(new InitialLoadRequest(info));
+        Log.e("Why","?");
     }
 
     @Subscribe

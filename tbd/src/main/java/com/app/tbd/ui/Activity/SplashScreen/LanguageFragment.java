@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.tbd.MainController;
+import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
 import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.application.MainApplication;
@@ -38,8 +38,8 @@ import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Module.LanguageModule;
-import com.app.tbd.ui.Presenter.HomePresenter;
 import com.app.tbd.ui.Presenter.LanguagePresenter;
+import com.app.tbd.ui.Realm.Cached.CachedLanguageCountry;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.SharedPrefManager;
@@ -48,7 +48,6 @@ import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.squareup.otto.Bus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +58,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.realm.RealmResults;
 
 public class LanguageFragment extends BaseFragment implements LanguagePresenter.LanguageView, Validator.ValidationListener {
 
@@ -95,6 +95,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
     private SharedPrefManager pref;
     private String languageCode, countryCode;
     private Boolean languageClickable = false;
+    private String cn;
 
     public static LanguageFragment newInstance() {
 
@@ -132,7 +133,6 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
 
         HashMap<String, String> initAppData = pref.getFirstTimeUser();
         String firstTime = initAppData.get(SharedPrefManager.FIRST_TIME_USER);
-        pref.setFirstTimeUser("N");
 
         if (firstTime != null && firstTime.equals("N")) {
             Intent language = new Intent(getActivity(), HomeActivity.class);
@@ -206,7 +206,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
 
             //load state - need to move later on
             StateRequest stateRequest = new StateRequest();
-            stateRequest.setLanguageCode(languageCode + "-" + countryCode);
+            stateRequest.setLanguageCode(languageCode);
             stateRequest.setCountryCode(countryCode);
             stateRequest.setPresenterName("LanguagePresenter");
             presenter.onStateRequest(stateRequest);
@@ -299,27 +299,23 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         btn_nxt.setText(R.string.btn_nxt);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        presenter.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        presenter.onPause();
-
-    }
-
     public void changeLanguage(String selectedLanguage) {
         String lang = "en";
+
         if (selectedLanguage.equals("en")) {
+            cn = "GB";
             lang = "en";
         } else if (selectedLanguage.equals("ms")) {
             lang = "ms";
+            cn = "MY";
+
+        } else if (selectedLanguage.equals("zh")) {
+            lang = "ms";
+            cn = "CN";
         } else {
             lang = "en";
+            cn = "GB";
+
         } //else if (selectedLanguage.equals("th")) {
         //lang = "th";
         //}
@@ -342,6 +338,10 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         languageList = new ArrayList<DropDownItem>();
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
+
+            Gson gson = new Gson();
+            String gsonLanguageList = gson.toJson(obj);
+            pref.setLanguageList(gsonLanguageList);
 
             languageClickable = true;
             txtLangLanguage.setClickable(true);
@@ -368,6 +368,9 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
             //save to pref
+
+            pref.setFirstTimeUser("N");
+
             Gson gson = new Gson();
             String state = gson.toJson(obj.getStateList());
             pref.setState(state);
@@ -398,7 +401,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                     imageLayout.setVisibility(View.GONE);
 
                 }
-            }, 3000);
+            }, 2000);
 
 
             txtLangCountry.setClickable(true);
@@ -422,12 +425,11 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         //retrieve back all data with selected language
 
         InitialLoadRequest infoData = new InitialLoadRequest();
-        infoData = new InitialLoadRequest();
-        infoData.setLanguageCode(languageCode + "-" + countryCode);
+        infoData.setLanguageCode(languageCode + "-" + cn);
         presenter.initialLoad(infoData);
 
-
         pref.setLanguageCountry(languageCode + "-" + countryCode);
+        Log.e("CountryCode", languageCode + "-" + countryCode);
     }
 
     @Override
@@ -468,6 +470,34 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         languageRequest.setCountryCode(countryCode);
 
         presenter.onLanguageRequest(languageRequest);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.onResume();
+        checkLanguageCountryResult();
+        Log.e("OnREsume", "true");
+    }
+
+    public void checkLanguageCountryResult() {
+        RealmResults<CachedLanguageCountry> result = RealmObjectController.getCachedLanguageCountry(MainFragmentActivity.getContext());
+        if (result.size() > 0) {
+            Log.e("OnREsume", "1");
+
+            Gson gson = new Gson();
+            LanguageCountryReceive obj = gson.fromJson(result.get(0).getCachedResult(), LanguageCountryReceive.class);
+            onSuccessRequestLanguageCountry(obj);
+        }
+        Log.e("OnREsume", "2");
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.onPause();
+
     }
 }
 

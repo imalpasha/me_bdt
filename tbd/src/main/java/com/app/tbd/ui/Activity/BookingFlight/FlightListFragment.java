@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
-import com.app.tbd.ui.Presenter.BookingPresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
 
 import javax.inject.Inject;
@@ -20,9 +19,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class FlightListFragment extends BaseFragment {
-
-    @Inject
-    BookingPresenter presenter;
 
     @InjectView(R.id.flightLayout)
     LinearLayout flightLayout;

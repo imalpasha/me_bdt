@@ -37,7 +37,7 @@ import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Module.LoginModule;
-import com.app.tbd.ui.Model.Request.CachedResult;
+import com.app.tbd.ui.Realm.Cached.CachedResult;
 import com.app.tbd.ui.Model.Request.TBD.LoginRequest;
 import com.app.tbd.ui.Presenter.LoginPresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
@@ -146,7 +146,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             @Override
             public void onClick(View v) {
                 mValidator.validate();
-                hideKeyboard();
+                //hideKeyboard();
             }
         });
 

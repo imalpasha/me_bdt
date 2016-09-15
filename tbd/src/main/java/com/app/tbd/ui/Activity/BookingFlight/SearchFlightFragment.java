@@ -13,37 +13,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.tbd.application.AnalyticsApplication;
-import com.app.tbd.application.MainApplication;
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.Picker.SelectFlightFragment;
-import com.app.tbd.ui.Model.Receive.SearchFlightReceive;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
-import com.app.tbd.ui.Module.SearchFlightModule;
-import com.app.tbd.ui.Presenter.BookingPresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.SharedPrefManager;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class SearchFlightFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener, BookingPresenter.SearchFlightView {
-
-    @Inject
-    BookingPresenter presenter;
+public class SearchFlightFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
 
     @InjectView(R.id.departureDateBlock)
     LinearLayout departureDateBlock;
@@ -108,7 +95,7 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainApplication.get(getActivity()).createScopedGraph(new SearchFlightModule(this)).inject(this);
+        //MainApplication.get(getActivity()).createScopedGraph(new SearchFlightModule(this)).inject(this);
         RealmObjectController.clearCachedResult(getActivity());
     }
 
@@ -272,11 +259,6 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         }
     }
 
-    @Override
-    public void onBookingDataReceive(SearchFlightReceive obj) {
-
-
-    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -287,7 +269,6 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onResume();
 
         AnalyticsApplication.sendScreenView(SCREEN_LABEL);
 
@@ -297,7 +278,6 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @Override
     public void onPause() {
         super.onPause();
-        presenter.onPause();
     }
 
     @Override

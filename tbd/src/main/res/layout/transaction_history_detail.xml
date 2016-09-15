@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/transactionDetailLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_history_transaction_date"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/transaction_history_processing_date"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_history_merchant"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_history_description"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_history_point"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:id="@+id/txtTransactionDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textColor="@color/dark_lvl2"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:id="@+id/txtProcessingDate"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textColor="@color/dark_lvl2"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:id="@+id/txtHistoryMerchant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textColor="@color/dark_lvl2"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:id="@+id/txtHistoryDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/dark_lvl2"
+            android:textSize="16dp" />
+
+        <com.app.tbd.utils.FontStyle.PlayTextView
+            android:id="@+id/txtHistoryPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/dark_lvl2"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+</LinearLayout>

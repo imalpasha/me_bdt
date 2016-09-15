@@ -13,6 +13,7 @@ import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.SharedPrefManager;
 import javax.inject.Inject;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class HomeFragment extends BaseFragment {
@@ -71,6 +72,34 @@ public class HomeFragment extends BaseFragment {
     public void onPause() {
         super.onPause();
         //presenter.onPause();
+    }
+
+
+    public void exitApp() {
+
+        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("EXIT")
+                .setContentText("Confirm exit?")
+                .showCancelButton(true)
+                .setCancelText("Cancel")
+                .setConfirmText("Close")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+
+                        getActivity().finish();
+                        System.exit(0);
+
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.cancel();
+                    }
+                })
+                .show();
+
     }
 
     @Override

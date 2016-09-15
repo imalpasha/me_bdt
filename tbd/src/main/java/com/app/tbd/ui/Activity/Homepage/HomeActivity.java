@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
+import com.app.tbd.ui.Activity.Profile.ProfileFragment;
 
 import butterknife.ButterKnife;
 
@@ -28,7 +29,13 @@ public class HomeActivity extends MainFragmentActivity implements FragmentContai
     @Override
     public void onResume() {
         super.onResume();
-        // presenter.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        final FragmentManager manager = getSupportFragmentManager();
+        HomeFragment fragment = (HomeFragment) manager.findFragmentByTag("Home");
+        fragment.exitApp();
     }
 
     @Override

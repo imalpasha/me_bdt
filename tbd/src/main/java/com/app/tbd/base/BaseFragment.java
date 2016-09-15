@@ -35,11 +35,15 @@ import com.app.tbd.R;
 import com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity;
 //import com.fly.firefly.ui.adapter.CheckInPassengerListAdapter;
 import com.app.tbd.ui.Activity.SplashScreen.TokenActivity;
+import com.app.tbd.ui.Model.JSON.UserFacebookInfo;
+import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
+import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Request.Country;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.DropMenuAdapter;
 import com.app.tbd.utils.SharedPrefManager;
 import com.app.tbd.utils.Utils;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -574,6 +578,32 @@ public class BaseFragment extends Fragment {
         return title;
     }
 
+    public ArrayList<DropDownItem> getLanguageList(Activity act) {
+
+        ArrayList<DropDownItem> list = new ArrayList<DropDownItem>();
+        Gson gson = new Gson();
+        JSONArray json = null;
+
+        prefManager = new SharedPrefManager(act);
+        HashMap<String, String> init = prefManager.getLanguageList();
+        String languageList = init.get(SharedPrefManager.LANGUAGE_LIST);
+
+        LanguageReceive languageListObj = gson.fromJson(languageList, LanguageReceive.class);
+
+
+        for (int i = 0; i < languageListObj.getLanguageList().size(); i++) {
+            DropDownItem itemCountry = new DropDownItem();
+            itemCountry.setText(languageListObj.getLanguageList().get(i).getLanguageName());
+            itemCountry.setCode(languageListObj.getLanguageList().get(i).getLanguageCode());
+            itemCountry.setTag("Country");
+            itemCountry.setId(i);
+            list.add(itemCountry);
+
+        }
+
+        return list;
+    }
+
 
     public void setShake(View view) {
         Animation shake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
@@ -713,7 +743,7 @@ public class BaseFragment extends Fragment {
             new SweetAlertDialog(MainApplication.getContext(), SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                     .setTitleText(title)
                     .setContentText(msg)
-                    .setCustomImage(R.drawable.notification_logo)
+                    .setCustomImage(R.drawable.splash_drawable)
                     .show();
         }
     }

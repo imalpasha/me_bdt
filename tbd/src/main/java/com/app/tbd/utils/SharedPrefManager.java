@@ -49,21 +49,21 @@ public class SharedPrefManager {
     public static final String PAYMENT_DUMMY = "PAYMENT_DUMMY";
     public static final String PNR = "PNR";
     public static final String PASSWORD = "PASSWORD";
-    public static final String SOCIAL_MEDIA ="SM";
+    public static final String SOCIAL_MEDIA = "SM";
     public static final String DATA_VERSION = "DV";
     public static final String TEMP_RESULT = "TR";
     public static final String BANNER_MODULE = "BM";
 
-    public static final String FLIGHT_TYPE ="FT";
-    public static final String USER_ID ="UI";
+    public static final String FLIGHT_TYPE = "FT";
+    public static final String USER_ID = "UI";
 
-    public static final String OFFERSSR1 ="OFS1";
-    public static final String OFFERSSR2 ="OFS2";
+    public static final String OFFERSSR1 = "OFS1";
+    public static final String OFFERSSR2 = "OFS2";
 
-    public static final String CUSTOMER_NUMBER ="CN";
+    public static final String CUSTOMER_NUMBER = "CN";
 
-    public static final String PERSON_ID ="PI";
-    public static final String BANNER_REDIRECT_URL ="BRU";
+    public static final String PERSON_ID = "PI";
+    public static final String BANNER_REDIRECT_URL = "BRU";
 
     public static final String APP_VERSION = "AV";
 
@@ -74,6 +74,10 @@ public class SharedPrefManager {
 
     public static final String TICKET_ID = "TI";
     public static final String LANGUAGE_COUNTRY = "LC";
+
+    public static final String LOAD_BIGPOINT = "LB";
+
+    public static final String LANGUAGE_LIST = "LL";
 
     int PRIVATE_MODE = 0;
     Context _context;
@@ -86,6 +90,19 @@ public class SharedPrefManager {
         _sharedPrefs = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         _prefsEditor = _sharedPrefs.edit();
     }
+
+    public HashMap<String, String> getLanguageList() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(LANGUAGE_LIST, _sharedPrefs.getString(LANGUAGE_LIST, null));
+        return init;
+    }
+
+    public HashMap<String, String> getBigPointRequestStatus() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(LOAD_BIGPOINT, _sharedPrefs.getString(LOAD_BIGPOINT, null));
+        return init;
+    }
+
 
     public HashMap<String, String> getLanguageCountry() {
         HashMap<String, String> init = new HashMap<String, String>();
@@ -146,7 +163,6 @@ public class SharedPrefManager {
         init.put(OFFERSSR2, _sharedPrefs.getString(OFFERSSR2, null));
         return init;
     }
-
 
 
     /*user id*/
@@ -348,6 +364,11 @@ public class SharedPrefManager {
         _prefsEditor.apply();
     }
 
+    public void setLanguageList(String lang) {
+        _prefsEditor.putString(LANGUAGE_LIST, lang);
+        _prefsEditor.apply();
+    }
+
     public void setEditStateName(String stateName) {
         _prefsEditor.putString(EDIT_STATE_NAME, stateName);
         _prefsEditor.apply();
@@ -500,6 +521,7 @@ public class SharedPrefManager {
         _prefsEditor.putString(TERM_INFO, url);
         _prefsEditor.apply();
     }
+
     /*Set Username Value*/
     public void setUsername(String url) {
         _prefsEditor.putString(USERNAME, url);
@@ -545,10 +567,9 @@ public class SharedPrefManager {
 
     /*Set Signature Value*/
     public void setBannerRedirectURL(String url) {
-        _prefsEditor.putString(BANNER_REDIRECT_URL,url);
+        _prefsEditor.putString(BANNER_REDIRECT_URL, url);
         _prefsEditor.apply();
     }
-
 
 
     /*Set Signature Value*/
@@ -563,6 +584,7 @@ public class SharedPrefManager {
         _prefsEditor.putString(ISNEWSLETTER, status);
         _prefsEditor.apply();
     }
+
     /*Set Signature Value*/
     public void setSignatureToLocalStorage(String signature) {
         _prefsEditor.putString(SIGNATURE, signature);
@@ -617,6 +639,7 @@ public class SharedPrefManager {
         _sharedPrefs.edit().remove(USER_ID).apply();
 
     }
+
     /*Clear Checkin Value*/
     public void removeSeat() {
         // Clearing All URL
@@ -786,4 +809,14 @@ public class SharedPrefManager {
         _sharedPrefs.edit().remove(PERSON_ID).apply();
         Log.e("Clear", "True");
     }
+
+
+    /* ---------------------------- TBD -------------------------------*/
+
+
+    public void setBigPointRequestStatus(String status) {
+        _prefsEditor.putString(LOAD_BIGPOINT, status);
+        _prefsEditor.apply();
+    }
+
 }

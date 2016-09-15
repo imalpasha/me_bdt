@@ -1,5 +1,6 @@
 package com.app.tbd.ui.Presenter;
 
+import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 
@@ -8,6 +9,7 @@ import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
+import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
 import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
@@ -23,7 +25,6 @@ public class ProfilePresenter {
     public interface ProfileView {
         void onBigPointReceive(BigPointReceive obj);
         void onViewUserSuccess(ViewUserReceive obj);
-        //void onSuccessRequestState(StateReceive obj);
     }
 
     public interface MyProfileView {
@@ -32,6 +33,8 @@ public class ProfilePresenter {
 
     public interface OptionView {
         void onLogoutReceive(LogoutReceive obj);
+        void loadingSuccess(InitialLoadReceive obj);
+        void onSuccessRequestState(StateReceive obj);
     }
 
     public interface ResetPasswordView {
@@ -42,7 +45,6 @@ public class ProfilePresenter {
     public interface BigPointView {
         void onTransactionHistorySuccess(TransactionHistoryReceive obj);
     }
-
 
 
     private ProfileView loginView;
@@ -102,6 +104,15 @@ public class ProfilePresenter {
         bus.post(new StateRequest(obj));
     }
 
+    public void initialLoad(InitialLoadRequest info) {
+        bus.post(new InitialLoadRequest(info));
+    }
+
+    @Subscribe
+    public void onSuccessSendDeviceInformation(InitialLoadReceive event) {
+        optionView.loadingSuccess(event);
+    }
+
     @Subscribe
     public void onTransactionHistoryReceive(TransactionHistoryReceive event) {
         bigPointView.onTransactionHistorySuccess(event);
@@ -114,8 +125,7 @@ public class ProfilePresenter {
 
     @Subscribe
     public void onSuccessRequestState(StateReceive event) {
-
-        //loginView.onSuccessRequestState(event);
+        optionView.onSuccessRequestState(event);
     }
 
     @Subscribe

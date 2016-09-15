@@ -23,7 +23,7 @@ import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
 import com.app.tbd.ui.Module.ChangePasswordModule;
-import com.app.tbd.ui.Model.Request.CachedResult;
+import com.app.tbd.ui.Realm.Cached.CachedResult;
 import com.app.tbd.ui.Model.Request.ChangePasswordRequest;
 import com.app.tbd.ui.Presenter.ChangePasswordPresenter;
 import com.app.tbd.utils.AESCBC;

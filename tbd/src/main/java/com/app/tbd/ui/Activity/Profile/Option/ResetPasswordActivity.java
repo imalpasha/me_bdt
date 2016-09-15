@@ -28,6 +28,7 @@ public class ResetPasswordActivity extends MainFragmentActivity implements Fragm
         fragmentManager.beginTransaction().replace(R.id.main_content, ResetPasswordFragment.newInstance()).commit();
 
         setTitle(getResources().getString(R.string.options_reset_password));
+        setBackButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.

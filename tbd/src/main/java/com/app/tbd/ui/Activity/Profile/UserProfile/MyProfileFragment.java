@@ -111,7 +111,7 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
 
         Bundle bundle = getArguments();
         customerNumber = bundle.getString("BIG_ID");
-        String userInformation = bundle.getString("USER_INFORMATION");
+        final String userInformation = bundle.getString("USER_INFORMATION");
 
         Gson gson = new Gson();
         ViewUserReceive obj = gson.fromJson(userInformation, ViewUserReceive.class);
@@ -121,7 +121,7 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
             @Override
             public void onClick(View view) {
                 Intent editPage = new Intent(getActivity(), EditProfileActivity.class);
-                editPage.putExtra("USER_INFORMATION", userInfo);
+                editPage.putExtra("USER_INFORMATION", userInformation);
                 getActivity().startActivity(editPage);
                 getActivity().finish();
 

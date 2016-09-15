@@ -1,89 +1,28 @@
 package com.app.tbd.ui.Activity.Register;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.tbd.application.AnalyticsApplication;
-import com.app.tbd.MainController;
-import com.app.tbd.application.MainApplication;
-import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
-import com.app.tbd.ui.Activity.Picker.BasicPicker;
-import com.app.tbd.ui.Activity.Picker.SelectCountryFragment;
-import com.app.tbd.ui.Activity.Picker.SelectDefaultFragment;
-import com.app.tbd.ui.Activity.Picker.SelectStateFragment;
-import com.app.tbd.ui.Model.JSON.UserFacebookInfo;
-import com.app.tbd.ui.Model.Receive.ContactInfoReceive;
-import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
-import com.app.tbd.ui.Model.Receive.RegisterReceive;
 import com.app.tbd.base.BaseFragment;
-import com.app.tbd.ui.Activity.FragmentContainerActivity;
-import com.app.tbd.ui.Activity.Picker.DatePickerFragment;
-import com.app.tbd.ui.Model.Receive.StateReceive;
-import com.app.tbd.ui.Model.Request.NewsletterLanguageRequest;
-import com.app.tbd.ui.Model.Request.RegisterRequest;
-import com.app.tbd.ui.Model.Request.StateRequest;
-import com.app.tbd.ui.Module.RegisterModule;
-import com.app.tbd.ui.Model.Request.CachedResult;
-import com.app.tbd.ui.Presenter.RegisterPresenter;
-import com.app.tbd.utils.DropDownItem;
-import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.SharedPrefManager;
-import com.app.tbd.utils.Utils;
-import com.google.gson.Gson;
-import com.mobsandgeeks.saripaar.ValidationError;
-import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
-import com.mobsandgeeks.saripaar.annotation.Email;
-import com.mobsandgeeks.saripaar.annotation.Length;
-import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Password;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import io.realm.RealmResults;
 
 public class RegisterFragment extends BaseFragment {
 
