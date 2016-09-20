@@ -6,7 +6,7 @@ package com.app.tbd.ui.Model.Request;
 public class ResetPasswordRequest {
 
 
-    private String TicketId;
+    private String Token;
     private String UserName;
     private String Password;
     private String NewPassword;
@@ -16,18 +16,18 @@ public class ResetPasswordRequest {
     }
 
     public ResetPasswordRequest(ResetPasswordRequest obj){
-        TicketId = obj.getTicketId();
+        Token = obj.getToken();
         UserName = obj.getUserName();
         Password = obj.getOldPassword();
         NewPassword = obj.getNewPassword();
     }
 
-    public String getTicketId() {
-        return TicketId;
+    public String getToken() {
+        return Token;
     }
 
-    public void setTicketId(String ticketId) {
-        TicketId = ticketId;
+    public void setToken(String token) {
+        Token = token;
     }
 
     public String getNewPassword() {

@@ -19,10 +19,8 @@ import com.app.tbd.application.MainApplication;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
-import com.app.tbd.ui.Activity.Picker.SelectCountryFragment;
-import com.app.tbd.ui.Activity.Picker.SelectDefaultFragment;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageFragment;
-import com.app.tbd.ui.Activity.Picker.SelectStateFragment;
+import com.app.tbd.ui.Activity.Profile.ProfileActivity;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
@@ -30,7 +28,6 @@ import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 import com.app.tbd.ui.Module.OptionModule;
-import com.app.tbd.ui.Presenter.LanguagePresenter;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
@@ -109,14 +106,14 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
             public void onClick(View v) {
 
                 pref.clearLoginStatus();
-                HashMap<String, String> initTicketId = pref.getTicketId();
-                String ticketId = initTicketId.get(SharedPrefManager.TICKET_ID);
+                HashMap<String, String> initTicketId = pref.getToken();
+                String token = initTicketId.get(SharedPrefManager.TOKEN);
 
                 HashMap<String, String> initUserName = pref.getUsername();
                 String userName = initUserName.get(SharedPrefManager.USERNAME);
 
                 LogoutRequest logoutRequest = new LogoutRequest();
-                logoutRequest.setTicketId(ticketId);
+                logoutRequest.setToken(token);
                 logoutRequest.setUsername(userName);
 
                 initiateLoading(getActivity());
@@ -179,7 +176,7 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
 
     public void setupData() {
         pref = new SharedPrefManager(getActivity());
-        languageList = getLanguageList(getActivity());
+        languageList = getLanguage(getActivity());
 
         //retrieve back all data with selected language
         HashMap<String, String> init = pref.getLanguageCountry();
@@ -224,7 +221,7 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
 
             //load state - need to move later on
             StateRequest stateRequest = new StateRequest();
-            stateRequest.setLanguageCode(languageCode);
+            stateRequest.setLanguageCode(languageCode + "-" + cn);
             stateRequest.setCountryCode(latestCountryCode);
             stateRequest.setPresenterName("LanguagePresenter");
             presenter.onStateRequest(stateRequest);
@@ -262,7 +259,7 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
             cn = "MY";
 
         } else if (selectedLanguage.equals("zh")) {
-            lang = "ms";
+            lang = "zh";
             cn = "CN";
         } else {
             lang = "en";
@@ -335,6 +332,11 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
             Gson gson = new Gson();
             String state = gson.toJson(obj.getStateList());
             pref.setState(state);
+
+            Intent changeLang = new Intent(getActivity(), ProfileActivity.class);
+            changeLang.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            getActivity().startActivity(changeLang);
+            getActivity().finish();
         }
 
     }

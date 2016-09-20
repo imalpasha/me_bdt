@@ -1,33 +1,18 @@
 package com.app.tbd.ui.Activity.Profile.Option;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.tbd.MainController;
 import com.app.tbd.application.MainApplication;
-import com.app.tbd.ui.Activity.Profile.Option.OptionsActivity;
 import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
-import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
-import com.app.tbd.ui.Model.Request.RegisterRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
-import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
-import com.app.tbd.ui.Module.ProfileModule;
 import com.app.tbd.ui.Module.ResetPasswordModule;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
 import com.google.gson.Gson;
@@ -46,6 +31,7 @@ import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -89,7 +75,7 @@ public class ResetPasswordFragment extends BaseFragment implements ProfilePresen
     private ProgressDialog progress;
 
     private String userName;
-    private String ticketID;
+    private String token;
 
     public static ResetPasswordFragment newInstance() {
 
@@ -132,11 +118,14 @@ public class ResetPasswordFragment extends BaseFragment implements ProfilePresen
 
         initiateLoading(getActivity());
 
+        HashMap<String, String> initAuth = pref.getUserPassword();
+        final String password = initAuth.get(SharedPrefManager.PASSWORD);
+
         ResetPasswordRequest resetPasswordRequest = new ResetPasswordRequest();
-        resetPasswordRequest.setOldPassword("Password123");
+        resetPasswordRequest.setOldPassword(txtOldPassword.getText().toString());
         resetPasswordRequest.setNewPassword(txtNewPassword.getText().toString());
         resetPasswordRequest.setUserName(userName);
-        resetPasswordRequest.setTicketId(ticketID);
+        resetPasswordRequest.setToken(token);
 
         presenter.onRequestResetPassword(resetPasswordRequest);
 
@@ -188,7 +177,7 @@ public class ResetPasswordFragment extends BaseFragment implements ProfilePresen
         final LoginReceive obj = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
 
         userName = obj.getUserName();
-        ticketID = obj.getTicketId();
+        token = obj.getToken();
 
     }
 

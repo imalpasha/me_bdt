@@ -1,7 +1,104 @@
 <resources>
 
     <string name="btn_nxt">NEXT</string>
-    <string name="hometext">Laman Utama</string>
+    <string name="hometext">Halaman Utama</string>
+
+
+    <string name="search_language_title">Choose language</string>
+
+    <!-- <string name="retrieve_rhymes_failed">The network is slow or unavailable</string>
+     <string name="no_rhymes_found_error">Couldn\'t find anything that rhymes with %s</string>
+
+     <string name="search_hint">Retrofit - Test On api.github.com</string>
+     <string name="rhyme_caps">Search User</string>
+     <string name="retry_caps">RETRY</string>
+
+     <string name="rhymes_with">Rhymes with %s</string>
+
+
+     <string name="soapURL">http://192.168.0.120:9766/vrsm/generalHTTP/1.1</string>
+
+     <string name="module_package_name">com.silverlake.ifb.module</string>
+
+     <string name="utc">Unable to connect to server</string>
+
+     <string name="internetNA">Internet connection not available </string>
+
+     <string name="loginUserNameHint">Username</string>
+     <string name="loginUserPasswordHint">Password</string>
+     <string name="loginBtnLogin">Login</string>
+     <string name="loginBtnSignUp">Sign Up</string>
+     <string name="loginTxtFYP">Forgot your password?</string>
+
+     <string name="promotionLabel">Promotions</string>
+
+     <string name="contactUsDescription">VRSM provides merchants with unsurpassed store-front features and functionalities that deliver personalize mobile shopping experience.
+     It is built from customer perspective that is easy to understand, protects customer data and customizable layout tailored to individual need.The velocity at which mobile devices increase its computing power to support complex multimedia rich applications makes VRSM an ideal landscape to bring online shopping experience to the mobile devices.
+ </string> -->
+
+    <!-- Register Page --> <!--
+    <string name="registerLabel">Fill Up \nand \nLets Shop!</string>
+    <string name="registerHintUserID">User ID*</string>
+    <string name="registerHintUserPassword">Password*</string>
+    <string name="registerHintUserConfirmPassword">Confirm Password*</string>
+    <string name="registerHintUserEmail">Email*</string>
+    <string name="registerHintUserName">Name*</string>
+    <string name="registerHintUserGender">Gender*</string>
+    <string name="registerHintUserYear">Year*</string>
+    <string name="registerHintUserMonth">Month*</string>
+    <string name="registerHintUserDay">Day*</string>
+    <string name="registerHintUserPhone">Phone*</string>
+    <string name="registerHintUserAddAddress">Add Addres</string>
+    <string name="registerHintUserAddressName">Address Name*</string>
+    <string name="registerHintUserStreet1">Street 1*</string>
+    <string name="registerHintUserStreet2">Street 2</string>
+    <string name="registerHintUserStreet3">Street 3</string>
+    <string name="registerHintUserCity">City*</string>
+    <string name="registerHintUserPostCode">Post Code*</string>
+    <string name="registerHintUserCountry">Country*</string>
+    <string name="registerHintUserState">State*</string>
+    <string name="registerTC">I agree with Terms &amp; Condition</string>
+    <string name="registerRP">Return Policy</string>
+    <string name="tc">Terms &amp; Condition</string>-->
+
+    <!-- Error Text --><!--
+    <string name="errorPleaseFillUpEmptyField">Please fill up the highlighted field</string>
+    <string name="errorUserNamePassword">Invalid Username / Password</string>
+    <string name="loginErrorEmptyField">Forgot You Passoword</string> -->
+
+    <!-- General --><!--
+    <string name="department_section1">Ladies</string>
+    <string name="department_section2">Men</string>
+    <string name="department_section3">Books</string>
+    <string name="department_section4">Toys &amp; Games</string>
+    <string name="department_section5">Electronics </string>
+    <string name="department_section6">Kids &amp; Babies </string>
+    <string name="department_section7">Sport &amp; Outdoors</string>
+    <string name="department_section8">Gadgets</string>
+    <string name="more_section1">Newsletter</string>
+    <string name="more_section2">Augmented Reality</string>
+    <string name="more_section3">Partners</string>
+
+    <string name="action_example">Example action</string>
+    <string name="VRSM_webservices_url">http://localhost:9766/vrsm/VrsmWS/</string>
+    <string name="TRY">Try again</string>
+    <string name="internet_NA_with_retry">Unable to connect to server. Check your internet connection and try again</string>
+    <string name="connection_error">Connection error</string>
+    <string name="promotion">Promotion</string>
+    <string name="pna">Product not available or no longer sold by the merchant</string> -->
+
+    <!-- Sliding Menu -->
+    <!--<string name="newsletter">Newsletter</string>
+    <string name="newsletter_mine">My Newsletter</string>
+    <string name="augmented_reality">Augmented Reality</string>
+    <string name="social_media_wall">Social Media Wall</string>
+    <string name="merchant">Merchant</string>
+    <string name="badges">Badges</string>
+    <string name="contactUS">Contact Us</string>
+    <string name="tnc">Term &amp; Condition </string>
+    <string name="more_about_vrsm">More about VRSM</string>
+    <string name="faq">FAQ</string>
+    <string name="return_policy">Return Policy</string>-->
 
     <!-- DropDown Value -->
     <string-array name="gender">
@@ -13,6 +110,26 @@
         <item>Malaysia IC-NRIC</item>
         <item>Passport-P</item>
         <item>Visa-V</item>
+    </string-array>
+
+    <string-array name="language">
+        <item>English-en</item>
+        <item>Malay-ms</item>
+        <item>Thai-th</item>
+    </string-array>
+
+    <!-- Dummy Flight -->
+    <string-array name="dummy_flight">
+        <item>Subang-sbz</item>
+        <item>KLia-kul</item>
+        <item>Kota Bharu-kb</item>
+        <item>Bintulu-btl</item>
+        <item>Hanoi-kb</item>
+        <item>Denpasar-kb</item>
+        <item>Alor Setar-kb</item>
+        <item>Penang-pen</item>
+        <item>KLia2-klia2</item>
+
     </string-array>
 
     <string-array name="lang_country">
@@ -74,10 +191,10 @@
     <string name="register_firstname">First Name / Given Name </string>
     <string name="register_lastname">Last Name / Family Name </string>
 
-    <string name="register_basic_information">LOGIN INFORMATION</string>
     <string name="register_personal_information">PERSONAL INFORMATION</string>
     <string name="register_contact_information">CONTACT INFORMATION</string>
     <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
+    <string name="register_basic_information">BASIC INFORMATION</string>
 
     <string name="register_address_3">Address Line 3</string>
 
@@ -178,6 +295,12 @@
 
     <!--TBD Choose Language-->
     <string name="lang_next">Next ></string>
+    <string name="lang_country">Country</string>
+
+
+    <string name="update_success">Update Success</string>
+    <string name="exit">EXIT FIREFLY</string>
+    <string name="term_webview">http://fyapidev.me-tech.com.my/api/displayTerm</string>
 
     <!-- General-->
     <string name="dob">DOB: </string>
@@ -185,9 +308,10 @@
     <string name="textview_placeholder_lbl">TextView</string>
     <string name="action_settings">FIREFLY</string>
     <string name="stateListDialogTitle">Please select state</string>
+    <string name="failed_load">Failed to load</string>
 
     <!-- Drawer/Version -->
-    <string name="x_lbl">.</string>
+    <string name="x_lbl">1.3</string>
 
     <!-- CleanUP -->
     <!-- General-->
@@ -195,7 +319,7 @@
     <string name="no_internet_connection">No internet connection found. Check your internet connection and try again</string>
 
     <!-- TBD -->
-    <string name="TBD_app_name">TBD</string>
+    <string name="TBD_app_name">AABP</string>
 
     <!-- TBD LOGIN PAGE -->
     <string name="login_">Login</string>
@@ -214,7 +338,13 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="btn_continue">Continue ></string>
-    <string name="fill_emtpy_field">Please fill/fix error field.</string>
+    <string name="fill_emtpy_field">Something went wrong. Please correct any errors indicated</string>
+    <string name="success">Success!</string>
+
+    <!-- Reset Password -->
+    <string name="reset_old_password">Old Password</string>
+    <string name="reset_new_password">New Password</string>
+    <string name="reset_confirm_password">Confirm Password</string>
 
     <!-- TBD Profile -->
     <string name="tbd_my_profile">My Profile</string>
@@ -222,7 +352,34 @@
     <string name="tbd_my_big_point">My BIG Point</string>
     <string name="tbd_my_credit_card">My Credit Card</string>
     <string name="facebook">Facebook</string>
-    <string name="instagram">Instagram</string>
+    <string name="options">Options</string>
+
+    <!--Options-->
+    <string name="options_about">About</string>
+    <string name="options_terms">Terms</string>
+    <string name="options_privacy">Privacy Policy</string>
+    <string name="options_reset_password">Reset Password</string>
+    <string name="options_change_language">Change Language</string>
+    <string name="options_logout">Logout</string>
+    <string name="option_reset_password">PASSWORD INFORMATION</string>
+    <string name="option_select_language">SELECT LANGUAGE</string>
+
+    <!--AAB View My Profile -->
+    <string name="profile_salutation">Salutation</string>
+    <string name="profile_given_name">Given Name</string>
+    <string name="profile_family_name">Family Name</string>
+    <string name="profile_dob">Date of Birth</string>
+    <string name="profile_nationality">Nationality</string>
+    <string name="profile_mobile">Mobile</string>
+    <string name="profile_passport">Passport</string>
+    <string name="profile_address">Address</string>
+    <string name="profile_street1">Street 1</string>
+    <string name="profile_street2">Street 2</string>
+    <string name="profile_city">City</string>
+    <string name="profile_post_code">Post Code</string>
+    <string name="profile_state">State</string>
+    <string name="profile_country">Country</string>
+    <string name="edit_profile">Edit Profile</string>
 
     <!-- TBD Search Flight -->
     <string name="search_flight_title">Select your origin</string>
@@ -279,10 +436,9 @@
     ]]>
     </string>
 
-         <string name="register_parent_confirm">
+       <string name="register_parent_confirm">
     <![CDATA[
     In making this AirAsia BIG Loyalty membership and AirAsia membership, I hereby declare that (i) I, the applicant, am at least 18 years of age; (ii) I am the parent and/or guardian of the Minor; (iii) I am applying for the BIG Loyalty Membership and AirAsia Membership for and on behalf of the Minor (iv) I consent to the sharing and processing of the Minor’s personal data and information in accordance with <a href="http://www.airasiabig.com/my/en/assets/pdf/privacypolicy.pdf" style="color: #FF0000;">Think BIG Digital Sdn Bhd’s Privacy Policy</a> and <a href="http://www.airasia.com/my/en/about-us/privacy-policy.page" style="color: #FF0000;">AirAsia Berhad’s Privacy Policy</a>.
-
     ]]>
     </string>
 
@@ -293,6 +449,26 @@
     <!-- TBD Facebook ID -->
     <string name="facebook_app_id">1143272665731321</string>
 
-    <!--UPDATE PROFILE-->
+    <!--Big Point-->
+    <string name="big_shot_id">Big Shot ID:</string>
+    <string name="transaction_history">Transaction History</string>
+    <string name="big_point_expiry_date">BIG Point Expiry Date</string>
+    <string name="tbd_big_point_expiry_date">Point Expiration</string>
+    <string name="tbd_big_point_no_transaction">No Transaction History</string>
+
+    <!-- BIG POINT - Transaction History -->
+    <string name="transaction_history_transaction_date">Transaction Date:</string>
+    <string name="transaction_history_processing_date">Processing Date:</string>
+    <string name="transaction_history_merchant">Merchant:</string>
+    <string name="transaction_history_description">Description:</string>
+    <string name="transaction_history_point">Points:</string>
+
+    <!-- SELECTION FRAGMENT TITLE -->
+    <string name="select_country">Select country</string>
+    <string name="select_language">Select language</string>
+    <string name="select_state">Select state</string>
+    <string name="select_nationality">Select nationality</string>
+    <string name="select_title">Select title</string>
+
 
 </resources>

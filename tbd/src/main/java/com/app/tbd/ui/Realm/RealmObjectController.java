@@ -2,10 +2,12 @@ package com.app.tbd.ui.Realm;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import com.app.tbd.ui.Model.JSON.UserInfoJSON;
 import com.app.tbd.ui.Model.Receive.FlightSummaryReceive;
 import com.app.tbd.base.BaseFragment;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Request.NotificationMessage;
 import com.app.tbd.ui.Model.Request.RealmFlightObj;
 import com.app.tbd.ui.Realm.Cached.CachedBigPointResult;
@@ -63,9 +65,6 @@ public class RealmObjectController extends BaseFragment {
     }
 
 
-
-
-
     public static RealmResults<NotificationMessage> getNotificationMessage(Activity act) {
 
         Realm realm = getRealmInstance(act);
@@ -73,7 +72,6 @@ public class RealmObjectController extends BaseFragment {
 
         return result;
     }
-
 
 
     public static void clearNotificationMessage(Context act) {
@@ -141,17 +139,24 @@ public class RealmObjectController extends BaseFragment {
     }
 
     //get big point nc
-    public static RealmResults<CachedBigPointResult> getCachedBigPointResult(Activity act) {
+    public static BigPointReceive getCachedBigPointResult(Activity act) {
 
         Realm realm = getRealmInstance(act);
+        BigPointReceive obj = null;
         final RealmResults<CachedBigPointResult> result = realm.where(CachedBigPointResult.class).findAll();
 
-        //final RealmResults<CachedBigPointResult> clearResult = realm.where(CachedBigPointResult.class).findAll();
-        //realm.beginTransaction();
-        //clearResult.clear();
-        //realm.commitTransaction();
+        if (result.size() > 0) {
+            Gson gson = new Gson();
+            obj = gson.fromJson(result.get(0).getCachedResult(), BigPointReceive.class);
+        }
 
-        return result;
+        final RealmResults<CachedBigPointResult> clearResult = realm.where(CachedBigPointResult.class).findAll();
+        realm.beginTransaction();
+        clearResult.removeLast();
+        realm.commitTransaction();
+
+        Log.e("clearResult", Integer.toString(clearResult.size()));
+        return obj;
     }
 
     //get choose country (language selection) nc

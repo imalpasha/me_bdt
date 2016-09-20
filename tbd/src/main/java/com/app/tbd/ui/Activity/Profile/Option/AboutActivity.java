@@ -21,7 +21,8 @@ public class AboutActivity extends MainFragmentActivity implements FragmentConta
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
-        setTitle("About");
+        setTitle(getResources().getString(R.string.options_about));
+        setBackButton();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, AboutFragment.newInstance()).commit();

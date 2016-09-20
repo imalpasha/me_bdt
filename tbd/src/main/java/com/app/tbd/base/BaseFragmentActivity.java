@@ -121,6 +121,60 @@ public class BaseFragmentActivity extends FragmentActivity {
         aq.id(R.id.title).visibility(View.GONE);
     }
 
+    public void setCancelButton() {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.txtCancel).visible();
+        aq.id(R.id.txtCancel).clicked(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyProfileFragment.myProfileNotEditable();
+                hideBackButton();
+                hideDoneButton();
+                hideCancelButton();
+                setEditButton();
+                setBackButton();
+            }
+        });
+    }
+
+    public void hideCancelButton() {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.txtCancel).gone();
+    }
+
+    public void hideDoneButton() {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.txtDone).gone();
+    }
+
+    public void hideBackButton() {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.backbutton).gone();
+    }
+
+    public void hideEditButton() {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.txtEdit).gone();
+    }
+
+    public void setDoneButton() {
+        View actionBarView = getActionBar().getCustomView();
+        aq.recycle(actionBarView);
+        aq.id(R.id.txtDone).visible();
+        aq.id(R.id.txtDone).clicked(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyProfileFragment.editProfileRequest();
+                BaseFragment.initiateLoading(BaseFragmentActivity.this);
+            }
+        });
+    }
+
     public void setEditButton() {
         View actionBarView = getActionBar().getCustomView();
         aq.recycle(actionBarView);
@@ -128,10 +182,17 @@ public class BaseFragmentActivity extends FragmentActivity {
         aq.id(R.id.txtEdit).clicked(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BaseFragmentActivity.this, EditProfileActivity.class);
+                /*Intent intent = new Intent(BaseFragmentActivity.this, EditProfileActivity.class);
                 String userInfo = MyProfileFragment.returnUserInfo();
                 intent.putExtra("USER_INFORMATION", userInfo);
-                BaseFragmentActivity.this.startActivity(intent);
+                BaseFragmentActivity.this.startActivity(intent);*/
+                setCancelButton();
+                setDoneButton();
+                hideEditButton();
+                hideBackButton();
+
+                BaseFragment.initiateLoading(BaseFragmentActivity.this);
+                MyProfileFragment.myProfileEditable();
             }
         });
     }

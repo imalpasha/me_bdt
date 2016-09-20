@@ -200,7 +200,7 @@ public class BaseFragment extends Fragment {
 
     }
 
-    public String getDialingCode(String coutryCode, Activity act) {
+   /* public String getDialingCode(String coutryCode, Activity act) {
 
         String dialingCode = null;
 
@@ -214,7 +214,7 @@ public class BaseFragment extends Fragment {
         }
 
         return dialingCode;
-    }
+    }*/
 
     public boolean validateDialingCode(String dialingCode, String mobilePhone) {
 
@@ -369,7 +369,7 @@ public class BaseFragment extends Fragment {
         mDialog.getWindow().setAttributes(lp);
     }
 
-    public static ArrayList<DropDownItem> getStaticCountry(Activity act) {
+    public static ArrayList<DropDownItem> getCountry(Activity act) {
 
         ArrayList<DropDownItem> countrys = new ArrayList<DropDownItem>();
 
@@ -549,7 +549,7 @@ public class BaseFragment extends Fragment {
     }
 
 
-    public static ArrayList<DropDownItem> getStaticTitle(Activity act) {
+    public static ArrayList<DropDownItem> getTitle(Activity act) {
 
         ArrayList<DropDownItem> title = new ArrayList<DropDownItem>();
         JSONArray json = null;
@@ -568,15 +568,140 @@ public class BaseFragment extends Fragment {
             JSONObject row = (JSONObject) json.opt(i);
 
             DropDownItem itemCountry = new DropDownItem();
-            itemCountry.setText(row.optString("title_name"));
-            itemCountry.setCode(row.optString("title_code"));
+            itemCountry.setText(row.optString("Title"));
+            itemCountry.setCode(row.optString("GenderCode"));
             itemCountry.setTag("Country");
             itemCountry.setId(i);
             title.add(itemCountry);
         }
 
+        /*private String CultureCode;
+        private String Description;
+        private String GenderCode;
+        private String Title;*/
+
         return title;
     }
+
+    public static ArrayList<DropDownItem> getState(Activity act) {
+
+        ArrayList<DropDownItem> state = new ArrayList<DropDownItem>();
+        JSONArray json = null;
+
+        prefManager = new SharedPrefManager(act);
+        HashMap<String, String> init = prefManager.getState();
+        String dataTitle = init.get(SharedPrefManager.STATE);
+
+        try {
+            json = new JSONArray(dataTitle);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < json.length(); i++) {
+            JSONObject row = (JSONObject) json.opt(i);
+
+            DropDownItem itemCountry = new DropDownItem();
+            itemCountry.setText(row.optString("ProvinceStateName"));
+            itemCountry.setCode(row.optString("ProvinceStateCode"));
+            itemCountry.setTag("State");
+            itemCountry.setId(i);
+            state.add(itemCountry);
+        }
+
+        return state;
+    }
+
+
+    public static ArrayList<DropDownItem> getLanguageCountry(Activity act) {
+
+        ArrayList<DropDownItem> languageCountry = new ArrayList<DropDownItem>();
+        JSONArray json = null;
+
+        prefManager = new SharedPrefManager(act);
+        HashMap<String, String> init = prefManager.getLanguageCountry();
+        String data = init.get(SharedPrefManager.LANGUAGE_COUNTRY);
+
+        try {
+            json = new JSONArray(data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < json.length(); i++) {
+            JSONObject row = (JSONObject) json.opt(i);
+
+            DropDownItem itemCountry = new DropDownItem();
+            itemCountry.setText(row.optString("CountryName"));
+            itemCountry.setCode(row.optString("CountryCode"));
+            itemCountry.setTag("State");
+            itemCountry.setId(i);
+            languageCountry.add(itemCountry);
+        }
+
+        return languageCountry;
+    }
+
+    public static ArrayList<DropDownItem> getLanguage(Activity act) {
+
+        ArrayList<DropDownItem> languageList = new ArrayList<DropDownItem>();
+        JSONArray json = null;
+
+        prefManager = new SharedPrefManager(act);
+        HashMap<String, String> init = prefManager.getLanguageList();
+        String language = init.get(SharedPrefManager.LANGUAGE_LIST);
+
+        try {
+            json = new JSONArray(language);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < json.length(); i++) {
+            JSONObject row = (JSONObject) json.opt(i);
+
+            DropDownItem itemCountry = new DropDownItem();
+            itemCountry.setText(row.optString("LanguageName"));
+            itemCountry.setCode(row.optString("LanguageCode"));
+            itemCountry.setTag("Language");
+            itemCountry.setId(i);
+            languageList.add(itemCountry);
+        }
+
+        return languageList;
+    }
+
+    public static ArrayList<DropDownItem> getNewsletterLanguage(Activity act) {
+
+        ArrayList<DropDownItem> languageList = new ArrayList<DropDownItem>();
+        JSONArray json = null;
+
+        prefManager = new SharedPrefManager(act);
+        HashMap<String, String> init = prefManager.getNewsletterLanguageList();
+        String language = init.get(SharedPrefManager.NEWSLETTER_LANGUAGE_LIST);
+
+        try {
+            json = new JSONArray(language);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < json.length(); i++) {
+            JSONObject row = (JSONObject) json.opt(i);
+
+            DropDownItem itemCountry = new DropDownItem();
+            itemCountry.setText(row.optString("LanguageName"));
+            itemCountry.setCode(row.optString("LanguageCode"));
+            itemCountry.setTag("Language");
+            itemCountry.setId(i);
+            languageList.add(itemCountry);
+        }
+
+        return languageList;
+    }
+
+
+
 
     public ArrayList<DropDownItem> getLanguageList(Activity act) {
 
@@ -589,6 +714,7 @@ public class BaseFragment extends Fragment {
         String languageList = init.get(SharedPrefManager.LANGUAGE_LIST);
 
         LanguageReceive languageListObj = gson.fromJson(languageList, LanguageReceive.class);
+
 
 
         for (int i = 0; i < languageListObj.getLanguageList().size(); i++) {
@@ -1133,22 +1259,6 @@ public class BaseFragment extends Fragment {
 
     }
 
-    public JSONArray getState(Activity act) {
-
-        JSONArray json = null;
-
-        prefManager = new SharedPrefManager(act);
-        HashMap<String, String> init = prefManager.getState();
-        String dataState = init.get(SharedPrefManager.STATE);
-
-        try {
-            json = new JSONArray(dataState);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return json;
-    }
 
     public static String getUserInfoCached(Activity act) {
 
@@ -1184,7 +1294,7 @@ public class BaseFragment extends Fragment {
     }
 
     /*Get All Country From OS*/
-    public JSONArray getCountry(Activity act) {
+   /* public JSONArray getCountry(Activity act) {
         JSONArray json = null;
 
         prefManager = new SharedPrefManager(act);
@@ -1214,7 +1324,7 @@ public class BaseFragment extends Fragment {
 
 		Collections.sort(countries);
 		return countries;*/
-    }
+    //}
 
 
     /*Get All User Info From OS*/

@@ -6,7 +6,7 @@
 
 
     <LinearLayout
-        android:id="@+id/transactioHistoryLayout"
+        android:id="@+id/transactionHistoryLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -14,7 +14,7 @@
 
         <ListView
             android:id="@+id/transactionHistoryList"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +17,12 @@ import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.application.MainApplication;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
-import com.app.tbd.ui.Activity.Login.LoginActivity;
-import com.app.tbd.ui.Activity.Picker.SelectCountryFragment;
+import com.app.tbd.ui.Activity.Picker.SelectionListFragment;
 import com.app.tbd.ui.Activity.Picker.SelectDefaultFragment;
 import com.app.tbd.ui.Activity.Picker.SelectStateFragment;
 import com.app.tbd.ui.Model.Receive.EditProfileReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
+import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Module.EditProfileModule;
@@ -32,6 +31,7 @@ import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.SharedPrefManager;
 import com.app.tbd.utils.Utils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -141,6 +141,54 @@ public class EditProfileFragment extends BaseFragment implements EditProfilePres
 
         datePickerSetting();
 
+        Bundle bundle = getArguments();
+        String insurance = bundle.getString("USER_INFORMATION");
+
+        Gson gson = new Gson();
+        ViewUserReceive obj = gson.fromJson(insurance, ViewUserReceive.class);
+
+        edit_salutation.setText(obj.getTitle());
+        edit_given_name.setText(obj.getFirstName());
+        edit_family_name.setText(obj.getEmergencyFamilyName());
+        edit_mobile.setText(obj.getMobilePhone());
+        edit_passport.setText(obj.getPID());
+        edit_street1.setText(obj.getAddressLine1());
+        edit_street2.setText(obj.getAddressLine2());
+        edit_city.setText(obj.getCity());
+        edit_post_code.setText(obj.getPostalCode());
+
+        String date = obj.getDOB();
+
+        String day = date.substring(0, 2);
+        String month = date.substring(2, 4);
+        String year = date.substring(4);
+        String newDob = day + "-" + month + "-" + year;
+
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        Date startDate;
+        try {
+            startDate = df.parse(newDob);
+
+            Date myDate = startDate;
+            String reportDate = (new SimpleDateFormat("dd MMM yyyy").format(myDate));
+            edit_dob.setText(reportDate);
+            pref.setEditDOB(reportDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        String c = getCountryName(getActivity(), obj.getCountryCode());
+        String n = getCountryName(getActivity(), obj.getNationality());
+
+        edit_country.setText(c);
+        edit_nationality.setText(n);
+
+        HashMap<String, String> initAuth = pref.getEditStateName();
+        final String state2 = initAuth.get(SharedPrefManager.EDIT_STATE_NAME);
+
+        edit_state.setText(state2);
+
         //date of birth
         edit_dob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,7 +264,7 @@ public class EditProfileFragment extends BaseFragment implements EditProfilePres
             return;
         } else {
             if (CURRENT_PICKER.equals("COUNTRY")) {
-                DropDownItem selectedCountry = data.getParcelableExtra(SelectCountryFragment.KEY_COUNTRY_LIST);
+                DropDownItem selectedCountry = data.getParcelableExtra(SelectionListFragment.KEY_COUNTRY_LIST);
                 edit_country.setText(selectedCountry.getText());
 
                 String splitCountryCode = splitCountryDialingCode("CountryCode", selectedCountry.getCode());
@@ -230,7 +278,7 @@ public class EditProfileFragment extends BaseFragment implements EditProfilePres
                 edit_state.setTag(selectedState.getCode());
 
             } else if (CURRENT_PICKER.equals("NATIONALITY")) {
-                DropDownItem selectedNationality = data.getParcelableExtra(SelectCountryFragment.KEY_COUNTRY_LIST);
+                DropDownItem selectedNationality = data.getParcelableExtra(SelectionListFragment.KEY_COUNTRY_LIST);
                 edit_nationality.setText(selectedNationality.getText());
                 edit_nationality.setText(selectedNationality.getText());
 
@@ -274,7 +322,7 @@ public class EditProfileFragment extends BaseFragment implements EditProfilePres
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
                 if (data.equals("COUNTRY") || data.equals("NATIONALITY")) {
 
-                    SelectCountryFragment countryListDialogFragment = SelectCountryFragment.newInstance(constParam);
+                    SelectionListFragment countryListDialogFragment = SelectionListFragment.newInstance(constParam,"test");
                     countryListDialogFragment.setTargetFragment(EditProfileFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
 
@@ -362,13 +410,13 @@ public class EditProfileFragment extends BaseFragment implements EditProfilePres
         //requestUpdate
         //proceed with presenter
 
-        HashMap<String, String> initTicket = pref.getTicketId();
-        final String ticket = initTicket.get(SharedPrefManager.TICKET_ID);
+        HashMap<String, String> initTicket = pref.getToken();
+        final String ticket = initTicket.get(SharedPrefManager.TOKEN);
 
         initiateLoading(getActivity());
 
         EditProfileRequest editRequest = new EditProfileRequest();
-        editRequest.setTicketId(ticket);
+        editRequest.setToken(ticket);
         editRequest.setTitle(edit_salutation.getText().toString());
         editRequest.setFirstName(edit_given_name.getText().toString());
         editRequest.setLastName(edit_family_name.getText().toString());

@@ -15,10 +15,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.tbd.R;
+import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.utils.DropDownItem;
 
@@ -28,22 +31,29 @@ import java.util.Locale;
 
 import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
 
-public class SelectCountryFragment extends DialogFragment {
+public class SelectionListFragment extends DialogFragment {
     public static final String KEY_COUNTRY_LIST = "countryList";
-    public static final String KEY_STATE_LIST = "stateList";
+    public static final String KEY_LANGUAGE_LIST = "languageList";
+    public static final String LIST_NAME = "LIST_NAME";
+    public static final String PASS_SELECTION_LIST = "PASS_SELECTION_LIST";
 
-    public static final String COUNTRY_LIST = "COUNTRY";
 
     String[] filteredCountry;
     Integer[] headerPosition;
 
-    ArrayList<DropDownItem> countries;
-    ArrayList<DropDownItem> originalCountries = new ArrayList<DropDownItem>();
+    String listName;
+
+    ArrayList<DropDownItem> list = new ArrayList<DropDownItem>();
+    ArrayList<DropDownItem> originalList = new ArrayList<DropDownItem>();
 
     ListView lvCountries;
     EditText txtSearchCustom;
-    SelectCountryAdapter adapter;
+    SelectionListAdapter adapter;
     TextView txtCountry;
+    TextView txtSelectionTitle;
+    ImageButton backbutton;
+    LinearLayout searchViewLayout;
+
     SimpleSectionedListAdapter simpleSectionedGridAdapter;
 
     @Override
@@ -65,10 +75,12 @@ public class SelectCountryFragment extends DialogFragment {
 
     private ArrayList<SimpleSectionedListAdapter.Section> sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
-    public static SelectCountryFragment newInstance(ArrayList<DropDownItem> countries) {
-        SelectCountryFragment fragment = new SelectCountryFragment();
+    public static SelectionListFragment newInstance(ArrayList<DropDownItem> countries, String data) {
+        SelectionListFragment fragment = new SelectionListFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(KEY_COUNTRY_LIST, countries);
+        bundle.putParcelableArrayList(PASS_SELECTION_LIST, countries);
+        bundle.putString(LIST_NAME, data);
+
         fragment.setArguments(bundle);
 
         return fragment;
@@ -76,15 +88,51 @@ public class SelectCountryFragment extends DialogFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        countries = getArguments().getParcelableArrayList(KEY_COUNTRY_LIST);
 
         View view = inflater.inflate(R.layout.fragment_country_list_dialog, container, false);
         lvCountries = (ListView) view.findViewById(R.id.lvCountries);
-        getDialog().setTitle(getActivity().getString(R.string.search_flight_title));
+        txtSelectionTitle = (TextView) view.findViewById(R.id.txtSelectionTitle);
+        backbutton = (ImageButton) view.findViewById(R.id.backbutton);
+        searchViewLayout = (LinearLayout) view.findViewById(R.id.searchViewLayout);
+
+        list = getArguments().getParcelableArrayList(PASS_SELECTION_LIST);
+        listName = getArguments().getString(LIST_NAME);
+
+        if (listName.equals("LANGUAGE_COUNTRY")) {
+            txtSelectionTitle.setText(getResources().getString(R.string.select_country));
+            searchViewLayout.setVisibility(View.GONE);
+        } else if (listName.equals("LANGUAGE")) {
+            txtSelectionTitle.setText(getResources().getString(R.string.select_language));
+            searchViewLayout.setVisibility(View.GONE);
+        } else if (listName.equals("STATE")) {
+            txtSelectionTitle.setText(getResources().getString(R.string.select_state));
+            searchViewLayout.setVisibility(View.GONE);
+        } else if (listName.equals("COUNTRY")) {
+            txtSelectionTitle.setText(getResources().getString(R.string.select_country));
+            searchViewLayout.setVisibility(View.VISIBLE);
+        } else if (listName.equals("NATIONALITY")) {
+            txtSelectionTitle.setText(getResources().getString(R.string.select_nationality));
+            searchViewLayout.setVisibility(View.VISIBLE);
+        } else if (listName.equals("NEWSLETTER_LANGUAGE")) {
+            txtSelectionTitle.setText(getResources().getString(R.string.select_language));
+            searchViewLayout.setVisibility(View.GONE);
+        } else if (listName.equals("TITLE")) {
+            txtSelectionTitle.setText(getResources().getString(R.string.select_title));
+            searchViewLayout.setVisibility(View.GONE);
+        }
+
+        //country selection
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
         //getDialog().getWindow().setTitleColor(ContextCompat.getColor(getActivity(),R.color.default_theme_colour));
 
         //GET CHAR AT - FILTER
-        List<String> countryChar = new ArrayList<String>();
+        /*List<String> countryChar = new ArrayList<String>();
         for (int i = 0; i < countries.size(); i++) {
             String country = countries.get(i).getText();
             countryChar.add(Character.toString(country.charAt(0)));
@@ -94,9 +142,11 @@ public class SelectCountryFragment extends DialogFragment {
 
         filteredCountry = BaseFragment.getCharAt(countryChar);
         headerPosition = BaseFragment.headerPosition(countryChar);
+        */
+
+        initControls();
 
         txtSearchCustom = (EditText) view.findViewById(R.id.txtSearchCustom);
-        initControls();
         txtSearchCustom.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String text = txtSearchCustom.getText().toString().toLowerCase(Locale.getDefault());
@@ -129,12 +179,12 @@ public class SelectCountryFragment extends DialogFragment {
     }
 
     public void initControls() {
-        originalCountries = BaseFragment.getStaticCountry(getActivity());
 
-        adapter = new SelectCountryAdapter(getActivity().getApplicationContext(), SelectCountryFragment.this, countries, originalCountries);
-        for (int i = 0; i < headerPosition.length; i++) {
-            sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
-        }
+        originalList = initiateDataForAdapter(listName);
+        adapter = new SelectionListAdapter(getActivity().getApplicationContext(), SelectionListFragment.this, list, originalList);
+        //for (int i = 0; i < headerPosition.length; i++) {
+        //    sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
+        //}
 
         //simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
         //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
@@ -142,26 +192,45 @@ public class SelectCountryFragment extends DialogFragment {
         lvCountries.setAdapter(adapter);
     }
 
-    public void notifyAnotherAdapter() {
-        simpleSectionedGridAdapter.notifyDataSetChanged();
+    public ArrayList<DropDownItem> initiateDataForAdapter(String name) {
+
+        ArrayList<DropDownItem> listToReturn = new ArrayList<DropDownItem>();
+
+        if (name.equals("LANGUAGE_COUNTRY")) {
+            listToReturn = BaseFragment.getLanguageCountry(getActivity());
+        } else if (name.equals("LANGUAGE")) {
+            listToReturn = BaseFragment.getLanguage(getActivity());
+        } else if (name.equals("NEWSLETTER_LANGUAGE")) {
+            listToReturn = BaseFragment.getNewsletterLanguage(getActivity());
+        } else if (name.equals("COUNTRY")) {
+            listToReturn = BaseFragment.getCountry(getActivity());
+        } else if (name.equals("STATE")) {
+            listToReturn = BaseFragment.getState(getActivity());
+        } else if (name.equals("NATIONALITY")) {
+            listToReturn = BaseFragment.getCountry(getActivity());
+        } else if (name.equals("TITLE")) {
+            listToReturn = BaseFragment.getTitle(getActivity());
+        }
+
+        return listToReturn;
     }
 
-    public void recreateAdapter(ArrayList<DropDownItem> countries2) {
+    public void recreateAdapter(ArrayList<DropDownItem> list) {
 
         lvCountries.setAdapter(null);
         sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
-        List<String> countryChar = new ArrayList<String>();
-        for (int i = 0; i < countries2.size(); i++) {
-            String country = countries2.get(i).getText();
+        /*List<String> countryChar = new ArrayList<String>();
+        for (int i = 0; i < list.size(); i++) {
+            String country = list.get(i).getText();
             countryChar.add(Character.toString(country.charAt(0)));
         }
         filteredCountry = BaseFragment.getCharAt(countryChar);
         headerPosition = BaseFragment.headerPosition(countryChar);
+*/
+        originalList = initiateDataForAdapter(listName);
 
-        originalCountries = BaseFragment.getStaticCountry(getActivity());
-
-        adapter = new SelectCountryAdapter(getActivity().getApplicationContext(), SelectCountryFragment.this, countries2, originalCountries);
+        adapter = new SelectionListAdapter(getActivity().getApplicationContext(), SelectionListFragment.this, list, originalList);
 
         for (int i = 0; i < headerPosition.length; i++) {
             sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
@@ -173,7 +242,7 @@ public class SelectCountryFragment extends DialogFragment {
 
     }
 
-    private void sendResult(DropDownItem country) {
+    private void sendResult(DropDownItem list) {
         if (getTargetFragment() == null) {
 
             Log.e("Get Target Fragment", "NULL");
@@ -181,17 +250,10 @@ public class SelectCountryFragment extends DialogFragment {
         }
 
         Intent intent = new Intent();
-        intent.putExtra(KEY_COUNTRY_LIST, country);
+        intent.putExtra(listName, list);
 
         getTargetFragment().onActivityResult(1, Activity.RESULT_OK, intent);
         Log.e("Get Target Fragment", "NOT NULL");
         dismiss();
     }
-
-    public void resetAdapter() {
-        countries = getArguments().getParcelableArrayList(KEY_COUNTRY_LIST);
-        Log.e("NEW ARRAY", Integer.toString(countries.size()));
-    }
-
-
 }

@@ -28,6 +28,7 @@ import com.app.tbd.ui.Activity.FragmentContainerActivity;
 import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageCountryFragment;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageFragment;
+import com.app.tbd.ui.Activity.Picker.SelectionListFragment;
 import com.app.tbd.ui.Activity.SplashScreen.OnBoarding.OnBoardingActivity;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
@@ -159,8 +160,8 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
             public void onClick(View v) {
                 AnalyticsApplication.sendEvent("Click", "Select country");
                 if (checkFragmentAdded()) {
-                    showCountrySelector(getActivity(), country, "COUNTRY");
-                    CURRENT_PICKER = "COUNTRY";
+                    showCountrySelector(getActivity(), country, "LANGUAGE_COUNTRY");
+                    CURRENT_PICKER = "LANGUAGE_COUNTRY";
                 }
             }
         });
@@ -206,11 +207,10 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
 
             //load state - need to move later on
             StateRequest stateRequest = new StateRequest();
-            stateRequest.setLanguageCode(languageCode);
+            stateRequest.setLanguageCode(languageCode + "-" + cn);
             stateRequest.setCountryCode(countryCode);
             stateRequest.setPresenterName("LanguagePresenter");
             presenter.onStateRequest(stateRequest);
-
 
         }
 
@@ -229,20 +229,18 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         if (resultCode != Activity.RESULT_OK) {
             return;
         } else {
+            DropDownItem selectedLanguage = data.getParcelableExtra(CURRENT_PICKER);
             if (CURRENT_PICKER.equals("LANGUAGE")) {
-                DropDownItem selectedLanguage = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectLanguageFragment.KEY_LANGUAGE_LIST);
                 txtLangLanguage.setText(selectedLanguage.getText());
                 txtLangLanguage.setTag(selectedLanguage.getCode());
                 changeLanguage(selectedLanguage.getCode());
                 languageCode = selectedLanguage.getCode();
-
-            } else if (CURRENT_PICKER.equals("COUNTRY")) {
-                DropDownItem selectedCountry = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectLanguageCountryFragment.KEY_LANGUAGE_COUNTRY_LIST);
+            } else if (CURRENT_PICKER.equals("LANGUAGE_COUNTRY")) {
+                DropDownItem selectedCountry = data.getParcelableExtra(CURRENT_PICKER);
                 txtLangCountry.setText(selectedCountry.getText());
                 txtLangCountry.setTag(selectedCountry.getCode());
                 countryCode = selectedCountry.getCode();
                 retrieveLanguage(selectedCountry.getCode());
-
             }
         }
     }
@@ -252,16 +250,16 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         if (act != null) {
             try {
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                if (data.equals("COUNTRY")) {
-                    SelectLanguageCountryFragment countryListDialogFragment = SelectLanguageCountryFragment.newInstance(constParam);
+                /*if (data.equals("COUNTRY")) {
+                    SelectionListFragment countryListDialogFragment = SelectionListFragment.newInstance(constParam,data);
                     countryListDialogFragment.setTargetFragment(LanguageFragment.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
 
-                } else if (data.equals("LANGUAGE")) {
-                    SelectLanguageFragment countryListDialogFragment = SelectLanguageFragment.newInstance(constParam);
-                    countryListDialogFragment.setTargetFragment(LanguageFragment.this, 0);
-                    countryListDialogFragment.show(fm, "countryListDialogFragment");
-                }
+                } else if (data.equals("LANGUAGE")) {*/
+                SelectionListFragment countryListDialogFragment = SelectionListFragment.newInstance(constParam, data);
+                countryListDialogFragment.setTargetFragment(LanguageFragment.this, 0);
+                countryListDialogFragment.show(fm, "countryListDialogFragment");
+                //}
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -310,7 +308,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
             cn = "MY";
 
         } else if (selectedLanguage.equals("zh")) {
-            lang = "ms";
+            lang = "zh";
             cn = "CN";
         } else {
             lang = "en";
@@ -340,7 +338,7 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
         if (status) {
 
             Gson gson = new Gson();
-            String gsonLanguageList = gson.toJson(obj);
+            String gsonLanguageList = gson.toJson(obj.getLanguageList());
             pref.setLanguageList(gsonLanguageList);
 
             languageClickable = true;
@@ -355,7 +353,8 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                 itemDoc.setCode(obj.getLanguageList().get(i).getLanguageCode());
                 languageList.add(itemDoc);
             }
-
+            //String languageCountry = gson.toJson(obj.getCountryList());
+            //pref.setLanguageList(languageCountry);
         }
 
     }
@@ -415,9 +414,14 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
                 itemDoc.setCode(obj.getCountryList().get(i).getCountryCode());
                 country.add(itemDoc);
             }
-        }
-    }
 
+            Gson gson = new Gson();
+            String languageCountry = gson.toJson(obj.getCountryList());
+            pref.setLanguageCountry(languageCountry);
+
+        }
+
+    }
 
     @Override
     public void onValidationSucceeded() {

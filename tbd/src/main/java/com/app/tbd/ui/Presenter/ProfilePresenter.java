@@ -1,5 +1,6 @@
 package com.app.tbd.ui.Presenter;
 
+import com.app.tbd.ui.Model.Receive.EditProfileReceive;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
@@ -9,6 +10,7 @@ import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
+import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
 import com.app.tbd.ui.Model.Request.StateRequest;
@@ -24,16 +26,20 @@ public class ProfilePresenter {
 
     public interface ProfileView {
         void onBigPointReceive(BigPointReceive obj);
+
         void onViewUserSuccess(ViewUserReceive obj);
     }
 
     public interface MyProfileView {
         void onSuccessRequestState(StateReceive obj);
+        void onUpdateUserSuccess(EditProfileReceive obj);
     }
 
     public interface OptionView {
         void onLogoutReceive(LogoutReceive obj);
+
         void loadingSuccess(InitialLoadReceive obj);
+
         void onSuccessRequestState(StateReceive obj);
     }
 
@@ -108,6 +114,15 @@ public class ProfilePresenter {
         bus.post(new InitialLoadRequest(info));
     }
 
+    public void updateFunction(EditProfileRequest data) {
+        bus.post(new EditProfileRequest(data));
+    }
+
+    @Subscribe
+    public void onEditProfileSuccess(EditProfileReceive event) {
+        myProfileView.onUpdateUserSuccess(event);
+    }
+
     @Subscribe
     public void onSuccessSendDeviceInformation(InitialLoadReceive event) {
         optionView.loadingSuccess(event);
@@ -125,7 +140,16 @@ public class ProfilePresenter {
 
     @Subscribe
     public void onSuccessRequestState(StateReceive event) {
-        optionView.onSuccessRequestState(event);
+        if (optionView != null) {
+            optionView.onSuccessRequestState(event);
+        }
+    }
+
+    @Subscribe
+    public void onSuccessRequestState2(StateReceive event) {
+        if (myProfileView != null) {
+            myProfileView.onSuccessRequestState(event);
+        }
     }
 
     @Subscribe
@@ -140,7 +164,9 @@ public class ProfilePresenter {
 
     @Subscribe
     public void onBigPointReceive(BigPointReceive event) {
-        loginView.onBigPointReceive(event);
+        if(loginView != null){
+            loginView.onBigPointReceive(event);
+        }
     }
 
 

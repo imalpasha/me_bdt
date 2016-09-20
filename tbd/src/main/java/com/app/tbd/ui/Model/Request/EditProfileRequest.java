@@ -32,7 +32,8 @@ public class EditProfileRequest {
     String PID;
     String TicketId;
 
-    public EditProfileRequest() { }
+    public EditProfileRequest() {
+    }
 
     public EditProfileRequest(EditProfileRequest data) {
         UserName = data.getUserName();
@@ -79,7 +80,7 @@ public class EditProfileRequest {
         return TicketId;
     }
 
-    public void setTicketId(String ticketId) {
+    public void setToken(String ticketId) {
         TicketId = ticketId;
     }
 

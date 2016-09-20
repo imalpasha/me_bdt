@@ -12,7 +12,6 @@ import com.app.tbd.MainController;
 import com.app.tbd.application.MainApplication;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
-import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
 import com.app.tbd.ui.Module.BigPointBaseModule;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
@@ -116,7 +115,7 @@ public class BigPointBaseFragment extends BaseFragment implements ProfilePresent
         transactionHistoryRequest.setEndDate("20160914");
 
         //transactionHistoryRequest.setCustomerNumber(obj.getCustomerNumber());
-        transactionHistoryRequest.setTicketId(obj.getTicketId());
+        transactionHistoryRequest.setToken(obj.getToken());
         //transactionHistoryRequest.setHash(obj.getHash());
         presenter.onRequestTransactionHistory(transactionHistoryRequest);
 

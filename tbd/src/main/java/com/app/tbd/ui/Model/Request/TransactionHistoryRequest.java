@@ -7,7 +7,7 @@ public class TransactionHistoryRequest {
 
 
     private String UserName;
-    private String TicketId;
+    private String Token;
     private String StartDate;
     private String EndDate;
 
@@ -35,12 +35,12 @@ public class TransactionHistoryRequest {
         UserName = userName;
     }
 
-    public String getTicketId() {
-        return TicketId;
+    public String getToken() {
+        return Token;
     }
 
-    public void setTicketId(String ticketId) {
-        TicketId = ticketId;
+    public void setToken(String token) {
+        Token = token;
     }
 
     public TransactionHistoryRequest() {
@@ -49,7 +49,7 @@ public class TransactionHistoryRequest {
 
     public TransactionHistoryRequest(TransactionHistoryRequest data) {
         UserName = data.getUserName();
-        TicketId = data.getTicketId();
+        Token = data.getToken();
         StartDate = data.getStartDate();
         EndDate = data.getEndDate();
     }

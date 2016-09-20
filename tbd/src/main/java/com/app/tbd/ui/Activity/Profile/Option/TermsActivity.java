@@ -24,7 +24,8 @@ public class TermsActivity extends MainFragmentActivity implements FragmentConta
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, TermsFragment.newInstance()).commit();
 
-        setTitle("Terms");
+        setTitle(getResources().getString(R.string.options_terms));
+        setBackButton();
     }
 
 

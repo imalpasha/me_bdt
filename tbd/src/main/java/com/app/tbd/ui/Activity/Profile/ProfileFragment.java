@@ -1,6 +1,5 @@
 package com.app.tbd.ui.Activity.Profile;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -9,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -22,6 +20,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,11 +40,9 @@ import com.app.tbd.ui.Activity.Profile.UserProfile.MyProfileActivity;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
-import com.app.tbd.ui.Realm.Cached.CachedBigPointResult;
 import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.app.tbd.ui.Module.ProfileModule;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
-import com.app.tbd.utils.Utils;
 import com.google.gson.Gson;
 import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
@@ -57,11 +54,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.app.tbd.utils.SharedPrefManager;
 import com.mobsandgeeks.saripaar.Validator;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -198,16 +191,15 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         HashMap<String, String> initAuth = pref.getUsername();
         final String username = initAuth.get(SharedPrefManager.USERNAME);
 
-        HashMap<String, String> initPassword = pref.getUserPassword();
-        String password = initPassword.get(SharedPrefManager.PASSWORD);
+       // HashMap<String, String> initPassword = pref.getUserPassword();
+       // String password = initPassword.get(SharedPrefManager.PASSWORD);
 
-        HashMap<String, String> initTicketId = pref.getTicketId();
-        String ticketId = initTicketId.get(SharedPrefManager.TICKET_ID);
+        HashMap<String, String> initTicketId = pref.getToken();
+        String token = initTicketId.get(SharedPrefManager.TOKEN);
 
         ViewUserRequest data = new ViewUserRequest();
         data.setUserName(username);
-        data.setPassword(password);
-        data.setTicketId(ticketId);
+        data.setToken(token);
 
         presenter.showFunction(data);
 
@@ -234,6 +226,8 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
         //Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (obj.getStatus().equals("OK")) {
+
+            RealmObjectController.clearBigPointCached(MainFragmentActivity.getContext());
 
             bigPointClickable = true;
             profileBigPointClickLayout.setClickable(true);
@@ -273,10 +267,9 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     public void loadBigPointData(LoginReceive obj) {
 
         txtBigPoint.setText(getResources().getString(R.string.register_general_loading));
-        pref.setBigPointRequestStatus("Y");
 
         BigPointRequest bigPointRequest = new BigPointRequest();
-        bigPointRequest.setTicketId(obj.getTicketId());
+        bigPointRequest.setToken(obj.getToken());
         bigPointRequest.setUserName(obj.getUserName());
         presenter.onRequestBigPoint(bigPointRequest);
 
@@ -542,13 +535,24 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     }
 
     public void checkBigPointResult() {
-        RealmResults<CachedBigPointResult> result = RealmObjectController.getCachedBigPointResult(MainFragmentActivity.getContext());
+        /*RealmResults<CachedBigPointResult> result = RealmObjectController.getCachedBigPointResult(MainFragmentActivity.getContext());
         if (result.size() > 0) {
             Gson gson = new Gson();
             BigPointReceive obj = gson.fromJson(result.get(0).getCachedResult(), BigPointReceive.class);
             RealmObjectController.clearBigPointCached(getActivity());
 
             onBigPointReceive(obj);
+        }*/
+        BigPointReceive obj = RealmObjectController.getCachedBigPointResult(MainFragmentActivity.getContext());
+        if (obj != null) {
+            // Gson gson = new Gson();
+            //RealmObjectController.clearBigPointCached(getActivity());
+            onBigPointReceive(obj);
+            Log.e("obj", obj.getStatus());
+            Log.e("?", "1");
+
+        } else {
+            Log.e("?", "2");
         }
     }
 

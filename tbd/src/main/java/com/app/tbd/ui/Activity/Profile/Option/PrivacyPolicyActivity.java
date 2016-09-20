@@ -21,7 +21,8 @@ public class PrivacyPolicyActivity extends MainFragmentActivity implements Fragm
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
 
-        setTitle("Privacy Policy");
+        setTitle(getResources().getString(R.string.options_privacy));
+        setBackButton();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, PrivacyPolicyFragment.newInstance()).commit();

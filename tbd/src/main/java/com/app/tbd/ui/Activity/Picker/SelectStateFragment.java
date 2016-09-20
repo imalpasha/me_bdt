@@ -82,7 +82,7 @@ public class SelectStateFragment extends DialogFragment {
         getDialog().setTitle(getActivity().getString(R.string.search_flight_title));
 
         //GET CHAR AT - FILTER
-        List<String> countryChar = new ArrayList<String>();
+       /* List<String> countryChar = new ArrayList<String>();
         for (int i = 0; i < countries.size(); i++) {
             String country = countries.get(i).getText();
             countryChar.add(Character.toString(country.charAt(0)));
@@ -92,7 +92,7 @@ public class SelectStateFragment extends DialogFragment {
 
         filteredCountry = BaseFragment.getCharAt(countryChar);
         headerPosition = BaseFragment.headerPosition(countryChar);
-
+*/
         txtSearchCustom = (EditText) view.findViewById(R.id.txtSearchCustom);
         initControls();
         txtSearchCustom.addTextChangedListener(new TextWatcher() {
@@ -128,12 +128,12 @@ public class SelectStateFragment extends DialogFragment {
     }
 
     public void initControls() {
-        originalCountries = RegisterFragmentPending.getStaticState();
+        originalCountries = BaseFragment.getState(getActivity());
 
         adapter = new SelectStateAdapter(getActivity().getApplicationContext(), SelectStateFragment.this, countries, originalCountries);
-        for (int i = 0; i < headerPosition.length; i++) {
-            sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
-        }
+        //for (int i = 0; i < headerPosition.length; i++) {
+        //    sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
+        // }
 
         //simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
         //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));
@@ -150,21 +150,21 @@ public class SelectStateFragment extends DialogFragment {
         lvCountries.setAdapter(null);
         sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
-        List<String> countryChar = new ArrayList<String>();
-        for (int i = 0; i < countries2.size(); i++) {
-            String country = countries2.get(i).getText();
-            countryChar.add(Character.toString(country.charAt(0)));
-        }
-        filteredCountry = BaseFragment.getCharAt(countryChar);
-        headerPosition = BaseFragment.headerPosition(countryChar);
+        //List<String> countryChar = new ArrayList<String>();
+        // for (int i = 0; i < countries2.size(); i++) {
+        // String country = countries2.get(i).getText();
+        //   countryChar.add(Character.toString(country.charAt(0)));
+        //}
+        //filteredCountry = BaseFragment.getCharAt(countryChar);
+        ///eaderPosition = BaseFragment.headerPosition(countryChar);
 
-        originalCountries = RegisterFragmentPending.getStaticState();
+        originalCountries = BaseFragment.getState(getActivity());
 
         adapter = new SelectStateAdapter(getActivity().getApplicationContext(), SelectStateFragment.this, countries2, originalCountries);
 
-        for (int i = 0; i < headerPosition.length; i++) {
-            sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
-        }
+        //for (int i = 0; i < headerPosition.length; i++) {
+        //    sections.add(new SimpleSectionedListAdapter.Section(headerPosition[i], filteredCountry[i]));
+        // }
 
         //SimpleSectionedListAdapter simpleSectionedGridAdapter = new SimpleSectionedListAdapter(getActivity(), adapter, R.layout.listview_section_header, R.id.txt_listview_header);
         //simpleSectionedGridAdapter.setSections(sections.toArray(new SimpleSectionedListAdapter.Section[0]));

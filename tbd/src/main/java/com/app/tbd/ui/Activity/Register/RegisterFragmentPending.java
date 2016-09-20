@@ -32,7 +32,7 @@ import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.R;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
 import com.app.tbd.ui.Activity.Picker.BasicPicker;
-import com.app.tbd.ui.Activity.Picker.SelectCountryFragment;
+import com.app.tbd.ui.Activity.Picker.SelectionListFragment;
 import com.app.tbd.ui.Activity.Picker.SelectDefaultFragment;
 import com.app.tbd.ui.Activity.Picker.SelectStateFragment;
 import com.app.tbd.ui.Model.JSON.UserFacebookInfo;
@@ -50,6 +50,7 @@ import com.app.tbd.ui.Realm.Cached.CachedResult;
 import com.app.tbd.ui.Presenter.RegisterPresenter;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.ui.Realm.RealmObjectController;
+import com.app.tbd.utils.SharedPrefManager;
 import com.app.tbd.utils.Utils;
 import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -204,6 +205,7 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
     public static final String DATEPICKER_TAG = "DATEPICKER_TAG";
     private DatePickerDialog register_dob_datepicker;
     private String CURRENT_PICKER;
+    private SharedPrefManager pref;
 
     final Calendar calendar = Calendar.getInstance();
 
@@ -377,8 +379,8 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
                 if (txtRegisterCountry.getText().toString() != "") {
                     AnalyticsApplication.sendEvent("Click", "Select language");
                     if (checkFragmentAdded()) {
-                        showCountrySelector(getActivity(), language, "LANGUAGE");
-                        CURRENT_PICKER = "LANGUAGE";
+                        showCountrySelector(getActivity(), language, "NEWSLETTER_LANGUAGE");
+                        CURRENT_PICKER = "NEWSLETTER_LANGUAGE";
                     }
                 } else {
                     Utils.toastNotification(getActivity(), "Please select country");
@@ -547,8 +549,9 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
     public void dataSetup(Bundle bundle) {
 
         progress = new ProgressDialog(getActivity());
-        countryList = getStaticCountry(getActivity());
-        titleList = getStaticTitle(getActivity());
+        countryList = getCountry(getActivity());
+        titleList = getTitle(getActivity());
+        pref = new SharedPrefManager(getActivity());
 
         Intent extras = getActivity().getIntent();
         if (extras.hasExtra("FACEBOOK_USER_INFORMATION")) {
@@ -661,13 +664,14 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
         if (act != null) {
             try {
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                if (data.equals("COUNTRY") || data.equals("NATIONALITY")) {
+                SelectionListFragment countryListDialogFragment = SelectionListFragment.newInstance(constParam, data);
+                countryListDialogFragment.setTargetFragment(RegisterFragmentPending.this, 0);
+                countryListDialogFragment.show(fm, "countryListDialogFragment");
 
-                    SelectCountryFragment countryListDialogFragment = SelectCountryFragment.newInstance(constParam);
-                    countryListDialogFragment.setTargetFragment(RegisterFragmentPending.this, 0);
-                    countryListDialogFragment.show(fm, "countryListDialogFragment");
+               /* if (data.equals("COUNTRY") || data.equals("NATIONALITY")) {
 
-                } else if (data.equals("STATE")) {
+
+                }*/ /*else if (data.equals("STATE")) {
 
                     SelectStateFragment countryListDialogFragment = SelectStateFragment.newInstance(constParam);
                     countryListDialogFragment.setTargetFragment(RegisterFragmentPending.this, 0);
@@ -679,7 +683,7 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
                     countryListDialogFragment.setTargetFragment(RegisterFragmentPending.this, 0);
                     countryListDialogFragment.show(fm, "countryListDialogFragment");
 
-                }
+                }*/
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -692,7 +696,7 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
             return;
         } else {
             if (CURRENT_PICKER.equals("COUNTRY")) {
-                DropDownItem selectedCountry = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectCountryFragment.KEY_COUNTRY_LIST);
+                DropDownItem selectedCountry = data.getParcelableExtra(CURRENT_PICKER);
                 txtRegisterCountry.setText(selectedCountry.getText());
 
                 String splitCountryCode = splitCountryDialingCode("CountryCode", selectedCountry.getCode());
@@ -706,12 +710,12 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
                 presenter.onRetrieveLanguage(newsletterLanguageRequest);
 
             } else if (CURRENT_PICKER.equals("STATE")) {
-                DropDownItem selectedState = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectStateFragment.KEY_STATE_LIST);
+                DropDownItem selectedState = data.getParcelableExtra(CURRENT_PICKER);
                 txtRegisterState.setText(selectedState.getText());
                 txtRegisterState.setTag(selectedState.getCode());
 
             } else if (CURRENT_PICKER.equals("NATIONALITY")) {
-                DropDownItem selectedNationality = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectCountryFragment.KEY_COUNTRY_LIST);
+                DropDownItem selectedNationality = data.getParcelableExtra(CURRENT_PICKER);
                 txtRegisterNationality.setText(selectedNationality.getText());
                 txtRegisterCountry.setText(selectedNationality.getText());
 
@@ -728,9 +732,9 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
                 presenter.onRetrieveLanguage(newsletterLanguageRequest);
 
 
-            } else if (CURRENT_PICKER.equals("LANGUAGE")) {
+            } else if (CURRENT_PICKER.equals("NEWSLETTER_LANGUAGE")) {
 
-                DropDownItem selectedLanguage = data.getParcelableExtra(com.app.tbd.ui.Activity.Picker.SelectDefaultFragment.KEY_LANGUAGE_LIST);
+                DropDownItem selectedLanguage = data.getParcelableExtra(CURRENT_PICKER);
                 txtRegisterNewsletterLanguage.setText(selectedLanguage.getText());
                 txtRegisterNewsletterLanguage.setTag(selectedLanguage.getCode());
 
@@ -740,6 +744,7 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
 
     public void retrieveState(String countryCode) {
 
+        txtRegisterState.setText("");
         txtRegisterState.setHint(getResources().getString(R.string.register_general_loading));
         txtRegisterNewsletterLanguage.setHint(getResources().getString(R.string.register_general_loading));
 
@@ -757,6 +762,12 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
         if (status) {
 
             txtRegisterState.setHint(getResources().getString(R.string.register_select_state));
+
+            Gson gson = new Gson();
+            String state = gson.toJson(obj.getStateList());
+            pref.setState(state);
+
+
             setState(obj);
         }
 
@@ -769,7 +780,11 @@ public class RegisterFragmentPending extends BaseFragment implements RegisterPre
         if (status) {
 
             txtRegisterNewsletterLanguage.setHint(getResources().getString(R.string.register_newsletter_language_hint));
-            if(obj.getCultureList().size() > 0){
+            if (obj.getCultureList().size() > 0) {
+
+                Gson gson = new Gson();
+                String newsletterLanguage = gson.toJson(obj.getCultureList());
+                pref.setNewsletterLanguageList(newsletterLanguage);
                 setLanguage(obj);
             }
         }

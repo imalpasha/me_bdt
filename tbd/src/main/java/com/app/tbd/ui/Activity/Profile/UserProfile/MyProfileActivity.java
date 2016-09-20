@@ -24,7 +24,7 @@ public class MyProfileActivity extends MainFragmentActivity implements FragmentC
         Bundle bundle = getIntent().getExtras();
         setTitle("My Profile");
         setBackButton();
-        setEditButton();
+        //setEditButton();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, MyProfileFragment.newInstance(bundle)).commit();

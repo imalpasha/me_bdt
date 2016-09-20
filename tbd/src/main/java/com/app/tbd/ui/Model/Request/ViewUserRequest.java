@@ -4,14 +4,14 @@ public class ViewUserRequest {
 
     String UserName;
     String Password;
-    String TicketId;
+    String Token;
 
     public ViewUserRequest() { }
 
     public ViewUserRequest(ViewUserRequest data) {
         UserName = data.getUserName();
         Password = data.getPassword();
-        TicketId = data.getTicketId();
+        Token = data.getToken();
     }
 
     public String getUserName() {
@@ -30,12 +30,12 @@ public class ViewUserRequest {
         Password = password;
     }
 
-    public String getTicketId() {
-        return TicketId;
+    public String getToken() {
+        return Token;
     }
 
-    public void setTicketId(String ticketId) {
-        TicketId = ticketId;
+    public void setToken(String token) {
+        Token = token;
     }
 
 

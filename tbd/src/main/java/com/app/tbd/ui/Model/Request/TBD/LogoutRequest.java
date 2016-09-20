@@ -7,7 +7,7 @@ public class LogoutRequest {
 
     /*Local Data Send To Server*/
     String UserName;
-    String TicketId;
+    String Token;
 
     /*Initiate Class*/
     public LogoutRequest() {
@@ -15,15 +15,15 @@ public class LogoutRequest {
 
     public LogoutRequest(LogoutRequest data) {
         UserName = data.getUsername();
-        TicketId = data.getTicketId();
+        Token = data.getToken();
     }
 
-    public String getTicketId() {
-        return TicketId;
+    public String getToken() {
+        return Token;
     }
 
-    public void setTicketId(String ticketId) {
-        TicketId = ticketId;
+    public void setToken(String token) {
+        Token = token;
     }
 
     public String getUsername() {

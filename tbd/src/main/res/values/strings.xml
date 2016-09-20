@@ -194,6 +194,7 @@
     <string name="register_personal_information">PERSONAL INFORMATION</string>
     <string name="register_contact_information">CONTACT INFORMATION</string>
     <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
+    <string name="register_basic_information">BASIC INFORMATION</string>
 
     <string name="register_address_3">Address Line 3</string>
 
@@ -461,5 +462,13 @@
     <string name="transaction_history_merchant">Merchant:</string>
     <string name="transaction_history_description">Description:</string>
     <string name="transaction_history_point">Points:</string>
+
+    <!-- SELECTION FRAGMENT TITLE -->
+    <string name="select_country">Select country</string>
+    <string name="select_language">Select language</string>
+    <string name="select_state">Select state</string>
+    <string name="select_nationality">Select nationality</string>
+    <string name="select_title">Select title</string>
+
 
 </resources>

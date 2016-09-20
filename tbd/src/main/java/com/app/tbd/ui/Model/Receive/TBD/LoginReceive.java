@@ -14,7 +14,7 @@ public class LoginReceive {
     private String CustomerNumber;
     private String FirstName;
     private String LastName;
-    private String TicketId;
+    private String Token;
     private String UserName;
     private String Hash;
 
@@ -26,10 +26,20 @@ public class LoginReceive {
         CustomerNumber = returnData.getStatus();
         FirstName = returnData.getStatus();
         LastName = returnData.getStatus();
-        TicketId = returnData.getStatus();
+        Token = returnData.getToken();
         UserName = returnData.getStatus();
         Hash = returnData.getStatus();
     }
+
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
+    }
+
 
     public String getStatus() {
         return Status;
@@ -69,14 +79,6 @@ public class LoginReceive {
 
     public void setLastName(String lastName) {
         LastName = lastName;
-    }
-
-    public String getTicketId() {
-        return TicketId;
-    }
-
-    public void setTicketId(String ticketId) {
-        TicketId = ticketId;
     }
 
     public String getUserName() {

@@ -2,7 +2,7 @@ package com.app.tbd.ui.Model.Receive;
 
 public class EditProfileReceive {
     private final EditProfileReceive userObj;
-    private String status;
+    private String Status;
     private String Message;
 
     public EditProfileReceive getUserObj() {
@@ -11,16 +11,16 @@ public class EditProfileReceive {
 
     public EditProfileReceive(EditProfileReceive param_userObj) {
         this.userObj = param_userObj;
-        status = param_userObj.getStatus();
+        Status = param_userObj.getStatus();
         Message = param_userObj.getMessage();
     }
 
     public String getStatus() {
-        return status;
+        return Status;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.Status = status;
     }
 
     public String getMessage() {

@@ -72,13 +72,14 @@ public class SharedPrefManager {
     // TBD //
     public static final String FIRST_TIME_USER = "Y";
 
-    public static final String TICKET_ID = "TI";
+    public static final String TOKEN = "TI";
     public static final String LANGUAGE_COUNTRY = "LC";
 
     public static final String LOAD_BIGPOINT = "LB";
 
     public static final String LANGUAGE_LIST = "LL";
 
+    public static final String NEWSLETTER_LANGUAGE_LIST = "NLL";
     int PRIVATE_MODE = 0;
     Context _context;
     private SharedPreferences _sharedPrefs;
@@ -89,6 +90,12 @@ public class SharedPrefManager {
         this._context = context;
         _sharedPrefs = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         _prefsEditor = _sharedPrefs.edit();
+    }
+
+    public HashMap<String, String> getNewsletterLanguageList() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(NEWSLETTER_LANGUAGE_LIST, _sharedPrefs.getString(NEWSLETTER_LANGUAGE_LIST, null));
+        return init;
     }
 
     public HashMap<String, String> getLanguageList() {
@@ -116,9 +123,9 @@ public class SharedPrefManager {
         return init;
     }
 
-    public HashMap<String, String> getTicketId() {
+    public HashMap<String, String> getToken() {
         HashMap<String, String> init = new HashMap<String, String>();
-        init.put(TICKET_ID, _sharedPrefs.getString(TICKET_ID, null));
+        init.put(TOKEN, _sharedPrefs.getString(TOKEN, null));
         return init;
     }
 
@@ -386,6 +393,14 @@ public class SharedPrefManager {
         return init;
     }
 
+
+
+    /*ForceLogout*/
+    public void setNewsletterLanguageList(String logout) {
+        _prefsEditor.putString(NEWSLETTER_LANGUAGE_LIST, logout);
+        _prefsEditor.apply();
+    }
+
     /*ForceLogout*/
     public void setForceLogout(String logout) {
         _prefsEditor.putString(FORCE_LOGOUT, logout);
@@ -423,8 +438,8 @@ public class SharedPrefManager {
     }
 
     /*Set SEAT*/
-    public void setTicketId(String ticketId) {
-        _prefsEditor.putString(TICKET_ID, ticketId);
+    public void setToken(String token) {
+        _prefsEditor.putString(TOKEN, token);
         _prefsEditor.apply();
     }
 

@@ -6,7 +6,7 @@ package com.app.tbd.ui.Model.Request.TBD;
 public class BigPointRequest {
 
     String UserName;
-    String TicketId;
+    String Token;
 
     public String getUserName() {
         return UserName;
@@ -16,12 +16,12 @@ public class BigPointRequest {
         UserName = userName;
     }
 
-    public String getTicketId() {
-        return TicketId;
+    public String getToken() {
+        return Token;
     }
 
-    public void setTicketId(String ticketId) {
-        TicketId = ticketId;
+    public void setToken(String ticketId) {
+        Token = ticketId;
     }
 
     /*Initiate Class*/
@@ -30,7 +30,7 @@ public class BigPointRequest {
 
     public BigPointRequest(BigPointRequest data) {
         UserName = data.getUserName();
-        TicketId = data.getTicketId();
+        Token = data.getToken();
     }
 
 }
