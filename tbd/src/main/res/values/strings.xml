@@ -183,30 +183,29 @@
     <!-- REGISTER -->
     <string name="register_continue_button">Continue</string>
     <string name="register_username">Email </string>
-    <string name="profile_current_password">Current Password </string>
-    <string name="profile_new_password">New Password </string>
-    <string name="register_confirm_password">Confirm Password </string>
+    <string name="profile_current_password" translatable="false">Current Password </string>
+    <string name="profile_new_password" translatable="false">New Password </string>
+    <string name="register_confirm_password" translatable="false">Confirm Password </string>
 
 
     <string name="register_firstname">First Name / Given Name </string>
     <string name="register_lastname">Last Name / Family Name </string>
 
-    <string name="register_personal_information">PERSONAL INFORMATION</string>
-    <string name="register_contact_information">CONTACT INFORMATION</string>
+    <string name="register_personal_information" translatable="false">PERSONAL INFORMATION</string>
+    <string name="register_contact_information" translatable="false">CONTACT INFORMATION</string>
     <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
-    <string name="register_basic_information">BASIC INFORMATION</string>
+    <string name="register_basic_information" translatable="false">BASIC INFORMATION</string>
 
-    <string name="register_address_3">Address Line 3</string>
+    <string name="register_address_3" translatable="false">Address Line 3</string>
 
     <string name="register_country">Country</string>
     <string name="register_state">State</string>
-    <string name="register_language">Language</string>
-    <string name="register_mobile_phone">Mobile / Home</string>
-    <string name="register_alternate_phone">Alternate</string>
-    <string name="register_bonuslink">BonusLink Card No:</string>
+    <string name="register_language" translatable="false">Language</string>
+    <string name="register_mobile_phone" translatable="false">Mobile / Home</string>
+    <string name="register_alternate_phone" translatable="false">Alternate</string>
+    <string name="register_bonuslink" translatable="false">BonusLink Card No:</string>
 
-    <string name="register_fax">Fax</string>
-    <string name="register_password_hint">Password must be at least 8 characters, no more than 16 characters, must include at least one upper case letter, one lower case letter, one numeric digit, and one non-alphanumeric. The password cannot contain a period(.) comma(,) or tilde(~).</string>
+    <string name="register_fax" translatable="false">Fax</string>
     <string name="register_password_policy">Password Policy</string>
     <string name="asterik">*</string>
 
@@ -236,36 +235,36 @@
     <string name="book_flight_basic">BASIC</string>
     <string name="book_flight_premier">PREMIER</string>
 
-    <string name="mobile_checkin">MOBILE CHECK-IN</string>
+    <string name="mobile_checkin" translatable="false">MOBILE CHECK-IN</string>
 
     <!-- MANAGE FLIGHT -->
-    <string name="manage_flight_na">No Flight Available</string>
+    <string name="manage_flight_na" translatable="false">No Flight Available</string>
 
-    <string name="manage_flight">MANAGE FLIGHT</string>
-    <string name="manage_flight_confirmation_number">Confirmation Number</string>
+    <string name="manage_flight" translatable="false">MANAGE FLIGHT</string>
+    <string name="manage_flight_confirmation_number" translatable="false">Confirmation Number</string>
 
-    <string name="manage_flight_change_contact">CHANGE CONTACT</string>
-    <string name="manage_flight_edit_passenger">EDIT PASSENGER</string>
-    <string name="manage_flight_change_flight">CHANGE FLIGHT</string>
-    <string name="manage_flight_change_seat">CHANGE SEAT</string>
-    <string name="manage_flight_special_meal_request">SPECIAL MEAL REQUEST</string>
+    <string name="manage_flight_change_contact" translatable="false">CHANGE CONTACT</string>
+    <string name="manage_flight_edit_passenger" translatable="false">EDIT PASSENGER</string>
+    <string name="manage_flight_change_flight" translatable="false">CHANGE FLIGHT</string>
+    <string name="manage_flight_change_seat" translatable="false">CHANGE SEAT</string>
+    <string name="manage_flight_special_meal_request" translatable="false">SPECIAL MEAL REQUEST</string>
 
-    <string name="manage_flight_add_payment">ADD PAYMENT</string>
+    <string name="manage_flight_add_payment" translatable="false">ADD PAYMENT</string>
     <string name="manage_flight_send_itinenary">SEND ITINERARY</string>
     <string name="manage_flight_contact_detail">CONTACT DETAIL</string>
-    <string name="manage_flight_sent_itinenary">SEND ITINERARY</string>
-    <string name="manage_flight_seat_optional">Seat Selection (Optional)</string>
+    <string name="manage_flight_sent_itinenary" translatable="false">SEND ITINERARY</string>
+    <string name="manage_flight_seat_optional" translatable="false">Seat Selection (Optional)</string>
 
     <!-- General -->
     <string name="general_continue">Continue</string>
-    <string name="general_email_addresss">Email Address</string>
-    <string name="general_travel_purpose">Primary Purpose of Your Travel</string>
+    <string name="general_email_addresss" translatable="false">Email Address</string>
+    <string name="general_travel_purpose" translatable="false">Primary Purpose of Your Travel</string>
 
     <string name="agreeTnc">I agree with the Terms &amp; Conditions</string>
-    <string name="subscribe">Yes, I do not want to receive promotional information from Firefly and its partners</string>
+    <string name="subscribe" translatable="false">Yes, I do not want to receive promotional information from Firefly and its partners</string>
     <string name="bonuslink_hint">e.g. 6018XXXXXXXXXXXX</string>
     <string name="yes_proceed">Yes, I want to be protected during my trip</string>
-    <string name="no_thank">No, Thank You.</string>
+    <string name="no_thank" translatable="false">No, Thank You.</string>
 
 
     <!-- Boarding Pass -->
@@ -275,31 +274,30 @@
     <string name="boarding_pass">BOARDING PASS</string>
 
     <!-- Update Profile -->
-    <string name="title_activity_update_profile">UPDATE INFORMATION</string>
+    <string name="title_activity_update_profile" translatable="false">UPDATE INFORMATION</string>
     <string name="ctn_profile_btn">CONTINUE</string>
 
-    <string name="only_fill">Only fill in this section if you wish to change your password</string>
+    <string name="only_fill" translatable="false">Only fill in this section if you wish to change your password</string>
 
     <!-- Mobile Check in -->
-    <string name="mobile_checkin_na">No Flight Available For Check-In</string>
-    <string name="title_activity_terms">Terms</string>
+    <string name="mobile_checkin_na" translatable="false">No Flight Available For Check-In</string>
+    <string name="title_activity_terms" translatable="false">Terms</string>
 
     <!-- Terms-->
-    <string name="title_terms">TERMS AND CONDITIONS</string>
+    <string name="title_terms" translatable="false">TERMS AND CONDITIONS</string>
 
     <!-- Forgot Password Module -->
-    <string name="forgotPasswordExpired">PASSWORD EXPIRED</string>
-    <string name="forgotPasswordCurrent">Current Password</string>
-    <string name="forgotPasswordNew">New Password</string>
-    <string name="forgotPasswordConfirm">Confirm Password</string>
+    <string name="forgotPasswordExpired" translatable="false">PASSWORD EXPIRED</string>
+    <string name="forgotPasswordCurrent" translatable="false">Current Password</string>
+    <string name="forgotPasswordNew" translatable="false">New Password</string>
+    <string name="forgotPasswordConfirm" translatable="false">Confirm Password</string>
 
     <!--TBD Choose Language-->
     <string name="lang_next">Next ></string>
     <string name="lang_country">Country</string>
 
 
-    <string name="update_success">Update Success</string>
-    <string name="exit">EXIT FIREFLY</string>
+
     <string name="term_webview">http://fyapidev.me-tech.com.my/api/displayTerm</string>
 
     <!-- General-->
@@ -307,16 +305,16 @@
     <string name="date_ob">Date Of Birth</string>
     <string name="textview_placeholder_lbl">TextView</string>
     <string name="action_settings">FIREFLY</string>
-    <string name="stateListDialogTitle">Please select state</string>
-    <string name="failed_load">Failed to load</string>
+    <string name="stateListDialogTitle" translatable="false">Please select state</string>
+    <string name="failed_load" translatable="false">Failed to load</string>
 
     <!-- Drawer/Version -->
     <string name="x_lbl">1.3</string>
 
     <!-- CleanUP -->
     <!-- General-->
-    <string name="no_internet_connection_title">Whoops!</string>
-    <string name="no_internet_connection">No internet connection found. Check your internet connection and try again</string>
+    <string name="no_internet_connection_title" translatable="false">Whoops!</string>
+    <string name="no_internet_connection" translatable="false">No internet connection found. Check your internet connection and try again</string>
 
     <!-- TBD -->
     <string name="TBD_app_name">AABP</string>
@@ -332,37 +330,37 @@
     <string name="forgot_password_email">example@mail.com</string>
     <string name="forgot_password">Reset Password</string>
     <string name="title_activity_password_expired">PasswordExpiredActivity</string>
-    <string name="password_expire_text">Your password has expired and needs to be changed. The password must consist of at least 8 characters, must include one upper case letter, one lower case letter, one numeric digit and one symbol. Example: SkyPark+123</string>
+    <string name="password_expire_text" translatable="false">Your password has expired and needs to be changed. The password must consist of at least 8 characters, must include one upper case letter, one lower case letter, one numeric digit and one symbol. Example: SkyPark+123</string>
 
     <!-- General -->
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="btn_continue">Continue ></string>
-    <string name="fill_emtpy_field">Something went wrong. Please correct any errors indicated</string>
-    <string name="success">Success!</string>
+    <string name="fill_emtpy_field" translatable="false">Something went wrong. Please correct any errors indicated</string>
+    <string name="success" translatable="false">Success!</string>
 
     <!-- Reset Password -->
-    <string name="reset_old_password">Old Password</string>
-    <string name="reset_new_password">New Password</string>
-    <string name="reset_confirm_password">Confirm Password</string>
+    <string name="reset_old_password" translatable="false">Old Password</string>
+    <string name="reset_new_password" translatable="false">New Password</string>
+    <string name="reset_confirm_password" translatable="false">Confirm Password</string>
 
     <!-- TBD Profile -->
     <string name="tbd_my_profile">My Profile</string>
-    <string name="tbd_my_booking">My Booking</string>
+    <!--<string name="tbd_my_booking">My Booking</string>-->
     <string name="tbd_my_big_point">My BIG Point</string>
     <string name="tbd_my_credit_card">My Credit Card</string>
     <string name="facebook">Facebook</string>
-    <string name="options">Options</string>
+    <string name="options" translatable="false">Options</string>
 
     <!--Options-->
-    <string name="options_about">About</string>
-    <string name="options_terms">Terms</string>
-    <string name="options_privacy">Privacy Policy</string>
+    <string name="options_about" translatable="false">About</string>
+    <string name="options_terms" translatable="false">Terms</string>
+    <string name="options_privacy" translatable="false">Privacy Policy</string>
     <string name="options_reset_password">Reset Password</string>
-    <string name="options_change_language">Change Language</string>
-    <string name="options_logout">Logout</string>
-    <string name="option_reset_password">PASSWORD INFORMATION</string>
-    <string name="option_select_language">SELECT LANGUAGE</string>
+    <string name="options_change_language" translatable="false">Change Language</string>
+    <string name="options_logout" translatable="false">Logout</string>
+    <string name="option_reset_password" translatable="false">PASSWORD INFORMATION</string>
+    <string name="option_select_language" translatable="false">SELECT LANGUAGE</string>
 
     <!--AAB View My Profile -->
     <string name="profile_salutation">Salutation</string>
@@ -395,34 +393,34 @@
     <string name="holiday_shaker_reedem">REDEEM</string>
 
     <!-- TBD Register -->
-    <string name="register_title">Register</string>
-    <string name="register_continue">Register ></string>
+    <string name="register_title" translatable="false">Register</string>
+    <string name="register_continue" translatable="false">Register ></string>
     <string name="register_salutation_hint">Title</string>
     <string name="register_salutation">Salutation</string>
     <string name="register_given_name">Given Name</string>
     <string name="register_family_name">Family Name</string>
     <string name="register_nick_name">Nickname</string>
-    <string name="register_dob">Date of Birth Name</string>
+    <string name="register_dob">Date of Birth </string>
     <string name="register_nationality">Nationality</string>
     <string name="register_mobile">Mobile</string>
     <string name="register_passport">Passport</string>
-    <string name="register_user_information">USER INFORMATION</string>
+    <string name="register_user_information" translatable="false">USER INFORMATION</string>
     <string name="register_personal_detail">PERSONAL DETAIL</string>
     <string name="register_address_information">ADDRESS</string>
     <string name="register_contact_detail">CONTACT DETAILS</string>
     <string name="register_street_1">Street 1</string>
     <string name="register_street_2">Street 2</string>
     <string name="register_postcode">Post Code</string>
-    <string name="register_select_state">Please select state</string>
-    <string name="register_select_language">Please select language</string>
-    <string name="register_select_country">Please select country</string>
-    <string name="register_select_nationality">Please select nationality</string>
-    <string name="register_check_subscribe">Subscribe to AirAsia Newsletter.</string>
-    <string name="register_newsletter_language_hint">Please select language</string>
-    <string name="register_general_loading">Loading ...</string>
+    <string name="register_select_state" translatable="false">Please select state</string>
+    <string name="register_select_language" translatable="false">Please select language</string>
+    <string name="register_select_country" translatable="false">Please select country</string>
+    <string name="register_select_nationality" translatable="false">Please select nationality</string>
+    <string name="register_check_subscribe" translatable="false">Subscribe to AirAsia Newsletter.</string>
+    <string name="register_newsletter_language_hint" translatable="false">Please select language</string>
+    <string name="register_general_loading" translatable="false">Loading ...</string>
     <string name="register_password_style">Password must be 8-15 alphanumeric characters with these reuirement: number (0-9), lowercase letter (a-z),uppercase letter (A-Z)</string>
     <string name="register_city">Town/City</string>
-    <string name="register_newsletter_language">Newsletter Language</string>
+    <string name="register_newsletter_language" translatable="false">Newsletter Language</string>
 
     <string name="register_confirm_information">
     <![CDATA[
@@ -444,7 +442,7 @@
 
 
     <!-- Forgot Password -->
-    <string name="reset_password_success_send">Forgot password link send to your registered email.</string>
+    <string name="reset_password_success_send" translatable="false">Forgot password link send to your registered email.</string>
 
     <!-- TBD Facebook ID -->
     <string name="facebook_app_id">1143272665731321</string>
@@ -453,22 +451,24 @@
     <string name="big_shot_id">Big Shot ID:</string>
     <string name="transaction_history">Transaction History</string>
     <string name="big_point_expiry_date">BIG Point Expiry Date</string>
-    <string name="tbd_big_point_expiry_date">Point Expiration</string>
-    <string name="tbd_big_point_no_transaction">No Transaction History</string>
+    <string name="tbd_big_point_expiry_date" translatable="false">Point Expiration</string>
+    <string name="tbd_big_point_no_transaction" translatable="false">No Transaction History</string>
 
     <!-- BIG POINT - Transaction History -->
-    <string name="transaction_history_transaction_date">Transaction Date:</string>
-    <string name="transaction_history_processing_date">Processing Date:</string>
-    <string name="transaction_history_merchant">Merchant:</string>
-    <string name="transaction_history_description">Description:</string>
+    <string name="transaction_history_transaction_date" translatable="false">Transaction Date:</string>
+    <string name="transaction_history_processing_date" translatable="false">Processing Date:</string>
+    <string name="transaction_history_merchant" translatable="false">Merchant:</string>
+    <string name="transaction_history_description" translatable="false">Description:</string>
     <string name="transaction_history_point">Points:</string>
 
     <!-- SELECTION FRAGMENT TITLE -->
-    <string name="select_country">Select country</string>
-    <string name="select_language">Select language</string>
-    <string name="select_state">Select state</string>
-    <string name="select_nationality">Select nationality</string>
-    <string name="select_title">Select title</string>
+    <string name="select_country" translatable="false">Select country</string>
+    <string name="select_language" translatable="false">Select language</string>
+    <string name="select_state" translatable="false">Select state</string>
+    <string name="select_nationality" translatable="false">Select nationality</string>
+    <string name="select_title" translatable="false">Select title</string>
+    <string name="register_password_hint">Password must be 8-15 alphanumeric characters with these reuirement: number (0-9), lowercase letter (a-z),uppercase letter (A-Z)</string>
+    <string name="tbd_my_booking">My Booking</string>
 
 
 </resources>

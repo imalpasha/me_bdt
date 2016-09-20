@@ -319,6 +319,57 @@
     <string name="book_flight_return">返回</string>
     <string name="edit_profile">编辑我的配置文件</string>
     <string name="general_continue">继续</string>
+    <string name="register_address_information">地址</string>
+    <string name="register_city">市镇 / 城市</string>
+    <string name="register_contact_detail">联络资料</string>
+    <string name="register_continue_button">继续</string>
+    <string name="register_country">国家</string>
+    <string name="register_dob">出生日期</string>
+    <string name="register_family_name">姓氏</string>
+    <string name="register_firstname">名字</string>
+    <string name="register_given_name">名字</string>
+    <string name="register_lastname">姓氏</string>
+    <string name="register_mobile">移动</string>
+    <string name="register_nationality">国籍</string>
+    <string name="register_nick_name">昵称</string>
+    <string name="register_passport">护照</string>
+    <string name="register_personal_detail">个人资料</string>
+    <string name="register_postcode">邮编</string>
+    <string name="register_salutation">敬礼</string>
+    <string name="register_salutation_hint">敬礼</string>
+    <string name="register_state">状态</string>
+    <string name="register_street_1">街头 1</string>
+    <string name="register_street_2">街头 2</string>
+    <string name="register_username">电子邮件</string>
+    <string name="search_flight_page">路线及票价</string>
+    <string name="search_language_title">选择语言</string>
+    <string name="register_password_style">密码必须为8到15个字母数字字符，且符合以下要求  - 数字(0-9)  - 小写字母(a-z)  - 大写字母(A-Z) </string>
+    <string name="hometext">主页</string>
+    <string name="holiday_shaker_reedem">兑换</string>
+    <string name="big_shot_id">BIG Shot 識別碼:</string>
+    <string name="action_settings">FIREFLY</string>
+    <string name="book_flight">本书飞行</string>
+    <string name="agreeTnc"><![CDATA[I agree with the Terms & Conditions]]></string>
+    <string name="boardingPassNA">Boarding Pass will be displayed after the check-in process is complete.</string>
+    <string name="boardingPassTitle">No boarding pass available.</string>
+    <string name="boarding_pass">BOARDING PASS</string>
+    <string name="book_flight_adult">Adult</string>
+    <string name="book_flight_adult_year">2+ years old</string>
+    <string name="book_flight_basic">BASIC</string>
+    <string name="book_flight_children">Children</string>
+    <string name="book_flight_children_year">2+ years old</string>
+    <string name="book_flight_infant">Infant</string>
+    <string name="book_flight_infant_year">9 days - 2 years old</string>
+    <string name="book_flight_one_way">ONE WAY</string>
+    <string name="book_flight_premier">PREMIER</string>
+    <string name="btn_nxt">NEXT</string>
+    <string name="yes_proceed">Yes, I want to be protected during my trip</string>
+    <string name="lang_next"><![CDATA[继续 >]]></string>
+    <string name="register_password_policy" translatable="false">Password Policy</string>
+    <string name="register_password_hint">密码必须为8到15个字母数字字符，且符合以下要求  - 数字(0-9)  - 小写字母(a-z)  - 大写字母(A-Z)</string>
+    <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
+    <string name="manage_flight_send_itinenary">SEND ITINERARY</string>
+    <string name="search_flight_title" translatable="false">Select your origin</string>
 
 
 </resources>

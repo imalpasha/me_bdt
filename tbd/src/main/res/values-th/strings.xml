@@ -284,7 +284,7 @@
     <!--Big Point-->
     <string name="transaction_history">ประวัติการทำธุรกรรม</string>
     <string name="big_point_expiry_date">BIG Point วันหมดอายุ</string>
-    <string name="manage_flight_send_itinenary"></string>
+    <string name="manage_flight_send_itinenary">SEND ITINERARY</string>
     <string name="tbd_my_profile">โปรไฟล์ของฉัน</string>
     <string name="dob">DOB:</string>
     <string name="profile_city">ซิตี้</string>
@@ -315,6 +315,60 @@
     <string name="edit_profile">แก้ไขโปรไฟล์ ของฉัน</string>
     <string name="general_continue">ดำเนินการต่อ</string>
     <string name="book_flight_departure_date">วันเดินทาง</string>
+    <string name="book_flight_arrival_date">กลับวัน</string>
+    <string name="manage_flight_contact_detail">ข้อมูลที่ติดต่อ</string>
+    <string name="tbd_my_booking">การจอง ของฉัน</string>
+    <string name="tbd_my_big_point">BIG Points ของฉัน</string>
+    <string name="register_address_information">ที่อยู่</string>
+    <string name="register_city">เมือง</string>
+    <string name="register_contact_detail">ข้อมูลที่ติดต่อ</string>
+    <string name="register_continue_button">ดำเนินการต่อ</string>
+    <string name="register_country">ประเทศ</string>
+    <string name="register_dob">วันเกิด</string>
+    <string name="register_family_name">นามสกุล</string>
+    <string name="register_firstname">ชื่อที่กำหนด</string>
+    <string name="register_given_name">ชื่อที่กำหนด</string>
+    <string name="register_lastname">นามสกุล</string>
+    <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
+    <string name="register_mobile">โทรศัพท์มือถือ</string>
+    <string name="register_nationality">สัญชาติ</string>
+    <string name="register_nick_name">ชื่อเล่น</string>
+    <string name="register_passport">หนังสือเดินทาง</string>
+    <string name="register_personal_detail">ข้อมูลส่วนตัว</string>
+    <string name="register_postcode">รหัสไปรษณีย์</string>
+    <string name="register_salutation">คำอวยพร</string>
+    <string name="register_salutation_hint">คำอวยพร</string>
+    <string name="register_state">รัฐ</string>
+    <string name="register_street_1">ถนน 1</string>
+    <string name="register_street_2">ถนน 2</string>
+    <string name="register_username">อีเมล</string>
+    <string name="search_flight_page">วิถีทาง และ ค่าโดยสาร</string>
+    <string name="search_language_title">เลือกภาษา</string>
+    <string name="register_password_style">รหัสผ่านจะต้องประกอบด้วยตัวเลขและตัวอักษรจำนวน 8-15 อักขระโดยมีข้อกำหนดดังต่อไปนี้  - ตัวเลข (0-9)  - ตัวพิมพ์เล็ก (a-z)  - ตัวพิมพ์ใหญ่ (A-Z)</string>
+    <string name="hometext">หน้าแรก</string>
+    <string name="holiday_shaker_reedem">การแลกคะแนน</string>
+    <string name="big_shot_id">Big Shot ID:</string>
+    <string name="action_settings">FIREFLY</string>
+    <string name="agreeTnc"><![CDATA[I agree with the Terms & Conditions]]></string>
+    <string name="boardingPassNA">Boarding Pass will be displayed after the check-in process is complete.</string>
+    <string name="boardingPassTitle">No boarding pass available.</string>
+    <string name="boarding_pass">BOARDING PASS</string>
+    <string name="book_flight">BOOK FLIGHT</string>
+    <string name="book_flight_adult">Adult</string>
+    <string name="book_flight_adult_year">2+ years old</string>
+    <string name="book_flight_basic">BASIC</string>
+    <string name="book_flight_children">Children</string>
+    <string name="book_flight_children_year">2+ years old</string>
+    <string name="book_flight_infant">Infant</string>
+    <string name="book_flight_infant_year">9 days - 2 years old</string>
+    <string name="book_flight_one_way">ONE WAY</string>
+    <string name="book_flight_premier">PREMIER</string>
+    <string name="btn_nxt">NEXT</string>
+    <string name="yes_proceed">Yes, I want to be protected during my trip</string>
+    <string name="lang_next"><![CDATA[ดำเนินการต่อ >]]></string>
+    <string name="register_password_hint">รหัสผ่านจะต้องประกอบด้วยตัวเลขและตัวอักษรจำนวน 8-15 อักขระโดยมีข้อกำหนดดังต่อไปนี้  - ตัวเลข (0-9)  - ตัวพิมพ์เล็ก (a-z)  - ตัวพิมพ์ใหญ่ (A-Z)</string>
+    <string name="register_password_policy">Password Policy</string>
+    <string name="search_flight_title" translatable="false">Select your origin</string>
 
 
 </resources>
