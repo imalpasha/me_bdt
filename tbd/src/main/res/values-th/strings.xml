@@ -363,12 +363,27 @@
     <string name="book_flight_infant_year">9 days - 2 years old</string>
     <string name="book_flight_one_way">ONE WAY</string>
     <string name="book_flight_premier">PREMIER</string>
-    <string name="btn_nxt">NEXT</string>
+    <string name="btn_nxt">ต่อไป</string>
     <string name="yes_proceed">Yes, I want to be protected during my trip</string>
     <string name="lang_next"><![CDATA[ดำเนินการต่อ >]]></string>
     <string name="register_password_hint">รหัสผ่านจะต้องประกอบด้วยตัวเลขและตัวอักษรจำนวน 8-15 อักขระโดยมีข้อกำหนดดังต่อไปนี้  - ตัวเลข (0-9)  - ตัวพิมพ์เล็ก (a-z)  - ตัวพิมพ์ใหญ่ (A-Z)</string>
     <string name="register_password_policy">Password Policy</string>
-    <string name="search_flight_title" translatable="false">Select your origin</string>
+    <string name="search_flight_title" >Select your origin</string>
+    <string name="options">ออฟชั่น</string>
+    <string name="options_about">เกี่ยวกับ</string>
+    <string name="options_privacy">นโยบายความเป็นส่วนตัว</string>
+    <string name="options_logout">ออกจากระบบ</string>
+    <string name="options_change_language">เปลี่ยนภาษา</string>
+    <string name="options_terms">ข้อต</string>
+    <string name="profile_address_title">ที่อยู่</string>
+    <string name="register_personal_information">ข้อมูลส่วนตัว</string>
+    <string name="forgotPasswordNew">รหัสผ่านใหม่</string>
+    <string name="reset_new_password">รหัสผ่านใหม่</string>
+    <string name="reset_old_password">รหัสผ่านเก่า</string>
+    <string name="reset_confirm_password">ยืนยันรหัสผ่าน</string>
+    <string name="option_reset_password">ข้อมูลรหัสผ่าน</string>
+    <string name="home_title">หน้าแรก</string>
+    <string name="big_balance">คะแนน BIG Points ยอดคงเหลือ</string>
 
 
 </resources>

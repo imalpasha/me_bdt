@@ -24,7 +24,7 @@ public class OptionsActivity extends MainFragmentActivity implements FragmentCon
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, OptionsFragment.newInstance()).commit();
 
-        setTitle("Options");
+        setTitle(R.string.options);
         setBackButton();
 
         // [START shared_tracker]

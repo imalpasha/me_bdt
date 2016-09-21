@@ -364,12 +364,27 @@
     <string name="book_flight_infant_year">9 days - 2 years old</string>
     <string name="book_flight_one_way">ONE WAY</string>
     <string name="book_flight_premier">PREMIER</string>
-    <string name="btn_nxt">NEXT</string>
+    <string name="btn_nxt">SETERUSNYA</string>
     <string name="yes_proceed">Yes, I want to be protected during my trip</string>
-    <string name="lang_next" translatable="false"><![CDATA[Seterusnya >]]></string>
+    <string name="lang_next" ><![CDATA[Seterusnya >]]></string>
     <string name="register_password_policy">Password Policy</string>
     <string name="register_loyalty_information">LOYALTY PROGRAMME</string>
-    <string name="manage_flight_send_itinenary" translatable="false">SEND ITINERARY</string>
+    <string name="manage_flight_send_itinenary" >SEND ITINERARY</string>
+    <string name="options" >Pilihan</string>
+    <string name="options_about">Tentang</string>
+    <string name="options_privacy">Polisi Privasi</string>
+    <string name="options_logout">Log Keluar</string>
+    <string name="options_change_language" >Tukar Bahasa</string>
+    <string name="options_terms">Terma</string>
+    <string name="profile_address_title">ALAMAT</string>
+    <string name="register_personal_information">MAKLUMAT PERIBADI</string>
+    <string name="forgotPasswordNew">Kata laluan baru</string>
+    <string name="reset_new_password">Kata laluan baru</string>
+    <string name="reset_old_password" >Kata laluan lama</string>
+    <string name="reset_confirm_password"> Sahkan Kata laluan</string>
+    <string name="option_reset_password">MAKLUMAT KATA LALUAN</string>
+    <string name="home_title">Laman Utama</string>
+    <string name="big_balance">Baki Mata BIG Anda</string>
 
 
 </resources>
