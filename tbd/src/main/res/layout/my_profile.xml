@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:scrollbars="none"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,22 +60,29 @@
                     android:orientation="horizontal"
                     android:weightSum="1">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:layout_weight="0.3"
                         android:layout_marginRight="10dp"
+                        android:layout_weight="0.3"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imgUserDP"
+                            android:id="@+id/myImgUserDP"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"
                             android:scaleType="centerCrop"
                             android:src="@drawable/no_profile_image" />
-                    </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/imageLoadProgressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+                    </RelativeLayout>
                     <!--android:background="@drawable/tbd_image_border"-->
                     <LinearLayout
                         android:layout_width="0dp"
@@ -170,7 +177,7 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -193,10 +200,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_given_name"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -214,17 +221,17 @@
                         android:inputType="text"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -237,10 +244,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_family_name"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -258,16 +265,16 @@
                         android:inputType="text"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -280,10 +287,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_dob"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -298,21 +305,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:clickable="false"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:clickable="false"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -325,10 +332,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_nationality"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -346,17 +353,17 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -369,10 +376,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_mobile"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -390,17 +397,17 @@
                         android:inputType="phone"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -413,10 +420,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_passport"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -434,7 +441,7 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -443,8 +450,8 @@
                 android:id="@+id/userParentInformationBlock"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -632,7 +639,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -652,21 +658,21 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
                         android:gravity="center"
                         android:text="ADDRESS"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginBottom="1dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -679,10 +685,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_street1"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -700,17 +706,17 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -723,10 +729,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_street2"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp" />
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -744,17 +750,17 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -767,10 +773,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_country"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -788,17 +794,17 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -811,10 +817,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_state"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -832,17 +838,17 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -855,10 +861,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_city"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -876,17 +882,17 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bottom_line_border"
                 android:clickable="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -899,10 +905,10 @@
                     <com.app.tbd.utils.FontStyle.PlayTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/profile_post_code"
                         android:textColor="@color/dark_lvl6"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -920,7 +926,7 @@
                         android:inputType="textPersonName"
                         android:padding="10dp"
                         android:textColor="@color/dark_lvl2"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -942,12 +948,12 @@
                         android:id="@+id/edit_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
                         android:gravity="center"
                         android:text="EDIT"
                         android:textColor="@color/dark_lvl6"
                         android:textSize="16dp"
-                        android:visibility="gone"
-                        android:layout_marginBottom="1dp"/>
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
 

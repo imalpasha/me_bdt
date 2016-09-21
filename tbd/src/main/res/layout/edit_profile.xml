@@ -67,13 +67,12 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imgUserDP"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:id="@+id/imgUserDP2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="10dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/tbd_dp2" />
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/no_profile_image" />
                     </LinearLayout>
                     <!--android:background="@drawable/tbd_image_border"-->
                     <LinearLayout

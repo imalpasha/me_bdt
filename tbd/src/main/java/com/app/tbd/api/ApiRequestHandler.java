@@ -7,23 +7,33 @@ import android.util.Log;
 import com.app.tbd.ui.Model.Receive.EditProfileReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
+import com.app.tbd.ui.Model.Receive.SearchFlightReceive;
+import com.app.tbd.ui.Model.Receive.SignatureReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceiveFailed;
 import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.NewsletterLanguageReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
+import com.app.tbd.ui.Model.Receive.UploadPhotoReceive;
+import com.app.tbd.ui.Model.Receive.UserPhotoReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.LanguageCountryRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
+import com.app.tbd.ui.Model.Request.SearchFlightRequest;
+import com.app.tbd.ui.Model.Request.SignatureRequest;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
 import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.NewsletterLanguageRequest;
 import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
+import com.app.tbd.ui.Model.Request.UploadPhotoRequest;
+import com.app.tbd.ui.Model.Request.UserPhotoRequest;
 import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.app.tbd.utils.SharedPrefManager;
+import com.app.tbd.utils.Utils;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.ui.Model.Receive.InitialLoadReceive;
@@ -182,7 +192,7 @@ public class ApiRequestHandler {
 
                 if (rhymesResponse != null) {
                     bus.post(new LogoutReceive(rhymesResponse));
-                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse));
+                    RealmObjectController.cachedSearchFlightResult(MainFragmentActivity.getContext(), (new Gson()).toJson(rhymesResponse), Utils.SEARCH_FLIGHT);
                 } else {
                     BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
                 }
@@ -263,7 +273,7 @@ public class ApiRequestHandler {
 
             @Override
             public void failure(RetrofitError error) {
-
+                bus.post(new BigPointReceiveFailed());
             }
         });
     }
@@ -337,8 +347,97 @@ public class ApiRequestHandler {
         });
     }
 
+    @Subscribe
+    public void onUpdateProfile(final UploadPhotoRequest event) {
 
-    ////
+        apiService.onUploadProfilePhoto(event, new Callback<UploadPhotoReceive>() {
+
+            @Override
+            public void success(UploadPhotoReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new UploadPhotoReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+    @Subscribe
+    public void onRequestUserPhoto(final UserPhotoRequest event) {
+
+        apiService.onRequestUserPhoto(event, new Callback<UserPhotoReceive>() {
+
+            @Override
+            public void success(UserPhotoReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new UserPhotoReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+    @Subscribe
+    public void onRequestSearchFlight(final SearchFlightRequest event) {
+
+        apiService.onRequestSearchFlight(event, new Callback<SearchFlightReceive>() {
+
+            @Override
+            public void success(SearchFlightReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new SearchFlightReceive(retroResponse));
+                    RealmObjectController.cachedResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse));
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
+
+    @Subscribe
+    public void onSignatureRequest(final SignatureRequest event) {
+
+        apiService.onSignatureRequest(new Callback<SignatureReceive>() {
+
+            @Override
+            public void success(SignatureReceive retroResponse, Response response) {
+
+                if (retroResponse != null) {
+                    bus.post(new SignatureReceive(retroResponse));
+                    RealmObjectController.cachedSearchFlightResult(MainFragmentActivity.getContext(), (new Gson()).toJson(retroResponse),Utils.SEARCH_FLIGHT_SIGNATURE);
+                } else {
+                    BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                BaseFragment.setAlertNotification(MainFragmentActivity.getContext());
+            }
+        });
+    }
     ////
     ///
     //

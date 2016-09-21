@@ -6,6 +6,8 @@ import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
 import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
+import com.app.tbd.ui.Model.Receive.SearchFlightReceive;
+import com.app.tbd.ui.Model.Receive.SignatureReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
@@ -14,11 +16,14 @@ import com.app.tbd.ui.Model.Receive.PushNotificationReceive;
 import com.app.tbd.ui.Model.Receive.RegisterReceive;
 import com.app.tbd.ui.Model.Receive.StateReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
+import com.app.tbd.ui.Model.Receive.UploadPhotoReceive;
+import com.app.tbd.ui.Model.Receive.UserPhotoReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.InitialLoadRequest;
 import com.app.tbd.ui.Model.Request.LanguageRequest;
 import com.app.tbd.ui.Model.Request.ResetPasswordRequest;
+import com.app.tbd.ui.Model.Request.SearchFlightRequest;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
 import com.app.tbd.ui.Model.Request.TBD.LoginRequest;
 import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
@@ -27,6 +32,8 @@ import com.app.tbd.ui.Model.Request.PasswordRequest;
 import com.app.tbd.ui.Model.Request.RegisterRequest;
 import com.app.tbd.ui.Model.Request.StateRequest;
 import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
+import com.app.tbd.ui.Model.Request.UploadPhotoRequest;
+import com.app.tbd.ui.Model.Request.UserPhotoRequest;
 import com.app.tbd.ui.Model.Request.ViewUserRequest;
 
 import retrofit.Callback;
@@ -88,13 +95,27 @@ public interface ApiService {
     @POST("/GetTransaction")
     void onTransactionHistoryRequest(@Body TransactionHistoryRequest obj, Callback<TransactionHistoryReceive> callback);
 
+    @POST("/UpdateUserPhoto")
+    void onUploadProfilePhoto(@Body UploadPhotoRequest obj, Callback<UploadPhotoReceive> callback);
 
+
+    @POST("/GetUserPhoto")
+    void onRequestUserPhoto(@Body UserPhotoRequest obj, Callback<UserPhotoReceive> callback);
 
     /*@POST("/Language/GetLanguage")
     void onLanguageRequest(@Body LanguageRequest obj, Callback<LanguageReceive> callback);*/
 
     @POST("/UpdateUser")
     void onUpdateProfileRequest(@Body EditProfileRequest obj, Callback<EditProfileReceive> callback);
+
+    @POST("/Booking/GetAvailability")
+    void onRequestSearchFlight(@Body SearchFlightRequest obj, Callback<SearchFlightReceive> callback);
+
+    @GET("/Booking/LogOn")
+    void onSignatureRequest(Callback<SignatureReceive> callback);
+
+
+
 
     @FormUrlEncoded
     @POST("/api.php")

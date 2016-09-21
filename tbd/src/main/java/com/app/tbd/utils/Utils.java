@@ -45,6 +45,23 @@ import java.util.Date;
 import java.util.Random;
 
 public class Utils {
+
+
+    //Static Reference
+
+    public static final String SEARCH_FLIGHT = "SEARCH_FLIGHT";
+    public static final String SEARCH_FLIGHT_SIGNATURE = "SEARCH_FLIGHT_SIGNATURE";
+
+
+
+
+
+
+
+
+
+
+
     public static void launchBrowser(Context context, String url) {
         try {
             Uri uriUrl = Uri.parse(url);

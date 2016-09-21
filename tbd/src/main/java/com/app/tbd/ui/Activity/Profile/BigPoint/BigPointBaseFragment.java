@@ -156,7 +156,11 @@ public class BigPointBaseFragment extends BaseFragment implements ProfilePresent
 
         customerNumber = obj.getCustomerNumber();
         txtBigShotId.setText(customerNumber);
-        txtBigShotPoint.setText(bigPointReceive.getAvailablePts());
+
+        double newValue = Double.parseDouble((bigPointReceive.getAvailablePts()));
+        int x2 = (int) newValue;
+        String str = String.format("%,d", x2);
+        txtBigShotPoint.setText(str+" pts");
     }
 
     @Override

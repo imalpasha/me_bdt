@@ -29,20 +29,26 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.tbd.MainController;
 import com.app.tbd.MainFragmentActivity;
 import com.app.tbd.application.MainApplication;
+import com.app.tbd.base.AQuery;
 import com.app.tbd.ui.Activity.Profile.BigPoint.BigPointBaseActivity;
 import com.app.tbd.ui.Activity.Profile.Option.OptionsActivity;
 import com.app.tbd.ui.Activity.Profile.UserProfile.MyProfileActivity;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceiveFailed;
+import com.app.tbd.ui.Model.Receive.UploadPhotoReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
+import com.app.tbd.ui.Model.Request.UploadPhotoRequest;
 import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.app.tbd.ui.Module.ProfileModule;
 import com.app.tbd.ui.Presenter.ProfilePresenter;
+import com.app.tbd.utils.Utils;
 import com.google.gson.Gson;
 import com.app.tbd.R;
 import com.app.tbd.base.BaseFragment;
@@ -93,8 +99,13 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
     @InjectView(R.id.profileBigPointClickLayout)
     LinearLayout profileBigPointClickLayout;
+
     @InjectView(R.id.profile_myProfile)
     LinearLayout profile_myProfile;
+
+    @InjectView(R.id.imageLoadProgressBar)
+    ProgressBar imageLoadProgressBar;
+
 
     // Validator Attributes
     private Validator mValidator;
@@ -116,6 +127,10 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     private final int PICK_FROM_CAMERA = 1;
     private final int CROP_FROM_CAMERA = 2;
     private final int PICK_FROM_FILE = 3;
+    //private AQuery aq;
+
+    private String username;
+    private String token;
 
     public static ProfileFragment newInstance() {
 
@@ -138,6 +153,10 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
         View view = inflater.inflate(R.layout.profile, container, false);
         ButterKnife.inject(this, view);
+
+        // aq = new com.app.tbd.base.AQuery(getActivity());
+        // aq.recycle(view);
+
         dataSetup();
 
         getActivity().setTitle(getResources().getString(R.string.tbd_my_profile));
@@ -188,15 +207,8 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     public void loadProfileInfo() {
 
         initiateLoading(getActivity());
-        HashMap<String, String> initAuth = pref.getUsername();
-        final String username = initAuth.get(SharedPrefManager.USERNAME);
-
-       // HashMap<String, String> initPassword = pref.getUserPassword();
-       // String password = initPassword.get(SharedPrefManager.PASSWORD);
-
-        HashMap<String, String> initTicketId = pref.getToken();
-        String token = initTicketId.get(SharedPrefManager.TOKEN);
-
+        // HashMap<String, String> initPassword = pref.getUserPassword();
+        // String password = initPassword.get(SharedPrefManager.PASSWORD);
         ViewUserRequest data = new ViewUserRequest();
         data.setUserName(username);
         data.setToken(token);
@@ -222,6 +234,35 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
     }
 
     @Override
+    public void onBigPointReceiveFailed(BigPointReceiveFailed obj) {
+        txtBigPoint.setText(getResources().getString(R.string.failed_load));
+    }
+
+
+    @Override
+    public void onUploadPhotoSuccess(UploadPhotoReceive obj) {
+        //dismissLoading();
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
+
+            imgUserDP.setAlpha(1f);
+            imageLoadProgressBar.setVisibility(View.GONE);
+
+            //add URL to REALM User info
+            Realm realm = RealmObjectController.getRealmInstance(getActivity());
+            final RealmResults<UserInfoJSON> result2 = realm.where(UserInfoJSON.class).findAll();
+            loginReceive = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
+
+            loginReceive.setProfile_URL(obj.getURL());
+
+            Gson gsonUserInfo = new Gson();
+            String userInfo = gsonUserInfo.toJson(loginReceive);
+            RealmObjectController.saveUserInformation(getActivity(), userInfo);
+
+        }
+    }
+
+    @Override
     public void onBigPointReceive(BigPointReceive obj) {
 
         //Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
@@ -231,8 +272,13 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
 
             bigPointClickable = true;
             profileBigPointClickLayout.setClickable(true);
-            txtBigPoint.setText(obj.getAvailablePts());
-            bigPoint = obj.getAvailablePts();
+
+            double newValue = Double.parseDouble((obj.getAvailablePts()));
+            int x2 = (int) newValue;
+            //String txtPoint = Double.toString(Math.floor(newValue));
+            String str = String.format("%,d", x2);
+            txtBigPoint.setText(str + " pts");
+            bigPoint = str;
 
             //convert big point to string -> sent to big point detail
             Gson gsonUserInfo = new Gson();
@@ -259,6 +305,13 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
         txtBigUsername.setText(loginReceive.getFirstName() + " " + loginReceive.getLastName());
         txtUserBigID.setText("BIG ID : " + loginReceive.getCustomerNumber());
         customerNumber = loginReceive.getCustomerNumber();
+        username = loginReceive.getUserName();
+        token = loginReceive.getToken();
+
+        if (loginReceive.getProfile_URL() != null) {
+            Log.e("URL", loginReceive.getProfile_URL());
+            displayImage(getActivity(), imgUserDP, loginReceive.getProfile_URL());
+        }
 
         loadBigPointData(loginReceive);
 
@@ -457,6 +510,15 @@ public class ProfileFragment extends BaseFragment implements ProfilePresenter.Pr
                     imgUserDP.setScaleType(ImageView.ScaleType.FIT_XY);
 
                     //profileImgBitmap = photo;
+                    UploadPhotoRequest uploadPhotoRequest = new UploadPhotoRequest();
+                    uploadPhotoRequest.setUserName(username);
+                    uploadPhotoRequest.setData(Utils.bitmapToBase64(photo));
+                    uploadPhotoRequest.setExtension("png");
+                    uploadPhotoRequest.setToken(token);
+
+                    imgUserDP.setAlpha(0.5f);
+                    imageLoadProgressBar.setVisibility(View.VISIBLE);
+                    presenter.onRequestUploadPhoto(uploadPhotoRequest);
                     //editImg.setProfileImg(Utils.bitmapToBase64(photo));
 
                 }

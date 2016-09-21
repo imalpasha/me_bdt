@@ -12,14 +12,25 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.app.tbd.MainController;
 import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.R;
+import com.app.tbd.application.MainApplication;
 import com.app.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
+import com.app.tbd.ui.Model.Receive.LanguageReceive;
+import com.app.tbd.ui.Model.Receive.SearchFlightReceive;
+import com.app.tbd.ui.Model.Receive.SignatureReceive;
+import com.app.tbd.ui.Model.Request.SearchFlightRequest;
+import com.app.tbd.ui.Model.Request.SignatureRequest;
+import com.app.tbd.ui.Module.SearchFlightModule;
+import com.app.tbd.ui.Presenter.BookingPresenter;
+import com.app.tbd.ui.Presenter.LanguagePresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.SharedPrefManager;
+import com.google.gson.Gson;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
@@ -30,7 +41,11 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class SearchFlightFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
+public class SearchFlightFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener, BookingPresenter.SearchFlightView {
+
+
+    @Inject
+    BookingPresenter presenter;
 
     @InjectView(R.id.departureDateBlock)
     LinearLayout departureDateBlock;
@@ -62,7 +77,7 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
 
     private int fragmentContainerId;
     private static final String SCREEN_LABEL = "Book Flight: Search Flight";
-
+    private String signature;
     private SharedPrefManager pref;
 
     private String DEPARTURE_FLIGHT = "Please choose your departure airport";
@@ -95,7 +110,7 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //MainApplication.get(getActivity()).createScopedGraph(new SearchFlightModule(this)).inject(this);
+        MainApplication.get(getActivity()).createScopedGraph(new SearchFlightModule(this)).inject(this);
         RealmObjectController.clearCachedResult(getActivity());
     }
 
@@ -130,8 +145,12 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         btnSearchFlight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent flightDetail = new Intent(getActivity(), FlightListActivity.class);
-                getActivity().startActivity(flightDetail);
+                //Intent flightDetail = new Intent(getActivity(), FlightListActivity.class);
+                //getActivity().startActivity(flightDetail);
+
+                getSignature();
+                searchFlight();
+
             }
         });
 
@@ -159,6 +178,54 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
 
 
         return view;
+    }
+
+    public void searchFlight() {
+
+        initiateLoading(getActivity());
+
+        SearchFlightRequest searchFlightRequest = new SearchFlightRequest();
+        searchFlightRequest.setAdult("1");
+        searchFlightRequest.setChild("1");
+        searchFlightRequest.setInfant("1");
+        searchFlightRequest.setArrivalStation0("MEL");
+        searchFlightRequest.setDepartureStation0("KUL");
+        searchFlightRequest.setCurrencyCode("MYR");
+        searchFlightRequest.setDepartureDate0("2016-09-21");
+        searchFlightRequest.setSignature(signature);
+
+        presenter.onSearchFlight(searchFlightRequest);
+
+    }
+
+    public void getSignature() {
+
+        initiateLoading(getActivity());
+
+        SignatureRequest signatureRequest = new SignatureRequest();
+        presenter.onRequestSignature(signatureRequest);
+
+    }
+
+    @Override
+    public void onSearchFlightReceive(SearchFlightReceive obj) {
+
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
+            Log.e("Status", obj.getStatus());
+        }
+
+    }
+
+    @Override
+    public void onSignatureReceive(SignatureReceive obj) {
+
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
+            Log.e("Status",signature);
+            signature = obj.getSignature();
+        }
+
     }
 
     /*Country selector - > need to move to main activity*/

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,6 +66,10 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
 
     @InjectView(R.id.edit_btn)
     Button edit_btn;
+
+    @InjectView(R.id.myImgUserDP)
+    ImageView myImgUserDP;
+
 
     static EditText profile_given_name;
     static EditText profile_family_name;
@@ -137,6 +142,8 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
 
         view = inflater.inflate(R.layout.my_profile, container, false);
         ButterKnife.inject(this, view);
+        aq.recycle(view);
+
         pref = new SharedPrefManager(getActivity());
 
         dataSetup();
@@ -309,7 +316,11 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
         Realm realm = RealmObjectController.getRealmInstance(getActivity());
         final RealmResults<UserInfoJSON> result2 = realm.where(UserInfoJSON.class).findAll();
         final LoginReceive obj = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
+
         username = obj.getUserName();
+        if (obj.getProfile_URL() != null) {
+            displayImage(getActivity(), myImgUserDP, obj.getProfile_URL());
+        }
     }
 
     public static void myProfileEditable() {
@@ -654,7 +665,7 @@ public class MyProfileFragment extends BaseFragment implements ProfilePresenter.
 
         String newDob = day + "-" + month + "-" + year;
 
-        datePickerSetting(Integer.parseInt(year), Integer.parseInt(month)-1, Integer.parseInt(day));
+        datePickerSetting(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
 
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date startDate;

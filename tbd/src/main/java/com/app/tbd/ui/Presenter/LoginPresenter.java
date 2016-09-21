@@ -5,9 +5,11 @@ import android.util.Log;
 import com.app.tbd.ui.Model.Receive.ForgotPasswordReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LoginFacebookReceive;
 import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
+import com.app.tbd.ui.Model.Receive.UserPhotoReceive;
 import com.app.tbd.ui.Model.Request.TBD.LoginFacebookRequest;
 import com.app.tbd.ui.Model.Request.TBD.LoginRequest;
 import com.app.tbd.ui.Model.Request.PasswordRequest;
+import com.app.tbd.ui.Model.Request.UserPhotoRequest;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -20,12 +22,9 @@ public class LoginPresenter {
     public interface LoginView {
 
         void onLoginSuccess(LoginReceive obj);
-
         void onCheckFBLoginSuccess(LoginFacebookReceive obj);
-
-        //void onLoginFailed(String dumm);
         void onRequestPasswordSuccess(ForgotPasswordReceive obj);
-
+        void onRequestUserPhotoSuccess(UserPhotoReceive obj);
     }
 
     private LoginView loginView;
@@ -63,10 +62,22 @@ public class LoginPresenter {
         Log.e(data.getEmail(), data.getToken());
     }
 
+    public void onRequestUserPhoto(UserPhotoRequest data){
+        bus.post(new UserPhotoRequest(data));
+    }
+
 
     public void forgotPassword(PasswordRequest data) {
         bus.post(new PasswordRequest(data));
     }
+
+
+    @Subscribe
+    public void onRequestUserPhotoSuccess(UserPhotoReceive event) {
+
+        loginView.onRequestUserPhotoSuccess(event);
+    }
+
 
     @Subscribe
     public void onUserSuccessCheckFacebookLogin(LoginFacebookReceive event) {

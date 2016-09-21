@@ -18,6 +18,8 @@ public class LoginReceive {
     private String UserName;
     private String Hash;
 
+    private String Profile_URL;
+
 
     public LoginReceive(LoginReceive returnData) {
         this.userObj = returnData;
@@ -29,8 +31,16 @@ public class LoginReceive {
         Token = returnData.getToken();
         UserName = returnData.getStatus();
         Hash = returnData.getStatus();
+        Profile_URL = returnData.getProfile_URL();
     }
 
+    public String getProfile_URL() {
+        return Profile_URL;
+    }
+
+    public void setProfile_URL(String profile_URL) {
+        Profile_URL = profile_URL;
+    }
 
     public String getToken() {
         return Token;

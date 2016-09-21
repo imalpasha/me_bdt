@@ -7,8 +7,10 @@ import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
 
 import com.app.tbd.ui.Model.Receive.ResetPasswordReceive;
 import com.app.tbd.ui.Model.Receive.TBD.BigPointReceive;
+import com.app.tbd.ui.Model.Receive.TBD.BigPointReceiveFailed;
 import com.app.tbd.ui.Model.Receive.TBD.LogoutReceive;
 import com.app.tbd.ui.Model.Receive.TransactionHistoryReceive;
+import com.app.tbd.ui.Model.Receive.UploadPhotoReceive;
 import com.app.tbd.ui.Model.Receive.ViewUserReceive;
 import com.app.tbd.ui.Model.Request.EditProfileRequest;
 import com.app.tbd.ui.Model.Request.InitialLoadRequest;
@@ -18,6 +20,7 @@ import com.app.tbd.ui.Model.Request.TBD.BigPointRequest;
 import com.app.tbd.ui.Model.Request.TBD.LogoutRequest;
 
 import com.app.tbd.ui.Model.Request.TransactionHistoryRequest;
+import com.app.tbd.ui.Model.Request.UploadPhotoRequest;
 import com.app.tbd.ui.Model.Request.ViewUserRequest;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
@@ -28,19 +31,24 @@ public class ProfilePresenter {
         void onBigPointReceive(BigPointReceive obj);
 
         void onViewUserSuccess(ViewUserReceive obj);
+
+        void onUploadPhotoSuccess(UploadPhotoReceive obj);
+
+        void onBigPointReceiveFailed(BigPointReceiveFailed obj);
     }
 
     public interface MyProfileView {
         void onSuccessRequestState(StateReceive obj);
+
         void onUpdateUserSuccess(EditProfileReceive obj);
     }
 
     public interface OptionView {
         void onLogoutReceive(LogoutReceive obj);
 
-        void loadingSuccess(InitialLoadReceive obj);
+        // void loadingSuccess(InitialLoadReceive obj);
 
-        void onSuccessRequestState(StateReceive obj);
+        // void onSuccessRequestState(StateReceive obj);
     }
 
     public interface ResetPasswordView {
@@ -102,6 +110,10 @@ public class ProfilePresenter {
         bus.post(new TransactionHistoryRequest(data));
     }
 
+    public void onRequestUploadPhoto(UploadPhotoRequest data) {
+        bus.post(new UploadPhotoRequest(data));
+    }
+
     public void showFunction(ViewUserRequest data) {
         bus.post(new ViewUserRequest(data));
     }
@@ -118,6 +130,18 @@ public class ProfilePresenter {
         bus.post(new EditProfileRequest(data));
     }
 
+
+    @Subscribe
+    public void onBigPointReceiveFailed(BigPointReceiveFailed event) {
+        loginView.onBigPointReceiveFailed(event);
+    }
+
+
+    @Subscribe
+    public void onUplodPhotoSuccess(UploadPhotoReceive event) {
+        loginView.onUploadPhotoSuccess(event);
+    }
+
     @Subscribe
     public void onEditProfileSuccess(EditProfileReceive event) {
         myProfileView.onUpdateUserSuccess(event);
@@ -125,7 +149,7 @@ public class ProfilePresenter {
 
     @Subscribe
     public void onSuccessSendDeviceInformation(InitialLoadReceive event) {
-        optionView.loadingSuccess(event);
+        // optionView.loadingSuccess(event);
     }
 
     @Subscribe
@@ -141,7 +165,7 @@ public class ProfilePresenter {
     @Subscribe
     public void onSuccessRequestState(StateReceive event) {
         if (optionView != null) {
-            optionView.onSuccessRequestState(event);
+            //optionView.onSuccessRequestState(event);
         }
     }
 
@@ -164,7 +188,7 @@ public class ProfilePresenter {
 
     @Subscribe
     public void onBigPointReceive(BigPointReceive event) {
-        if(loginView != null){
+        if (loginView != null) {
             loginView.onBigPointReceive(event);
         }
     }

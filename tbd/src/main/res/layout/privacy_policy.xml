@@ -1,46 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:scrollbars="none">
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/homepage_white_with_gradient"
-                android:clickable="true"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="5dp"
-                android:paddingTop="15dp"
-                android:id="@+id/options_about">
-
-                <com.app.tbd.utils.FontStyle.PlayTextView
-                    android:id="@+id/textView405"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="This is Privacy Policy page"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <WebView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mainWebView2">
+            </WebView>
 
         </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

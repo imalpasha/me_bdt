@@ -192,6 +192,25 @@ public class RealmObjectController extends BaseFragment {
 
     }
 
+
+    //cached big point request
+    public static void cachedSearchFlightResult(Activity act, String cachedResult, String api) {
+
+        Realm realm = getRealmInstance(act);
+
+        /*final RealmResults<CachedResult> result = realm.where(CachedResult.class).findAll();
+        realm.beginTransaction();
+        result.clear();
+        realm.commitTransaction();*/
+
+        realm.beginTransaction();
+        CachedResult realmObject = realm.createObject(CachedResult.class);
+        realmObject.setCachedResult(cachedResult);
+        realmObject.setCachedAPI(api);
+        realm.commitTransaction();
+
+    }
+
     //cached big point request
     public static void cachedBigPointRequest(Activity act, String cachedBigPointResult) {
 

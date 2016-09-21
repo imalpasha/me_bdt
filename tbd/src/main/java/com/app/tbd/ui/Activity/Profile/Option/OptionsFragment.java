@@ -18,6 +18,7 @@ import com.app.tbd.application.AnalyticsApplication;
 import com.app.tbd.application.MainApplication;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
+import com.app.tbd.ui.Activity.Homepage.HomeActivity;
 import com.app.tbd.ui.Activity.Login.LoginActivity;
 import com.app.tbd.ui.Activity.Picker.SelectLanguageFragment;
 import com.app.tbd.ui.Activity.Profile.ProfileActivity;
@@ -138,8 +139,10 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
             public void onClick(View v) {
                 AnalyticsApplication.sendEvent("Click", "Change Language");
                 if (checkFragmentAdded()) {
-                    showCountrySelector(getActivity(), languageList, "LANGUAGE_LIST");
-                    CURRENT_PICKER = "LANGUAGE";
+                    // showCountrySelector(getActivity(), languageList, "LANGUAGE_LIST");
+                    // CURRENT_PICKER = "LANGUAGE";
+                    Intent changeLang = new Intent(getActivity(), ChangeLanguageActivity.class);
+                    getActivity().startActivity(changeLang);
                 }
 
             }
@@ -182,12 +185,12 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
         HashMap<String, String> init = pref.getLanguageCountry();
         String langCountry = init.get(SharedPrefManager.LANGUAGE_COUNTRY);
 
-        String[] parts = langCountry.split("-");
-        latestCountryCode = parts[1];
+        //String[] parts = langCountry.split("-");
+        //latestCountryCode = parts[1];
     }
 
     /*Country selector - > need to move to main activity*/
-    public void showCountrySelector(Activity act, ArrayList constParam, String data) {
+   /* public void showCountrySelector(Activity act, ArrayList constParam, String data) {
         if (act != null) {
             try {
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -200,10 +203,10 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
 
-    @Override
+    /*@Override
     public void loadingSuccess(InitialLoadReceive obj) {
 
 
@@ -228,9 +231,9 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
 
         }
 
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -246,9 +249,9 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
                 Log.e("Change", selectedLanguage.getCode());
             }
         }
-    }
+    }*/
 
-    public void changeLanguage(String selectedLanguage) {
+    /*public void changeLanguage(String selectedLanguage) {
         String lang = "en";
 
         if (selectedLanguage.equals("en")) {
@@ -300,14 +303,15 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(langPref, lang);
         editor.commit();
-    }
+    }*/
 
     @Override
     public void onLogoutReceive(LogoutReceive obj) {
 
         dismissLoading();
-        Intent profilePage = new Intent(getActivity(), LoginActivity.class);
-        getActivity().startActivity(profilePage);
+        Intent logout = new Intent(getActivity(), HomeActivity.class);
+        logout.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        getActivity().startActivity(logout);
         getActivity().finish();
         pref.setLoginStatus("N");
 
@@ -321,7 +325,7 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
         }*/
     }
 
-    @Override
+    /*@Override
     public void onSuccessRequestState(StateReceive obj) {
 
         dismissLoading();
@@ -339,7 +343,7 @@ public class OptionsFragment extends BaseFragment implements ProfilePresenter.Op
             getActivity().finish();
         }
 
-    }
+    }*/
 
 
     @Override

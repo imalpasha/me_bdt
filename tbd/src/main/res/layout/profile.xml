@@ -61,12 +61,13 @@
                     android:orientation="horizontal"
                     android:weightSum="1">
 
-                    <LinearLayout
+                    <RelativeLayout
+
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:layout_weight="0.3"
                         android:layout_marginRight="10dp"
+                        android:layout_weight="0.3"
                         android:orientation="vertical">
 
                         <ImageView
@@ -74,16 +75,23 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"
-                            android:scaleType="centerCrop"
+                            android:scaleType="centerInside"
                             android:src="@drawable/no_profile_image" />
-                    </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/imageLoadProgressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+                    </RelativeLayout>
 
                     <!--android:background="@drawable/tbd_image_border"-->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.7"
                         android:layout_marginRight="5dp"
+                        android:layout_weight="0.7"
                         android:orientation="vertical">
 
                         <LinearLayout

@@ -13,8 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.tbd.ui.Model.JSON.UserFacebookInfo;
+import com.app.tbd.ui.Model.JSON.UserInfoJSON;
 import com.app.tbd.ui.Model.Receive.TBD.LoginFacebookReceive;
+import com.app.tbd.ui.Model.Receive.UploadPhotoReceive;
+import com.app.tbd.ui.Model.Receive.UserPhotoReceive;
 import com.app.tbd.ui.Model.Request.TBD.LoginFacebookRequest;
+import com.app.tbd.ui.Model.Request.UserPhotoRequest;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -59,6 +63,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class LoginFragment extends BaseFragment implements LoginPresenter.LoginView, Validator.ValidationListener {
@@ -300,7 +305,7 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
     @Override
     public void onLoginSuccess(LoginReceive obj) {
 
-        dismissLoading();
+        //dismissLoading();
 
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
@@ -315,10 +320,43 @@ public class LoginFragment extends BaseFragment implements LoginPresenter.LoginV
             String userInfo = gsonUserInfo.toJson(obj);
             RealmObjectController.saveUserInformation(getActivity(), userInfo);
 
+            UserPhotoRequest userPhotoRequest = new UserPhotoRequest();
+            userPhotoRequest.setToken(obj.getToken());
+            userPhotoRequest.setUserName(obj.getUserName());
+            presenter.onRequestUserPhoto(userPhotoRequest);
             //success login -> homepage*/
+            //homepage();
+        }else{
+            dismissLoading();
+        }
+    }
+
+    @Override
+    public void onRequestUserPhotoSuccess(UserPhotoReceive obj) {
+
+        dismissLoading();
+
+        Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
+        if (status) {
+
+            //add URL to REALM User info
+            Realm realm = RealmObjectController.getRealmInstance(getActivity());
+            final RealmResults<UserInfoJSON> result2 = realm.where(UserInfoJSON.class).findAll();
+            LoginReceive loginReceive = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
+
+            loginReceive.setProfile_URL(obj.getURL());
+
+            Gson gsonUserInfo = new Gson();
+            String userInfo = gsonUserInfo.toJson(loginReceive);
+            RealmObjectController.saveUserInformation(getActivity(), userInfo);
+
+            homepage();
+        } else {
+
             homepage();
         }
     }
+
 
     @Override
     public void onCheckFBLoginSuccess(LoginFacebookReceive obj) {

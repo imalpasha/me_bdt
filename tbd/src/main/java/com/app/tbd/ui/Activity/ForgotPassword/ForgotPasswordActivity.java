@@ -28,6 +28,7 @@ public class ForgotPasswordActivity extends MainFragmentActivity implements Frag
         fragmentManager.beginTransaction().replace(R.id.main_content, ForgotPasswordFragment.newInstance()).commit();
 
         setTitle(getResources().getString(R.string.forgot_password_title));
+        setBackButton();
 
         // [START shared_tracker]
         // Obtain the shared Tracker instance.

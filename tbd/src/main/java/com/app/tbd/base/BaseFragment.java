@@ -26,6 +26,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,13 +37,18 @@ import com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity;
 //import com.fly.firefly.ui.adapter.CheckInPassengerListAdapter;
 import com.app.tbd.ui.Activity.SplashScreen.TokenActivity;
 import com.app.tbd.ui.Model.JSON.UserFacebookInfo;
+import com.app.tbd.ui.Model.JSON.UserInfoJSON;
 import com.app.tbd.ui.Model.Receive.LanguageCountryReceive;
 import com.app.tbd.ui.Model.Receive.LanguageReceive;
+import com.app.tbd.ui.Model.Receive.TBD.LoginReceive;
 import com.app.tbd.ui.Model.Request.Country;
+import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.DropMenuAdapter;
 import com.app.tbd.utils.SharedPrefManager;
 import com.app.tbd.utils.Utils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -68,6 +74,8 @@ import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 import dmax.dialog.SpotsDialog;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class BaseFragment extends Fragment {
@@ -88,6 +96,15 @@ public class BaseFragment extends Fragment {
     private static int staticIndex = -1;
     private Activity activityContext;
 
+    /*public void getSignature(){
+
+        Realm realm = RealmObjectController.getRealmInstance(getActivity());
+        final RealmResults<UserInfoJSON> result2 = realm.where(UserInfoJSON.class).findAll();
+        LoginReceive loginReceive = (new Gson()).fromJson(result2.get(0).getUserInfo(), LoginReceive.class);
+
+
+        return signature;
+    }*/
 
     public void initiateDefaultLoading(ProgressDialog progress, Activity act) {
         progress.setTitle("Loading");
@@ -701,8 +718,6 @@ public class BaseFragment extends Fragment {
     }
 
 
-
-
     public ArrayList<DropDownItem> getLanguageList(Activity act) {
 
         ArrayList<DropDownItem> list = new ArrayList<DropDownItem>();
@@ -714,8 +729,6 @@ public class BaseFragment extends Fragment {
         String languageList = init.get(SharedPrefManager.LANGUAGE_LIST);
 
         LanguageReceive languageListObj = gson.fromJson(languageList, LanguageReceive.class);
-
-
 
         for (int i = 0; i < languageListObj.getLanguageList().size(); i++) {
             DropDownItem itemCountry = new DropDownItem();
@@ -1543,6 +1556,14 @@ public class BaseFragment extends Fragment {
         pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
 
+    }
+
+    public void displayImage(Activity act, ImageView imgView, String url) {
+        Glide.with(act).load(url)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imgView);
     }
 
 	/*public void showUTCError(String msg)
