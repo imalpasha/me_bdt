@@ -462,7 +462,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/profile_address"
+                        android:text="@string/profile_address_title"
                         android:textColor="@color/dark_lvl6"
                         android:textSize="16dp"
                         android:layout_marginBottom="1dp"/>

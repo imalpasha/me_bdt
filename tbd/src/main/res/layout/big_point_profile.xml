@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:padding="10dp"
-                    android:text="Your Big Points Balance"
+                    android:text="@string/big_balance"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 

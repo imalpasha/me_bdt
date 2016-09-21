@@ -22,7 +22,7 @@ public class MyProfileActivity extends MainFragmentActivity implements FragmentC
         ButterKnife.inject(this);
 
         Bundle bundle = getIntent().getExtras();
-        setTitle("My Profile");
+        setTitle(R.string.tbd_my_profile);
         setBackButton();
         //setEditButton();
 
