@@ -310,14 +310,18 @@ public class BookingPresenter {
         view2.onChangeFlightSuccess(event);
     }
 
+
+
+
+
     //@Subscribe
    // public void onItineraryReceive(ContactInfoReceive event) {view6.onItineraryInfo(event);}
-
+*/
     public void onResume() {
         bus.register(this);
     }
 
     public void onPause() {
         bus.unregister(this);
-    }*/
+    }
 }

@@ -30,7 +30,7 @@ public class FlightListActivity extends MainFragmentActivity implements Fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, FlightListFragment.newInstance(bundle)).commit();
 
-        //hideTitle();
+        setBackButton();
 
     }
 

@@ -13,7 +13,7 @@ import com.app.tbd.utils.DropDownItem;
 
 import java.util.ArrayList;
 
-public class SelectionListAdapter extends BaseAdapter {
+public class SelectionListAdapterV2 extends BaseAdapter {
     Context context;
     ArrayList<DropDownItem> countries;
     ArrayList<DropDownItem> originalCountries;
@@ -24,9 +24,9 @@ public class SelectionListAdapter extends BaseAdapter {
 
     ArrayList<DropDownItem> arraylist;
     String[] filteredChar;
-    SelectionListFragment frag;
+    SelectionListFragmentV2 frag;
 
-    public SelectionListAdapter(Context context, SelectionListFragment frag, ArrayList<DropDownItem> countries, ArrayList<DropDownItem> oriCountries, String whichList2) {
+    public SelectionListAdapterV2(Context context, SelectionListFragmentV2 frag, ArrayList<DropDownItem> countries, ArrayList<DropDownItem> oriCountries, String whichList2) {
         this.context = context;
         this.countries = countries;
         this.frag = frag;

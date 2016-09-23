@@ -13,6 +13,99 @@ public class InitialLoadReceive {
     private String Message;
     private List<TitleList> TitleList = new ArrayList<TitleList>();
     private List<CountryList> CountryList = new ArrayList<CountryList>();
+    private List<RouteList> RouteList = new ArrayList<RouteList>();
+
+    public class RouteList {
+
+        private String DepartureCountryName;
+        private String DepartureStation;
+        private String DepartureStationName;
+        private String DepartureStationCurrencyCode;
+        private String ArrivalCountryName;
+        private String ArrivalStation;
+        private String ArrivalStationName;
+
+        public String getDepartureStationName() {
+            return DepartureStationName;
+        }
+
+        public void setDepartureStationName(String departureStationName) {
+            DepartureStationName = departureStationName;
+        }
+
+        public String getArrivalStationName() {
+            return ArrivalStationName;
+        }
+
+        public void setArrivalStationName(String arrivalStationName) {
+            ArrivalStationName = arrivalStationName;
+        }
+
+        public String getDepartureCountryName() {
+            return DepartureCountryName;
+        }
+
+        public void setDepartureCountryName(String departureCountryName) {
+            DepartureCountryName = departureCountryName;
+        }
+
+        public String getDepartureStation() {
+            return DepartureStation;
+        }
+
+        public void setDepartureStation(String departureStation) {
+            DepartureStation = departureStation;
+        }
+
+        public String getDepartureStationCurrencyCode() {
+            return DepartureStationCurrencyCode;
+        }
+
+        public void setDepartureStationCurrencyCode(String departureStationCurrencyCode) {
+            DepartureStationCurrencyCode = departureStationCurrencyCode;
+        }
+
+        public String getArrivalCountryName() {
+            return ArrivalCountryName;
+        }
+
+        public void setArrivalCountryName(String arrivalCountryName) {
+            ArrivalCountryName = arrivalCountryName;
+        }
+
+        public String getArrivalStation() {
+            return ArrivalStation;
+        }
+
+        public void setArrivalStation(String arrivalStation) {
+            ArrivalStation = arrivalStation;
+        }
+
+    }
+
+    public List<InitialLoadReceive.RouteList> getRouteList() {
+        return RouteList;
+    }
+
+    public void setRouteList(List<InitialLoadReceive.RouteList> routeList) {
+        RouteList = routeList;
+    }
+
+    public List<InitialLoadReceive.TitleList> getTitleList() {
+        return TitleList;
+    }
+
+    public void setTitleList(List<InitialLoadReceive.TitleList> titleList) {
+        TitleList = titleList;
+    }
+
+    public List<InitialLoadReceive.CountryList> getCountryList() {
+        return CountryList;
+    }
+
+    public void setCountryList(List<InitialLoadReceive.CountryList> countryList) {
+        CountryList = countryList;
+    }
 
     public List<CountryList> getData_country() {
         return CountryList;

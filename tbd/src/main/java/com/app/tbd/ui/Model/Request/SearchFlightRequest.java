@@ -12,7 +12,35 @@ public class SearchFlightRequest {
     private String DepartureStation0;
     private String ArrivalStation0;
     private String DepartureDate0;
+    private String DepartureStation1;
+    private String ArrivalStation1;
+    private String DepartureDate1;
+
     private String Signature;
+
+    public String getDepartureStation1() {
+        return DepartureStation1;
+    }
+
+    public void setDepartureStation1(String departureStation1) {
+        DepartureStation1 = departureStation1;
+    }
+
+    public String getDepartureDate1() {
+        return DepartureDate1;
+    }
+
+    public void setDepartureDate1(String departureDate1) {
+        DepartureDate1 = departureDate1;
+    }
+
+    public String getArrivalStation1() {
+        return ArrivalStation1;
+    }
+
+    public void setArrivalStation1(String arrivalStation1) {
+        ArrivalStation1 = arrivalStation1;
+    }
 
     public SearchFlightRequest() {
 
@@ -26,6 +54,9 @@ public class SearchFlightRequest {
         DepartureStation0 = data.getDepartureStation0();
         ArrivalStation0 = data.getArrivalStation0();
         DepartureDate0 = data.getDepartureDate0();
+        DepartureStation1 = data.getDepartureStation1();
+        ArrivalStation1 = data.getArrivalStation1();
+        DepartureDate1 = data.getDepartureDate1();
         Signature = data.getSignature();
     }
 

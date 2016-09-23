@@ -137,7 +137,7 @@ public class SelectFlightFragment extends DialogFragment {
 
         lvCountries.setAdapter(null);
 
-        originalCountries = SearchFlightFragment.initiatePageData(getActivity());
+        originalCountries = SearchFlightFragment.initiateFlightStation(getActivity());
         Log.e("Original",Integer.toString(originalCountries.size()));
         sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
@@ -174,7 +174,7 @@ public class SelectFlightFragment extends DialogFragment {
         //filteredCountry = BaseFragment.getCharAt(countryChar);
         //headerPosition = BaseFragment.headerPosition(countryChar);
 
-        originalCountries = SearchFlightFragment.initiatePageData(getActivity());
+        originalCountries = SearchFlightFragment.initiateFlightStation(getActivity());
         adapter = new CountryListDialogAdapter(getActivity().getApplicationContext(), SelectFlightFragment.this, countries2, originalCountries);
 
         //for (int i = 0; i < headerPosition.length; i++) {

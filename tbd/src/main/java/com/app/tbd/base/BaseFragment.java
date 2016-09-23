@@ -1287,12 +1287,11 @@ public class BaseFragment extends Fragment {
         JSONArray json = null;
 
         prefManager = new SharedPrefManager(act);
-        HashMap<String, String> init = prefManager.getFlight();
-        String dataFlight = init.get(SharedPrefManager.FLIGHT);
+        HashMap<String, String> init = prefManager.getRoute();
+        String dataFlight = init.get(SharedPrefManager.ROUTE);
 
         try {
             json = new JSONArray(dataFlight);
-            Log.e("How many??", Integer.toString(json.length()));
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -95,10 +95,10 @@ public class TabButtomFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Utils.toastNotification(getActivity(), "N/A");
+                //Utils.toastNotification(getActivity(), "N/A");
 
-                //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                //fragmentManager.beginTransaction().replace(R.id.main_content, SearchFlightFragment.newInstance()).commit();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main_content, SearchFlightFragment.newInstance()).commit();
 
                 /*Intent searchFlight = new Intent(getActivity(), SearchFlightActivity.class);
                 searchFlight.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

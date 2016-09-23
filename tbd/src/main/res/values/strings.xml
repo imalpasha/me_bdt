@@ -297,7 +297,6 @@
     <string name="lang_country">Country</string>
 
 
-
     <string name="term_webview">http://fyapidev.me-tech.com.my/api/displayTerm</string>
 
     <!-- General-->
@@ -467,6 +466,9 @@
     <string name="select_state" translatable="false">Select state</string>
     <string name="select_nationality" translatable="false">Select nationality</string>
     <string name="select_title" translatable="false">Select title</string>
+    <string name="select_departure_station" translatable="false">Departure station</string>
+    <string name="select_arrival_station" translatable="false">Arrival station</string>
+
     <string name="register_password_hint">Password must be 8-15 alphanumeric characters with these reuirement: number (0-9), lowercase letter (a-z),uppercase letter (A-Z)</string>
     <string name="tbd_my_booking">My Booking</string>
     <string name="profile_address_title">ADDRESS</string>

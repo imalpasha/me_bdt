@@ -93,7 +93,6 @@ public class ChangeLanguageFragment extends BaseFragment implements LanguagePres
     ImageView imageView2;
 
 
-
     ProgressDialog progress;
     private Validator mValidator;
     private int fragmentContainerId;
@@ -210,6 +209,9 @@ public class ChangeLanguageFragment extends BaseFragment implements LanguagePres
 
             String country = gson.toJson(obj.getObj().getData_country());
             pref.setCountry(country);
+
+            String route = gson.toJson(obj.getObj().getRouteList());
+            pref.setRoute(route);
 
             //load state - need to move later on
             StateRequest stateRequest = new StateRequest();

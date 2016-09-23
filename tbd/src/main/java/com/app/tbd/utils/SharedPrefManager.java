@@ -80,6 +80,9 @@ public class SharedPrefManager {
     public static final String LANGUAGE_LIST = "LL";
 
     public static final String NEWSLETTER_LANGUAGE_LIST = "NLL";
+    public static final String ROUTE = "R";
+
+
     int PRIVATE_MODE = 0;
     Context _context;
     private SharedPreferences _sharedPrefs;
@@ -90,6 +93,13 @@ public class SharedPrefManager {
         this._context = context;
         _sharedPrefs = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         _prefsEditor = _sharedPrefs.edit();
+    }
+
+
+    public HashMap<String, String> getRoute() {
+        HashMap<String, String> init = new HashMap<String, String>();
+        init.put(ROUTE, _sharedPrefs.getString(ROUTE, null));
+        return init;
     }
 
     public HashMap<String, String> getNewsletterLanguageList() {
@@ -393,6 +403,11 @@ public class SharedPrefManager {
         return init;
     }
 
+
+    public void setRoute(String route) {
+        _prefsEditor.putString(ROUTE, route);
+        _prefsEditor.apply();
+    }
 
 
     /*ForceLogout*/

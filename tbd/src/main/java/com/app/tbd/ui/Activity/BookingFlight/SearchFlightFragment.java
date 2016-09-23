@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,22 +22,32 @@ import com.app.tbd.application.MainApplication;
 import com.app.tbd.ui.Activity.Picker.SelectFlightFragment;
 import com.app.tbd.base.BaseFragment;
 import com.app.tbd.ui.Activity.FragmentContainerActivity;
-import com.app.tbd.ui.Model.Receive.LanguageReceive;
+import com.app.tbd.ui.Activity.Picker.SelectionListFragment;
+import com.app.tbd.ui.Activity.Picker.SelectionListFragmentV2;
 import com.app.tbd.ui.Model.Receive.SearchFlightReceive;
 import com.app.tbd.ui.Model.Receive.SignatureReceive;
 import com.app.tbd.ui.Model.Request.SearchFlightRequest;
 import com.app.tbd.ui.Model.Request.SignatureRequest;
 import com.app.tbd.ui.Module.SearchFlightModule;
 import com.app.tbd.ui.Presenter.BookingPresenter;
-import com.app.tbd.ui.Presenter.LanguagePresenter;
 import com.app.tbd.ui.Realm.RealmObjectController;
 import com.app.tbd.utils.DropDownItem;
 import com.app.tbd.utils.SharedPrefManager;
+import com.app.tbd.utils.Utils;
 import com.google.gson.Gson;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -49,9 +62,6 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
 
     @InjectView(R.id.departureDateBlock)
     LinearLayout departureDateBlock;
-
-    @InjectView(R.id.returnDateBlock)
-    LinearLayout returnDateBlock;
 
     @InjectView(R.id.btnSearchFlight)
     Button btnSearchFlight;
@@ -74,6 +84,18 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @InjectView(R.id.txtArrivalFlight)
     TextView txtArrivalFlight;
 
+    @InjectView(R.id.testImage)
+    ImageView testImage;
+
+    @InjectView(R.id.btnReturn)
+    LinearLayout btnReturn;
+
+    @InjectView(R.id.btnOneWay)
+    LinearLayout btnOneWay;
+
+    @InjectView(R.id.returnDateBlock)
+    LinearLayout returnDateBlock;
+
 
     private int fragmentContainerId;
     private static final String SCREEN_LABEL = "Book Flight: Search Flight";
@@ -91,8 +113,12 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     private String PICKER;
     public static final String DATEPICKER_TAG = "DATEPICKER_TAG";
     private String CURRENT_PICKER;
-    /*DatePicker Setup - Failed to make it global*/
     final Calendar calendar = Calendar.getInstance();
+    static ArrayList<DropDownItem> arrivalFlight = new ArrayList<DropDownItem>();
+    static String stationCode;
+    String currency;
+    static Boolean arrivalClickable = false;
+    Boolean oneWay = false;
 
     //NEED TO CREATE DIFFERENT INSTANCE FOR EACH CALENDAR TO AVOID DISPLAYING PREVIOUS SELECTED.
     DatePickerDialog searchFlight_DatePicker;
@@ -123,21 +149,56 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
         getActivity().setTitle(R.string.search_flight_page);
 
         datePickerSetting();
-        //initiatePageData();
+        //initiateFlightStation();
+
+
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                returnDateBlock.setVisibility(View.VISIBLE);
+                oneWay = false;
+
+            }
+        });
+
+        btnOneWay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                returnDateBlock.setVisibility(View.GONE);
+                oneWay = true;
+
+            }
+        });
+
+        testImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.pop_in);
+                animation.setFillAfter(true);
+                testImage.setAnimation(animation);
+
+            }
+        });
 
         btnDepartureFlight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCountrySelector(getActivity(), initiatePageData(getActivity()));
-                CURRENT_PICKER = "DEPARTURE";
+                CURRENT_PICKER = "DEPARTURE_FLIGHT";
+                showCountrySelector(getActivity(), initiateFlightStation(getActivity()), CURRENT_PICKER);
             }
         });
 
         btnArrivalFlight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCountrySelector(getActivity(), initiatePageData(getActivity()));
-                CURRENT_PICKER = "ARRIVAL";
+                if (arrivalClickable) {
+                    CURRENT_PICKER = "ARRIVAL_FLIGHT";
+                    showCountrySelector(getActivity(), arrivalFlight, CURRENT_PICKER);
+                } else {
+                    Utils.toastNotification(getActivity(), DEPARTURE_FLIGHT);
+                }
             }
         });
 
@@ -149,7 +210,6 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
                 //getActivity().startActivity(flightDetail);
 
                 getSignature();
-                searchFlight();
 
             }
         });
@@ -182,16 +242,20 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
 
     public void searchFlight() {
 
-        initiateLoading(getActivity());
-
         SearchFlightRequest searchFlightRequest = new SearchFlightRequest();
         searchFlightRequest.setAdult("1");
         searchFlightRequest.setChild("1");
         searchFlightRequest.setInfant("1");
-        searchFlightRequest.setArrivalStation0("MEL");
-        searchFlightRequest.setDepartureStation0("KUL");
-        searchFlightRequest.setCurrencyCode("MYR");
-        searchFlightRequest.setDepartureDate0("2016-09-21");
+        searchFlightRequest.setArrivalStation0(txtArrivalFlight.getTag().toString());
+        searchFlightRequest.setDepartureStation0(txtDepartureFlight.getTag().toString());
+        Boolean twoWay = false;
+        if (!oneWay) {
+            searchFlightRequest.setArrivalStation1(txtDepartureFlight.getTag().toString());
+            searchFlightRequest.setDepartureStation1(txtArrivalFlight.getTag().toString());
+            searchFlightRequest.setDepartureDate1(bookFlightReturnDate.getTag().toString());
+        }
+        searchFlightRequest.setCurrencyCode(currency);
+        searchFlightRequest.setDepartureDate0(bookFlightDepartureDate.getTag().toString());
         searchFlightRequest.setSignature(signature);
 
         presenter.onSearchFlight(searchFlightRequest);
@@ -210,9 +274,19 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @Override
     public void onSearchFlightReceive(SearchFlightReceive obj) {
 
+        dismissLoading();
+
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
             Log.e("Status", obj.getStatus());
+
+            Gson gsonUserInfo = new Gson();
+            String flightList = gsonUserInfo.toJson(obj);
+
+            Intent flightDetail = new Intent(getActivity(), FlightListActivity.class);
+            flightDetail.putExtra("FLIGHT_LIST", flightList);
+            getActivity().startActivity(flightDetail);
+
         }
 
     }
@@ -222,75 +296,92 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
 
         Boolean status = MainController.getRequestStatus(obj.getStatus(), obj.getMessage(), getActivity());
         if (status) {
-            Log.e("Status",signature);
             signature = obj.getSignature();
+            searchFlight();
         }
 
     }
 
     /*Country selector - > need to move to main activity*/
-    public void showCountrySelector(Activity act, ArrayList constParam) {
+    public void showCountrySelector(Activity act, ArrayList constParam, String data) {
         if (act != null) {
             try {
-
-                Log.e("at search flight", Integer.toString(constParam.size()));
-
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                SelectFlightFragment countryListDialogFragment = com.app.tbd.ui.Activity.Picker.SelectFlightFragment.newInstance(constParam);
-                countryListDialogFragment.setTargetFragment(SearchFlightFragment.this, 0);
-                countryListDialogFragment.show(fm, "countryListDialogFragment");
+                SelectionListFragment routeListDialogFragment = SelectionListFragment.newInstance(constParam, data);
+                routeListDialogFragment.setTargetFragment(SearchFlightFragment.this, 0);
+                routeListDialogFragment.show(fm, "countryListDialogFragment");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static ArrayList<DropDownItem> initiatePageData(Activity act) {
+    public static ArrayList<DropDownItem> initiateFlightStation(Activity act) {
 
         ArrayList<DropDownItem> flightMarket = new ArrayList<DropDownItem>();
-        /*ArrayList<DropDownItem> flightMarket = new ArrayList<DropDownItem>();
         JSONArray jsonFlight = getFlight(act);
+
+
+        //sort here
+        JSONArray sortedJsonArray = new JSONArray();
+        List<JSONObject> jsonList = new ArrayList<JSONObject>();
+        for (int i = 0; i < jsonFlight.length(); i++) {
+            try {
+                jsonList.add(jsonFlight.getJSONObject(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Collections.sort(jsonList, new Comparator<JSONObject>() {
+
+            public int compare(JSONObject a, JSONObject b) {
+                String valA = new String();
+                String valB = new String();
+
+                try {
+                    valA = (String) a.get("DepartureStationName");
+                    valB = (String) b.get("DepartureStationName");
+                } catch (JSONException e) {
+                    //do something
+                }
+
+                return valA.compareTo(valB);
+            }
+        });
+
+        for (int i = 0; i < jsonFlight.length(); i++) {
+            sortedJsonArray.put(jsonList.get(i));
+        }
 
         //Get All Airport - remove redundant
         List<String> al = new ArrayList<>();
         Set<String> hs = new LinkedHashSet<>();
-        for (int i = 0; i < jsonFlight.length(); i++) {
-            JSONObject row = (JSONObject) jsonFlight.opt(i);
-            if (!row.optString("status").equals("N")) {
-                al.add(row.optString("location") + "/-" + row.optString("location_code"));
+        for (int i = 0; i < sortedJsonArray.length(); i++) {
+            JSONObject row = (JSONObject) sortedJsonArray.opt(i);
+            if (!row.optString("DepartureStationName").equals("") && !row.optString("ArrivalStationName").equals("")) {
+                al.add(row.optString("DepartureStationName") + "/-" + row.optString("DepartureStation") + "/-" + row.optString("DepartureCountryName") + "/-" + row.optString("DepartureStationCurrencyCode"));
             }
         }
+
         hs.addAll(al);
         al.clear();
         al.addAll(hs);
-        */
 
-        /*
         for (int i = 0; i < al.size(); i++) {
             String flightSplit = al.get(i).toString();
             String[] str1 = flightSplit.split("/-");
             String p1 = str1[0];
             String p2 = str1[1];
+            String p3 = str1[2];
+            String p4 = str1[3];
 
             DropDownItem itemFlight = new DropDownItem();
             itemFlight.setText(p1 + " (" + p2 + ")");
-            itemFlight.setCode(p2);
+            itemFlight.setCode(p2 + "/" + p3 + "/" + p4);
             itemFlight.setTag("FLIGHT");
             flightMarket.add(itemFlight);
 
-        }*/
-
-        	/*Travel Doc*/
-        final String[] language = act.getResources().getStringArray(R.array.dummy_flight);
-        for (int i = 0; i < language.length; i++) {
-            String flight = language[i];
-            String[] splitDoc = flight
-                    .split("-");
-
-            DropDownItem itemDoc = new DropDownItem();
-            itemDoc.setText(splitDoc[0]);
-            itemDoc.setCode(splitDoc[1]);
-            flightMarket.add(itemDoc);
         }
 
         return flightMarket;
@@ -314,18 +405,88 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
             return;
         } else {
             if (requestCode == 1) {
-                DropDownItem selectedFlight = data.getParcelableExtra(SelectFlightFragment.FLIGHT_SELECTION);
+                DropDownItem selectedFlight = data.getParcelableExtra(CURRENT_PICKER);
 
-                if (CURRENT_PICKER.equals("DEPARTURE")) {
+                if (CURRENT_PICKER.equals("DEPARTURE_FLIGHT")) {
                     txtDepartureFlight.setText(selectedFlight.getText());
+
+                    String codeSplit = selectedFlight.getCode();
+                    String[] str1 = codeSplit.split("/");
+                    String p1 = str1[0];
+                    String p3 = str1[2];
+                    stationCode = p1;
+                    currency = p3;
+
+                    txtDepartureFlight.setTag(p1);
+
+                    arrivalFlight = new ArrayList<DropDownItem>();
+                    arrivalFlight = initiateArrivalStation(getActivity());
+
                 } else {
+
+                    String codeSplit = selectedFlight.getCode();
+                    String[] str1 = codeSplit.split("/");
+                    String p1 = str1[0];
+                    stationCode = p1;
+
                     txtArrivalFlight.setText(selectedFlight.getText());
+                    txtArrivalFlight.setTag(stationCode);
                 }
 
             }
         }
     }
 
+    public static ArrayList<DropDownItem> initiateArrivalStation(Activity act) {
+
+        JSONArray jsonFlight = getFlight(act);
+
+        JSONArray sortedJsonArray = new JSONArray();
+        List<JSONObject> jsonList = new ArrayList<JSONObject>();
+        for (int i = 0; i < jsonFlight.length(); i++) {
+            try {
+                jsonList.add(jsonFlight.getJSONObject(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Collections.sort(jsonList, new Comparator<JSONObject>() {
+
+            public int compare(JSONObject a, JSONObject b) {
+                String valA = new String();
+                String valB = new String();
+
+                try {
+                    valA = (String) a.get("ArrivalStationName");
+                    valB = (String) b.get("ArrivalStationName");
+                } catch (JSONException e) {
+                    //do something
+                }
+
+                return valA.compareTo(valB);
+            }
+        });
+
+        for (int i = 0; i < jsonFlight.length(); i++) {
+            sortedJsonArray.put(jsonList.get(i));
+        }
+
+        for (int i = 0; i < sortedJsonArray.length(); i++) {
+            JSONObject row = (JSONObject) sortedJsonArray.opt(i);
+
+            DropDownItem item = new DropDownItem();
+            if (stationCode.equals(row.optString("DepartureStation"))) {
+                item.setText(row.optString("ArrivalStationName") + " (" + row.optString("ArrivalStation") + ")");
+                item.setCode(row.optString("ArrivalStation") + "/" + row.optString("ArrivalCountryName"));
+                item.setTag("ARRIVAL_STATION");
+                arrivalFlight.add(item);
+            }
+
+        }
+        arrivalClickable = true;
+        return arrivalFlight;
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -336,20 +497,15 @@ public class SearchFlightFragment extends BaseFragment implements DatePickerDial
     @Override
     public void onResume() {
         super.onResume();
-
+        presenter.onResume();
         AnalyticsApplication.sendScreenView(SCREEN_LABEL);
-
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+        presenter.onPause();
     }
 
     @Override

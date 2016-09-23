@@ -205,6 +205,9 @@ public class LanguageFragment extends BaseFragment implements LanguagePresenter.
             String country = gson.toJson(obj.getObj().getData_country());
             pref.setCountry(country);
 
+            String route = gson.toJson(obj.getObj().getRouteList());
+            pref.setRoute(route);
+
             //load state - need to move later on
             StateRequest stateRequest = new StateRequest();
             stateRequest.setLanguageCode(languageCode + "-" + cn);

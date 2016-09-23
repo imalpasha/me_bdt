@@ -32,7 +32,7 @@ import java.util.Locale;
 
 import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
 
-public class SelectionListFragment extends DialogFragment {
+public class SelectionListFragmentV2 extends DialogFragment {
     public static final String KEY_COUNTRY_LIST = "countryList";
     public static final String KEY_LANGUAGE_LIST = "languageList";
     public static final String LIST_NAME = "LIST_NAME";
@@ -49,7 +49,7 @@ public class SelectionListFragment extends DialogFragment {
 
     ListView lvCountries;
     EditText txtSearchCustom;
-    SelectionListAdapter adapter;
+    SelectionListAdapterV2 adapter;
     TextView txtCountry;
     TextView txtSelectionTitle;
     ImageButton backbutton;
@@ -77,8 +77,8 @@ public class SelectionListFragment extends DialogFragment {
 
     private ArrayList<SimpleSectionedListAdapter.Section> sections = new ArrayList<SimpleSectionedListAdapter.Section>();
 
-    public static SelectionListFragment newInstance(ArrayList<DropDownItem> countries, String data) {
-        SelectionListFragment fragment = new SelectionListFragment();
+    public static SelectionListFragmentV2 newInstance(ArrayList<DropDownItem> countries, String data) {
+        SelectionListFragmentV2 fragment = new SelectionListFragmentV2();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(PASS_SELECTION_LIST, countries);
         bundle.putString(LIST_NAME, data);
@@ -162,6 +162,8 @@ public class SelectionListFragment extends DialogFragment {
             public void afterTextChanged(Editable s) {
                 String text = txtSearchCustom.getText().toString().toLowerCase(Locale.getDefault());
                 adapter.filter(text);
+
+
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -209,7 +211,7 @@ public class SelectionListFragment extends DialogFragment {
         //lvCountries.setAdapter(null);
         sections = new ArrayList<SimpleSectionedListAdapter.Section>();
         originalList = initiateDataForAdapter(listName);
-        adapter = new SelectionListAdapter(getActivity().getApplicationContext(), SelectionListFragment.this, list, originalList, adapterFor);
+        adapter = new SelectionListAdapterV2(getActivity().getApplicationContext(), SelectionListFragmentV2.this, list, originalList, adapterFor);
 
         if (searchOn) {
             for (int i = 0; i < headerPosition.length; i++) {
@@ -256,7 +258,7 @@ public class SelectionListFragment extends DialogFragment {
         originalList = initiateDataForAdapter(listName);
         Log.e("OriginalListSize", "b" + Integer.toString(originalList.size()));
 
-        adapter = new SelectionListAdapter(getActivity().getApplicationContext(), SelectionListFragment.this, list, originalList, adapterFor);
+        adapter = new SelectionListAdapterV2(getActivity().getApplicationContext(), SelectionListFragmentV2.this, list, originalList, adapterFor);
         lvCountries.setAdapter(adapter);
 
     }
