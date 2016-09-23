@@ -193,6 +193,12 @@
             android:name="com.app.tbd.ui.Activity.SplashScreen.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
+
+        </activity>
+
+        <activity
+            android:name="com.app.tbd.ui.Activity.TAB.TabActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
